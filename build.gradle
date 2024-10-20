@@ -1,9 +1,8 @@
 plugins {
+	id 'application'
+	id 'org.openjfx.javafxplugin' version '0.0.14'
 	id 'java'
-	id 'org.springframework.boot' version '3.3.4'
-	id 'io.spring.dependency-management' version '1.1.6'
 }
-
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
 
@@ -24,16 +23,28 @@ repositories {
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter'
-	implementation 'org.springframework.boot:spring-boot-devtools'
-	compileOnly 'org.projectlombok:lombok'
-	annotationProcessor 'org.projectlombok:lombok'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+	//ui
+	implementation 'org.openjfx:javafx-controls:17.0.1'
+	implementation 'org.openjfx:javafx-fxml:17.0.1'
 	// Audio playback library
 	implementation 'javazoom:jlayer:1.0.1'
 	//database
-	implementation 'com.h2database:h2'
+	implementation 'com.h2database:h2:2.1.214'
+	//testing
+	testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.1'
+	testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.1'
+	//lombok
+	compileOnly 'org.projectlombok:lombok:1.18.28' // Specify the version of Lombok
+	annotationProcessor 'org.projectlombok:lombok:1.18.28' // Specify the version for annotation processing
+}
+
+javafx {
+	version = "17.0.2"
+	modules = [ 'javafx.controls', 'javafx.fxml' ]
+}
+
+application {
+	mainClass = 'com.example.Jambo.JamboApp'
 }
 
 tasks.named('test') {
