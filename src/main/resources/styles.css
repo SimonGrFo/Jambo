@@ -1,0 +1,66 @@
+/* Style for the entire scene */
+.root {
+    -fx-background-color: #1e1e2f; /* Dark background with a slight bluish hue */
+    -fx-padding: 20;
+}
+
+/* Button styles */
+.button {
+    -fx-background-color: #5a9fff;  /* Soft blue for a modern, clean look */
+    -fx-text-fill: #ffffff;  /* White text */
+    -fx-font-size: 14px;  /* Legible font size */
+    -fx-background-radius: 20;  /* Slightly rounded buttons for a sleek look */
+    -fx-padding: 10 20;
+    -fx-font-family: "Segoe UI", sans-serif;  /* Clean font for a professional look */
+}
+
+.button:hover {
+    -fx-background-color: #82b2ff;  /* Lighter blue on hover for subtle feedback */
+}
+
+.button:pressed {
+    -fx-background-color: #3e7be0;  /* Darker blue when pressed */
+}
+
+/* Styling the ListView */
+.list-view {
+    -fx-background-color: #2b2b40;  /* Dark gray with a hint of purple for contrast */
+    -fx-border-color: #444459;  /* Subtle border that blends with the background */
+    -fx-control-inner-background: #2b2b40;  /* Consistent dark background inside the list */
+    -fx-text-fill: #d1d1e0;  /* Light gray text for better readability */
+    -fx-padding: 10;
+    -fx-font-family: "Segoe UI", sans-serif;  /* Consistent font across the app */
+}
+
+/* ListView cell styles */
+.list-cell {
+    -fx-background-color: transparent;  /* Transparent background for clean look */
+    -fx-text-fill: #e0e0f0;  /* Slightly brighter text for track names */
+    -fx-font-size: 14px;
+    -fx-padding: 8 12;
+}
+
+.list-cell:hover {
+    -fx-background-color: #41415a;  /* Slight highlight when hovering */
+}
+
+.list-cell:selected {
+    -fx-background-color: #5a5a7f;  /* Blue-gray when selected */
+    -fx-text-fill: #ffffff;  /* White text for selected items */
+}
+
+/* Styling the bottom control buttons */
+.hbox {
+    -fx-spacing: 20;  /* More space between buttons for a balanced look */
+    -fx-alignment: center;
+}
+
+/* Scrollbar styling */
+.scroll-bar:vertical .thumb, .scroll-bar:horizontal .thumb {
+    -fx-background-color: #5a5a7f;  /* Match scrollbar thumb color with selected cell */
+    -fx-border-radius: 5;  /* Rounded scrollbars for a smoother look */
+}
+
+.scroll-bar:vertical .track, .scroll-bar:horizontal .track {
+    -fx-background-color: #2b2b40;  /* Consistent background for scroll track */
+}

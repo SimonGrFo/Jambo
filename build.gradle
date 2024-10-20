@@ -3,8 +3,12 @@ plugins {
 	id 'org.openjfx.javafxplugin' version '0.0.14'
 	id 'java'
 }
+
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
+
+sourceCompatibility = '17'
+targetCompatibility = '17'
 
 java {
 	toolchain {
@@ -23,28 +27,32 @@ repositories {
 }
 
 dependencies {
-	//ui
-	implementation 'org.openjfx:javafx-controls:17.0.1'
-	implementation 'org.openjfx:javafx-fxml:17.0.1'
-	// Audio playback library
+	implementation 'org.openjfx:javafx-controls:21'
+	implementation 'org.openjfx:javafx-base:21'
+	implementation 'org.openjfx:javafx-graphics:21'
 	implementation 'javazoom:jlayer:1.0.1'
-	//database
+	implementation 'com.googlecode.soundlibs:jlayer:1.0.1.4'
+	implementation 'org.json:json:20231013'
 	implementation 'com.h2database:h2:2.1.214'
-	//testing
 	testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.1'
 	testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.1'
-	//lombok
-	compileOnly 'org.projectlombok:lombok:1.18.28' // Specify the version of Lombok
-	annotationProcessor 'org.projectlombok:lombok:1.18.28' // Specify the version for annotation processing
 }
 
 javafx {
-	version = "17.0.2"
+	version = "21"
 	modules = [ 'javafx.controls', 'javafx.fxml' ]
 }
 
 application {
-	mainClass = 'com.example.Jambo.JamboApp'
+	mainClass = 'com.example.jambo.ui.JamboApp'
+}
+
+sourceSets {
+	main {
+		resources {
+			srcDirs = ['src/main/resources']
+		}
+	}
 }
 
 tasks.named('test') {
