@@ -7,7 +7,6 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javazoom.jl.decoder.JavaLayerException;
 import javazoom.jl.player.advanced.AdvancedPlayer;
-
 import java.io.FileInputStream;
 import java.io.IOException;
 
