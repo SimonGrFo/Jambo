@@ -24,7 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class JamboApp extends Application {
+public class JamboApplication extends Application {
 
     private static final String TRACKS_FILE = "tracks.json";
     private MusicPlayer musicPlayer;
@@ -49,7 +49,7 @@ public class JamboApp extends Application {
             }
         });
 
-        Button loadFolderButton = new Button("Load Folder");   //TODO - BROKEN! IT DOESN'T WORK!
+        Button loadFolderButton = new Button("Load Folder");   //TODOgit - BROKEN! IT DOESN'T WORK!
         Button stopButton = new Button("Stop");
         //TODO - MORE BUTTONS; PAUSE PLAY ETC
 
