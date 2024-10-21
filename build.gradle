@@ -41,11 +41,11 @@ dependencies {
 
 javafx {
 	version = "19.0.2"
-	modules = [ 'javafx.controls', 'javafx.fxml' ] // Include necessary modules
+	modules = [ 'javafx.controls', 'javafx.fxml' ]
 }
 
 application {
-	mainClass = 'com.example.jambo.ui.JamboApplication' // Single entry point
+	mainClass = 'com.example.jambo.ui.JamboApplication'
 }
 
 sourceSets {
