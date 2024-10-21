@@ -37,52 +37,15 @@ public class JamboApplication extends Application {
         tracks = FXCollections.observableArrayList();
 
         ListView<Track> trackListView = new ListView<>(tracks);
-        trackListView.setCellFactory(param -> new ListCell<>() {
-            @Override
-            protected void updateItem(Track track, boolean empty) {
-                super.updateItem(track, empty);
-                if (empty || track == null) {
-                    setText(null);
-                } else {
-                    setText(track.name());
-                }
-            }
-        });
+        trackListView.setCellFactory(param -> new TrackListCell());
 
-        Button loadFolderButton = new Button("Load Folder");   //TODOgit - BROKEN! IT DOESN'T WORK!
+        Button loadFolderButton = new Button("Load Folder"); // TODO - broken
         Button stopButton = new Button("Stop");
-        //TODO - MORE BUTTONS; PAUSE PLAY ETC
+        Button pauseButton = new Button("Pause"); //TODO - implement
 
-
-        loadFolderButton.setOnAction(e -> {
-            Task<List<Track>> loadTask = new Task<>() {
-                @Override
-                protected List<Track> call() throws Exception {
-                    return openFolderAndLoadFiles(primaryStage);
-                }
-            };
-
-            loadTask.setOnSucceeded(event -> {
-                List<Track> loadedTracks = loadTask.getValue();
-                if (!loadedTracks.isEmpty()) {
-                    tracks.setAll(loadedTracks);
-                    if (musicPlayer == null) {
-                        musicPlayer = new MusicPlayer(tracks);
-                    } else {
-                        musicPlayer.updateTracks(tracks);
-                    }
-                    saveTracksToFile(loadedTracks);
-                }
-            });
-
-            new Thread(loadTask).start();
-        });
-
-        stopButton.setOnAction(e -> {
-            if (musicPlayer != null) {
-                musicPlayer.stop();
-            }
-        });
+        loadFolderButton.setOnAction(e -> loadTracks(primaryStage));
+        stopButton.setOnAction(e -> stopMusic());
+        pauseButton.setOnAction(e -> pauseMusic());
 
         trackListView.setOnMouseClicked(event -> {
             if (event.getClickCount() == 2) {
@@ -98,7 +61,7 @@ public class JamboApplication extends Application {
         root.setCenter(trackListView);
 
         HBox controlButtons = new HBox(10);
-        controlButtons.getChildren().addAll(loadFolderButton, stopButton);
+        controlButtons.getChildren().addAll(loadFolderButton, stopButton, pauseButton);
         root.setBottom(controlButtons);
 
         Scene scene = new Scene(root, 600, 400);
@@ -114,6 +77,40 @@ public class JamboApplication extends Application {
         primaryStage.show();
 
         loadTracksFromFile();
+    }
+
+    private void loadTracks(Stage primaryStage) {
+        Task<List<Track>> loadTask = new Task<>() {
+            @Override
+            protected List<Track> call() throws Exception {
+                return openFolderAndLoadFiles(primaryStage);
+            }
+        };
+
+        loadTask.setOnSucceeded(event -> {
+            List<Track> loadedTracks = loadTask.getValue();
+            if (!loadedTracks.isEmpty()) {
+                tracks.setAll(loadedTracks);
+                if (musicPlayer == null) {
+                    musicPlayer = new MusicPlayer(tracks);
+                } else {
+                    musicPlayer.updateTracks(tracks);
+                }
+                saveTracksToFile(loadedTracks);
+            }
+        });
+
+        new Thread(loadTask).start();
+    }
+
+    private void stopMusic() {
+        if (musicPlayer != null) {
+            musicPlayer.stop();
+        }
+    }
+
+    private void pauseMusic() {
+        System.out.println("Pause feature is not implemented yet.");
     }
 
     private List<Track> openFolderAndLoadFiles(Stage stage) {

@@ -1,7 +1,7 @@
 plugins {
-	id 'application'
 	id 'org.openjfx.javafxplugin' version '0.0.14'
 	id 'java'
+	id 'application'
 }
 
 group = 'com.example'
@@ -16,35 +16,36 @@ java {
 	}
 }
 
-configurations {
-	compileOnly {
-		extendsFrom annotationProcessor
-	}
-}
-
 repositories {
 	mavenCentral()
 }
 
 dependencies {
-	implementation 'org.openjfx:javafx-controls:21'
-	implementation 'org.openjfx:javafx-base:21'
-	implementation 'org.openjfx:javafx-graphics:21'
+	// UI
 	implementation 'javazoom:jlayer:1.0.1'
-	implementation 'com.googlecode.soundlibs:jlayer:1.0.1.4'
-	implementation 'org.json:json:20231013'
+	implementation 'org.openjfx:javafx-controls:19.0.2'
+	implementation 'org.openjfx:javafx-fxml:19.0.2'
+
+	// Database
 	implementation 'com.h2database:h2:2.1.214'
+	implementation 'org.json:json:20231013'
+
+	// Testing
 	testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.1'
 	testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.1'
+
+	// Lombok
+	compileOnly 'org.projectlombok:lombok:1.18.28'
+	annotationProcessor 'org.projectlombok:lombok:1.18.28'
 }
 
 javafx {
-	version = "21"
-	modules = [ 'javafx.controls', 'javafx.fxml' ]
+	version = "19.0.2"
+	modules = [ 'javafx.controls', 'javafx.fxml' ] // Include necessary modules
 }
 
 application {
-	mainClass = 'com.example.jambo.ui.JamboApp'
+	mainClass = 'com.example.jambo.ui.JamboApplication' // Single entry point
 }
 
 sourceSets {

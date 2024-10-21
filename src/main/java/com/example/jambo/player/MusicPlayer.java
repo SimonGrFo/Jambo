@@ -15,6 +15,7 @@ public class MusicPlayer {
     private AdvancedPlayer player;
     private int currentTrackIndex = 0;
     private final ExecutorService executor = Executors.newSingleThreadExecutor();
+    private boolean isPaused = false;
 
     public MusicPlayer(List<Track> tracks) {
         this.tracks = tracks;
@@ -42,6 +43,13 @@ public class MusicPlayer {
         if (player != null) {
             player.close();
             player = null;
+        }
+    }
+
+    public void pause() {
+        if (player != null) {
+            isPaused = true;
+            player.close();
         }
     }
 
