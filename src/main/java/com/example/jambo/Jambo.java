@@ -201,25 +201,22 @@ public class Jambo extends Application {
             File songFile = songFiles.get(selectedIndex);
             Media media = new Media(songFile.toURI().toString());
 
-            // Stop and dispose of the previous media player if it exists
             if (mediaPlayer != null) {
                 mediaPlayer.stop();
                 mediaPlayer.dispose();
             }
 
-            // Create a new media player for the selected media
             mediaPlayer = new MediaPlayer(media);
             mediaPlayer.setOnError(() -> {
                 System.err.println("Media player error: " + mediaPlayer.getError().getMessage());
             });
 
-            // Set up the media player to play the song and handle song end
             mediaPlayer.setOnReady(() -> {
                 currentSongLabel.setText("Playing: " + songFile.getName());
                 progressSlider.setMax(1);
                 timerLabel.setText(formatTime(mediaPlayer.getTotalDuration().toSeconds(), mediaPlayer.getTotalDuration().toSeconds()));
                 updateFileInfoLabel(songFile);
-                mediaPlayer.play(); // Start playback
+                mediaPlayer.play();
             });
 
             mediaPlayer.currentTimeProperty().addListener((obs, oldTime, newTime) -> {
@@ -230,7 +227,6 @@ public class Jambo extends Application {
                 }
             });
 
-            // Automatically play the next song when this song ends
             mediaPlayer.setOnEndOfMedia(() -> {
                 playNextSong();
             });
@@ -344,10 +340,17 @@ public class Jambo extends Application {
         return String.format("%d:%02d / %d:%02d", currentMinutes, currentSeconds, totalMinutes, totalSeconds);
     }
 
+    private boolean isPaused = false;
+
     private void pauseMusic() {
-        if (mediaPlayer != null && mediaPlayer.getStatus() == MediaPlayer.Status.PLAYING) {
-            mediaPlayer.pause();
-            // TODO - make it so pressing pause again starts playing the song again
+        if (mediaPlayer != null) {
+            if (isPaused) {
+                mediaPlayer.play();
+                isPaused = false;
+            } else {
+                mediaPlayer.pause();
+                isPaused = true;
+            }
         }
     }
 
