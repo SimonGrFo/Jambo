@@ -16,7 +16,6 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import org.jaudiotagger.audio.AudioFile;
 import org.jaudiotagger.audio.AudioFileIO;
-import org.jaudiotagger.audio.mp3.MP3File;
 import org.jaudiotagger.audio.AudioHeader;
 import org.jaudiotagger.tag.Tag;
 import org.jaudiotagger.tag.images.Artwork;
@@ -43,7 +42,7 @@ import javafx.scene.image.Image;
 // TODO -   implement json to make things persist between sessions
 // TODO -   allow double clicking on a song to start it
 // TODO -   improve the way songs are displayed, currently just "song_name_stuff.mp3"
-//          while i want it to be something like "artist - album - song - length - etc, "
+//          while I want it to be something like "artist - album - song - length - etc, "
 
 public class Jambo extends Application {
     private MediaPlayer mediaPlayer;
@@ -166,6 +165,18 @@ public class Jambo extends Application {
         primaryStage.setMinWidth(1000);
         primaryStage.setMinHeight(800);
         primaryStage.show();
+
+        progressSlider.setOnMousePressed(e -> {
+            isDragging = true;
+        });
+
+        progressSlider.setOnMouseReleased(e -> {
+            if (mediaPlayer != null && isDragging) {
+                double newTime = progressSlider.getValue() * mediaPlayer.getTotalDuration().toSeconds();
+                mediaPlayer.seek(javafx.util.Duration.seconds(newTime));
+            }
+            isDragging = false;
+        });
     }
 
     private void loadSongs() {
@@ -213,7 +224,11 @@ public class Jambo extends Application {
                 }
             });
 
-            mediaPlayer.setOnEndOfMedia(this::playNextSong);
+            mediaPlayer.setOnEndOfMedia(() -> {
+                currentSongLabel.setText("No song playing");
+                progressSlider.setValue(0);
+                timerLabel.setText("0:00 / 0:00");
+            });
         } else {
             currentSongLabel.setText("Select a song to play.");
         }
@@ -290,7 +305,6 @@ public class Jambo extends Application {
         }
     }
 
-
     private void loadDefaultAlbumArt() {
         try {
             Image defaultImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/default_album_art.png")));
@@ -304,8 +318,6 @@ public class Jambo extends Application {
         }
     }
 
-
-
     private String formatTime(double currentTime, double totalTime) {
         int currentMinutes = (int) (currentTime / 60);
         int currentSeconds = (int) (currentTime % 60);
@@ -317,9 +329,7 @@ public class Jambo extends Application {
     private void pauseMusic() {
         if (mediaPlayer != null && mediaPlayer.getStatus() == MediaPlayer.Status.PLAYING) {
             mediaPlayer.pause();
-
-            //TODO - make it so pressing pause again starts playing the song again
-
+            // TODO - make it so pressing pause again starts playing the song again
         }
     }
 
