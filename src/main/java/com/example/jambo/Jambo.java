@@ -242,9 +242,14 @@ public class Jambo extends Application {
     private void playNextSong() {
         int selectedIndex = songListView.getSelectionModel().getSelectedIndex();
         if (selectedIndex >= 0) {
-            int nextIndex = (selectedIndex + 1) % songFiles.size(); // Loop back to the start
-            songListView.getSelectionModel().select(nextIndex); // Select the next song
-            playSelectedSong(); // Play the selected song
+            if (shuffleEnabled) {
+                int nextIndex = random.nextInt(songFiles.size());
+                songListView.getSelectionModel().select(nextIndex);
+            } else {
+                int nextIndex = (selectedIndex + 1) % songFiles.size();
+                songListView.getSelectionModel().select(nextIndex);
+            }
+            playSelectedSong();
         } else {
             currentSongLabel.setText("No more songs in the list.");
         }
@@ -253,11 +258,17 @@ public class Jambo extends Application {
     private void playPreviousSong() {
         int selectedIndex = songListView.getSelectionModel().getSelectedIndex();
         if (selectedIndex >= 0) {
-            int previousIndex = (selectedIndex - 1 + songFiles.size()) % songFiles.size();
-            songListView.getSelectionModel().select(previousIndex);
+            if (shuffleEnabled) {
+                int previousIndex = random.nextInt(songFiles.size());
+                songListView.getSelectionModel().select(previousIndex);
+            } else {
+                int previousIndex = (selectedIndex - 1 + songFiles.size()) % songFiles.size();
+                songListView.getSelectionModel().select(previousIndex);
+            }
             playSelectedSong();
         }
     }
+
 
     private void toggleShuffle() {
         shuffleEnabled = !shuffleEnabled;
