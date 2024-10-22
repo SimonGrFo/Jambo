@@ -16,7 +16,6 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import org.jaudiotagger.audio.AudioFile;
 import org.jaudiotagger.audio.AudioFileIO;
-import org.jaudiotagger.audio.mp3.MP3File;
 import org.jaudiotagger.audio.AudioHeader;
 import org.jaudiotagger.tag.Tag;
 import org.jaudiotagger.tag.images.Artwork;
@@ -43,7 +42,7 @@ import javafx.scene.image.Image;
 // TODO -   implement json to make things persist between sessions
 // TODO -   allow double clicking on a song to start it
 // TODO -   improve the way songs are displayed, currently just "song_name_stuff.mp3"
-//          while i want it to be something like "artist - album - song - length - etc, "
+//          while I want it to be something like "artist - album - song - length - etc, "
 
 public class Jambo extends Application {
     private MediaPlayer mediaPlayer;
@@ -166,6 +165,18 @@ public class Jambo extends Application {
         primaryStage.setMinWidth(1000);
         primaryStage.setMinHeight(800);
         primaryStage.show();
+
+        progressSlider.setOnMousePressed(e -> {
+            isDragging = true;
+        });
+
+        progressSlider.setOnMouseReleased(e -> {
+            if (mediaPlayer != null && isDragging) {
+                double newTime = progressSlider.getValue() * mediaPlayer.getTotalDuration().toSeconds();
+                mediaPlayer.seek(javafx.util.Duration.seconds(newTime));
+            }
+            isDragging = false;
+        });
     }
 
     private void loadSongs() {
@@ -190,19 +201,25 @@ public class Jambo extends Application {
             File songFile = songFiles.get(selectedIndex);
             Media media = new Media(songFile.toURI().toString());
 
+            // Stop and dispose of the previous media player if it exists
             if (mediaPlayer != null) {
                 mediaPlayer.stop();
                 mediaPlayer.dispose();
             }
 
+            // Create a new media player for the selected media
             mediaPlayer = new MediaPlayer(media);
+            mediaPlayer.setOnError(() -> {
+                System.err.println("Media player error: " + mediaPlayer.getError().getMessage());
+            });
 
+            // Set up the media player to play the song and handle song end
             mediaPlayer.setOnReady(() -> {
                 currentSongLabel.setText("Playing: " + songFile.getName());
                 progressSlider.setMax(1);
                 timerLabel.setText(formatTime(mediaPlayer.getTotalDuration().toSeconds(), mediaPlayer.getTotalDuration().toSeconds()));
                 updateFileInfoLabel(songFile);
-                mediaPlayer.play();
+                mediaPlayer.play(); // Start playback
             });
 
             mediaPlayer.currentTimeProperty().addListener((obs, oldTime, newTime) -> {
@@ -213,7 +230,10 @@ public class Jambo extends Application {
                 }
             });
 
-            mediaPlayer.setOnEndOfMedia(this::playNextSong);
+            // Automatically play the next song when this song ends
+            mediaPlayer.setOnEndOfMedia(() -> {
+                playNextSong();
+            });
         } else {
             currentSongLabel.setText("Select a song to play.");
         }
@@ -222,9 +242,11 @@ public class Jambo extends Application {
     private void playNextSong() {
         int selectedIndex = songListView.getSelectionModel().getSelectedIndex();
         if (selectedIndex >= 0) {
-            int nextIndex = (selectedIndex + 1) % songFiles.size();
-            songListView.getSelectionModel().select(nextIndex);
-            playSelectedSong();
+            int nextIndex = (selectedIndex + 1) % songFiles.size(); // Loop back to the start
+            songListView.getSelectionModel().select(nextIndex); // Select the next song
+            playSelectedSong(); // Play the selected song
+        } else {
+            currentSongLabel.setText("No more songs in the list.");
         }
     }
 
@@ -290,7 +312,6 @@ public class Jambo extends Application {
         }
     }
 
-
     private void loadDefaultAlbumArt() {
         try {
             Image defaultImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/default_album_art.png")));
@@ -304,8 +325,6 @@ public class Jambo extends Application {
         }
     }
 
-
-
     private String formatTime(double currentTime, double totalTime) {
         int currentMinutes = (int) (currentTime / 60);
         int currentSeconds = (int) (currentTime % 60);
@@ -317,9 +336,7 @@ public class Jambo extends Application {
     private void pauseMusic() {
         if (mediaPlayer != null && mediaPlayer.getStatus() == MediaPlayer.Status.PLAYING) {
             mediaPlayer.pause();
-
-            //TODO - make it so pressing pause again starts playing the song again
-
+            // TODO - make it so pressing pause again starts playing the song again
         }
     }
 
