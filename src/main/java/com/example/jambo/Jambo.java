@@ -30,6 +30,9 @@ import java.util.Random;
 // TODO -   figure out how the metadata, its hard
 // TODO -   load multiple songs from different folders
 // TODO -   album art
+// TODO -   make audio match when another song plays, currently volume goes back to
+//          default, but the slider stays the same
+// TODO -   implement json to make things persist between sessions
 
 public class Jambo extends Application {
     private MediaPlayer mediaPlayer;
@@ -242,9 +245,9 @@ public class Jambo extends Application {
     }
 
     private void toggleMute() {
-        isMuted = !isMuted; // Toggle mute status
+        isMuted = !isMuted;
         if (mediaPlayer != null) {
-            mediaPlayer.setVolume(isMuted ? 0 : 0.5); // Set volume based on mute status
+            mediaPlayer.setVolume(isMuted ? 0 : 0.5);
         }
     }
 
@@ -252,7 +255,7 @@ public class Jambo extends Application {
 
         //TODO - get track metadata
 
-        fileInfoLabel.setText("Format: MP3, 320 kbps"); // Placeholder text
+        fileInfoLabel.setText("Format: MP3, 320 kbps");
     }
 
     private String formatTime(double currentTime, double totalTime) {
