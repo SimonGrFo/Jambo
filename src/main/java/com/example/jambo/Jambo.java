@@ -166,9 +166,7 @@ public class Jambo extends Application {
         primaryStage.setMinHeight(800);
         primaryStage.show();
 
-        progressSlider.setOnMousePressed(e -> {
-            isDragging = true;
-        });
+        progressSlider.setOnMousePressed(e -> isDragging = true);
 
         progressSlider.setOnMouseReleased(e -> {
             if (mediaPlayer != null && isDragging) {
@@ -207,9 +205,7 @@ public class Jambo extends Application {
             }
 
             mediaPlayer = new MediaPlayer(media);
-            mediaPlayer.setOnError(() -> {
-                System.err.println("Media player error: " + mediaPlayer.getError().getMessage());
-            });
+            mediaPlayer.setOnError(() -> System.err.println("Media player error: " + mediaPlayer.getError().getMessage()));
 
             mediaPlayer.setOnReady(() -> {
                 currentSongLabel.setText("Playing: " + songFile.getName());
@@ -227,9 +223,7 @@ public class Jambo extends Application {
                 }
             });
 
-            mediaPlayer.setOnEndOfMedia(() -> {
-                playNextSong();
-            });
+            mediaPlayer.setOnEndOfMedia(this::playNextSong);
         } else {
             currentSongLabel.setText("Select a song to play.");
         }
@@ -238,13 +232,13 @@ public class Jambo extends Application {
     private void playNextSong() {
         int selectedIndex = songListView.getSelectionModel().getSelectedIndex();
         if (selectedIndex >= 0) {
+            int nextIndex;
             if (shuffleEnabled) {
-                int nextIndex = random.nextInt(songFiles.size());
-                songListView.getSelectionModel().select(nextIndex);
+                nextIndex = random.nextInt(songFiles.size());
             } else {
-                int nextIndex = (selectedIndex + 1) % songFiles.size();
-                songListView.getSelectionModel().select(nextIndex);
+                nextIndex = (selectedIndex + 1) % songFiles.size();
             }
+            songListView.getSelectionModel().select(nextIndex);
             playSelectedSong();
         } else {
             currentSongLabel.setText("No more songs in the list.");
@@ -254,13 +248,13 @@ public class Jambo extends Application {
     private void playPreviousSong() {
         int selectedIndex = songListView.getSelectionModel().getSelectedIndex();
         if (selectedIndex >= 0) {
+            int previousIndex;
             if (shuffleEnabled) {
-                int previousIndex = random.nextInt(songFiles.size());
-                songListView.getSelectionModel().select(previousIndex);
+                previousIndex = random.nextInt(songFiles.size());
             } else {
-                int previousIndex = (selectedIndex - 1 + songFiles.size()) % songFiles.size();
-                songListView.getSelectionModel().select(previousIndex);
+                previousIndex = (selectedIndex - 1 + songFiles.size()) % songFiles.size();
             }
+            songListView.getSelectionModel().select(previousIndex);
             playSelectedSong();
         }
     }
@@ -322,11 +316,7 @@ public class Jambo extends Application {
     private void loadDefaultAlbumArt() {
         try {
             Image defaultImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/default_album_art.png")));
-            if (defaultImage != null) {
-                albumArtView.setImage(defaultImage);
-            } else {
-                System.err.println("Default album art not found.");
-            }
+            albumArtView.setImage(defaultImage);
         } catch (Exception e) {
             System.err.println("Error loading default album art: " + e.getMessage());
         }
