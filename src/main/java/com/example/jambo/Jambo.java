@@ -33,6 +33,9 @@ import java.util.Random;
 // TODO -   make audio match when another song plays, currently volume goes back to
 //          default, but the slider stays the same
 // TODO -   implement json to make things persist between sessions
+// TODO -   allow double clicking on a song to start it
+// TODO -   improve the way songs are displayed, currently just "song_name_stuff.mp3"
+//          while i want it to be something like "artist - album - song - length - etc, "
 
 public class Jambo extends Application {
     private MediaPlayer mediaPlayer;
@@ -106,7 +109,7 @@ public class Jambo extends Application {
         muteButton.setOnAction(e -> toggleMute());
 
         HBox volumeControlBox = new HBox(volumeSlider, muteButton);
-        volumeControlBox.setSpacing(10); // Space between slider and mute button
+        volumeControlBox.setSpacing(10);
 
         controlButtonBox.getChildren().add(volumeControlBox);
 
