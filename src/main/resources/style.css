@@ -1,8 +1,10 @@
+/* General App Background */
 .root {
     -fx-background-color: #121212;
     -fx-padding: 10;
 }
 
+/* Button Styling */
 .button {
     -fx-background-color: #1f1f1f;
     -fx-text-fill: #ffffff;
@@ -18,11 +20,13 @@
     -fx-background-color: #333333;
 }
 
+/* Label Styling */
 .label {
     -fx-font-size: 14px;
     -fx-text-fill: #ffffff;
 }
 
+/* ListView Styling */
 .list-view {
     -fx-pref-height: 250;
     -fx-background-color: #1e1e1e;
@@ -38,6 +42,7 @@
     -fx-background-color: #333333;
 }
 
+/* Slider Styling */
 .slider:horizontal {
     -fx-background-color: #1f1f1f;
     -fx-padding: 0 10;
@@ -60,6 +65,97 @@
     -fx-background-color: #0056b3;
 }
 
+/* Volume Slider Specific Width */
 .volume-slider {
     -fx-pref-width: 100;
+}
+
+/* ImageView for Album Art */
+.image-view {
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.7), 10, 0, 0, 0);
+    -fx-background-color: transparent;
+    -fx-padding: 5;
+    -fx-border-radius: 5;
+    -fx-border-color: #333333;
+}
+
+/* HBox Layouts */
+.hbox {
+    -fx-spacing: 20; /* Spacing between components */
+    -fx-alignment: center-left;
+    -fx-background-color: #1e1e1e;
+    -fx-padding: 10;
+    -fx-border-color: #333333;
+    -fx-border-radius: 5;
+}
+
+/* VBox Layouts */
+.vbox {
+    -fx-spacing: 10;
+    -fx-padding: 10;
+}
+
+/* Progress Bar (Slider) Styling */
+.progress-slider {
+    -fx-background-color: #1f1f1f;
+    -fx-padding: 5 10;
+}
+
+.progress-slider .track {
+    -fx-background-color: #1f1f1f;
+}
+
+.progress-slider .track:filled {
+    -fx-background-color: #007bff;
+}
+
+.progress-slider .thumb {
+    -fx-background-color: #007bff;
+    -fx-background-radius: 10;
+}
+
+.progress-slider .thumb:hover {
+    -fx-background-color: #0056b3;
+}
+
+/* Timer Label Styling */
+.timer-label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #ffffff;
+}
+
+/* File Info Label Styling */
+.file-info-label {
+    -fx-font-size: 12px;
+    -fx-text-fill: #aaaaaa;
+}
+
+/* Shuffle Button Styling (Active/Inactive) */
+.shuffle-button-active {
+    -fx-background-color: #007bff;
+    -fx-text-fill: #ffffff;
+}
+
+.shuffle-button-inactive {
+    -fx-background-color: #1f1f1f;
+    -fx-text-fill: #ffffff;
+}
+
+/* Custom Scroll Bar for ListView */
+.list-view .scroll-bar:vertical .thumb {
+    -fx-background-color: #007bff;
+}
+
+.list-view .scroll-bar:vertical .thumb:hover {
+    -fx-background-color: #0056b3;
+}
+
+/* Mute Button Styling */
+.mute-button {
+    -fx-background-color: #1f1f1f;
+    -fx-text-fill: #ffffff;
+}
+
+.mute-button:hover {
+    -fx-background-color: #333333;
 }
