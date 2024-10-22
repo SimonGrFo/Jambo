@@ -201,19 +201,25 @@ public class Jambo extends Application {
             File songFile = songFiles.get(selectedIndex);
             Media media = new Media(songFile.toURI().toString());
 
+            // Stop and dispose of the previous media player if it exists
             if (mediaPlayer != null) {
                 mediaPlayer.stop();
                 mediaPlayer.dispose();
             }
 
+            // Create a new media player for the selected media
             mediaPlayer = new MediaPlayer(media);
+            mediaPlayer.setOnError(() -> {
+                System.err.println("Media player error: " + mediaPlayer.getError().getMessage());
+            });
 
+            // Set up the media player to play the song and handle song end
             mediaPlayer.setOnReady(() -> {
                 currentSongLabel.setText("Playing: " + songFile.getName());
                 progressSlider.setMax(1);
                 timerLabel.setText(formatTime(mediaPlayer.getTotalDuration().toSeconds(), mediaPlayer.getTotalDuration().toSeconds()));
                 updateFileInfoLabel(songFile);
-                mediaPlayer.play();
+                mediaPlayer.play(); // Start playback
             });
 
             mediaPlayer.currentTimeProperty().addListener((obs, oldTime, newTime) -> {
@@ -224,10 +230,9 @@ public class Jambo extends Application {
                 }
             });
 
+            // Automatically play the next song when this song ends
             mediaPlayer.setOnEndOfMedia(() -> {
-                currentSongLabel.setText("No song playing");
-                progressSlider.setValue(0);
-                timerLabel.setText("0:00 / 0:00");
+                playNextSong();
             });
         } else {
             currentSongLabel.setText("Select a song to play.");
@@ -237,9 +242,11 @@ public class Jambo extends Application {
     private void playNextSong() {
         int selectedIndex = songListView.getSelectionModel().getSelectedIndex();
         if (selectedIndex >= 0) {
-            int nextIndex = (selectedIndex + 1) % songFiles.size();
-            songListView.getSelectionModel().select(nextIndex);
-            playSelectedSong();
+            int nextIndex = (selectedIndex + 1) % songFiles.size(); // Loop back to the start
+            songListView.getSelectionModel().select(nextIndex); // Select the next song
+            playSelectedSong(); // Play the selected song
+        } else {
+            currentSongLabel.setText("No more songs in the list.");
         }
     }
 
