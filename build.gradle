@@ -18,34 +18,30 @@ java {
 
 repositories {
 	mavenCentral()
+	maven { url 'https://jitpack.io' }
 }
 
 dependencies {
-	// UI
-	implementation 'javazoom:jlayer:1.0.1'
+
+	implementation 'org.openjfx:javafx-base:19.0.2'
 	implementation 'org.openjfx:javafx-controls:19.0.2'
 	implementation 'org.openjfx:javafx-fxml:19.0.2'
+	implementation 'org.openjfx:javafx-media:21.0.2'
+	implementation 'javazoom:jlayer:1.0.1'
+	implementation 'org.openjfx:javafx-media:21.0.2'
 
-	// Database
-	implementation 'com.h2database:h2:2.1.214'
-	implementation 'org.json:json:20231013'
 
-	// Testing
-	testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.1'
-	testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.1'
 
-	// Lombok
-	compileOnly 'org.projectlombok:lombok:1.18.28'
-	annotationProcessor 'org.projectlombok:lombok:1.18.28'
 }
 
 javafx {
 	version = "19.0.2"
-	modules = [ 'javafx.controls', 'javafx.fxml' ]
+	modules = [ 'javafx.controls', 'javafx.fxml', 'javafx.media' ] // Add javafx.media
 }
 
+
 application {
-	mainClass = 'com.example.jambo.ui.JamboApplication'
+	mainClass = 'com.example.jambo.Jambo'
 }
 
 sourceSets {
