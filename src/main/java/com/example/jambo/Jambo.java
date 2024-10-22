@@ -14,12 +14,22 @@ import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import org.jaudiotagger.audio.AudioFile;
+import org.jaudiotagger.audio.AudioFileIO;
+import org.jaudiotagger.audio.mp3.MP3File;
+import org.jaudiotagger.audio.AudioHeader;
+import org.jaudiotagger.tag.Tag;
+import org.jaudiotagger.tag.images.Artwork;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Random;
+import javafx.scene.image.ImageView;
+import javafx.scene.image.Image;
 
 // TODO BIG TODOS!!!!
 // TODO -
@@ -27,9 +37,7 @@ import java.util.Random;
 // TODO -   fix styling its super ugly at the moment
 // TODO -   bugs! they are in trello! but i already know this! if you're reading this
 //          documentation and you arent me, Hi!
-// TODO -   figure out how the metadata, its hard
 // TODO -   load multiple songs from different folders
-// TODO -   album art
 // TODO -   make audio match when another song plays, currently volume goes back to
 //          default, but the slider stays the same
 // TODO -   implement json to make things persist between sessions
@@ -52,11 +60,20 @@ public class Jambo extends Application {
     private final Random random = new Random();
     private boolean isMuted = false;
 
+    private ImageView albumArtView;
+
     @Override
     public void start(Stage primaryStage) {
         songListView = new ListView<>();
         songFiles = new ArrayList<>();
         currentSongLabel = new Label("No song playing");
+
+        albumArtView = new ImageView();
+        albumArtView.setFitWidth(100);
+        albumArtView.setFitHeight(100);
+        albumArtView.setPreserveRatio(true);
+
+        loadDefaultAlbumArt();
 
         HBox headerBox = new HBox();
         Button loadButton = new Button("Load Songs");
@@ -110,42 +127,24 @@ public class Jambo extends Application {
 
         HBox volumeControlBox = new HBox(volumeSlider, muteButton);
         volumeControlBox.setSpacing(10);
-
         controlButtonBox.getChildren().add(volumeControlBox);
+
+        HBox controlBoxWithArt = new HBox(albumArtView, controlButtonBox);
+        controlBoxWithArt.setSpacing(20);
+
+        controlButtonBox.setSpacing(10);
+        HBox.setHgrow(controlButtonBox, Priority.ALWAYS);
 
         progressSlider = new Slider(0, 1, 0);
         progressSlider.setValue(0);
-
         timerLabel = new Label("0:00 / 0:00");
         fileInfoLabel = new Label("Format: - Hz, - kbps");
 
-        progressSlider.setOnMouseDragged(e -> {
-            if (mediaPlayer != null) {
-                isDragging = true;
-            }
-        });
-
-        progressSlider.setOnMouseReleased(e -> {
-            if (mediaPlayer != null) {
-                double newValue = progressSlider.getValue();
-                mediaPlayer.seek(mediaPlayer.getTotalDuration().multiply(newValue));
-                isDragging = false;
-            }
-        });
-
-        progressSlider.setOnMouseClicked(e -> {
-            if (mediaPlayer != null) {
-                double clickValue = e.getX() / progressSlider.getWidth();
-                mediaPlayer.seek(mediaPlayer.getTotalDuration().multiply(clickValue));
-                progressSlider.setValue(clickValue);
-            }
-        });
-
-        HBox progressBox = new HBox(timerLabel, progressSlider, fileInfoLabel);
-        progressBox.setSpacing(10);
+        HBox progressContainer = new HBox(timerLabel, progressSlider, fileInfoLabel);
+        progressContainer.setSpacing(10);
         HBox.setHgrow(progressSlider, Priority.ALWAYS);
 
-        VBox controlLayout = new VBox(controlButtonBox, new Label(), progressBox);
+        VBox controlLayout = new VBox(controlBoxWithArt, progressContainer);
         controlLayout.setSpacing(10);
 
         BorderPane mainLayout = new BorderPane();
@@ -255,11 +254,57 @@ public class Jambo extends Application {
     }
 
     private void updateFileInfoLabel(File songFile) {
+        try {
+            AudioFile audioFile = AudioFileIO.read(songFile);
+            AudioHeader audioHeader = audioFile.getAudioHeader();
 
-        //TODO - get track metadata
+            String format = audioHeader.getFormat();
+            String bitrate = audioHeader.getBitRate();
+            String sampleRate = audioHeader.getSampleRate();
 
-        fileInfoLabel.setText("Format: MP3, 320 kbps");
+            Tag tag = audioFile.getTag();
+            String artist = tag.getFirst(org.jaudiotagger.tag.FieldKey.ARTIST);
+            String album = tag.getFirst(org.jaudiotagger.tag.FieldKey.ALBUM);
+            String title = tag.getFirst(org.jaudiotagger.tag.FieldKey.TITLE);
+
+            fileInfoLabel.setText(String.format("%s, %s kbps, %s Hz", format, bitrate, sampleRate));
+
+            currentSongLabel.setText(String.format("Playing: %s - %s - %s", artist, album, title));
+
+            Artwork artwork = tag.getFirstArtwork();
+            if (artwork != null) {
+                byte[] imageData = artwork.getBinaryData();
+                if (imageData != null && imageData.length > 0) {
+                    Image albumArtImage = new Image(new ByteArrayInputStream(imageData));
+                    albumArtView.setImage(albumArtImage);
+                } else {
+                    loadDefaultAlbumArt();
+                }
+            } else {
+                loadDefaultAlbumArt();
+            }
+        } catch (Exception e) {
+            fileInfoLabel.setText("Error retrieving metadata");
+            System.err.println("Error reading metadata: " + e.getMessage());
+            loadDefaultAlbumArt();
+        }
     }
+
+
+    private void loadDefaultAlbumArt() {
+        try {
+            Image defaultImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/default_album_art.png")));
+            if (defaultImage != null) {
+                albumArtView.setImage(defaultImage);
+            } else {
+                System.err.println("Default album art not found.");
+            }
+        } catch (Exception e) {
+            System.err.println("Error loading default album art: " + e.getMessage());
+        }
+    }
+
+
 
     private String formatTime(double currentTime, double totalTime) {
         int currentMinutes = (int) (currentTime / 60);
