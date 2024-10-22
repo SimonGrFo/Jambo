@@ -1,0 +1,65 @@
+.root {
+    -fx-background-color: #121212;
+    -fx-padding: 10;
+}
+
+.button {
+    -fx-background-color: #1f1f1f;
+    -fx-text-fill: #ffffff;
+    -fx-padding: 10 20;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 5;
+    -fx-border-color: #333333;
+    -fx-border-radius: 5;
+}
+
+.button:hover {
+    -fx-background-color: #333333;
+}
+
+.label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #ffffff;
+}
+
+.list-view {
+    -fx-pref-height: 250;
+    -fx-background-color: #1e1e1e;
+    -fx-text-fill: #ffffff;
+}
+
+.list-view .list-cell {
+    -fx-background-color: #1e1e1e;
+    -fx-text-fill: #ffffff;
+}
+
+.list-view .list-cell:hover {
+    -fx-background-color: #333333;
+}
+
+.slider:horizontal {
+    -fx-background-color: #1f1f1f;
+    -fx-padding: 0 10;
+}
+
+.slider:horizontal .track {
+    -fx-background-color: #1f1f1f;
+}
+
+.slider:horizontal .track:filled {
+    -fx-background-color: #007bff;
+}
+
+.slider:horizontal .thumb {
+    -fx-background-color: #007bff;
+    -fx-background-radius: 10;
+}
+
+.slider:horizontal .thumb:hover {
+    -fx-background-color: #0056b3;
+}
+
+.volume-slider {
+    -fx-pref-width: 100;
+}
