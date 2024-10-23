@@ -177,6 +177,12 @@ public class Jambo extends Application {
         });
     }
 
+    private String formatTime(int seconds) {
+        int minutes = seconds / 60;
+        int remainingSeconds = seconds % 60;
+        return String.format("%d:%02d", minutes, remainingSeconds);
+    }
+
     private void loadSongs() {
         DirectoryChooser directoryChooser = new DirectoryChooser();
         File selectedDirectory = directoryChooser.showDialog(null);
@@ -186,12 +192,36 @@ public class Jambo extends Application {
             File[] files = selectedDirectory.listFiles((dir, name) -> name.toLowerCase().endsWith(".mp3"));
             if (files != null) {
                 for (File file : files) {
-                    songFiles.add(file);
-                    songListView.getItems().add(file.getName());
+                    try {
+                        AudioFile audioFile = AudioFileIO.read(file);
+                        AudioHeader audioHeader = audioFile.getAudioHeader();
+                        Tag tag = audioFile.getTag();
+
+                        String artist = tag.getFirst(org.jaudiotagger.tag.FieldKey.ARTIST);
+                        String album = tag.getFirst(org.jaudiotagger.tag.FieldKey.ALBUM);
+                        String title = tag.getFirst(org.jaudiotagger.tag.FieldKey.TITLE);
+                        int durationInSeconds = audioHeader.getTrackLength();
+                        String duration = formatTime(durationInSeconds);
+
+                        if (artist.isEmpty()) artist = "Unknown Artist";
+                        if (album.isEmpty()) album = "Unknown Album";
+                        if (title.isEmpty()) title = file.getName();
+
+                        String formattedSongInfo = String.format("%s - %s - %s - %s", artist, album, title, duration);
+
+                        songFiles.add(file);
+                        songListView.getItems().add(formattedSongInfo);
+
+                    } catch (Exception e) {
+                        System.err.println("Error reading metadata: " + e.getMessage());
+                        songFiles.add(file);
+                        songListView.getItems().add(file.getName());
+                    }
                 }
             }
         }
     }
+
 
     private void playSelectedSong() {
         int selectedIndex = songListView.getSelectionModel().getSelectedIndex();
