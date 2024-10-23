@@ -57,7 +57,7 @@ public class Jambo extends Application {
     public void start(Stage primaryStage) {
         songListView = new ListView<>();
         songFiles = new ArrayList<>();
-        loadedDirectories = new ArrayList<>(); // Initialize the list of loaded directories
+        loadedDirectories = new ArrayList<>();
         currentSongLabel = new Label("No song playing");
 
         albumArtView = new ImageView();
@@ -73,7 +73,11 @@ public class Jambo extends Application {
         loadButton.getStyleClass().add("button");
         loadButton.setOnAction(e -> loadSongs());
 
-        headerBox.getChildren().addAll(loadButton);
+        Button clearButton = new Button("Clear All Songs");
+        clearButton.getStyleClass().add("button");
+        clearButton.setOnAction(e -> clearAllSongs());
+
+        headerBox.getChildren().addAll(loadButton, clearButton);
 
         HBox controlButtonBox = new HBox();
         controlButtonBox.setSpacing(10);
@@ -181,12 +185,22 @@ public class Jambo extends Application {
         });
     }
 
+    private void clearAllSongs() {
+        songFiles.clear();
+        songListView.getItems().clear();
+        currentSongLabel.setText("No song playing");
+        progressSlider.setValue(0);
+        timerLabel.setText("0:00 / 0:00");
+        albumArtView.setImage(null);
+        System.out.println("All songs cleared.");
+    }
+
     private void loadSongsFromJson() {
         Gson gson = new Gson();
         try (FileReader reader = new FileReader("saved_songs.json")) {
             Type listType = new TypeToken<ArrayList<String>>(){}.getType();
             List<String> songPaths = gson.fromJson(reader, listType);
-            songFiles.clear(); // Clear the current list
+            songFiles.clear();
 
             for (String path : songPaths) {
                 File songFile = new File(path);
