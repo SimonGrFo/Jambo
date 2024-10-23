@@ -29,7 +29,7 @@ dependencies {
 	implementation 'org.openjfx:javafx-media:21.0.2'
 	implementation 'javazoom:jlayer:1.0.1'
 	implementation 'org.openjfx:javafx-media:21.0.2'
-
+	implementation 'com.google.code.gson:gson:2.11.0'
 	implementation 'net.jthink:jaudiotagger:3.0.1'
 
 

@@ -29,25 +29,17 @@ import java.util.Objects;
 import java.util.Random;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.Image;
-
-// TODO BIG TODOS!!!!
-// TODO -
-// TODO -   make it more oop, super cluttered right now.
-// TODO -   fix styling its super ugly at the moment
-// TODO -   bugs! they are in trello! but i already know this! if you're reading this
-//          documentation and you arent me, Hi!
-// TODO -   load multiple songs from different folders
-// TODO -   make audio match when another song plays, currently volume goes back to
-//          default, but the slider stays the same
-// TODO -   implement json to make things persist between sessions
-// TODO -   allow double clicking on a song to start it
-// TODO -   improve the way songs are displayed, currently just "song_name_stuff.mp3"
-//          while I want it to be something like "artist - album - song - length - etc, "
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import java.io.FileWriter;
+import java.io.FileReader;
+import java.lang.reflect.Type;
 
 public class Jambo extends Application {
     private MediaPlayer mediaPlayer;
     private ListView<String> songListView;
     private List<File> songFiles;
+    private List<File> loadedDirectories = new ArrayList<>();
     private Label currentSongLabel;
     private Slider progressSlider;
 
@@ -65,6 +57,7 @@ public class Jambo extends Application {
     public void start(Stage primaryStage) {
         songListView = new ListView<>();
         songFiles = new ArrayList<>();
+        loadedDirectories = new ArrayList<>(); // Initialize the list of loaded directories
         currentSongLabel = new Label("No song playing");
 
         albumArtView = new ImageView();
@@ -73,6 +66,7 @@ public class Jambo extends Application {
         albumArtView.setPreserveRatio(true);
 
         loadDefaultAlbumArt();
+        loadSongsFromJson();
 
         HBox headerBox = new HBox();
         Button loadButton = new Button("Load Songs");
@@ -166,6 +160,16 @@ public class Jambo extends Application {
         primaryStage.setMinHeight(800);
         primaryStage.show();
 
+        primaryStage.setOnCloseRequest(event -> {
+            saveSongsToJson(songFiles); // Save the songs when the application is closed
+        });
+
+        songListView.setOnMouseClicked(event -> {
+            if (event.getClickCount() == 2) {
+                playSelectedSong();
+            }
+        });
+
         progressSlider.setOnMousePressed(e -> isDragging = true);
 
         progressSlider.setOnMouseReleased(e -> {
@@ -177,51 +181,93 @@ public class Jambo extends Application {
         });
     }
 
-    private String formatTime(int seconds) {
-        int minutes = seconds / 60;
-        int remainingSeconds = seconds % 60;
-        return String.format("%d:%02d", minutes, remainingSeconds);
+    private void loadSongsFromJson() {
+        Gson gson = new Gson();
+        try (FileReader reader = new FileReader("saved_songs.json")) {
+            Type listType = new TypeToken<ArrayList<String>>(){}.getType();
+            List<String> songPaths = gson.fromJson(reader, listType);
+            songFiles.clear(); // Clear the current list
+
+            for (String path : songPaths) {
+                File songFile = new File(path);
+                if (songFile.exists()) {
+                    songFiles.add(songFile);
+                    String formattedSongInfo = formatSongMetadata(songFile);
+                    songListView.getItems().add(formattedSongInfo);
+                }
+            }
+        } catch (Exception e) {
+            System.err.println("Error loading songs from JSON: " + e.getMessage());
+        }
+    }
+
+
+    private String formatSongMetadata(File file) throws Exception {
+        AudioFile audioFile = AudioFileIO.read(file);
+        AudioHeader audioHeader = audioFile.getAudioHeader();
+        Tag tag = audioFile.getTag();
+
+        String artist = tag.getFirst(org.jaudiotagger.tag.FieldKey.ARTIST);
+        String album = tag.getFirst(org.jaudiotagger.tag.FieldKey.ALBUM);
+        String title = tag.getFirst(org.jaudiotagger.tag.FieldKey.TITLE);
+        int durationInSeconds = audioHeader.getTrackLength();
+        String duration = formatTime(durationInSeconds);
+
+        if (artist == null || artist.isEmpty()) artist = "Unknown Artist";
+        if (album == null || album.isEmpty()) album = "Unknown Album";
+        if (title == null || title.isEmpty()) title = file.getName();
+
+        return String.format("%s - %s - %s (%s)", artist, album, title, duration);
     }
 
     private void loadSongs() {
         DirectoryChooser directoryChooser = new DirectoryChooser();
         File selectedDirectory = directoryChooser.showDialog(null);
         if (selectedDirectory != null) {
-            songListView.getItems().clear();
-            songFiles.clear();
+            if (!loadedDirectories.contains(selectedDirectory)) {
+                loadedDirectories.add(selectedDirectory);
+            }
+
             File[] files = selectedDirectory.listFiles((dir, name) -> name.toLowerCase().endsWith(".mp3"));
             if (files != null) {
                 for (File file : files) {
-                    try {
-                        AudioFile audioFile = AudioFileIO.read(file);
-                        AudioHeader audioHeader = audioFile.getAudioHeader();
-                        Tag tag = audioFile.getTag();
-
-                        String artist = tag.getFirst(org.jaudiotagger.tag.FieldKey.ARTIST);
-                        String album = tag.getFirst(org.jaudiotagger.tag.FieldKey.ALBUM);
-                        String title = tag.getFirst(org.jaudiotagger.tag.FieldKey.TITLE);
-                        int durationInSeconds = audioHeader.getTrackLength();
-                        String duration = formatTime(durationInSeconds);
-
-                        if (artist.isEmpty()) artist = "Unknown Artist";
-                        if (album.isEmpty()) album = "Unknown Album";
-                        if (title.isEmpty()) title = file.getName();
-
-                        String formattedSongInfo = String.format("%s - %s - %s - %s", artist, album, title, duration);
-
-                        songFiles.add(file);
-                        songListView.getItems().add(formattedSongInfo);
-
-                    } catch (Exception e) {
-                        System.err.println("Error reading metadata: " + e.getMessage());
-                        songFiles.add(file);
-                        songListView.getItems().add(file.getName());
+                    if (!songFiles.contains(file)) {
+                        try {
+                            String formattedSongInfo = formatSongMetadata(file);
+                            songFiles.add(file);
+                            songListView.getItems().add(formattedSongInfo);
+                        } catch (Exception e) {
+                            System.err.println("Error reading metadata: " + e.getMessage());
+                            songFiles.add(file);
+                            songListView.getItems().add(file.getName());
+                        }
                     }
                 }
+                saveSongsToJson(songFiles);
             }
         }
     }
 
+    private void saveSongsToJson(List<File> songFiles) {
+        Gson gson = new Gson();
+        try (FileWriter writer = new FileWriter("saved_songs.json")) {
+            List<String> songPaths = new ArrayList<>();
+            for (File file : songFiles) {
+                songPaths.add(file.getAbsolutePath());
+            }
+            gson.toJson(songPaths, writer);
+        } catch (Exception e) {
+            System.err.println("Error saving songs: " + e.getMessage());
+        }
+    }
+
+
+
+    private String formatTime(int seconds) {
+        int minutes = seconds / 60;
+        int remainingSeconds = seconds % 60;
+        return String.format("%d:%02d", minutes, remainingSeconds);
+    }
 
     private void playSelectedSong() {
         int selectedIndex = songListView.getSelectionModel().getSelectedIndex();
