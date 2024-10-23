@@ -102,11 +102,15 @@ public class Jambo extends Application {
         nextButton.getStyleClass().add("button");
         nextButton.setOnAction(e -> playNextSong());
 
+        Button loopButton = new Button("Loop");
+        loopButton.getStyleClass().add("button");
+        loopButton.setOnAction(e -> toggleLoop());
+
         Button shuffleButton = new Button("Shuffle");
         shuffleButton.getStyleClass().add("button");
         shuffleButton.setOnAction(e -> toggleShuffle());
 
-        controlButtonBox.getChildren().addAll(playButton, pauseButton, stopButton, previousButton, nextButton, shuffleButton);
+        controlButtonBox.getChildren().addAll(playButton, pauseButton, stopButton, previousButton, nextButton, shuffleButton, loopButton);
 
         Slider volumeSlider = new Slider(0, 1, 0.5);
         volumeSlider.setShowTickLabels(true);
@@ -300,6 +304,7 @@ public class Jambo extends Application {
                 progressSlider.setMax(1);
                 timerLabel.setText(formatTime(mediaPlayer.getTotalDuration().toSeconds(), mediaPlayer.getTotalDuration().toSeconds()));
                 updateFileInfoLabel(songFile);
+                mediaPlayer.setCycleCount(isLooping ? MediaPlayer.INDEFINITE : 1);
                 mediaPlayer.play();
             });
 
@@ -311,7 +316,11 @@ public class Jambo extends Application {
                 }
             });
 
-            mediaPlayer.setOnEndOfMedia(this::playNextSong);
+            mediaPlayer.setOnEndOfMedia(() -> {
+                if (!isLooping) {
+                    playNextSong();
+                }
+            });
         } else {
             currentSongLabel.setText("Select a song to play.");
         }
@@ -355,6 +364,16 @@ public class Jambo extends Application {
         } else {
             System.out.println("Shuffle is OFF");
         }
+    }
+
+    private boolean isLooping = false;
+
+    private void toggleLoop() {
+        isLooping = !isLooping;
+        if (mediaPlayer != null) {
+            mediaPlayer.setCycleCount(isLooping ? MediaPlayer.INDEFINITE : 1);
+        }
+        System.out.println("Loop is " + (isLooping ? "ON" : "OFF"));
     }
 
     private void toggleMute() {

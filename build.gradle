@@ -22,7 +22,6 @@ repositories {
 }
 
 dependencies {
-
 	implementation 'org.openjfx:javafx-base:19.0.2'
 	implementation 'org.openjfx:javafx-controls:19.0.2'
 	implementation 'org.openjfx:javafx-fxml:19.0.2'
@@ -32,16 +31,12 @@ dependencies {
 	implementation 'com.google.code.gson:gson:2.11.0'
 	implementation 'net.jthink:jaudiotagger:3.0.1'
 
-
-
-
 }
 
 javafx {
 	version = "19.0.2"
-	modules = [ 'javafx.controls', 'javafx.fxml', 'javafx.media' ] // Add javafx.media
+	modules = [ 'javafx.controls', 'javafx.fxml', 'javafx.media' ]
 }
-
 
 application {
 	mainClass = 'com.example.jambo.Jambo'
