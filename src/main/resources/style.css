@@ -4,18 +4,15 @@
 }
 
 .button {
-    -fx-background-color: #1f1f1f;
-    -fx-text-fill: #ffffff;
-    -fx-padding: 10 20;
-    -fx-font-size: 14px;
-    -fx-font-weight: bold;
+    -fx-background-color: transparent; /* Make the background transparent */
+    -fx-padding: 5; /* Smaller padding */
+    -fx-font-size: 12px; /* Smaller font size */
     -fx-background-radius: 5;
-    -fx-border-color: #333333;
-    -fx-border-radius: 5;
+    -fx-border-color: transparent; /* Remove border if you don't want it */
 }
 
 .button:hover {
-    -fx-background-color: #333333;
+    -fx-background-color: #333333; /* Slightly darker background on hover */
 }
 
 .label {

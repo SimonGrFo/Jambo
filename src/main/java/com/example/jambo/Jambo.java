@@ -35,6 +35,7 @@ import java.io.FileWriter;
 import java.io.FileReader;
 import java.lang.reflect.Type;
 
+
 public class Jambo extends Application {
     private MediaPlayer mediaPlayer;
     private ListView<String> songListView;
@@ -53,6 +54,31 @@ public class Jambo extends Application {
     private Slider volumeSlider;
 
     private ImageView albumArtView;
+
+    Image playIcon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/icons/play_icon.png")));
+    Image pauseIcon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/icons/pause_icon.png")));
+    Image stopIcon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/icons/stop_icon.png")));
+    Image previousIcon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/icons/previous_icon.png")));
+    Image nextIcon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/icons/next_icon.png")));
+    Image loopIcon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/icons/loop_icon.png")));
+    Image shuffleIcon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/icons/shuffle_icon.png")));
+    Image muteIcon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/icons/mute_icon.png")));
+
+    private ImageView createIconImageView(Image icon) {
+        ImageView imageView = new ImageView(icon);
+        imageView.setFitWidth(40);
+        imageView.setFitHeight(40);
+        return imageView;
+    }
+
+    ImageView playImageView = createIconImageView(playIcon);
+    ImageView pauseImageView = createIconImageView(pauseIcon);
+    ImageView stopImageView = createIconImageView(stopIcon);
+    ImageView previousImageView = createIconImageView(previousIcon);
+    ImageView nextImageView = createIconImageView(nextIcon);
+    ImageView loopImageView = createIconImageView(loopIcon);
+    ImageView shuffleImageView = createIconImageView(shuffleIcon);
+    ImageView muteIconView = createIconImageView(muteIcon);
 
     @Override
     public void start(Stage primaryStage) {
@@ -83,33 +109,34 @@ public class Jambo extends Application {
         HBox controlButtonBox = new HBox();
         controlButtonBox.setSpacing(10);
 
-        Button playButton = new Button("Play");
+        Button playButton = new Button("", playImageView);
         playButton.getStyleClass().add("button");
         playButton.setOnAction(e -> playSelectedSong());
 
-        Button pauseButton = new Button("Pause");
+        Button pauseButton = new Button("", pauseImageView);
         pauseButton.getStyleClass().add("button");
         pauseButton.setOnAction(e -> pauseMusic());
 
-        Button stopButton = new Button("Stop");
+        Button stopButton = new Button("", stopImageView);
         stopButton.getStyleClass().add("button");
         stopButton.setOnAction(e -> stopMusic());
 
-        Button previousButton = new Button("Previous");
+        Button previousButton = new Button("", previousImageView);
         previousButton.getStyleClass().add("button");
         previousButton.setOnAction(e -> playPreviousSong());
 
-        Button nextButton = new Button("Next");
+        Button nextButton = new Button("", nextImageView);
         nextButton.getStyleClass().add("button");
         nextButton.setOnAction(e -> playNextSong());
 
-        Button loopButton = new Button("Loop");
+        Button loopButton = new Button("", loopImageView);
         loopButton.getStyleClass().add("button");
         loopButton.setOnAction(e -> toggleLoop());
 
-        Button shuffleButton = new Button("Shuffle");
+        Button shuffleButton = new Button("", shuffleImageView);
         shuffleButton.getStyleClass().add("button");
         shuffleButton.setOnAction(e -> toggleShuffle());
+
 
         controlButtonBox.getChildren().addAll(playButton, pauseButton, stopButton, previousButton, nextButton, shuffleButton, loopButton);
 
@@ -123,7 +150,7 @@ public class Jambo extends Application {
             }
         });
 
-        Button muteButton = new Button("Mute");
+        Button muteButton = new Button("", muteIconView);
         muteButton.getStyleClass().add("button");
         muteButton.setOnAction(e -> toggleMute());
 
