@@ -140,10 +140,22 @@ public class Jambo extends Application {
         progressSlider = new Slider(0, 1, 0);
         progressSlider.setValue(0);
         timerLabel = new Label("0:00 / 0:00");
-        fileInfoLabel = new Label("Format: - Hz, - kbps");
 
-        HBox progressContainer = new HBox(timerLabel, progressSlider, fileInfoLabel);
-        progressContainer.setSpacing(10);
+        fileInfoLabel = new Label("Format: - Hz, - kbps");
+        fileInfoLabel.getStyleClass().add("file-info-label");
+
+        progressSlider = new Slider(0, 1, 0);
+        progressSlider.setValue(0);
+
+        timerLabel = new Label("0:00 / 0:00");
+
+        HBox progressBox = new HBox(timerLabel, progressSlider);
+        progressBox.setSpacing(10);
+        HBox.setHgrow(progressSlider, Priority.ALWAYS);
+
+        VBox progressContainer = new VBox(progressBox, fileInfoLabel);
+        progressContainer.setSpacing(5);
+
         HBox.setHgrow(progressSlider, Priority.ALWAYS);
 
         VBox controlLayout = new VBox(controlBoxWithArt, progressContainer);
