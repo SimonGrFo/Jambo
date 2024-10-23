@@ -50,6 +50,7 @@ public class Jambo extends Application {
     private boolean shuffleEnabled = false;
     private final Random random = new Random();
     private boolean isMuted = false;
+    private Slider volumeSlider;
 
     private ImageView albumArtView;
 
@@ -73,7 +74,7 @@ public class Jambo extends Application {
         loadButton.getStyleClass().add("button");
         loadButton.setOnAction(e -> loadSongs());
 
-        Button clearButton = new Button("Clear All Songs");
+        Button clearButton = new Button("Clear Songs");
         clearButton.getStyleClass().add("button");
         clearButton.setOnAction(e -> clearAllSongs());
 
@@ -112,7 +113,7 @@ public class Jambo extends Application {
 
         controlButtonBox.getChildren().addAll(playButton, pauseButton, stopButton, previousButton, nextButton, shuffleButton, loopButton);
 
-        Slider volumeSlider = new Slider(0, 1, 0.5);
+        volumeSlider = new Slider(0, 1, 0.5);
         volumeSlider.setShowTickLabels(true);
         volumeSlider.setShowTickMarks(true);
         volumeSlider.getStyleClass().add("volume-slider");
@@ -291,6 +292,8 @@ public class Jambo extends Application {
             File songFile = songFiles.get(selectedIndex);
             Media media = new Media(songFile.toURI().toString());
 
+            double currentVolume = volumeSlider.getValue();
+
             if (mediaPlayer != null) {
                 mediaPlayer.stop();
                 mediaPlayer.dispose();
@@ -303,6 +306,7 @@ public class Jambo extends Application {
                 currentSongLabel.setText("Playing: " + songFile.getName());
                 progressSlider.setMax(1);
                 timerLabel.setText(formatTime(mediaPlayer.getTotalDuration().toSeconds(), mediaPlayer.getTotalDuration().toSeconds()));
+                mediaPlayer.setVolume(isMuted ? 0 : currentVolume);
                 updateFileInfoLabel(songFile);
                 mediaPlayer.setCycleCount(isLooping ? MediaPlayer.INDEFINITE : 1);
                 mediaPlayer.play();
