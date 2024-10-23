@@ -164,9 +164,7 @@ public class Jambo extends Application {
         primaryStage.setMinHeight(800);
         primaryStage.show();
 
-        primaryStage.setOnCloseRequest(event -> {
-            saveSongsToJson(songFiles); // Save the songs when the application is closed
-        });
+        primaryStage.setOnCloseRequest(event -> saveSongsToJson(songFiles));
 
         songListView.setOnMouseClicked(event -> {
             if (event.getClickCount() == 2) {
