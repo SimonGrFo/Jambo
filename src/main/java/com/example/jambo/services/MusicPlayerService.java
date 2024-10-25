@@ -1,28 +1,23 @@
-package com.example.jambo.controllers;
+package com.example.jambo.services;
 
+import javafx.scene.control.Slider;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-import javafx.scene.control.Label;
-import javafx.scene.control.Slider;
 import javafx.util.Duration;
 
-public class PlayerController {
+public class MusicPlayerService {
     private MediaPlayer mediaPlayer;
     private boolean isPaused = false;
     private boolean isLooping = false;
     private boolean isMuted = false;
-    private final Label currentSongLabel;
-    private final Label timerLabel;
-    private final Slider progressSlider;
     private final Slider volumeSlider;
 
-    public PlayerController(Label currentSongLabel, Label timerLabel,
-                            Slider progressSlider, Slider volumeSlider) {
-        this.currentSongLabel = currentSongLabel;
-        this.timerLabel = timerLabel;
-        this.progressSlider = progressSlider;
+    public MusicPlayerService(Slider volumeSlider) {
         this.volumeSlider = volumeSlider;
+        setupVolumeControl();
+    }
 
+    private void setupVolumeControl() {
         volumeSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
             if (mediaPlayer != null && !isMuted) {
                 mediaPlayer.setVolume(newValue.doubleValue());
@@ -42,31 +37,9 @@ public class PlayerController {
         mediaPlayer.setOnError(() ->
                 System.err.println("Media player error: " + mediaPlayer.getError().getMessage()));
 
-        mediaPlayer.currentTimeProperty().addListener((observable, oldValue, newValue) -> {
-            if (!progressSlider.isPressed()) {
-                Duration current = mediaPlayer.getCurrentTime();
-                Duration total = mediaPlayer.getTotalDuration();
-
-                if (total != null) {
-                    double progress = current.toSeconds() / total.toSeconds();
-                    progressSlider.setValue(progress);
-
-                    String currentTime = formatTime(current.toSeconds());
-                    String totalTime = formatTime(total.toSeconds());
-                    timerLabel.setText(currentTime + " / " + totalTime);
-                }
-            }
-        });
-
         mediaPlayer.setVolume(isMuted ? 0 : currentVolume);
         mediaPlayer.setCycleCount(isLooping ? MediaPlayer.INDEFINITE : 1);
         mediaPlayer.play();
-    }
-
-    private String formatTime(double seconds) {
-        int minutes = (int) (seconds / 60);
-        int remainingSeconds = (int) (seconds % 60);
-        return String.format("%d:%02d", minutes, remainingSeconds);
     }
 
     public void pauseMusic() {
@@ -84,9 +57,6 @@ public class PlayerController {
     public void stopMusic() {
         if (mediaPlayer != null) {
             mediaPlayer.stop();
-            currentSongLabel.setText("No song playing");
-            progressSlider.setValue(0);
-            timerLabel.setText("0:00 / 0:00");
         }
     }
 
@@ -106,7 +76,7 @@ public class PlayerController {
 
     public void seekTo(double time) {
         if (mediaPlayer != null) {
-            mediaPlayer.seek(javafx.util.Duration.seconds(time));
+            mediaPlayer.seek(Duration.seconds(time));
         }
     }
 
