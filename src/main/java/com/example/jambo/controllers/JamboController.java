@@ -1,5 +1,8 @@
 package com.example.jambo.controllers;
 
+import com.example.jambo.managers.MusicPlayerManager;
+import com.example.jambo.managers.PlaylistManager;
+import com.example.jambo.managers.MetadataManager;
 import com.example.jambo.ui.JamboUI;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -15,22 +18,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class JamboController {
-    private final PlayerController playerController;
-    private final PlaylistController playlistController;
-    private final MetadataController metadataController;
+    private final MusicPlayerManager musicPlayerManager;
+    private final PlaylistManager playlistManager;
+    private final MetadataManager metadataManager;
     private final JamboUI ui;
     private boolean isDragging = false;
 
     public JamboController(JamboUI ui) {
         this.ui = ui;
-        this.playerController = new PlayerController(
+        this.musicPlayerManager = new MusicPlayerManager(
                 ui.getCurrentSongLabel(),
                 ui.getTimerLabel(),
                 ui.getProgressSlider(),
                 ui.getVolumeSlider()
         );
-        this.playlistController = new PlaylistController(ui.getSongListView());
-        this.metadataController = new MetadataController(
+        this.playlistManager = new PlaylistManager(ui.getSongListView());
+        this.metadataManager = new MetadataManager(
                 ui.getFileInfoLabel(),
                 ui.getCurrentSongLabel(),
                 ui.getAlbumArtView()
@@ -49,9 +52,8 @@ public class JamboController {
         ui.getProgressSlider().setOnMousePressed(e -> isDragging = true);
         ui.getProgressSlider().setOnMouseReleased(e -> {
             if (isDragging) {
-                double newTime = ui.getProgressSlider().getValue() *
-                        playerController.getMediaPlayer().getTotalDuration().toSeconds();
-                playerController.seekTo(newTime);
+                double newTime = ui.getProgressSlider().getValue() * musicPlayerManager.getTotalDuration();
+                musicPlayerManager.seekTo(newTime);
                 isDragging = false;
             }
         });
@@ -72,11 +74,11 @@ public class JamboController {
     public void playSelectedSong() {
         int selectedIndex = ui.getSongListView().getSelectionModel().getSelectedIndex();
         if (selectedIndex >= 0) {
-            File songFile = playlistController.getSongFile(selectedIndex);
+            File songFile = playlistManager.getSongFile(selectedIndex);
             if (songFile != null) {
                 Media media = new Media(songFile.toURI().toString());
-                playerController.playMedia(media);
-                metadataController.updateFileInfo(songFile);
+                musicPlayerManager.playMedia(media);
+                metadataManager.updateFileInfo(songFile);
             }
         }
     }
@@ -85,8 +87,8 @@ public class JamboController {
         DirectoryChooser directoryChooser = new DirectoryChooser();
         File selectedDirectory = directoryChooser.showDialog(null);
 
-        if (selectedDirectory != null && !playlistController.isDirectoryLoaded(selectedDirectory)) {
-            playlistController.addLoadedDirectory(selectedDirectory);
+        if (selectedDirectory != null && !playlistManager.isDirectoryLoaded(selectedDirectory)) {
+            playlistManager.addLoadedDirectory(selectedDirectory);
 
             File[] files = selectedDirectory.listFiles((dir, name) ->
                     name.toLowerCase().endsWith(".mp3"));
@@ -94,11 +96,11 @@ public class JamboController {
             if (files != null) {
                 for (File file : files) {
                     try {
-                        String formattedInfo = metadataController.formatSongMetadata(file);
-                        playlistController.addSong(file, formattedInfo);
+                        String formattedInfo = metadataManager.formatSongMetadata(file);
+                        playlistManager.addSong(file, formattedInfo);
                     } catch (Exception e) {
                         System.err.println("Error reading metadata: " + e.getMessage());
-                        playlistController.addSong(file, file.getName());
+                        playlistManager.addSong(file, file.getName());
                     }
                 }
                 saveSongsToJson();
@@ -116,11 +118,11 @@ public class JamboController {
                 File songFile = new File(path);
                 if (songFile.exists()) {
                     try {
-                        String formattedInfo = metadataController.formatSongMetadata(songFile);
-                        playlistController.addSong(songFile, formattedInfo);
+                        String formattedInfo = metadataManager.formatSongMetadata(songFile);
+                        playlistManager.addSong(songFile, formattedInfo);
                     } catch (Exception e) {
                         System.err.println("Error reading metadata: " + e.getMessage());
-                        playlistController.addSong(songFile, songFile.getName());
+                        playlistManager.addSong(songFile, songFile.getName());
                     }
                 }
             }
@@ -133,7 +135,7 @@ public class JamboController {
         Gson gson = new Gson();
         try (FileWriter writer = new FileWriter("saved_songs.json")) {
             List<String> songPaths = new ArrayList<>();
-            for (File file : playlistController.getSongFiles()) {
+            for (File file : playlistManager.getSongFiles()) {
                 songPaths.add(file.getAbsolutePath());
             }
             gson.toJson(songPaths, writer);
@@ -143,20 +145,20 @@ public class JamboController {
     }
 
     public void clearSongs() {
-        playlistController.clearPlaylist();
-        playerController.stopMusic();
+        playlistManager.clearPlaylist();
+        musicPlayerManager.stopMusic();
     }
 
     public void pauseMusic() {
-        playerController.pauseMusic();
+        musicPlayerManager.pauseMusic();
     }
 
     public void stopMusic() {
-        playerController.stopMusic();
+        musicPlayerManager.stopMusic();
     }
 
     public void playNextSong() {
-        int nextIndex = playlistController.getNextSongIndex();
+        int nextIndex = playlistManager.getNextSongIndex();
         if (nextIndex >= 0) {
             ui.getSongListView().getSelectionModel().select(nextIndex);
             playSelectedSong();
@@ -164,7 +166,7 @@ public class JamboController {
     }
 
     public void playPreviousSong() {
-        int previousIndex = playlistController.getPreviousSongIndex();
+        int previousIndex = playlistManager.getPreviousSongIndex();
         if (previousIndex >= 0) {
             ui.getSongListView().getSelectionModel().select(previousIndex);
             playSelectedSong();
@@ -172,14 +174,14 @@ public class JamboController {
     }
 
     public void toggleShuffle() {
-        playlistController.toggleShuffle();
+        playlistManager.toggleShuffle();
     }
 
     public void toggleLoop() {
-        playerController.toggleLoop();
+        musicPlayerManager.toggleLoop();
     }
 
     public void toggleMute() {
-        playerController.toggleMute();
+        musicPlayerManager.toggleMute();
     }
 }

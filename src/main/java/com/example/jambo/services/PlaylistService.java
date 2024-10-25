@@ -1,42 +1,36 @@
-package com.example.jambo.controllers;
+package com.example.jambo.services;
 
-import javafx.scene.control.ListView;
 import java.io.File;
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
-public class PlaylistController {
+public class PlaylistService {
     private final List<File> songFiles;
-    private final ListView<String> songListView;
     private final List<File> loadedDirectories;
     private boolean shuffleEnabled = false;
     private final Random random = new Random();
 
-    public PlaylistController(ListView<String> songListView) {
-        this.songListView = songListView;
+    public PlaylistService() {
         this.songFiles = new ArrayList<>();
         this.loadedDirectories = new ArrayList<>();
     }
 
-    public void addSong(File songFile, String formattedInfo) {
+    public void addSong(File songFile) {
         if (!songFiles.contains(songFile)) {
             songFiles.add(songFile);
-            songListView.getItems().add(formattedInfo);
         }
     }
 
     public void clearPlaylist() {
         songFiles.clear();
-        songListView.getItems().clear();
     }
 
     public void toggleShuffle() {
         shuffleEnabled = !shuffleEnabled;
     }
 
-    public int getNextSongIndex() {
-        int currentIndex = songListView.getSelectionModel().getSelectedIndex();
+    public int getNextSongIndex(int currentIndex) {
         if (currentIndex >= 0) {
             if (shuffleEnabled) {
                 return random.nextInt(songFiles.size());
@@ -47,8 +41,7 @@ public class PlaylistController {
         return -1;
     }
 
-    public int getPreviousSongIndex() {
-        int currentIndex = songListView.getSelectionModel().getSelectedIndex();
+    public int getPreviousSongIndex(int currentIndex) {
         if (currentIndex >= 0) {
             if (shuffleEnabled) {
                 return random.nextInt(songFiles.size());
@@ -80,3 +73,4 @@ public class PlaylistController {
         }
     }
 }
+
