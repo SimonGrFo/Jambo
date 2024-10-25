@@ -18,14 +18,14 @@ public class JamboUI {
     private final Slider volumeSlider;
     private final ImageView albumArtView;
 
-    private final Image playIcon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/icons/play_icon.png")));
-    private final Image pauseIcon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/icons/pause_icon.png")));
-    private final Image stopIcon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/icons/stop_icon.png")));
-    private final Image previousIcon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/icons/previous_icon.png")));
-    private final Image nextIcon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/icons/next_icon.png")));
-    private final Image loopIcon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/icons/loop_icon.png")));
-    private final Image shuffleIcon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/icons/shuffle_icon.png")));
-    private final Image muteIcon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/icons/mute_icon.png")));
+    private final Image playIcon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/icons/play_icon.png")));
+    private final Image pauseIcon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/icons/pause_icon.png")));
+    private final Image stopIcon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/icons/stop_icon.png")));
+    private final Image previousIcon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/icons/previous_icon.png")));
+    private final Image nextIcon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/icons/next_icon.png")));
+    private final Image loopIcon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/icons/loop_icon.png")));
+    private final Image shuffleIcon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/icons/shuffle_icon.png")));
+    private final Image muteIcon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/icons/mute_icon.png")));
 
     public JamboUI() {
         songListView = new ListView<>();
