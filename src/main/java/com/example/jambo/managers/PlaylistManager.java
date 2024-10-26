@@ -14,14 +14,39 @@ public class PlaylistManager {
         this.playlistService = new PlaylistService();
     }
 
+    public void createPlaylist(String name) {
+        playlistService.createPlaylist(name);
+    }
+
+    public void deletePlaylist(String name) {
+        playlistService.deletePlaylist(name);
+    }
+
+    public void switchPlaylist(String name) {
+        playlistService.switchPlaylist(name);
+        refreshPlaylistView();
+    }
+
     public void addSong(File songFile, String formattedInfo) {
         playlistService.addSong(songFile);
         songListView.getItems().add(formattedInfo);
     }
 
+    public void removeSong(int index) {
+        playlistService.removeSong(index);
+        songListView.getItems().remove(index);
+    }
+
     public void clearPlaylist() {
         playlistService.clearPlaylist();
         songListView.getItems().clear();
+    }
+
+    private void refreshPlaylistView() {
+        songListView.getItems().clear();
+        for (File file : playlistService.getCurrentPlaylistSongs()) {
+            songListView.getItems().add(file.getName());
+        }
     }
 
     public void toggleShuffle() {
@@ -45,7 +70,15 @@ public class PlaylistManager {
     }
 
     public List<File> getSongFiles() {
-        return playlistService.getSongFiles();
+        return playlistService.getCurrentPlaylistSongs();
+    }
+
+    public List<String> getPlaylistNames() {
+        return playlistService.getPlaylistNames();
+    }
+
+    public String getCurrentPlaylistName() {
+        return playlistService.getCurrentPlaylistName();
     }
 
     public boolean isDirectoryLoaded(File directory) {

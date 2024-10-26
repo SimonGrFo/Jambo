@@ -184,4 +184,25 @@ public class JamboController {
     public void toggleMute() {
         musicPlayerManager.toggleMute();
     }
+
+    public void createPlaylist(String name) {
+        playlistManager.createPlaylist(name);
+    }
+
+    public void deletePlaylist(String name) {
+        playlistManager.deletePlaylist(name);
+    }
+
+    public void switchPlaylist(String name) {
+        playlistManager.switchPlaylist(name);
+    }
+
+    public List<String> getPlaylistNames() {
+        return playlistManager.getPlaylistNames();
+    }
+
+    public String getCurrentPlaylistName() {
+        return playlistManager.getCurrentPlaylistName();
+    }
+
 }
