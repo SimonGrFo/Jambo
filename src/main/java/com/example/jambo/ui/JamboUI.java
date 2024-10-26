@@ -6,8 +6,10 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import javafx.geometry.Insets;
 
 import java.util.Objects;
+import java.util.Optional;
 
 public class JamboUI {
     private final ListView<String> songListView;
@@ -17,6 +19,7 @@ public class JamboUI {
     private final Slider progressSlider;
     private final Slider volumeSlider;
     private final ImageView albumArtView;
+    private final ComboBox<String> playlistComboBox;
 
     private final Image playIcon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/icons/play_icon.png")));
     private final Image pauseIcon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/icons/pause_icon.png")));
@@ -35,14 +38,21 @@ public class JamboUI {
         progressSlider = new Slider(0, 1, 0);
         volumeSlider = new Slider(0, 1, 0.5);
         albumArtView = new ImageView();
+        playlistComboBox = new ComboBox<>();
 
         setupAlbumArtView();
+        setupPlaylistComboBox();
     }
 
     private void setupAlbumArtView() {
         albumArtView.setFitWidth(100);
         albumArtView.setFitHeight(100);
         albumArtView.setPreserveRatio(true);
+    }
+
+    private void setupPlaylistComboBox() {
+        playlistComboBox.setPromptText("Select Playlist");
+        playlistComboBox.setPrefWidth(150);
     }
 
     private ImageView createIconImageView(Image icon) {
@@ -55,10 +65,80 @@ public class JamboUI {
     public Scene createScene(JamboController controller) {
         BorderPane mainLayout = new BorderPane();
         mainLayout.setTop(createHeaderBox(controller));
-        mainLayout.setCenter(songListView);
+
+        SplitPane centerPane = new SplitPane();
+        centerPane.getItems().addAll(
+                createPlaylistManagementPane(controller),
+                songListView
+        );
+        centerPane.setDividerPositions(0.2);
+
+        mainLayout.setCenter(centerPane);
         mainLayout.setBottom(new VBox(10, createControlBox(controller), createProgressBox()));
 
-        return new Scene(mainLayout, 600, 400);
+        return new Scene(mainLayout, 800, 600);
+    }
+
+    private VBox createPlaylistManagementPane(JamboController controller) {
+        VBox playlistPane = new VBox(10);
+        playlistPane.setPadding(new Insets(10));
+
+        Label playlistLabel = new Label("Current Playlist:");
+
+        playlistComboBox.getItems().addAll(controller.getPlaylistNames());
+        playlistComboBox.setValue(controller.getCurrentPlaylistName());
+        playlistComboBox.setOnAction(e -> {
+            String selectedPlaylist = playlistComboBox.getValue();
+            if (selectedPlaylist != null) {
+                controller.switchPlaylist(selectedPlaylist);
+            }
+        });
+
+        Button newPlaylistButton = new Button("New Playlist");
+        Button deletePlaylistButton = new Button("Delete Playlist");
+
+        newPlaylistButton.setOnAction(e -> {
+            TextInputDialog dialog = new TextInputDialog();
+            dialog.setTitle("New Playlist");
+            dialog.setHeaderText("Create a new playlist");
+            dialog.setContentText("Enter playlist name:");
+
+            Optional<String> result = dialog.showAndWait();
+            result.ifPresent(name -> {
+                controller.createPlaylist(name);
+                playlistComboBox.getItems().add(name);
+                playlistComboBox.setValue(name);
+            });
+        });
+
+        deletePlaylistButton.setOnAction(e -> {
+            String selectedPlaylist = playlistComboBox.getValue();
+            if (selectedPlaylist != null && !selectedPlaylist.equals("Default")) {
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Delete Playlist");
+                alert.setHeaderText("Delete playlist: " + selectedPlaylist);
+                alert.setContentText("Are you sure? This cannot be undone.");
+
+                Optional<ButtonType> result = alert.showAndWait();
+                if (result.isPresent() && result.get() == ButtonType.OK) {
+                    controller.deletePlaylist(selectedPlaylist);
+                    playlistComboBox.getItems().remove(selectedPlaylist);
+                    playlistComboBox.setValue("Default");
+                }
+            }
+        });
+
+        newPlaylistButton.setMaxWidth(Double.MAX_VALUE);
+        deletePlaylistButton.setMaxWidth(Double.MAX_VALUE);
+
+        playlistPane.getChildren().addAll(
+                playlistLabel,
+                playlistComboBox,
+                newPlaylistButton,
+                deletePlaylistButton
+        );
+
+        return playlistPane;
     }
 
     private HBox createHeaderBox(JamboController controller) {
@@ -113,4 +193,11 @@ public class JamboUI {
     public Slider getProgressSlider() { return progressSlider; }
     public Slider getVolumeSlider() { return volumeSlider; }
     public ImageView getAlbumArtView() { return albumArtView; }
+    public ComboBox<String> getPlaylistComboBox() { return playlistComboBox; }
+
+    public void refreshPlaylistComboBox(JamboController controller) {
+        playlistComboBox.getItems().clear();
+        playlistComboBox.getItems().addAll(controller.getPlaylistNames());
+        playlistComboBox.setValue(controller.getCurrentPlaylistName());
+    }
 }
