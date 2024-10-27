@@ -66,6 +66,9 @@ public class JamboController {
         primaryStage.setScene(ui.createScene(this));
         primaryStage.setMinWidth(1000);
         primaryStage.setMinHeight(800);
+
+        ui.initializeContextMenu(this);
+
         primaryStage.show();
 
         primaryStage.setOnCloseRequest(event -> saveSongsToJson());
@@ -204,5 +207,17 @@ public class JamboController {
     public String getCurrentPlaylistName() {
         return playlistManager.getCurrentPlaylistName();
     }
+
+    public void removeSong(int index) {
+        if (index >= 0) {
+            playlistManager.removeSong(index);
+        }
+    }
+
+    public File getSongFile(int index) {
+        return playlistManager.getSongFile(index);
+    }
+
+
 
 }

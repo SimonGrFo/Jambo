@@ -1,6 +1,7 @@
 package com.example.jambo.ui;
 
 import com.example.jambo.controllers.JamboController;
+import com.example.jambo.services.MetadataService;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
@@ -8,6 +9,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.geometry.Insets;
 
+import java.io.File;
+import java.util.Date;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -44,6 +47,10 @@ public class JamboUI {
         setupPlaylistComboBox();
     }
 
+    public void initializeContextMenu(JamboController controller) {
+        setupContextMenu(controller);
+    }
+
     private void setupAlbumArtView() {
         albumArtView.setFitWidth(100);
         albumArtView.setFitHeight(100);
@@ -53,6 +60,88 @@ public class JamboUI {
     private void setupPlaylistComboBox() {
         playlistComboBox.setPromptText("Select Playlist");
         playlistComboBox.setPrefWidth(150);
+    }
+
+    private void setupContextMenu(JamboController controller) {
+        ContextMenu contextMenu = new ContextMenu();
+
+        MenuItem removeItem = new MenuItem("Remove");
+        removeItem.setOnAction(event -> {
+            int selectedIndex = songListView.getSelectionModel().getSelectedIndex();
+            if (selectedIndex >= 0) {
+                controller.removeSong(selectedIndex);
+            }
+        });
+
+        MenuItem propertiesItem = new MenuItem("Properties");
+        propertiesItem.setOnAction(event -> {
+            int selectedIndex = songListView.getSelectionModel().getSelectedIndex();
+            if (selectedIndex >= 0) {
+                showPropertiesDialog(controller.getSongFile(selectedIndex));
+            }
+        });
+
+        contextMenu.getItems().addAll(removeItem, propertiesItem);
+
+        songListView.setContextMenu(contextMenu);
+    }
+
+    private void showPropertiesDialog(File file) {
+        Dialog<Void> dialog = new Dialog<>();
+        dialog.setTitle("File Properties");
+        dialog.setHeaderText("Properties for " + file.getName());
+
+        ButtonType closeButton = new ButtonType("Close", ButtonBar.ButtonData.OK_DONE);
+        dialog.getDialogPane().getButtonTypes().add(closeButton);
+
+        GridPane grid = new GridPane();
+        grid.setHgap(10);
+        grid.setVgap(10);
+        grid.setPadding(new Insets(20, 150, 10, 10));
+
+        try {
+            grid.add(new Label("Location:"), 0, 0);
+            grid.add(new Label(file.getAbsolutePath()), 1, 0);
+
+            grid.add(new Label("Size:"), 0, 1);
+            grid.add(new Label(formatFileSize(file.length())), 1, 1);
+
+            grid.add(new Label("Last Modified:"), 0, 2);
+            grid.add(new Label(new Date(file.lastModified()).toString()), 1, 2);
+
+            MetadataService.AudioMetadata metadata = new MetadataService().getFileMetadata(file);
+
+            grid.add(new Label("Format:"), 0, 3);
+            grid.add(new Label(metadata.format), 1, 3);
+
+            grid.add(new Label("Bit Rate:"), 0, 4);
+            grid.add(new Label(metadata.bitRate + " kbps"), 1, 4);
+
+            grid.add(new Label("Sample Rate:"), 0, 5);
+            grid.add(new Label(metadata.sampleRate + " Hz"), 1, 5);
+
+            grid.add(new Label("Artist:"), 0, 6);
+            grid.add(new Label(metadata.artist), 1, 6);
+
+            grid.add(new Label("Album:"), 0, 7);
+            grid.add(new Label(metadata.album), 1, 7);
+
+            grid.add(new Label("Title:"), 0, 8);
+            grid.add(new Label(metadata.title), 1, 8);
+
+        } catch (Exception e) {
+            grid.add(new Label("Error reading metadata: " + e.getMessage()), 0, 9, 2, 1);
+        }
+
+        dialog.getDialogPane().setContent(grid);
+        dialog.showAndWait();
+    }
+
+    private String formatFileSize(long bytes) {
+        if (bytes < 1024) return bytes + " B";
+        int exp = (int) (Math.log(bytes) / Math.log(1024));
+        String pre = "KMGTPE".charAt(exp-1) + "";
+        return String.format("%.1f %sB", bytes / Math.pow(1024, exp), pre);
     }
 
     private ImageView createIconImageView(Image icon) {
