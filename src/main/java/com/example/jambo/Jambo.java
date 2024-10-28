@@ -17,14 +17,3 @@ public class Jambo extends Application {
         launch(args);
     }
 }
-
-// TODO - Playlist
-//        Save/load/delete multiple playlists
-//        Playlist naming and organization
-//        (saved into json like currently?)
-// TODO - Settings
-//        will have features such as Recently played tracks, Most played tracks,
-//        Audio visualizer, crossfade, Keyboard shortcuts,
-// TODO - Search functionality
-// TODO - Lyrics display (from embedded metadata or online sources)?? would be hard to implement i think?
-// TODO - System tray

@@ -90,9 +90,7 @@ public class JamboController {
         DirectoryChooser directoryChooser = new DirectoryChooser();
         File selectedDirectory = directoryChooser.showDialog(null);
 
-        if (selectedDirectory != null && !playlistManager.isDirectoryLoaded(selectedDirectory)) {
-            playlistManager.addLoadedDirectory(selectedDirectory);
-
+        if (selectedDirectory != null) {
             File[] files = selectedDirectory.listFiles((dir, name) ->
                     name.toLowerCase().endsWith(".mp3"));
 
@@ -186,26 +184,6 @@ public class JamboController {
 
     public void toggleMute() {
         musicPlayerManager.toggleMute();
-    }
-
-    public void createPlaylist(String name) {
-        playlistManager.createPlaylist(name);
-    }
-
-    public void deletePlaylist(String name) {
-        playlistManager.deletePlaylist(name);
-    }
-
-    public void switchPlaylist(String name) {
-        playlistManager.switchPlaylist(name);
-    }
-
-    public List<String> getPlaylistNames() {
-        return playlistManager.getPlaylistNames();
-    }
-
-    public String getCurrentPlaylistName() {
-        return playlistManager.getCurrentPlaylistName();
     }
 
     public void removeSong(int index) {

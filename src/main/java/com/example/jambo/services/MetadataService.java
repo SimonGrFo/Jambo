@@ -1,13 +1,11 @@
 package com.example.jambo.services;
 
-import javafx.scene.image.Image;
 import org.jaudiotagger.audio.AudioFile;
 import org.jaudiotagger.audio.AudioFileIO;
 import org.jaudiotagger.audio.AudioHeader;
 import org.jaudiotagger.tag.Tag;
 import org.jaudiotagger.tag.images.Artwork;
 
-import java.io.ByteArrayInputStream;
 import java.io.File;
 
 public class MetadataService {

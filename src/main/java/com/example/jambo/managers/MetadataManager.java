@@ -6,6 +6,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import java.io.ByteArrayInputStream;
 import java.io.File;
+import java.util.Objects;
 
 public class MetadataManager {
     private final MetadataService metadataService;
@@ -59,7 +60,7 @@ public class MetadataManager {
     private void loadDefaultAlbumArt() {
         try {
             Image defaultImage = new Image(
-                    getClass().getResourceAsStream("/images/default_album_art.png")
+                    Objects.requireNonNull(getClass().getResourceAsStream("/images/default_album_art.png"))
             );
             albumArtView.setImage(defaultImage);
         } catch (Exception e) {
