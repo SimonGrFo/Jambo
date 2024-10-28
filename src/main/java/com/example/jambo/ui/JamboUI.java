@@ -2,14 +2,12 @@ package com.example.jambo.ui;
 
 import com.example.jambo.controllers.JamboController;
 import com.example.jambo.services.DialogService;
-import com.example.jambo.services.IconService;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import java.util.Optional;
 
 public class JamboUI {
     private final ListView<String> songListView;
@@ -22,7 +20,6 @@ public class JamboUI {
     private final ComboBox<String> playlistComboBox;
     private final IconService iconService;
     private final DialogService dialogService;
-    private ContextMenu playlistContextMenu;
 
     public JamboUI() {
         this.songListView = new ListView<>();

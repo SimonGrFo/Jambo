@@ -1,12 +1,10 @@
 package com.example.jambo.services;
 
-import com.example.jambo.services.MetadataService;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.geometry.Insets;
 import java.io.File;
 import java.util.Date;
-import java.util.Optional;
 
 public class DialogService {
     public void showPropertiesDialog(File file) {
@@ -58,22 +56,6 @@ public class DialogService {
 
         dialog.getDialogPane().setContent(grid);
         dialog.showAndWait();
-    }
-
-    public Optional<String> showNewPlaylistDialog() {
-        TextInputDialog dialog = new TextInputDialog();
-        dialog.setTitle("New Playlist");
-        dialog.setHeaderText("Create a new playlist");
-        dialog.setContentText("Enter playlist name:");
-        return dialog.showAndWait();
-    }
-
-    public Optional<ButtonType> showDeletePlaylistDialog(String playlistName) {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Delete Playlist");
-        alert.setHeaderText("Delete playlist: " + playlistName);
-        alert.setContentText("Are you sure? This cannot be undone.");
-        return alert.showAndWait();
     }
 
     private String formatFileSize(long bytes) {

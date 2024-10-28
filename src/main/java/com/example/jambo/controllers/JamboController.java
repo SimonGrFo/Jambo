@@ -186,10 +186,6 @@ public class JamboController {
         musicPlayerManager.toggleMute();
     }
 
-    public void createPlaylist(String name) {
-        playlistManager.createPlaylist(name);
-    }
-
     public void removeSong(int index) {
         if (index >= 0) {
             playlistManager.removeSong(index);

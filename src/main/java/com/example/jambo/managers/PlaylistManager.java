@@ -14,10 +14,6 @@ public class PlaylistManager {
         this.playlistService = new PlaylistService();
     }
 
-    public void createPlaylist(String name) {
-        playlistService.createPlaylist(name);
-    }
-
     public void addSong(File songFile, String formattedInfo) {
         playlistService.addSong(songFile);
         songListView.getItems().add(formattedInfo);

@@ -15,11 +15,6 @@ public class PlaylistService {
         this.playlists.put(currentPlaylistName, new ArrayList<>());
     }
 
-    public void createPlaylist(String name) {
-        if (!playlists.containsKey(name)) {
-            playlists.put(name, new ArrayList<>());
-        }
-    }
 
     public void addSong(File songFile) {
         List<File> currentPlaylist = playlists.get(currentPlaylistName);

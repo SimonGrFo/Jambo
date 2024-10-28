@@ -1,4 +1,4 @@
-package com.example.jambo.services;
+package com.example.jambo.ui;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
