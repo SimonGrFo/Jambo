@@ -5,14 +5,12 @@ import java.util.*;
 
 public class PlaylistService {
     private final Map<String, List<File>> playlists;
-    private final List<File> loadedDirectories;
     private String currentPlaylistName;
     private boolean shuffleEnabled = false;
     private final Random random = new Random();
 
     public PlaylistService() {
         this.playlists = new HashMap<>();
-        this.loadedDirectories = new ArrayList<>();
         this.currentPlaylistName = "Default";
         this.playlists.put(currentPlaylistName, new ArrayList<>());
     }
@@ -20,21 +18,6 @@ public class PlaylistService {
     public void createPlaylist(String name) {
         if (!playlists.containsKey(name)) {
             playlists.put(name, new ArrayList<>());
-        }
-    }
-
-    public void deletePlaylist(String name) {
-        if (!name.equals("Default")) {
-            playlists.remove(name);
-            if (currentPlaylistName.equals(name)) {
-                currentPlaylistName = "Default";
-            }
-        }
-    }
-
-    public void switchPlaylist(String name) {
-        if (playlists.containsKey(name)) {
-            currentPlaylistName = name;
         }
     }
 
@@ -94,23 +77,5 @@ public class PlaylistService {
 
     public List<File> getCurrentPlaylistSongs() {
         return playlists.get(currentPlaylistName);
-    }
-
-    public List<String> getPlaylistNames() {
-        return new ArrayList<>(playlists.keySet());
-    }
-
-    public String getCurrentPlaylistName() {
-        return currentPlaylistName;
-    }
-
-    public boolean isDirectoryLoaded(File directory) {
-        return loadedDirectories.contains(directory);
-    }
-
-    public void addLoadedDirectory(File directory) {
-        if (!loadedDirectories.contains(directory)) {
-            loadedDirectories.add(directory);
-        }
     }
 }

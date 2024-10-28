@@ -51,8 +51,6 @@ public class JamboUI {
         playlistComboBox.setPrefWidth(150);
     }
 
-
-
     public void initializeContextMenu(JamboController controller) {
         ContextMenu contextMenu = new ContextMenu();
 
@@ -88,15 +86,11 @@ public class JamboUI {
         Button loadButton = new Button("Load Songs");
         Button clearButton = new Button("Clear Songs");
         Label playlistLabel = new Label("Playlist:");
-        MenuButton playlistMenu = new MenuButton("Playlist Options");
-        MenuItem newPlaylistItem = new MenuItem("New Playlist");
-        MenuItem deletePlaylistItem = new MenuItem("Delete Playlist");
 
-        playlistMenu.getItems().addAll(newPlaylistItem, deletePlaylistItem);
+        MenuButton playlistButton = new MenuButton("Playlists");
+
         loadButton.setOnAction(e -> controller.loadSongs());
         clearButton.setOnAction(e -> controller.clearSongs());
-
-        setupPlaylistMenuItems(controller, newPlaylistItem, deletePlaylistItem);
 
         HBox headerBox = new HBox(10);
         headerBox.setPadding(new Insets(10));
@@ -106,42 +100,13 @@ public class JamboUI {
                 clearButton,
                 new Separator(javafx.geometry.Orientation.VERTICAL),
                 playlistLabel,
-                playlistComboBox,
-                playlistMenu
+                playlistButton // Add the playlistButton to the header box
         );
 
         return headerBox;
     }
 
-    private void setupPlaylistMenuItems(JamboController controller, MenuItem newPlaylistItem, MenuItem deletePlaylistItem) {
-        newPlaylistItem.setOnAction(e -> {
-            Optional<String> result = dialogService.showNewPlaylistDialog();
-            result.ifPresent(name -> {
-                controller.createPlaylist(name);
-                playlistComboBox.getItems().add(name);
-                playlistComboBox.setValue(name);
-            });
-        });
 
-        deletePlaylistItem.setOnAction(e -> {
-            String selectedPlaylist = playlistComboBox.getValue();
-            if (selectedPlaylist != null && !selectedPlaylist.equals("Default")) {
-                Optional<ButtonType> result = dialogService.showDeletePlaylistDialog(selectedPlaylist);
-                if (result.isPresent() && result.get() == ButtonType.OK) {
-                    controller.deletePlaylist(selectedPlaylist);
-                    playlistComboBox.getItems().remove(selectedPlaylist);
-                    playlistComboBox.setValue("Default");
-                }
-            }
-        });
-
-        playlistComboBox.setOnAction(e -> {
-            String selectedPlaylist = playlistComboBox.getValue();
-            if (selectedPlaylist != null) {
-                controller.switchPlaylist(selectedPlaylist);
-            }
-        });
-    }
 
     private HBox createControlBox(JamboController controller) {
         Button playButton = new Button("", iconService.createIconImageView("play"));
@@ -188,11 +153,5 @@ public class JamboUI {
     public Slider getProgressSlider() { return progressSlider; }
     public Slider getVolumeSlider() { return volumeSlider; }
     public ImageView getAlbumArtView() { return albumArtView; }
-    public ComboBox<String> getPlaylistComboBox() { return playlistComboBox; }
 
-    public void refreshPlaylistComboBox(JamboController controller) {
-        playlistComboBox.getItems().clear();
-        playlistComboBox.getItems().addAll(controller.getPlaylistNames());
-        playlistComboBox.setValue(controller.getCurrentPlaylistName());
-    }
 }
