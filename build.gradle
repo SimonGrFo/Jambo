@@ -7,9 +7,6 @@ plugins {
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
 
-sourceCompatibility = '17'
-targetCompatibility = '17'
-
 java {
 	toolchain {
 		languageVersion = JavaLanguageVersion.of(17)
@@ -18,7 +15,6 @@ java {
 
 repositories {
 	mavenCentral()
-	maven { url 'https://jitpack.io' }
 }
 
 dependencies {
@@ -30,7 +26,6 @@ dependencies {
 	implementation 'org.openjfx:javafx-media:21.0.2'
 	implementation 'com.google.code.gson:gson:2.11.0'
 	implementation 'net.jthink:jaudiotagger:3.0.1'
-
 }
 
 javafx {
@@ -48,8 +43,4 @@ sourceSets {
 			srcDirs = ['src/main/resources']
 		}
 	}
-}
-
-tasks.named('test') {
-	useJUnitPlatform()
 }

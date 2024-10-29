@@ -22,6 +22,8 @@ public class IconService {
         icons.put("loop", loadIcon("/images/icons/loop_icon.png"));
         icons.put("shuffle", loadIcon("/images/icons/shuffle_icon.png"));
         icons.put("mute", loadIcon("/images/icons/mute_icon.png"));
+        // TODO - folder icon for load songs
+        // TODO - delete icon for deleting playlists
     }
 
     private Image loadIcon(String path) {
