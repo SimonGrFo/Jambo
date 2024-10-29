@@ -2,6 +2,7 @@ package com.example.jambo.ui;
 
 import com.example.jambo.controllers.JamboController;
 import com.example.jambo.services.DialogService;
+import com.example.jambo.ui.dialogs.PlaylistDialog;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
@@ -82,28 +83,22 @@ public class JamboUI {
     private HBox createHeaderBox(JamboController controller) {
         Button loadButton = new Button("Load Songs");
         Button clearButton = new Button("Clear Songs");
-        Label playlistLabel = new Label("Playlist:");
-
-        MenuButton playlistButton = new MenuButton("Playlists");
+        Button playlistButton = new Button("Playlists");
 
         loadButton.setOnAction(e -> controller.loadSongs());
         clearButton.setOnAction(e -> controller.clearSongs());
+        playlistButton.setOnAction(e -> {
+            PlaylistDialog dialog = new PlaylistDialog(controller);
+            dialog.show();
+        });
 
         HBox headerBox = new HBox(10);
         headerBox.setPadding(new Insets(10));
         headerBox.setAlignment(Pos.CENTER_LEFT);
-        headerBox.getChildren().addAll(
-                loadButton,
-                clearButton,
-                new Separator(javafx.geometry.Orientation.VERTICAL),
-                playlistLabel,
-                playlistButton // Add the playlistButton to the header box
-        );
+        headerBox.getChildren().addAll(loadButton, clearButton, playlistButton);
 
         return headerBox;
     }
-
-
 
     private HBox createControlBox(JamboController controller) {
         Button playButton = new Button("", iconService.createIconImageView("play"));
