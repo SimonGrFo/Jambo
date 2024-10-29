@@ -150,6 +150,10 @@ public class JamboController {
         musicPlayerManager.stopMusic();
     }
 
+    public PlaylistManager getPlaylistManager() {
+        return playlistManager;
+    }
+
     public void pauseMusic() {
         musicPlayerManager.pauseMusic();
     }
@@ -195,7 +199,4 @@ public class JamboController {
     public File getSongFile(int index) {
         return playlistManager.getSongFile(index);
     }
-
-
-
 }
