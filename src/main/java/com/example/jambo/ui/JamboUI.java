@@ -26,7 +26,7 @@ public class JamboUI {
         this.songListView = new ListView<>();
         this.currentSongLabel = new Label("No song playing");
         this.timerLabel = new Label("0:00 / 0:00");
-        this.fileInfoLabel = new Label("Format: - Hz, - kbps");
+        this.fileInfoLabel = new Label("Format: - Hz, - kbps"); //TODO - make it show which playlist its playing from
         this.progressSlider = new Slider(0, 1, 0);
         this.volumeSlider = new Slider(0, 1, 0.5);
         this.albumArtView = new ImageView();

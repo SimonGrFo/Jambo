@@ -25,10 +25,6 @@ public class PlaylistService {
         listeners.add(listener);
     }
 
-    public void removePlaylistChangeListener(PlaylistChangeListener listener) {
-        listeners.remove(listener);
-    }
-
     private void notifyPlaylistChanged(String playlistName) {
         for (PlaylistChangeListener listener : listeners) {
             listener.onPlaylistChanged(playlistName, playlists.get(playlistName));
@@ -52,17 +48,6 @@ public class PlaylistService {
                 switchToPlaylist("Default");
             }
             notifyPlaylistChanged(name);
-        }
-    }
-
-    public void renamePlaylist(String oldName, String newName) {
-        if (!oldName.equals("Default") && playlists.containsKey(oldName) && !playlists.containsKey(newName)) {
-            List<File> songs = playlists.remove(oldName);
-            playlists.put(newName, songs);
-            if (currentPlaylistName.equals(oldName)) {
-                currentPlaylistName = newName;
-            }
-            notifyPlaylistChanged(newName);
         }
     }
 

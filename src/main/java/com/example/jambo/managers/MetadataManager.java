@@ -61,6 +61,7 @@ public class MetadataManager {
         try {
             Image defaultImage = new Image(
                     Objects.requireNonNull(getClass().getResourceAsStream("/images/default_album_art.png"))
+                    //TODO - somewhat broken
             );
             albumArtView.setImage(defaultImage);
         } catch (Exception e) {
