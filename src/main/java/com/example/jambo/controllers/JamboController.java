@@ -1,5 +1,6 @@
 package com.example.jambo.controllers;
 
+import com.example.jambo.di.DependencyContainer;
 import com.example.jambo.managers.MusicPlayerManager;
 import com.example.jambo.managers.PlaylistManager;
 import com.example.jambo.managers.MetadataManager;
@@ -26,14 +27,24 @@ public class JamboController {
 
     public JamboController(JamboUI ui) {
         this.ui = ui;
+
+        DependencyContainer.initialize(ui.getVolumeSlider());
+
         this.musicPlayerManager = new MusicPlayerManager(
+                DependencyContainer.getMusicPlayerService(),
                 ui.getCurrentSongLabel(),
                 ui.getTimerLabel(),
                 ui.getProgressSlider(),
                 ui.getVolumeSlider()
         );
-        this.playlistManager = new PlaylistManager(ui.getSongListView());
+
+        this.playlistManager = new PlaylistManager(
+                DependencyContainer.getPlaylistService(),
+                ui.getSongListView()
+        );
+
         this.metadataManager = new MetadataManager(
+                DependencyContainer.getMetadataService(),
                 ui.getFileInfoLabel(),
                 ui.getCurrentSongLabel(),
                 ui.getAlbumArtView()

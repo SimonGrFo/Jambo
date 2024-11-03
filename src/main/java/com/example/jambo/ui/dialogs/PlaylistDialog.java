@@ -1,6 +1,8 @@
 package com.example.jambo.ui.dialogs;
 
 import com.example.jambo.controllers.JamboController;
+import com.example.jambo.di.DependencyContainer;
+import com.example.jambo.services.DialogService;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
@@ -11,6 +13,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import javafx.util.Callback;
+import javafx.beans.binding.Bindings;
 
 public class PlaylistDialog extends Dialog<Void> {
     private final TableView<PlaylistEntry> table;
@@ -35,6 +38,7 @@ public class PlaylistDialog extends Dialog<Void> {
 
     public PlaylistDialog(JamboController controller) {
         this.controller = controller;
+        DialogService dialogService = DependencyContainer.getDialogService();
 
         setTitle("Playlist Manager");
         setHeaderText("Manage Your Playlists");
@@ -42,25 +46,7 @@ public class PlaylistDialog extends Dialog<Void> {
         table = new TableView<>();
         playlists = FXCollections.observableArrayList();
 
-        TableColumn<PlaylistEntry, String> nameColumn = new TableColumn<>("Playlist Name");
-        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
-        nameColumn.setPrefWidth(200);
-
-        TableColumn<PlaylistEntry, String> dateColumn = new TableColumn<>("Last Modified");
-        dateColumn.setCellValueFactory(cellData ->
-                javafx.beans.binding.Bindings.createStringBinding(
-                        () -> cellData.getValue().getFormattedDate()
-                )
-        );
-        dateColumn.setPrefWidth(150);
-
-        TableColumn<PlaylistEntry, Void> actionColumn = new TableColumn<>("Actions");
-        actionColumn.setPrefWidth(100);
-
-        actionColumn.setCellFactory(createButtonCellFactory());
-
-        table.getColumns().addAll(nameColumn, dateColumn, actionColumn);
-        table.setItems(playlists);
+        setupTableColumns();
 
         Button newPlaylistButton = new Button("New Playlist");
         newPlaylistButton.setOnAction(e -> createNewPlaylist());
@@ -74,6 +60,32 @@ public class PlaylistDialog extends Dialog<Void> {
         initModality(Modality.APPLICATION_MODAL);
 
         refreshPlaylists();
+
+        setupDoubleClickHandler();
+    }
+
+    private void setupTableColumns() {
+        TableColumn<PlaylistEntry, String> dateColumn = new TableColumn<>("Last Modified");
+        dateColumn.setCellValueFactory(cellData ->
+                Bindings.createStringBinding(
+                        () -> cellData.getValue().getFormattedDate()
+                )
+        );
+        TableColumn<PlaylistEntry, String> nameColumn = new TableColumn<>("Playlist Name");
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        nameColumn.setPrefWidth(200);
+
+        dateColumn.setPrefWidth(150);
+
+        TableColumn<PlaylistEntry, Void> actionColumn = new TableColumn<>("Actions");
+        actionColumn.setPrefWidth(100);
+        actionColumn.setCellFactory(createButtonCellFactory());
+
+        table.getColumns().addAll(nameColumn, dateColumn, actionColumn);
+        table.setItems(playlists);
+    }
+
+    private void setupDoubleClickHandler() {
         table.setOnMouseClicked(event -> {
             if (event.getClickCount() == 2) {
                 PlaylistEntry selectedEntry = table.getSelectionModel().getSelectedItem();
@@ -134,10 +146,29 @@ public class PlaylistDialog extends Dialog<Void> {
 
         dialog.showAndWait().ifPresent(name -> {
             if (!name.trim().isEmpty()) {
-                controller.getPlaylistManager().createPlaylist(name);
-                refreshPlaylists();
+                if (isValidPlaylistName(name)) {
+                    controller.getPlaylistManager().createPlaylist(name);
+                    refreshPlaylists();
+                } else {
+                    showInvalidNameAlert();
+                }
             }
         });
+    }
+
+    private boolean isValidPlaylistName(String name) {
+        if (controller.getPlaylistManager().getPlaylistNames().contains(name)) {
+            return false;
+        }
+        return !name.matches(".*[\\\\/:*?\"<>|].*");
+    }
+
+    private void showInvalidNameAlert() {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Invalid Playlist Name");
+        alert.setHeaderText(null);
+        alert.setContentText("Playlist name is invalid or already exists. Please choose a different name.");
+        alert.showAndWait();
     }
 
     private void refreshPlaylists() {

@@ -12,12 +12,12 @@ public class MusicPlayerManager {
     private final Label timerLabel;
     private final Slider progressSlider;
 
-    public MusicPlayerManager(Label currentSongLabel, Label timerLabel,
-                              Slider progressSlider, Slider volumeSlider) {
+    public MusicPlayerManager(MusicPlayerService musicPlayerService, Label currentSongLabel,
+                              Label timerLabel, Slider progressSlider, Slider volumeSlider) {
+        this.musicPlayerService = musicPlayerService;
         this.currentSongLabel = currentSongLabel;
         this.timerLabel = timerLabel;
         this.progressSlider = progressSlider;
-        this.musicPlayerService = new MusicPlayerService(volumeSlider);
     }
 
     public void playMedia(Media media) {
