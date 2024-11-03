@@ -11,9 +11,9 @@ public class PlaylistManager implements PlaylistService.PlaylistChangeListener {
     private final PlaylistService playlistService;
     private final ListView<String> songListView;
 
-    public PlaylistManager(ListView<String> songListView) {
+    public PlaylistManager(PlaylistService playlistService, ListView<String> songListView) {
+        this.playlistService = playlistService;
         this.songListView = songListView;
-        this.playlistService = new PlaylistService();
         this.playlistService.addPlaylistChangeListener(this);
     }
 

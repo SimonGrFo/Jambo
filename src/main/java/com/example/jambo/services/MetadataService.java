@@ -32,13 +32,20 @@ public class MetadataService {
         AudioHeader audioHeader = audioFile.getAudioHeader();
         Tag tag = audioFile.getTag();
 
+        String artist = tag.getFirst(org.jaudiotagger.tag.FieldKey.ARTIST);
+        String album = tag.getFirst(org.jaudiotagger.tag.FieldKey.ALBUM);
+        String title = tag.getFirst(org.jaudiotagger.tag.FieldKey.TITLE);
+        artist = (artist == null || artist.isEmpty()) ? "Unknown Artist" : artist;
+        album = (album == null || album.isEmpty()) ? "Unknown Album" : album;
+        title = (title == null || title.isEmpty()) ? songFile.getName() : title;
+
         return new AudioMetadata(
                 audioHeader.getFormat(),
                 audioHeader.getBitRate(),
                 audioHeader.getSampleRate(),
-                tag.getFirst(org.jaudiotagger.tag.FieldKey.ARTIST),
-                tag.getFirst(org.jaudiotagger.tag.FieldKey.ALBUM),
-                tag.getFirst(org.jaudiotagger.tag.FieldKey.TITLE),
+                artist,
+                album,
+                title,
                 tag.getFirstArtwork()
         );
     }

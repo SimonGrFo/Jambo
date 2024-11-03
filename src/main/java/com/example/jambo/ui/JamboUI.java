@@ -1,6 +1,7 @@
 package com.example.jambo.ui;
 
 import com.example.jambo.controllers.JamboController;
+import com.example.jambo.di.DependencyContainer;
 import com.example.jambo.services.DialogService;
 import com.example.jambo.ui.dialogs.PlaylistDialog;
 import javafx.scene.Scene;
@@ -26,13 +27,17 @@ public class JamboUI {
         this.songListView = new ListView<>();
         this.currentSongLabel = new Label("No song playing");
         this.timerLabel = new Label("0:00 / 0:00");
-        this.fileInfoLabel = new Label("Format: - Hz, - kbps"); //TODO - make it show which playlist its playing from
+        this.fileInfoLabel = new Label("Format: - Hz, - kbps");
         this.progressSlider = new Slider(0, 1, 0);
         this.volumeSlider = new Slider(0, 1, 0.5);
         this.albumArtView = new ImageView();
         this.playlistComboBox = new ComboBox<>();
-        this.iconService = new IconService();
-        this.dialogService = new DialogService();
+
+        // Initialize DI container first
+        DependencyContainer.initialize(this.volumeSlider);
+
+        this.iconService = DependencyContainer.getIconService();
+        this.dialogService = DependencyContainer.getDialogService();
 
         setupAlbumArtView();
         setupPlaylistComboBox();

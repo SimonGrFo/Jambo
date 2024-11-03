@@ -14,11 +14,12 @@ public class MetadataManager {
     private final Label currentSongLabel;
     private final ImageView albumArtView;
 
-    public MetadataManager(Label fileInfoLabel, Label currentSongLabel, ImageView albumArtView) {
+    public MetadataManager(MetadataService metadataService, Label fileInfoLabel,
+                           Label currentSongLabel, ImageView albumArtView) {
+        this.metadataService = metadataService;
         this.fileInfoLabel = fileInfoLabel;
         this.currentSongLabel = currentSongLabel;
         this.albumArtView = albumArtView;
-        this.metadataService = new MetadataService();
     }
 
     public String formatSongMetadata(File file) throws Exception {
