@@ -53,8 +53,7 @@ public class JamboController {
             this.metadataManager = new MetadataManager(
                     DependencyContainer.getMetadataService(),
                     ui.getFileInfoLabel(),
-                    ui.getCurrentSongLabel(),
-                    ui.getAlbumArtView()
+                    ui.getCurrentSongLabel()
             );
 
             setupEventHandlers();

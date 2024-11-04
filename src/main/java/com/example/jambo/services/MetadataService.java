@@ -5,7 +5,6 @@ import org.jaudiotagger.audio.AudioFile;
 import org.jaudiotagger.audio.AudioFileIO;
 import org.jaudiotagger.audio.AudioHeader;
 import org.jaudiotagger.tag.Tag;
-import org.jaudiotagger.tag.images.Artwork;
 
 import java.io.File;
 
@@ -48,8 +47,7 @@ public class MetadataService {
                     audioHeader.getSampleRate(),
                     artist,
                     album,
-                    title,
-                    tag.getFirstArtwork()
+                    title
             );
         } catch (Exception e) {
             throw new AudioPlayerException(
@@ -73,16 +71,14 @@ public class MetadataService {
         public final String artist;
         public final String album;
         public final String title;
-        public final Artwork artwork;
 
-        public AudioMetadata(String format, String bitRate, String sampleRate, String artist, String album, String title, Artwork artwork) {
+        public AudioMetadata(String format, String bitRate, String sampleRate, String artist, String album, String title) {
             this.format = format;
             this.bitRate = bitRate;
             this.sampleRate = sampleRate;
             this.artist = artist;
             this.album = album;
             this.title = title;
-            this.artwork = artwork;
         }
     }
 }

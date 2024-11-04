@@ -18,7 +18,6 @@ public class JamboUI {
     private final Label fileInfoLabel;
     private final Slider progressSlider;
     private final Slider volumeSlider;
-    private final ImageView albumArtView;
     private final ComboBox<String> playlistComboBox;
     private final IconService iconService;
     private final DialogService dialogService;
@@ -30,7 +29,6 @@ public class JamboUI {
         this.fileInfoLabel = new Label("Format: - Hz, - kbps");
         this.progressSlider = new Slider(0, 1, 0);
         this.volumeSlider = new Slider(0, 1, 0.5);
-        this.albumArtView = new ImageView();
         this.playlistComboBox = new ComboBox<>();
 
         // Initialize DI container first
@@ -39,14 +37,28 @@ public class JamboUI {
         this.iconService = DependencyContainer.getIconService();
         this.dialogService = DependencyContainer.getDialogService();
 
-        setupAlbumArtView();
         setupPlaylistComboBox();
     }
 
-    private void setupAlbumArtView() {
-        albumArtView.setFitWidth(100);
-        albumArtView.setFitHeight(100);
-        albumArtView.setPreserveRatio(true);
+    private HBox createControlBox(JamboController controller) {
+        Button playButton = new Button("", iconService.createIconImageView("play"));
+        Button pauseButton = new Button("", iconService.createIconImageView("pause"));
+        Button stopButton = new Button("", iconService.createIconImageView("stop"));
+        Button previousButton = new Button("", iconService.createIconImageView("previous"));
+        Button nextButton = new Button("", iconService.createIconImageView("next"));
+        Button shuffleButton = new Button("", iconService.createIconImageView("shuffle"));
+        Button loopButton = new Button("", iconService.createIconImageView("loop"));
+        Button muteButton = new Button("", iconService.createIconImageView("mute"));
+
+        setupControlButtons(controller, playButton, pauseButton, stopButton,
+                previousButton, nextButton, shuffleButton, loopButton, muteButton);
+
+        HBox volumeBox = new HBox(10, volumeSlider, muteButton);
+        HBox controlBox = new HBox(10, playButton, pauseButton, stopButton,
+                previousButton, nextButton, shuffleButton, loopButton, volumeBox);
+        HBox.setHgrow(controlBox, Priority.ALWAYS);
+
+        return controlBox;
     }
 
     private void setupPlaylistComboBox() {
@@ -105,27 +117,6 @@ public class JamboUI {
         return headerBox;
     }
 
-    private HBox createControlBox(JamboController controller) {
-        Button playButton = new Button("", iconService.createIconImageView("play"));
-        Button pauseButton = new Button("", iconService.createIconImageView("pause"));
-        Button stopButton = new Button("", iconService.createIconImageView("stop"));
-        Button previousButton = new Button("", iconService.createIconImageView("previous"));
-        Button nextButton = new Button("", iconService.createIconImageView("next"));
-        Button shuffleButton = new Button("", iconService.createIconImageView("shuffle"));
-        Button loopButton = new Button("", iconService.createIconImageView("loop"));
-        Button muteButton = new Button("", iconService.createIconImageView("mute"));
-
-        setupControlButtons(controller, playButton, pauseButton, stopButton,
-                previousButton, nextButton, shuffleButton, loopButton, muteButton);
-
-        HBox volumeBox = new HBox(10, volumeSlider, muteButton);
-        HBox controlBox = new HBox(10, playButton, pauseButton, stopButton,
-                previousButton, nextButton, shuffleButton, loopButton, volumeBox);
-        HBox.setHgrow(controlBox, Priority.ALWAYS);
-
-        return new HBox(20, albumArtView, controlBox);
-    }
-
     private void setupControlButtons(JamboController controller, Button... buttons) {
         buttons[0].setOnAction(e -> controller.playSelectedSong());
         buttons[1].setOnAction(e -> controller.pauseMusic());
@@ -149,6 +140,5 @@ public class JamboUI {
     public Label getFileInfoLabel() { return fileInfoLabel; }
     public Slider getProgressSlider() { return progressSlider; }
     public Slider getVolumeSlider() { return volumeSlider; }
-    public ImageView getAlbumArtView() { return albumArtView; }
 
 }
