@@ -1,5 +1,8 @@
 package com.example.jambo.services;
 
+import com.example.jambo.exceptions.AudioPlayerException;
+import com.example.jambo.utils.ErrorHandler;
+
 import java.io.File;
 import java.util.*;
 
@@ -59,10 +62,18 @@ public class PlaylistService {
     }
 
     public void addSongToPlaylist(String playlistName, File songFile) {
-        List<File> playlist = playlists.get(playlistName);
-        if (playlist != null && !playlist.contains(songFile)) {
-            playlist.add(songFile);
-            notifyPlaylistChanged(playlistName);
+        try {
+            List<File> playlist = playlists.get(playlistName);
+            if (playlist != null && !playlist.contains(songFile)) {
+                playlist.add(songFile);
+                notifyPlaylistChanged(playlistName);
+            }
+        } catch (Exception e) {
+            ErrorHandler.handleException(new AudioPlayerException(
+                    AudioPlayerException.ErrorType.PLAYLIST_ERROR,
+                    "Error adding song to playlist: " + playlistName,
+                    e
+            ));
         }
     }
 
@@ -71,10 +82,18 @@ public class PlaylistService {
     }
 
     public void removeSongFromPlaylist(String playlistName, int index) {
-        List<File> playlist = playlists.get(playlistName);
-        if (playlist != null && index >= 0 && index < playlist.size()) {
-            playlist.remove(index);
-            notifyPlaylistChanged(playlistName);
+        try {
+            List<File> playlist = playlists.get(playlistName);
+            if (playlist != null && index >= 0 && index < playlist.size()) {
+                playlist.remove(index);
+                notifyPlaylistChanged(playlistName);
+            }
+        } catch (Exception e) {
+            ErrorHandler.handleException(new AudioPlayerException(
+                    AudioPlayerException.ErrorType.PLAYLIST_ERROR,
+                    "Error removing song from playlist: " + playlistName,
+                    e
+            ));
         }
     }
 

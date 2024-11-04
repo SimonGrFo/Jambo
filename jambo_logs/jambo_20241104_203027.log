@@ -1,0 +1,4 @@
+2024-11-04T20:30:27.5415889 [INFO] com.example.jambo.services.LoggingService.initialize: Logging system initialized successfully
+2024-11-04T20:30:27.7779413 [INFO] com.example.jambo.services.LoggingService.logInfo: Initializing JamboController
+2024-11-04T20:30:29.1801837 [INFO] com.example.jambo.services.LoggingService.logInfo: Loaded 17 songs, 0 errors
+2024-11-04T20:30:33.0101194 [INFO] com.example.jambo.services.LoggingService.logInfo: Saved 0 songs to playlist
