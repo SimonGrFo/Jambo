@@ -143,7 +143,7 @@ public class JamboController {
         }
     }
 
-    private void saveSongsToJson() {
+    void saveSongsToJson() {
         Gson gson = new Gson();
         try (FileWriter writer = new FileWriter("saved_songs.json")) {
             List<String> songPaths = new ArrayList<>();

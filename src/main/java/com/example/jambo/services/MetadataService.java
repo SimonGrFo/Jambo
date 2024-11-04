@@ -56,7 +56,7 @@ public class MetadataService {
         return String.format("%d:%02d", minutes, remainingSeconds);
     }
 
-    public static class AudioMetadata {
+    public class AudioMetadata {
         public final String format;
         public final String bitRate;
         public final String sampleRate;
@@ -65,8 +65,7 @@ public class MetadataService {
         public final String title;
         public final Artwork artwork;
 
-        public AudioMetadata(String format, String bitRate, String sampleRate,
-                             String artist, String album, String title, Artwork artwork) {
+        public AudioMetadata(String format, String bitRate, String sampleRate, String artist, String album, String title, Artwork artwork) {
             this.format = format;
             this.bitRate = bitRate;
             this.sampleRate = sampleRate;
