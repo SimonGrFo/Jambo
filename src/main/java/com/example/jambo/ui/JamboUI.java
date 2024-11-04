@@ -86,7 +86,7 @@ public class JamboUI {
     }
 
     private HBox createHeaderBox(JamboController controller) {
-        Button loadButton = new Button("Load Songs");
+        Button loadButton = new Button("", iconService.createIconImageView("load songs"));
         Button clearButton = new Button("Clear Songs");
         Button playlistButton = new Button("Playlists");
 
