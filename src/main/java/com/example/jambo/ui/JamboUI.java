@@ -123,13 +123,12 @@ public class JamboUI {
         Button settingsButton = new Button("", iconService.createIconImageView("settings"));
         Tooltip.install(settingsButton, new Tooltip("Settings"));
 
-        // Define the mute button and volume slider directly in the header box
         Button muteButton = new Button("", iconService.createIconImageView("mute"));
         Tooltip.install(muteButton, new Tooltip("Mute"));
 
-        muteButton.setOnAction(e -> controller.toggleMute()); // Set mute action
-        volumeSlider.setPrefWidth(100); // Adjust width if needed
-        HBox volumeBox = new HBox(5, muteButton, volumeSlider); // Box for mute and volume slider
+        muteButton.setOnAction(e -> controller.toggleMute());
+        volumeSlider.setPrefWidth(100);
+        HBox volumeBox = new HBox(5, muteButton, volumeSlider);
 
         loadButton.setOnAction(e -> controller.loadSongs());
         clearButton.setOnAction(e -> controller.clearSongs());
@@ -143,7 +142,6 @@ public class JamboUI {
         HBox leftButtonsBox = new HBox(10, loadButton, clearButton, playlistButton);
         HBox.setHgrow(leftButtonsBox, Priority.ALWAYS);
 
-        // Add left buttons, settings, and volume box to the header
         headerBox.getChildren().addAll(leftButtonsBox, volumeBox, settingsButton);
         headerBox.setAlignment(Pos.CENTER);
 
