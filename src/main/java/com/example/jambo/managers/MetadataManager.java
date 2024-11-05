@@ -2,11 +2,7 @@ package com.example.jambo.managers;
 
 import com.example.jambo.services.MetadataService;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import java.io.ByteArrayInputStream;
 import java.io.File;
-import java.util.Objects;
 
 public class MetadataManager {
     private final MetadataService metadataService;

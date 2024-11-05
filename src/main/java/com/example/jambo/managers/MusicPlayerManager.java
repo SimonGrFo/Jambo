@@ -20,7 +20,7 @@ public class MusicPlayerManager {
         this.progressSlider = progressSlider;
     }
 
-    public void playMedia(Media media) {
+    public void playMedia(Media media) {  //TODO - autoplay broke
         musicPlayerService.playMedia(media);
         setupTimeUpdates();
     }
