@@ -25,6 +25,7 @@ public class IconService {
         icons.put("load songs", loadIcon("/images/icons/folder_icon.png"));
         icons.put("clear songs", loadIcon("/images/icons/delete_icon.png"));
         icons.put("settings", loadIcon("/images/icons/setting_icon.png"));
+        icons.put("playlist", loadIcon("/images/icons/playlist_icon.png"));
     }
 
     private Image loadIcon(String path) {

@@ -11,6 +11,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.control.Button;
+import javafx.scene.control.Tooltip;
 
 public class JamboUI {
     private final ListView<String> songListView;
@@ -42,15 +44,37 @@ public class JamboUI {
 
     private HBox createControlBox(JamboController controller) {
         Button playButton = new Button("", iconService.createIconImageView("play"));
+        Tooltip.install(playButton, new Tooltip("Play"));
+
         Button pauseButton = new Button("", iconService.createIconImageView("pause"));
+        Tooltip.install(pauseButton, new Tooltip("Pause"));
+
         Button stopButton = new Button("", iconService.createIconImageView("stop"));
+        Tooltip.install(stopButton, new Tooltip("Stop"));
+
         Button previousButton = new Button("", iconService.createIconImageView("previous"));
+        Tooltip.install(previousButton, new Tooltip("Previous Song"));
+
         Button nextButton = new Button("", iconService.createIconImageView("next"));
+        Tooltip.install(nextButton, new Tooltip("Next Song"));
+
         Button shuffleButton = new Button("", iconService.createIconImageView("shuffle"));
+        Tooltip.install(shuffleButton, new Tooltip("Shuffle"));
+
         Button loopButton = new Button("", iconService.createIconImageView("loop"));
+        Tooltip.install(loopButton, new Tooltip("Loop"));
+
         Button muteButton = new Button("", iconService.createIconImageView("mute"));
+        Tooltip.install(muteButton, new Tooltip("Mute"));
+
         Button clearButton = new Button("", iconService.createIconImageView("clear"));
+        Tooltip.install(clearButton, new Tooltip("Clear Playlist"));
+
         Button settingsButton = new Button("", iconService.createIconImageView("settings"));
+        Tooltip.install(settingsButton, new Tooltip("Settings"));
+
+        Button playlistButton = new Button("", iconService.createIconImageView("playlist"));
+        Tooltip.install(playlistButton, new Tooltip("playlist"));
 
         setupControlButtons(controller, playButton, pauseButton, stopButton,
                 previousButton, nextButton, shuffleButton, loopButton, muteButton);
@@ -101,9 +125,20 @@ public class JamboUI {
 
     private HBox createHeaderBox(JamboController controller) {
         Button loadButton = new Button("", iconService.createIconImageView("load songs"));
+        Tooltip loadTooltip = new Tooltip("Load songs");
+        Tooltip.install(loadButton, loadTooltip);
+
         Button clearButton = new Button("", iconService.createIconImageView("clear songs"));
-        Button playlistButton = new Button("Playlists");
+        Tooltip clearTooltip = new Tooltip("Clear songs");
+        Tooltip.install(clearButton, clearTooltip);
+
+        Button playlistButton = new Button("", iconService.createIconImageView("playlist"));
+        Tooltip playlistTooltip = new Tooltip("playlist");
+        Tooltip.install(playlistButton, playlistTooltip);
+
         Button settingsButton = new Button("", iconService.createIconImageView("settings"));
+        Tooltip settingsTooltip = new Tooltip("Settings");
+        Tooltip.install(settingsButton, settingsTooltip);
 
 
         loadButton.setOnAction(e -> controller.loadSongs());
