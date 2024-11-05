@@ -27,7 +27,7 @@ public class ErrorHandler {
             alert.setContentText(content);
 
             if (e != null) {
-                StringBuffer sb = new StringBuffer();
+                StringBuilder sb = new StringBuilder();
                 sb.append("Exception Stack Trace:\n\n");
                 for (StackTraceElement element : e.getStackTrace()) {
                     sb.append(element.toString()).append("\n");

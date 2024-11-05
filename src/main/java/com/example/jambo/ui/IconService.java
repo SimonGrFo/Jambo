@@ -23,7 +23,8 @@ public class IconService {
         icons.put("shuffle", loadIcon("/images/icons/shuffle_icon.png"));
         icons.put("mute", loadIcon("/images/icons/mute_icon.png"));
         icons.put("load songs", loadIcon("/images/icons/folder_icon.png"));
-        // TODO - delete icon for deleting playlists
+        icons.put("clear songs", loadIcon("/images/icons/delete_icon.png"));
+        icons.put("settings", loadIcon("/images/icons/setting_icon.png"));
     }
 
     private Image loadIcon(String path) {

@@ -4,6 +4,7 @@ import com.example.jambo.controllers.JamboController;
 import com.example.jambo.di.DependencyContainer;
 import com.example.jambo.services.DialogService;
 import com.example.jambo.ui.dialogs.PlaylistDialog;
+import com.example.jambo.ui.dialogs.SettingsDialog;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
@@ -31,7 +32,6 @@ public class JamboUI {
         this.volumeSlider = new Slider(0, 1, 0.5);
         this.playlistComboBox = new ComboBox<>();
 
-        // Initialize DI container first
         DependencyContainer.initialize(this.volumeSlider);
 
         this.iconService = DependencyContainer.getIconService();
@@ -49,6 +49,8 @@ public class JamboUI {
         Button shuffleButton = new Button("", iconService.createIconImageView("shuffle"));
         Button loopButton = new Button("", iconService.createIconImageView("loop"));
         Button muteButton = new Button("", iconService.createIconImageView("mute"));
+        Button clearButton = new Button("", iconService.createIconImageView("clear"));
+        Button settingsButton = new Button("", iconService.createIconImageView("settings"));
 
         setupControlButtons(controller, playButton, pauseButton, stopButton,
                 previousButton, nextButton, shuffleButton, loopButton, muteButton);
@@ -94,13 +96,15 @@ public class JamboUI {
         mainLayout.setTop(createHeaderBox(controller));
         mainLayout.setCenter(songListView);
         mainLayout.setBottom(new VBox(10, createControlBox(controller), createProgressBox()));
-        return new Scene(mainLayout, 800, 600);
+        return new Scene(mainLayout, 800, 400);
     }
 
     private HBox createHeaderBox(JamboController controller) {
         Button loadButton = new Button("", iconService.createIconImageView("load songs"));
-        Button clearButton = new Button("Clear Songs");
+        Button clearButton = new Button("", iconService.createIconImageView("clear songs"));
         Button playlistButton = new Button("Playlists");
+        Button settingsButton = new Button("", iconService.createIconImageView("settings"));
+
 
         loadButton.setOnAction(e -> controller.loadSongs());
         clearButton.setOnAction(e -> controller.clearSongs());
@@ -108,11 +112,15 @@ public class JamboUI {
             PlaylistDialog dialog = new PlaylistDialog(controller);
             dialog.show();
         });
+        settingsButton.setOnAction(e -> {
+            SettingsDialog dialog = new SettingsDialog(controller);
+            dialog.show();
+        });
 
         HBox headerBox = new HBox(10);
         headerBox.setPadding(new Insets(10));
         headerBox.setAlignment(Pos.CENTER_LEFT);
-        headerBox.getChildren().addAll(loadButton, clearButton, playlistButton);
+        headerBox.getChildren().addAll(loadButton, clearButton, playlistButton, settingsButton);
 
         return headerBox;
     }
