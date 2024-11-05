@@ -31,7 +31,6 @@ public class SettingsDialog extends Dialog<Void> {
         this.keybindFields = new HashMap<>();
 
         setTitle("Settings");
-        setHeaderText("Application Settings");
 
         TabPane tabPane = new TabPane();
         tabPane.getTabs().addAll(

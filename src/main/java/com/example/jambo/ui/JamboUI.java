@@ -7,7 +7,6 @@ import com.example.jambo.ui.dialogs.PlaylistDialog;
 import com.example.jambo.ui.dialogs.SettingsDialog;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -64,24 +63,12 @@ public class JamboUI {
         Button loopButton = new Button("", iconService.createIconImageView("loop"));
         Tooltip.install(loopButton, new Tooltip("Loop"));
 
-        Button muteButton = new Button("", iconService.createIconImageView("mute"));
-        Tooltip.install(muteButton, new Tooltip("Mute"));
-
-        Button clearButton = new Button("", iconService.createIconImageView("clear"));
-        Tooltip.install(clearButton, new Tooltip("Clear Playlist"));
-
-        Button settingsButton = new Button("", iconService.createIconImageView("settings"));
-        Tooltip.install(settingsButton, new Tooltip("Settings"));
-
-        Button playlistButton = new Button("", iconService.createIconImageView("playlist"));
-        Tooltip.install(playlistButton, new Tooltip("playlist"));
-
         setupControlButtons(controller, playButton, pauseButton, stopButton,
-                previousButton, nextButton, shuffleButton, loopButton, muteButton);
+                previousButton, nextButton, shuffleButton, loopButton);
 
-        HBox volumeBox = new HBox(10, volumeSlider, muteButton);
         HBox controlBox = new HBox(10, playButton, pauseButton, stopButton,
-                previousButton, nextButton, shuffleButton, loopButton, volumeBox);
+                previousButton, nextButton, shuffleButton, loopButton);
+
         HBox.setHgrow(controlBox, Priority.ALWAYS);
 
         return controlBox;
@@ -125,50 +112,51 @@ public class JamboUI {
 
     private HBox createHeaderBox(JamboController controller) {
         Button loadButton = new Button("", iconService.createIconImageView("load songs"));
-        Tooltip loadTooltip = new Tooltip("Load songs");
-        Tooltip.install(loadButton, loadTooltip);
+        Tooltip.install(loadButton, new Tooltip("Load songs"));
 
         Button clearButton = new Button("", iconService.createIconImageView("clear songs"));
-        Tooltip clearTooltip = new Tooltip("Clear songs");
-        Tooltip.install(clearButton, clearTooltip);
+        Tooltip.install(clearButton, new Tooltip("Clear songs"));
 
         Button playlistButton = new Button("", iconService.createIconImageView("playlist"));
-        Tooltip playlistTooltip = new Tooltip("playlist");
-        Tooltip.install(playlistButton, playlistTooltip);
+        Tooltip.install(playlistButton, new Tooltip("Playlist"));
 
         Button settingsButton = new Button("", iconService.createIconImageView("settings"));
-        Tooltip settingsTooltip = new Tooltip("Settings"); // TODO - move this all the way to the right while keeping the other buttons on the left side
-        Tooltip.install(settingsButton, settingsTooltip);
+        Tooltip.install(settingsButton, new Tooltip("Settings"));
 
+        Button muteButton = new Button("", iconService.createIconImageView("mute"));
+        Tooltip.install(muteButton, new Tooltip("Mute"));
+
+        muteButton.setOnAction(e -> controller.toggleMute());
+        volumeSlider.setPrefWidth(100);
+        HBox volumeBox = new HBox(5, muteButton, volumeSlider);
 
         loadButton.setOnAction(e -> controller.loadSongs());
         clearButton.setOnAction(e -> controller.clearSongs());
-        playlistButton.setOnAction(e -> {
-            PlaylistDialog dialog = new PlaylistDialog(controller);
-            dialog.show();
-        });
-        settingsButton.setOnAction(e -> {
-            SettingsDialog dialog = new SettingsDialog(controller);
-            dialog.show();
-        });
+        playlistButton.setOnAction(e -> new PlaylistDialog(controller).show());
+        settingsButton.setOnAction(e -> new SettingsDialog(controller).show());
 
         HBox headerBox = new HBox(10);
         headerBox.setPadding(new Insets(10));
         headerBox.setAlignment(Pos.CENTER_LEFT);
-        headerBox.getChildren().addAll(loadButton, clearButton, playlistButton, settingsButton);
+
+        HBox leftButtonsBox = new HBox(10, loadButton, clearButton, playlistButton);
+        HBox.setHgrow(leftButtonsBox, Priority.ALWAYS);
+
+        headerBox.getChildren().addAll(leftButtonsBox, volumeBox, settingsButton);
+        headerBox.setAlignment(Pos.CENTER);
 
         return headerBox;
     }
 
-    private void setupControlButtons(JamboController controller, Button... buttons) {
-        buttons[0].setOnAction(e -> controller.playSelectedSong());
-        buttons[1].setOnAction(e -> controller.pauseMusic());
-        buttons[2].setOnAction(e -> controller.stopMusic());
-        buttons[3].setOnAction(e -> controller.playPreviousSong());
-        buttons[4].setOnAction(e -> controller.playNextSong());
-        buttons[5].setOnAction(e -> controller.toggleShuffle());
-        buttons[6].setOnAction(e -> controller.toggleLoop());
-        buttons[7].setOnAction(e -> controller.toggleMute());
+    private void setupControlButtons(JamboController controller, Button playButton, Button pauseButton, Button stopButton,
+                                     Button previousButton, Button nextButton, Button shuffleButton, Button loopButton) {
+        playButton.setOnAction(e -> controller.playSelectedSong());
+        pauseButton.setOnAction(e -> controller.pauseMusic());
+        stopButton.setOnAction(e -> controller.stopMusic());
+        previousButton.setOnAction(e -> controller.playPreviousSong());
+        nextButton.setOnAction(e -> controller.playNextSong());
+        shuffleButton.setOnAction(e -> controller.toggleShuffle());
+        loopButton.setOnAction(e -> controller.toggleLoop());
     }
 
     private VBox createProgressBox() {
