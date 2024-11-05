@@ -137,7 +137,7 @@ public class JamboUI {
         Tooltip.install(playlistButton, playlistTooltip);
 
         Button settingsButton = new Button("", iconService.createIconImageView("settings"));
-        Tooltip settingsTooltip = new Tooltip("Settings");
+        Tooltip settingsTooltip = new Tooltip("Settings"); // TODO - move this all the way to the right while keeping the other buttons on the left side
         Tooltip.install(settingsButton, settingsTooltip);
 
 
