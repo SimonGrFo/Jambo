@@ -10,7 +10,6 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
 
-import javax.xml.crypto.dsig.keyinfo.KeyValue;
 import java.util.prefs.Preferences;
 
 public class MusicPlayerService implements MusicPlayerInterface {
@@ -83,11 +82,9 @@ public class MusicPlayerService implements MusicPlayerInterface {
             }
         });
 
-        // Add audio settings
         player.setBalance(preferences.getDouble("balance", 0.0));
         player.setRate(preferences.getDouble("playbackSpeed", 1.0));
 
-        // Add audio processing if enabled
         if (preferences.getBoolean("equalizer", false)) {
             setupEqualizer(player);
         }
@@ -97,7 +94,6 @@ public class MusicPlayerService implements MusicPlayerInterface {
         nextPlayer = new MediaPlayer(nextMedia);
         setupMediaPlayer(nextPlayer, volumeSlider.getValue());
 
-        // Fade out current player
         Timeline fadeOut = new Timeline(
                 new KeyFrame(Duration.ZERO,
                         new javafx.animation.KeyValue(mediaPlayer.volumeProperty(), mediaPlayer.getVolume())),
@@ -105,7 +101,6 @@ public class MusicPlayerService implements MusicPlayerInterface {
                         new javafx.animation.KeyValue(mediaPlayer.volumeProperty(), 0))
         );
 
-        // Fade in next player
         Timeline fadeIn = new Timeline(
                 new KeyFrame(Duration.ZERO,
                         new javafx.animation.KeyValue(nextPlayer.volumeProperty(), 0)),
@@ -170,13 +165,6 @@ public class MusicPlayerService implements MusicPlayerInterface {
         }
     }
 
-    @Override
-    public void setVolume(double volume) {
-        if (mediaPlayer != null && !isMuted) {
-            mediaPlayer.setVolume(volume);
-        }
-    }
-
     private void setupEqualizer(MediaPlayer player) {
         AudioEqualizer equalizer = player.getAudioEqualizer();
         EqualizerBand[] bands = new EqualizerBand[10];
@@ -199,11 +187,4 @@ public class MusicPlayerService implements MusicPlayerInterface {
     public Duration getTotalDuration() {
         return mediaPlayer != null ? mediaPlayer.getTotalDuration() : Duration.ZERO;
     }
-
-    @Override
-    public boolean isPlaying() {
-        return mediaPlayer != null && mediaPlayer.getStatus() == MediaPlayer.Status.PLAYING;
-    }
-
-
 }

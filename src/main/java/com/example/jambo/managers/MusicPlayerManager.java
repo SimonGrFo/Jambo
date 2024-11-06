@@ -78,7 +78,6 @@ public class MusicPlayerManager {
                 musicPlayer.getTotalDuration().toSeconds() : 0;
     }
 
-    // Add this method to set the onEndOfMedia callback
     public void setOnEndOfMedia(Runnable callback) {
         if (musicPlayer instanceof MusicPlayerService) {
             ((MusicPlayerService) musicPlayer).setOnEndOfMedia(callback);

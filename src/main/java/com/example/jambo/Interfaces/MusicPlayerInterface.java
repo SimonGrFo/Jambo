@@ -11,8 +11,6 @@ public interface MusicPlayerInterface {
     void toggleLoop();
     void toggleMute();
     void seekTo(double time);
-    void setVolume(double volume);
     MediaPlayer getMediaPlayer();
     Duration getTotalDuration();
-    boolean isPlaying();
 }

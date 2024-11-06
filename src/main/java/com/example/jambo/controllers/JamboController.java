@@ -100,14 +100,13 @@ public class JamboController {
                     Media media = new Media(songFile.toURI().toString());
                     musicPlayerManager.playMedia(media);
 
-                    // Set the onEndOfMedia callback to play the next song
-                    musicPlayerManager.setOnEndOfMedia(() -> playNextSong());
+                    musicPlayerManager.setOnEndOfMedia(this::playNextSong);
 
                     metadataManager.updateFileInfo(songFile);
                 }
             }
         } catch (Exception e) {
-            // Handle the exception silently or log it
+            // nothing yet
         }
     }
 
@@ -146,13 +145,13 @@ public class JamboController {
                         String formattedInfo = metadataManager.formatSongMetadata(songFile);
                         playlistManager.addSong(songFile, formattedInfo);
                     } catch (Exception e) {
-                        // Handling the exception silently without logging
+                        // nothing yet
                     }
                 }
             }
 
         } catch (Exception e) {
-            // Handling the exception silently without logging
+            // nothing yet
         }
     }
 
@@ -165,7 +164,7 @@ public class JamboController {
             }
             gson.toJson(songPaths, writer);
         } catch (Exception e) {
-            // Handling the exception silently without logging
+            // nothing yet
         }
     }
 
