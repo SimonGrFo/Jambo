@@ -8,7 +8,7 @@ import com.example.jambo.services.DialogService;
 import com.example.jambo.services.MetadataService;
 import com.example.jambo.services.MusicPlayerService;
 import com.example.jambo.services.PlaylistService;
-import com.example.jambo.ui.IconService;
+import com.example.jambo.services.IconService;
 import javafx.scene.control.Slider;
 
 public class DependencyContainer {

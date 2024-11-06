@@ -2,6 +2,7 @@ package com.example.jambo.ui;
 
 import com.example.jambo.controllers.JamboController;
 import com.example.jambo.di.DependencyContainer;
+import com.example.jambo.services.IconService;
 import com.example.jambo.ui.dialogs.PlaylistDialog;
 import com.example.jambo.ui.dialogs.SettingsDialog;
 import javafx.scene.Scene;

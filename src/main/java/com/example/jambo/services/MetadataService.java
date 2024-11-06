@@ -9,62 +9,45 @@ import org.jaudiotagger.tag.Tag;
 import java.io.File;
 
 public class MetadataService implements MetadataInterface {
-    @Override
-    public String formatSongMetadata(File file) {
-        try {
-            AudioFile audioFile = AudioFileIO.read(file);
-            AudioHeader audioHeader = audioFile.getAudioHeader();
-            Tag tag = audioFile.getTag();
+    private AudioFile readAudioFile(File file) throws Exception {
+        return AudioFileIO.read(file);
+    }
 
-            String artist = tag.getFirst(org.jaudiotagger.tag.FieldKey.ARTIST);
-            String album = tag.getFirst(org.jaudiotagger.tag.FieldKey.ALBUM);
-            String title = tag.getFirst(org.jaudiotagger.tag.FieldKey.TITLE);
-            int durationInSeconds = audioHeader.getTrackLength();
-            String duration = formatTime(durationInSeconds);
-
-            artist = (artist == null || artist.isEmpty()) ? "Unknown Artist" : artist;
-            album = (album == null || album.isEmpty()) ? "Unknown Album" : album;
-            title = (title == null || title.isEmpty()) ? file.getName() : title;
-
-            return String.format("%s - %s - %s (%s)", artist, album, title, duration);
-        } catch (Exception e) {
-            return "Unknown Artist - Unknown Album - " + file.getName() + " (Unknown Duration)";
-        }
+    private String getSafeTagValue(Tag tag, org.jaudiotagger.tag.FieldKey key, String defaultValue) {
+        String value = tag.getFirst(key);
+        return (value == null || value.isEmpty()) ? defaultValue : value;
     }
 
     @Override
-    public AudioMetadata getFileMetadata(File songFile) {
-        try {
-            AudioFile audioFile = AudioFileIO.read(songFile);
-            AudioHeader audioHeader = audioFile.getAudioHeader();
-            Tag tag = audioFile.getTag();
+    public String formatSongMetadata(File file) throws Exception {
+        AudioFile audioFile = readAudioFile(file);
+        AudioHeader audioHeader = audioFile.getAudioHeader();
+        Tag tag = audioFile.getTag();
 
-            String artist = tag.getFirst(org.jaudiotagger.tag.FieldKey.ARTIST);
-            String album = tag.getFirst(org.jaudiotagger.tag.FieldKey.ALBUM);
-            String title = tag.getFirst(org.jaudiotagger.tag.FieldKey.TITLE);
+        String artist = getSafeTagValue(tag, org.jaudiotagger.tag.FieldKey.ARTIST, "Unknown Artist");
+        String album = getSafeTagValue(tag, org.jaudiotagger.tag.FieldKey.ALBUM, "Unknown Album");
+        String title = getSafeTagValue(tag, org.jaudiotagger.tag.FieldKey.TITLE, file.getName());
 
-            artist = (artist == null || artist.isEmpty()) ? "Unknown Artist" : artist;
-            album = (album == null || album.isEmpty()) ? "Unknown Album" : album;
-            title = (title == null || title.isEmpty()) ? songFile.getName() : title;
+        int durationInSeconds = audioHeader.getTrackLength();
+        String duration = formatTime(durationInSeconds);
 
-            return new AudioMetadata(
-                    audioHeader.getFormat(),
-                    audioHeader.getBitRate(),
-                    audioHeader.getSampleRate(),
-                    artist,
-                    album,
-                    title
-            );
-        } catch (Exception e) {
-            return new AudioMetadata(
-                    "Unknown Format",
-                    "Unknown Bitrate",
-                    "Unknown Sample Rate",
-                    "Unknown Artist",
-                    "Unknown Album",
-                    songFile.getName()
-            );
-        }
+        return String.format("%s - %s - %s (%s)", artist, album, title, duration);
+    }
+
+    @Override
+    public AudioMetadata getFileMetadata(File songFile) throws Exception {
+        AudioFile audioFile = readAudioFile(songFile);
+        AudioHeader audioHeader = audioFile.getAudioHeader();
+        Tag tag = audioFile.getTag();
+
+        return new AudioMetadata(
+                audioHeader.getFormat(),
+                audioHeader.getBitRate(),
+                audioHeader.getSampleRate(),
+                getSafeTagValue(tag, org.jaudiotagger.tag.FieldKey.ARTIST, "Unknown Artist"),
+                getSafeTagValue(tag, org.jaudiotagger.tag.FieldKey.ALBUM, "Unknown Album"),
+                getSafeTagValue(tag, org.jaudiotagger.tag.FieldKey.TITLE, songFile.getName())
+        );
     }
 
     private String formatTime(int seconds) {

@@ -89,7 +89,9 @@ public class MusicPlayerService implements MusicPlayerInterface {
 
     @Override
     public void setVolume(double volume) {
-
+        if (mediaPlayer != null && !isMuted) {
+            mediaPlayer.setVolume(volume);
+        }
     }
 
     @Override
