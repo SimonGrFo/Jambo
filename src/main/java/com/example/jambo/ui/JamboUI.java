@@ -2,7 +2,6 @@ package com.example.jambo.ui;
 
 import com.example.jambo.controllers.JamboController;
 import com.example.jambo.di.DependencyContainer;
-import com.example.jambo.services.DialogService;
 import com.example.jambo.ui.dialogs.PlaylistDialog;
 import com.example.jambo.ui.dialogs.SettingsDialog;
 import javafx.scene.Scene;
@@ -13,6 +12,8 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Tooltip;
 
+import static com.example.jambo.di.DependencyContainer.dialogService;
+
 public class JamboUI {
     private final ListView<String> songListView;
     private final Label currentSongLabel;
@@ -22,7 +23,6 @@ public class JamboUI {
     private final Slider volumeSlider;
     private final ComboBox<String> playlistComboBox;
     private final IconService iconService;
-    private final DialogService dialogService;
 
     public JamboUI() {
         this.songListView = new ListView<>();
@@ -36,7 +36,6 @@ public class JamboUI {
         DependencyContainer.initialize(this.volumeSlider);
 
         this.iconService = DependencyContainer.getIconService();
-        this.dialogService = DependencyContainer.getDialogService();
 
         setupPlaylistComboBox();
     }
