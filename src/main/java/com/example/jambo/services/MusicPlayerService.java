@@ -1,12 +1,12 @@
 package com.example.jambo.services;
 
-import com.example.jambo.Interface.IMusicPlayerService;
+import com.example.jambo.Interfaces.MusicPlayerInterface;
 import javafx.scene.control.Slider;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
 
-public class MusicPlayerService implements IMusicPlayerService {
+public class MusicPlayerService implements MusicPlayerInterface {
     private MediaPlayer mediaPlayer;
     private boolean isPaused = false;
     private boolean isLooping = false;
@@ -45,7 +45,7 @@ public class MusicPlayerService implements IMusicPlayerService {
     }
 
     @Override
-    public void pauseMusic() {
+    public void pauseMedia() {
         if (mediaPlayer != null) {
             if (isPaused) {
                 mediaPlayer.play();
@@ -58,7 +58,7 @@ public class MusicPlayerService implements IMusicPlayerService {
     }
 
     @Override
-    public void stopMusic() {
+    public void stopMedia() {
         if (mediaPlayer != null) {
             mediaPlayer.stop();
         }
@@ -88,7 +88,22 @@ public class MusicPlayerService implements IMusicPlayerService {
     }
 
     @Override
+    public void setVolume(double volume) {
+
+    }
+
+    @Override
     public MediaPlayer getMediaPlayer() {
         return mediaPlayer;
+    }
+
+    @Override
+    public Duration getTotalDuration() {
+        return mediaPlayer != null ? mediaPlayer.getTotalDuration() : Duration.ZERO;
+    }
+
+    @Override
+    public boolean isPlaying() {
+        return mediaPlayer != null && mediaPlayer.getStatus() == MediaPlayer.Status.PLAYING;
     }
 }

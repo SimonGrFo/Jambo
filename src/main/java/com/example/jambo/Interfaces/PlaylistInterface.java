@@ -1,10 +1,10 @@
-package com.example.jambo.Interface;
+package com.example.jambo.Interfaces;
 
 import java.io.File;
 import java.util.List;
 import java.util.Set;
 
-public interface IPlaylistService {
+public interface PlaylistInterface {
     void addPlaylistChangeListener(PlaylistChangeListener listener);
     void createPlaylist(String name);
     void deletePlaylist(String name);

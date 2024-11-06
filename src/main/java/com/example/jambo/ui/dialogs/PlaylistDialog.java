@@ -1,9 +1,8 @@
 package com.example.jambo.ui.dialogs;
 
-import com.example.jambo.Interface.IDialogService;
+import com.example.jambo.Interfaces.DialogInterface;
 import com.example.jambo.controllers.JamboController;
 import com.example.jambo.di.DependencyContainer;
-import com.example.jambo.services.DialogService;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
@@ -39,7 +38,7 @@ public class PlaylistDialog extends Dialog<Void> {
 
     public PlaylistDialog(JamboController controller) {
         this.controller = controller;
-        IDialogService dialogService = DependencyContainer.getDialogService();
+        DialogInterface dialogService = DependencyContainer.getDialogService();
 
         setTitle("Playlist Manager");
         setHeaderText("Manage Your Playlists");

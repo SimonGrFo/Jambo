@@ -1,20 +1,18 @@
-package com.example.jambo.Interface;
-
+package com.example.jambo.Interfaces;
 
 import java.io.File;
 
-public interface IMetadataService {
+public interface MetadataInterface {
     String formatSongMetadata(File file) throws Exception;
     AudioMetadata getFileMetadata(File file) throws Exception;
 
-    public class AudioMetadata {
+    class AudioMetadata {
         public final String format;
         public final String bitRate;
         public final String sampleRate;
         public final String artist;
         public final String album;
         public final String title;
-
 
         public AudioMetadata(String format, String bitRate, String sampleRate,
                              String artist, String album, String title) {

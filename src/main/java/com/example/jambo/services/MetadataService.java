@@ -1,6 +1,6 @@
 package com.example.jambo.services;
 
-import com.example.jambo.Interface.IMetadataService;
+import com.example.jambo.Interfaces.MetadataInterface;
 import org.jaudiotagger.audio.AudioFile;
 import org.jaudiotagger.audio.AudioFileIO;
 import org.jaudiotagger.audio.AudioHeader;
@@ -8,7 +8,7 @@ import org.jaudiotagger.tag.Tag;
 
 import java.io.File;
 
-public class MetadataService implements IMetadataService {
+public class MetadataService implements MetadataInterface {
     @Override
     public String formatSongMetadata(File file) {
         try {
@@ -22,13 +22,12 @@ public class MetadataService implements IMetadataService {
             int durationInSeconds = audioHeader.getTrackLength();
             String duration = formatTime(durationInSeconds);
 
-            if (artist == null || artist.isEmpty()) artist = "Unknown Artist";
-            if (album == null || album.isEmpty()) album = "Unknown Album";
-            if (title == null || title.isEmpty()) title = file.getName();
+            artist = (artist == null || artist.isEmpty()) ? "Unknown Artist" : artist;
+            album = (album == null || album.isEmpty()) ? "Unknown Album" : album;
+            title = (title == null || title.isEmpty()) ? file.getName() : title;
 
             return String.format("%s - %s - %s (%s)", artist, album, title, duration);
         } catch (Exception e) {
-            // Handle exception and return a default string if metadata retrieval fails
             return "Unknown Artist - Unknown Album - " + file.getName() + " (Unknown Duration)";
         }
     }

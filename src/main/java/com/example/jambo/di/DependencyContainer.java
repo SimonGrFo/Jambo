@@ -1,9 +1,9 @@
 package com.example.jambo.di;
 
-import com.example.jambo.Interface.IDialogService;
-import com.example.jambo.Interface.IMetadataService;
-import com.example.jambo.Interface.IMusicPlayerService;
-import com.example.jambo.Interface.IPlaylistService;
+import com.example.jambo.Interfaces.DialogInterface;
+import com.example.jambo.Interfaces.MetadataInterface;
+import com.example.jambo.Interfaces.MusicPlayerInterface;
+import com.example.jambo.Interfaces.PlaylistInterface;
 import com.example.jambo.services.DialogService;
 import com.example.jambo.services.MetadataService;
 import com.example.jambo.services.MusicPlayerService;
@@ -12,33 +12,33 @@ import com.example.jambo.ui.IconService;
 import javafx.scene.control.Slider;
 
 public class DependencyContainer {
-    private static IMusicPlayerService musicPlayerService;
-    private static IMetadataService metadataService;
-    private static IPlaylistService playlistService;
-    public static IDialogService dialogService;
+    private static MusicPlayerInterface musicPlayer;
+    private static MetadataInterface metadataService;
+    private static PlaylistInterface playlistService;
+    public static DialogInterface dialogService;
     private static IconService iconService;
 
     public static void initialize(Slider volumeSlider) {
-        musicPlayerService = new MusicPlayerService(volumeSlider);
+        musicPlayer = new MusicPlayerService(volumeSlider);
         metadataService = new MetadataService();
         playlistService = new PlaylistService();
         dialogService = new DialogService();
         iconService = new IconService();
     }
 
-    public static IMusicPlayerService getMusicPlayerService() {
-        return musicPlayerService;
+    public static MusicPlayerInterface getMusicPlayerService() {
+        return musicPlayer;
     }
 
-    public static IMetadataService getMetadataService() {
+    public static MetadataInterface getMetadataService() {
         return metadataService;
     }
 
-    public static IPlaylistService getPlaylistService() {
+    public static PlaylistInterface getPlaylistService() {
         return playlistService;
     }
 
-    public static IDialogService getDialogService() {
+    public static DialogInterface getDialogService() {
         return dialogService;
     }
 

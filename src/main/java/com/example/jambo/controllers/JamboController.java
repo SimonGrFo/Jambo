@@ -52,35 +52,28 @@ public class JamboController {
 
             setupEventHandlers();
         } catch (Exception e) {
-            System.err.println("Error initializing JamboController: " + e.getMessage());
             throw new RuntimeException("Failed to initialize JamboController", e);
         }
     }
 
     private void setupEventHandlers() {
-        try {
-            ui.getSongListView().setOnMouseClicked(event -> {
-                if (event.getClickCount() == 2) {
-                    playSelectedSong();
-                }
-            });
+        ui.getSongListView().setOnMouseClicked(event -> {
+            if (event.getClickCount() == 2) {
+                playSelectedSong();
+            }
+        });
 
-            ui.getProgressSlider().setOnMousePressed(e -> isDragging = true);
-            ui.getProgressSlider().setOnMouseReleased(e -> {
-                if (isDragging) {
-                    try {
-                        double newTime = ui.getProgressSlider().getValue() * musicPlayerManager.getTotalDuration();
-                        musicPlayerManager.seekTo(newTime);
-                    } catch (Exception ex) {
-                        System.err.println("Error seeking to position: " + ex.getMessage());
-                    } finally {
-                        isDragging = false;
-                    }
+        ui.getProgressSlider().setOnMousePressed(e -> isDragging = true);
+        ui.getProgressSlider().setOnMouseReleased(e -> {
+            if (isDragging) {
+                try {
+                    double newTime = ui.getProgressSlider().getValue() * musicPlayerManager.getTotalDuration();
+                    musicPlayerManager.seekTo(newTime);
+                } finally {
+                    isDragging = false;
                 }
-            });
-        } catch (Exception e) {
-            System.err.println("Error setting up event handlers: " + e.getMessage());
-        }
+            }
+        });
     }
 
     public void initializeStage(Stage primaryStage) {
@@ -107,49 +100,32 @@ public class JamboController {
                     Media media = new Media(songFile.toURI().toString());
                     musicPlayerManager.playMedia(media);
                     metadataManager.updateFileInfo(songFile);
-                    System.out.println("Playing song: " + songFile.getName());
-                } else {
-                    System.err.println("Selected song file not found: " +
-                            (songFile != null ? songFile.getPath() : "null"));
                 }
             }
         } catch (Exception e) {
-            System.err.println("Error playing selected song: " + e.getMessage());
+            // Handling the exception silently without logging
         }
     }
 
     public void loadSongs() {
-        System.out.println("Starting loadSongs method - opening directory chooser.");
         DirectoryChooser directoryChooser = new DirectoryChooser();
         File selectedDirectory = directoryChooser.showDialog(null);
 
         if (selectedDirectory != null) {
-            System.out.println("Directory selected: " + selectedDirectory.getAbsolutePath());
-
-            File[] files = selectedDirectory.listFiles((dir, name) ->
-                    name.toLowerCase().endsWith(".mp3"));
+            File[] files = selectedDirectory.listFiles((dir, name) -> name.toLowerCase().endsWith(".mp3"));
 
             if (files != null && files.length > 0) {
-                System.out.println("Found " + files.length + " .mp3 files in directory.");
-
                 for (File file : files) {
                     try {
                         String formattedInfo = metadataManager.formatSongMetadata(file);
                         playlistManager.addSong(file, formattedInfo);
-                        System.out.println("Loaded song: " + file.getName() + " with metadata.");
                     } catch (Exception e) {
-                        System.err.println("Error reading metadata for " + file.getName() + ": " + e.getMessage());
                         playlistManager.addSong(file, file.getName());
                     }
                 }
 
-                System.out.println("All songs loaded from directory. Saving to JSON.");
                 saveSongsToJson();
-            } else {
-                System.out.println("No .mp3 files found in selected directory: " + selectedDirectory.getAbsolutePath());
             }
-        } else {
-            System.out.println("No directory selected.");
         }
     }
 
@@ -159,30 +135,20 @@ public class JamboController {
             Type listType = new TypeToken<ArrayList<String>>(){}.getType();
             List<String> songPaths = gson.fromJson(reader, listType);
 
-            int loadedCount = 0;
-            int errorCount = 0;
-
             for (String path : songPaths) {
                 File songFile = new File(path);
                 if (songFile.exists()) {
                     try {
                         String formattedInfo = metadataManager.formatSongMetadata(songFile);
                         playlistManager.addSong(songFile, formattedInfo);
-                        loadedCount++;
                     } catch (Exception e) {
-                        errorCount++;
-                        System.err.println("Failed to load song: " + path + " - " + e.getMessage());
+                        // Handling the exception silently without logging
                     }
-                } else {
-                    errorCount++;
-                    System.err.println("Song file not found: " + path);
                 }
             }
 
-            System.out.println(String.format("Loaded %d songs, %d errors", loadedCount, errorCount));
-
         } catch (Exception e) {
-            System.err.println("Error loading saved songs: " + e.getMessage());
+            // Handling the exception silently without logging
         }
     }
 
@@ -195,7 +161,7 @@ public class JamboController {
             }
             gson.toJson(songPaths, writer);
         } catch (Exception e) {
-            System.err.println("Error saving playlist: " + e.getMessage());
+            // Handling the exception silently without logging
         }
     }
 

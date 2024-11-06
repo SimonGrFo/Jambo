@@ -1,8 +1,8 @@
-package com.example.jambo.Interface;
+package com.example.jambo.Interfaces;
 
 import java.io.File;
 
-public interface IDialogService {
+public interface DialogInterface {
     void showPropertiesDialog(File file);
     String formatFileSize(long bytes);
 }

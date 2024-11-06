@@ -1,18 +1,17 @@
 package com.example.jambo.managers;
 
-import com.example.jambo.Interface.IPlaylistService;
+import com.example.jambo.Interfaces.PlaylistInterface;
 import com.example.jambo.services.MetadataService;
-import com.example.jambo.services.PlaylistService;
 import javafx.scene.control.ListView;
 import java.io.File;
 import java.util.List;
 import java.util.Set;
 
-public class PlaylistManager implements IPlaylistService.PlaylistChangeListener {
-    private final IPlaylistService playlistService;
+public class PlaylistManager implements PlaylistInterface.PlaylistChangeListener {
+    private final PlaylistInterface playlistService;
     private final ListView<String> songListView;
 
-    public PlaylistManager(IPlaylistService playlistService, ListView<String> songListView) {
+    public PlaylistManager(PlaylistInterface playlistService, ListView<String> songListView) {
         this.playlistService = playlistService;
         this.songListView = songListView;
         this.playlistService.addPlaylistChangeListener(this);

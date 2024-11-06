@@ -1,11 +1,11 @@
 package com.example.jambo.services;
 
-import com.example.jambo.Interface.IPlaylistService;
+import com.example.jambo.Interfaces.PlaylistInterface;
 
 import java.io.File;
 import java.util.*;
 
-public class PlaylistService implements IPlaylistService {
+public class PlaylistService implements PlaylistInterface {
     private final Map<String, List<File>> playlists;
     private String currentPlaylistName;
     private boolean shuffleEnabled = false;

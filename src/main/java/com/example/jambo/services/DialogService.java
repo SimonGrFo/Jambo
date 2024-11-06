@@ -1,13 +1,13 @@
 package com.example.jambo.services;
 
-import com.example.jambo.Interface.IDialogService;
+import com.example.jambo.Interfaces.DialogInterface;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.geometry.Insets;
 import java.io.File;
 import java.util.Date;
 
-public class DialogService implements IDialogService {
+public class DialogService implements DialogInterface {
     @Override
     public void showPropertiesDialog(File file) {
         Dialog<Void> dialog = new Dialog<>();

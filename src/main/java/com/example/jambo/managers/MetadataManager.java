@@ -1,33 +1,28 @@
 package com.example.jambo.managers;
 
-import com.example.jambo.Interface.IMetadataManager;
-import com.example.jambo.Interface.IMetadataService;
-import com.example.jambo.services.MetadataService;
+import com.example.jambo.Interfaces.MetadataInterface;
 import javafx.scene.control.Label;
 import java.io.File;
 
-public class MetadataManager implements IMetadataManager {
-    private final IMetadataService metadataService;
+public class MetadataManager {
+    private final MetadataInterface metadataService;
     private final Label fileInfoLabel;
     private final Label currentSongLabel;
 
-    public MetadataManager(IMetadataService metadataService, Label fileInfoLabel,
+    public MetadataManager(MetadataInterface metadataService, Label fileInfoLabel,
                            Label currentSongLabel) {
         this.metadataService = metadataService;
         this.fileInfoLabel = fileInfoLabel;
         this.currentSongLabel = currentSongLabel;
     }
 
-    @Override
     public String formatSongMetadata(File file) throws Exception {
         return metadataService.formatSongMetadata(file);
     }
 
-    @Override
     public void updateFileInfo(File songFile) {
         try {
-            IMetadataService.AudioMetadata metadata = metadataService.getFileMetadata(songFile);
-
+            MetadataInterface.AudioMetadata metadata = metadataService.getFileMetadata(songFile);
             fileInfoLabel.setText(String.format("%s, %s kbps, %s Hz",
                     metadata.format, metadata.bitRate, metadata.sampleRate));
             currentSongLabel.setText(String.format("Playing: %s - %s - %s",
@@ -38,4 +33,3 @@ public class MetadataManager implements IMetadataManager {
         }
     }
 }
-
