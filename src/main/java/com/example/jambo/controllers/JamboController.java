@@ -99,11 +99,15 @@ public class JamboController {
                 if (songFile != null && songFile.exists()) {
                     Media media = new Media(songFile.toURI().toString());
                     musicPlayerManager.playMedia(media);
+
+                    // Set the onEndOfMedia callback to play the next song
+                    musicPlayerManager.setOnEndOfMedia(() -> playNextSong());
+
                     metadataManager.updateFileInfo(songFile);
                 }
             }
         } catch (Exception e) {
-            // Handling the exception silently without logging
+            // Handle the exception silently or log it
         }
     }
 

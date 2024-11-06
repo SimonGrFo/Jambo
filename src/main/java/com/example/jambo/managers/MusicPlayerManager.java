@@ -1,6 +1,7 @@
 package com.example.jambo.managers;
 
 import com.example.jambo.Interfaces.MusicPlayerInterface;
+import com.example.jambo.services.MusicPlayerService;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.media.Media;
@@ -75,5 +76,12 @@ public class MusicPlayerManager {
     public double getTotalDuration() {
         return musicPlayer.getMediaPlayer() != null ?
                 musicPlayer.getTotalDuration().toSeconds() : 0;
+    }
+
+    // Add this method to set the onEndOfMedia callback
+    public void setOnEndOfMedia(Runnable callback) {
+        if (musicPlayer instanceof MusicPlayerService) {
+            ((MusicPlayerService) musicPlayer).setOnEndOfMedia(callback);
+        }
     }
 }
