@@ -1,22 +1,16 @@
 package com.example.jambo.services;
 
-import com.example.jambo.exceptions.AudioPlayerException;
-import com.example.jambo.utils.ErrorHandler;
+import com.example.jambo.Interface.IPlaylistService;
 
 import java.io.File;
 import java.util.*;
 
-public class PlaylistService {
+public class PlaylistService implements IPlaylistService {
     private final Map<String, List<File>> playlists;
     private String currentPlaylistName;
     private boolean shuffleEnabled = false;
     private final Random random = new Random();
     private final Set<PlaylistChangeListener> listeners = new HashSet<>();
-
-    public interface PlaylistChangeListener {
-        void onPlaylistChanged(String playlistName, List<File> songs);
-        void onCurrentPlaylistChanged(String newPlaylistName);
-    }
 
     public PlaylistService() {
         this.playlists = new HashMap<>();
@@ -24,6 +18,7 @@ public class PlaylistService {
         this.playlists.put(currentPlaylistName, new ArrayList<>());
     }
 
+    @Override
     public void addPlaylistChangeListener(PlaylistChangeListener listener) {
         listeners.add(listener);
     }
@@ -37,6 +32,7 @@ public class PlaylistService {
         }
     }
 
+    @Override
     public void createPlaylist(String name) {
         if (!playlists.containsKey(name)) {
             playlists.put(name, new ArrayList<>());
@@ -44,6 +40,7 @@ public class PlaylistService {
         }
     }
 
+    @Override
     public void deletePlaylist(String name) {
         if (!name.equals("Default") && playlists.containsKey(name)) {
             playlists.remove(name);
@@ -54,6 +51,7 @@ public class PlaylistService {
         }
     }
 
+    @Override
     public void switchToPlaylist(String name) {
         if (playlists.containsKey(name)) {
             currentPlaylistName = name;
@@ -68,15 +66,12 @@ public class PlaylistService {
                 playlist.add(songFile);
                 notifyPlaylistChanged(playlistName);
             }
-        } catch (Exception e) {
-            ErrorHandler.handleException(new AudioPlayerException(
-                    AudioPlayerException.ErrorType.PLAYLIST_ERROR,
-                    "Error adding song to playlist: " + playlistName,
-                    e
-            ));
+        } catch (Exception ignored) {
+
         }
     }
 
+    @Override
     public void addSong(File songFile) {
         addSongToPlaylist(currentPlaylistName, songFile);
     }
@@ -89,14 +84,11 @@ public class PlaylistService {
                 notifyPlaylistChanged(playlistName);
             }
         } catch (Exception e) {
-            ErrorHandler.handleException(new AudioPlayerException(
-                    AudioPlayerException.ErrorType.PLAYLIST_ERROR,
-                    "Error removing song from playlist: " + playlistName,
-                    e
-            ));
+            throw new RuntimeException(e);
         }
     }
 
+    @Override
     public void removeSong(int index) {
         removeSongFromPlaylist(currentPlaylistName, index);
     }
@@ -109,26 +101,32 @@ public class PlaylistService {
         }
     }
 
+    @Override
     public void clearPlaylist() {
         clearPlaylist(currentPlaylistName);
     }
 
+    @Override
     public Set<String> getPlaylistNames() {
         return new HashSet<>(playlists.keySet());
     }
 
+    @Override
     public String getCurrentPlaylistName() {
         return currentPlaylistName;
     }
 
+    @Override
     public List<File> getPlaylistSongs(String playlistName) {
         return new ArrayList<>(playlists.getOrDefault(playlistName, new ArrayList<>()));
     }
 
+    @Override
     public void toggleShuffle() {
         shuffleEnabled = !shuffleEnabled;
     }
 
+    @Override
     public int getNextSongIndex(int currentIndex) {
         List<File> currentPlaylist = playlists.get(currentPlaylistName);
         if (currentIndex >= 0 && !currentPlaylist.isEmpty()) {
@@ -141,6 +139,7 @@ public class PlaylistService {
         return -1;
     }
 
+    @Override
     public int getPreviousSongIndex(int currentIndex) {
         List<File> currentPlaylist = playlists.get(currentPlaylistName);
         if (currentIndex >= 0 && !currentPlaylist.isEmpty()) {
@@ -153,6 +152,7 @@ public class PlaylistService {
         return -1;
     }
 
+    @Override
     public File getSongFile(int index) {
         List<File> currentPlaylist = playlists.get(currentPlaylistName);
         if (index >= 0 && index < currentPlaylist.size()) {
@@ -161,6 +161,7 @@ public class PlaylistService {
         return null;
     }
 
+    @Override
     public List<File> getCurrentPlaylistSongs() {
         return playlists.get(currentPlaylistName);
     }

@@ -1,21 +1,17 @@
 package com.example.jambo.ui.dialogs;
 
 import com.example.jambo.controllers.JamboController;
-import com.example.jambo.di.DependencyContainer;
-import com.example.jambo.services.DialogService;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.stage.Modality;
 import javafx.geometry.Insets;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyCodeCombination;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.prefs.BackingStoreException;
 import java.util.prefs.Preferences;
 import java.io.File;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.io.IOException;
 
 public class SettingsDialog extends Dialog<Void> {
@@ -181,12 +177,10 @@ public class SettingsDialog extends Dialog<Void> {
     }
 
     private void saveSettings() throws BackingStoreException {
-        // Save Keybind Settings
         keybindFields.forEach((key, field) ->
                 preferences.put(key, field.getText())
         );
 
-        // Save Audio Settings
         preferences.putDouble("crossfade", crossfadeSlider.getValue());
 
         preferences.flush();

@@ -1,5 +1,9 @@
 package com.example.jambo.di;
 
+import com.example.jambo.Interface.IDialogService;
+import com.example.jambo.Interface.IMetadataService;
+import com.example.jambo.Interface.IMusicPlayerService;
+import com.example.jambo.Interface.IPlaylistService;
 import com.example.jambo.services.DialogService;
 import com.example.jambo.services.MetadataService;
 import com.example.jambo.services.MusicPlayerService;
@@ -8,10 +12,10 @@ import com.example.jambo.ui.IconService;
 import javafx.scene.control.Slider;
 
 public class DependencyContainer {
-    private static MusicPlayerService musicPlayerService;
-    private static MetadataService metadataService;
-    private static PlaylistService playlistService;
-    private static DialogService dialogService;
+    private static IMusicPlayerService musicPlayerService;
+    private static IMetadataService metadataService;
+    private static IPlaylistService playlistService;
+    public static IDialogService dialogService;
     private static IconService iconService;
 
     public static void initialize(Slider volumeSlider) {
@@ -22,19 +26,19 @@ public class DependencyContainer {
         iconService = new IconService();
     }
 
-    public static MusicPlayerService getMusicPlayerService() {
+    public static IMusicPlayerService getMusicPlayerService() {
         return musicPlayerService;
     }
 
-    public static MetadataService getMetadataService() {
+    public static IMetadataService getMetadataService() {
         return metadataService;
     }
 
-    public static PlaylistService getPlaylistService() {
+    public static IPlaylistService getPlaylistService() {
         return playlistService;
     }
 
-    public static DialogService getDialogService() {
+    public static IDialogService getDialogService() {
         return dialogService;
     }
 

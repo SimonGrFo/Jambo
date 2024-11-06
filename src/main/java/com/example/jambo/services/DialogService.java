@@ -1,12 +1,14 @@
 package com.example.jambo.services;
 
+import com.example.jambo.Interface.IDialogService;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.geometry.Insets;
 import java.io.File;
 import java.util.Date;
 
-public class DialogService {
+public class DialogService implements IDialogService {
+    @Override
     public void showPropertiesDialog(File file) {
         Dialog<Void> dialog = new Dialog<>();
         dialog.setTitle("File Properties");
@@ -58,6 +60,7 @@ public class DialogService {
         dialog.showAndWait();
     }
 
+    @Override
     public String formatFileSize(long bytes) {
         if (bytes < 1024) return bytes + " B";
         int exp = (int) (Math.log(bytes) / Math.log(1024));

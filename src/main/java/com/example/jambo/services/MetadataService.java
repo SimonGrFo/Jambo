@@ -1,6 +1,6 @@
 package com.example.jambo.services;
 
-import com.example.jambo.exceptions.AudioPlayerException;
+import com.example.jambo.Interface.IMetadataService;
 import org.jaudiotagger.audio.AudioFile;
 import org.jaudiotagger.audio.AudioFileIO;
 import org.jaudiotagger.audio.AudioHeader;
@@ -8,26 +8,33 @@ import org.jaudiotagger.tag.Tag;
 
 import java.io.File;
 
-public class MetadataService {
-    public String formatSongMetadata(File file) throws Exception {
-        AudioFile audioFile = AudioFileIO.read(file);
-        AudioHeader audioHeader = audioFile.getAudioHeader();
-        Tag tag = audioFile.getTag();
+public class MetadataService implements IMetadataService {
+    @Override
+    public String formatSongMetadata(File file) {
+        try {
+            AudioFile audioFile = AudioFileIO.read(file);
+            AudioHeader audioHeader = audioFile.getAudioHeader();
+            Tag tag = audioFile.getTag();
 
-        String artist = tag.getFirst(org.jaudiotagger.tag.FieldKey.ARTIST);
-        String album = tag.getFirst(org.jaudiotagger.tag.FieldKey.ALBUM);
-        String title = tag.getFirst(org.jaudiotagger.tag.FieldKey.TITLE);
-        int durationInSeconds = audioHeader.getTrackLength();
-        String duration = formatTime(durationInSeconds);
+            String artist = tag.getFirst(org.jaudiotagger.tag.FieldKey.ARTIST);
+            String album = tag.getFirst(org.jaudiotagger.tag.FieldKey.ALBUM);
+            String title = tag.getFirst(org.jaudiotagger.tag.FieldKey.TITLE);
+            int durationInSeconds = audioHeader.getTrackLength();
+            String duration = formatTime(durationInSeconds);
 
-        if (artist == null || artist.isEmpty()) artist = "Unknown Artist";
-        if (album == null || album.isEmpty()) album = "Unknown Album";
-        if (title == null || title.isEmpty()) title = file.getName();
+            if (artist == null || artist.isEmpty()) artist = "Unknown Artist";
+            if (album == null || album.isEmpty()) album = "Unknown Album";
+            if (title == null || title.isEmpty()) title = file.getName();
 
-        return String.format("%s - %s - %s (%s)", artist, album, title, duration);
+            return String.format("%s - %s - %s (%s)", artist, album, title, duration);
+        } catch (Exception e) {
+            // Handle exception and return a default string if metadata retrieval fails
+            return "Unknown Artist - Unknown Album - " + file.getName() + " (Unknown Duration)";
+        }
     }
 
-    public AudioMetadata getFileMetadata(File songFile) throws AudioPlayerException {
+    @Override
+    public AudioMetadata getFileMetadata(File songFile) {
         try {
             AudioFile audioFile = AudioFileIO.read(songFile);
             AudioHeader audioHeader = audioFile.getAudioHeader();
@@ -50,10 +57,13 @@ public class MetadataService {
                     title
             );
         } catch (Exception e) {
-            throw new AudioPlayerException(
-                    AudioPlayerException.ErrorType.METADATA_ERROR,
-                    "Error reading metadata from file: " + songFile.getName(),
-                    e
+            return new AudioMetadata(
+                    "Unknown Format",
+                    "Unknown Bitrate",
+                    "Unknown Sample Rate",
+                    "Unknown Artist",
+                    "Unknown Album",
+                    songFile.getName()
             );
         }
     }
@@ -62,23 +72,5 @@ public class MetadataService {
         int minutes = seconds / 60;
         int remainingSeconds = seconds % 60;
         return String.format("%d:%02d", minutes, remainingSeconds);
-    }
-
-    public class AudioMetadata {
-        public final String format;
-        public final String bitRate;
-        public final String sampleRate;
-        public final String artist;
-        public final String album;
-        public final String title;
-
-        public AudioMetadata(String format, String bitRate, String sampleRate, String artist, String album, String title) {
-            this.format = format;
-            this.bitRate = bitRate;
-            this.sampleRate = sampleRate;
-            this.artist = artist;
-            this.album = album;
-            this.title = title;
-        }
     }
 }

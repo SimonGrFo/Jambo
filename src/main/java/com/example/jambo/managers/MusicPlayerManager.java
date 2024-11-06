@@ -1,18 +1,19 @@
 package com.example.jambo.managers;
 
-import com.example.jambo.services.MusicPlayerService;
+import com.example.jambo.Interface.IMusicPlayerManager;
+import com.example.jambo.Interface.IMusicPlayerService;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.media.Media;
 import javafx.util.Duration;
 
-public class MusicPlayerManager {
-    private final MusicPlayerService musicPlayerService;
+public class MusicPlayerManager implements IMusicPlayerManager {
+    private final IMusicPlayerService musicPlayerService;
     private final Label currentSongLabel;
     private final Label timerLabel;
     private final Slider progressSlider;
 
-    public MusicPlayerManager(MusicPlayerService musicPlayerService, Label currentSongLabel,
+    public MusicPlayerManager(IMusicPlayerService musicPlayerService, Label currentSongLabel,
                               Label timerLabel, Slider progressSlider, Slider volumeSlider) {
         this.musicPlayerService = musicPlayerService;
         this.currentSongLabel = currentSongLabel;
@@ -20,7 +21,8 @@ public class MusicPlayerManager {
         this.progressSlider = progressSlider;
     }
 
-    public void playMedia(Media media) {  //TODO - autoplay broke
+    @Override
+    public void playMedia(javafx.scene.media.Media media) {
         musicPlayerService.playMedia(media);
         setupTimeUpdates();
     }
@@ -49,10 +51,12 @@ public class MusicPlayerManager {
         return String.format("%d:%02d", minutes, remainingSeconds);
     }
 
+    @Override
     public void pauseMusic() {
         musicPlayerService.pauseMusic();
     }
 
+    @Override
     public void stopMusic() {
         musicPlayerService.stopMusic();
         currentSongLabel.setText("No song playing");
@@ -60,20 +64,25 @@ public class MusicPlayerManager {
         timerLabel.setText("0:00 / 0:00");
     }
 
+    @Override
     public void toggleLoop() {
         musicPlayerService.toggleLoop();
     }
 
+    @Override
     public void toggleMute() {
         musicPlayerService.toggleMute();
     }
 
+    @Override
     public void seekTo(double time) {
         musicPlayerService.seekTo(time);
     }
 
+    @Override
     public double getTotalDuration() {
         return musicPlayerService.getMediaPlayer() != null ?
                 musicPlayerService.getMediaPlayer().getTotalDuration().toSeconds() : 0;
     }
 }
+

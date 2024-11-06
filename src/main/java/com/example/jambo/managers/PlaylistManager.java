@@ -1,5 +1,6 @@
 package com.example.jambo.managers;
 
+import com.example.jambo.Interface.IPlaylistService;
 import com.example.jambo.services.MetadataService;
 import com.example.jambo.services.PlaylistService;
 import javafx.scene.control.ListView;
@@ -7,11 +8,11 @@ import java.io.File;
 import java.util.List;
 import java.util.Set;
 
-public class PlaylistManager implements PlaylistService.PlaylistChangeListener {
-    private final PlaylistService playlistService;
+public class PlaylistManager implements IPlaylistService.PlaylistChangeListener {
+    private final IPlaylistService playlistService;
     private final ListView<String> songListView;
 
-    public PlaylistManager(PlaylistService playlistService, ListView<String> songListView) {
+    public PlaylistManager(IPlaylistService playlistService, ListView<String> songListView) {
         this.playlistService = playlistService;
         this.songListView = songListView;
         this.playlistService.addPlaylistChangeListener(this);
@@ -31,13 +32,15 @@ public class PlaylistManager implements PlaylistService.PlaylistChangeListener {
 
     private void updateSongListView(List<File> songs) {
         songListView.getItems().clear();
+        MetadataService metadataService = new MetadataService();
         for (File song : songs) {
             try {
-                String formattedInfo = new MetadataService().formatSongMetadata(song);
+                String formattedInfo = metadataService.formatSongMetadata(song);
                 songListView.getItems().add(formattedInfo);
             } catch (Exception e) {
                 songListView.getItems().add(song.getName());
             }
+
         }
     }
 
