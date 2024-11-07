@@ -34,8 +34,8 @@ public class IconService {
 
     public ImageView createIconImageView(String iconName) {
         ImageView imageView = new ImageView(icons.get(iconName));
-        imageView.setFitWidth(35);
-        imageView.setFitHeight(35);
+        imageView.setFitWidth(30);
+        imageView.setFitHeight(30);
         return imageView;
     }
 }

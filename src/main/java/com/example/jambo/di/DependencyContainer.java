@@ -22,7 +22,7 @@ public class DependencyContainer {
         musicPlayer = new MusicPlayerService(volumeSlider);
         metadataService = new MetadataService();
         playlistService = new PlaylistService();
-        dialogService = new DialogService();
+        dialogService = new DialogService(metadataService);
         iconService = new IconService();
     }
 

@@ -16,7 +16,10 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class JamboController {
     private final MusicPlayerManager musicPlayerManager;
@@ -115,41 +118,67 @@ public class JamboController {
         File selectedDirectory = directoryChooser.showDialog(null);
 
         if (selectedDirectory != null) {
-            File[] files = selectedDirectory.listFiles((dir, name) -> name.toLowerCase().endsWith(".mp3"));
+            Set<String> existingPaths = playlistManager.getSongFiles().stream()
+                    .map(File::getAbsolutePath)
+                    .collect(Collectors.toSet());
 
-            if (files != null && files.length > 0) {
-                for (File file : files) {
-                    try {
-                        String formattedInfo = metadataManager.formatSongMetadata(file);
-                        playlistManager.addSong(file, formattedInfo);
-                    } catch (Exception e) {
-                        playlistManager.addSong(file, file.getName());
-                    }
+            List<File> files = getAllMp3Files(selectedDirectory).stream()
+                    .filter(file -> !existingPaths.contains(file.getAbsolutePath()))
+                    .collect(Collectors.toList());
+
+            files.forEach(file -> addFileToPlaylist(file, existingPaths));
+            saveSongsToJson();
+        }
+    }
+
+    private void addFileToPlaylist(File file, Set<String> existingPaths) {
+        try {
+            String formattedInfo = metadataManager.formatSongMetadata(file);
+            playlistManager.addSong(file, formattedInfo);
+            existingPaths.add(file.getAbsolutePath());
+        } catch (Exception e) {
+            playlistManager.addSong(file, file.getName());
+        }
+    }
+
+    private List<File> getAllMp3Files(File directory) {
+        List<File> mp3Files = new ArrayList<>();
+
+        File[] filesAndDirs = directory.listFiles();
+        if (filesAndDirs != null) {
+            for (File file : filesAndDirs) {
+                if (file.isDirectory()) {
+                    mp3Files.addAll(getAllMp3Files(file));
+                } else if (file.getName().toLowerCase().endsWith(".mp3")) {
+                    mp3Files.add(file);
                 }
-
-                saveSongsToJson();
             }
         }
+        return mp3Files;
     }
 
     private void loadSavedSongs() {
         Gson gson = new Gson();
+        Set<String> loadedPaths = new HashSet<>();
+
         try (FileReader reader = new FileReader("saved_songs.json")) {
             Type listType = new TypeToken<ArrayList<String>>(){}.getType();
             List<String> songPaths = gson.fromJson(reader, listType);
 
             for (String path : songPaths) {
-                File songFile = new File(path);
-                if (songFile.exists()) {
-                    try {
-                        String formattedInfo = metadataManager.formatSongMetadata(songFile);
-                        playlistManager.addSong(songFile, formattedInfo);
-                    } catch (Exception e) {
-                        // nothing yet
+                if (!loadedPaths.contains(path)) {
+                    File songFile = new File(path);
+                    if (songFile.exists()) {
+                        try {
+                            String formattedInfo = metadataManager.formatSongMetadata(songFile);
+                            playlistManager.addSong(songFile, formattedInfo);
+                            loadedPaths.add(path);
+                        } catch (Exception e) {
+                            // nothing yet
+                        }
                     }
                 }
             }
-
         } catch (Exception e) {
             // nothing yet
         }

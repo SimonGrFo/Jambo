@@ -64,8 +64,13 @@ public class PlaylistManager implements PlaylistInterface.PlaylistChangeListener
     }
 
     public void addSong(File songFile, String formattedInfo) {
-        playlistService.addSong(songFile);
-        songListView.getItems().add(formattedInfo);
+        boolean isDuplicate = playlistService.getCurrentPlaylistSongs().stream()
+                .anyMatch(existingFile -> existingFile.getAbsolutePath().equals(songFile.getAbsolutePath()));
+
+        if (!isDuplicate) {
+            playlistService.addSong(songFile);
+            songListView.getItems().add(formattedInfo);
+        }
     }
 
     public void removeSong(int index) {

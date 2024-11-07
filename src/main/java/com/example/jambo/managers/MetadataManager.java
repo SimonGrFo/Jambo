@@ -24,9 +24,9 @@ public class MetadataManager {
         try {
             MetadataInterface.AudioMetadata metadata = metadataService.getFileMetadata(songFile);
             fileInfoLabel.setText(String.format("%s, %s kbps, %s Hz",
-                    metadata.format, metadata.bitRate, metadata.sampleRate));
+                    metadata.format(), metadata.bitRate(), metadata.sampleRate()));
             currentSongLabel.setText(String.format("Playing: %s - %s - %s",
-                    metadata.artist, metadata.album, metadata.title));
+                    metadata.artist(), metadata.album(), metadata.title()));
         } catch (Exception e) {
             fileInfoLabel.setText("Error retrieving metadata");
             System.err.println("Error reading metadata: " + e.getMessage());

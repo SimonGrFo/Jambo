@@ -24,7 +24,3 @@ public class Jambo extends Application {
         launch(args);
     }
 }
-
-//TODO - error handling
-//TODO - tests now that interfaces exist
-//TODO -

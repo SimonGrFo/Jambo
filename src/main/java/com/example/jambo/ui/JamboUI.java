@@ -133,7 +133,7 @@ public class JamboUI {
         loadButton.setOnAction(e -> controller.loadSongs());
         clearButton.setOnAction(e -> controller.clearSongs());
         playlistButton.setOnAction(e -> new PlaylistDialog(controller).show());
-        settingsButton.setOnAction(e -> new SettingsDialog(controller).show());
+        settingsButton.setOnAction(e -> new SettingsDialog().show());
 
         HBox headerBox = new HBox(10);
         headerBox.setPadding(new Insets(10));

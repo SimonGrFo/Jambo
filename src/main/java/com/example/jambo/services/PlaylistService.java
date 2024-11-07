@@ -73,24 +73,26 @@ public class PlaylistService implements PlaylistInterface {
 
     @Override
     public void addSong(File songFile) {
-        addSongToPlaylist(currentPlaylistName, songFile);
-    }
-
-    public void removeSongFromPlaylist(String playlistName, int index) {
         try {
-            List<File> playlist = playlists.get(playlistName);
-            if (playlist != null && index >= 0 && index < playlist.size()) {
-                playlist.remove(index);
-                notifyPlaylistChanged(playlistName);
+            List<File> playlist = playlists.get(currentPlaylistName);
+            if (playlist != null) {
+                String newPath = songFile.getAbsolutePath();
+                boolean isDuplicate = playlist.stream()
+                        .anyMatch(existingFile ->
+                                existingFile.getAbsolutePath().equals(newPath));
+
+                if (!isDuplicate) {
+                    playlist.add(songFile);
+                    notifyPlaylistChanged(currentPlaylistName);
+                }
             }
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            System.err.println("Error adding song: " + e.getMessage());
         }
     }
 
     @Override
     public void removeSong(int index) {
-        removeSongFromPlaylist(currentPlaylistName, index);
     }
 
     public void clearPlaylist(String playlistName) {
