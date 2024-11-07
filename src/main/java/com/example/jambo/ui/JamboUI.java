@@ -106,13 +106,17 @@ public class JamboUI {
         BorderPane mainLayout = new BorderPane();
         mainLayout.setTop(createHeaderBox(controller));
         mainLayout.setCenter(songListView);
-        mainLayout.setBottom(new VBox(10, createControlBox(controller), createProgressBox()));
+
+        VBox bottomBox = new VBox(10, createControlBox(controller), createProgressBox());
+        bottomBox.setPadding(new Insets(10));
+        mainLayout.setBottom(bottomBox);
+
         return new Scene(mainLayout, 800, 400);
     }
 
     private HBox createHeaderBox(JamboController controller) {
         Button loadButton = new Button("", iconService.createIconImageView("load songs"));
-        Tooltip.install(loadButton, new Tooltip("Load songs"));
+        Tooltip.install(loadButton, new Tooltip("Load folder"));
 
         Button clearButton = new Button("", iconService.createIconImageView("clear songs"));
         Tooltip.install(clearButton, new Tooltip("Clear songs"));
@@ -162,7 +166,9 @@ public class JamboUI {
     private VBox createProgressBox() {
         HBox timeBox = new HBox(10, timerLabel, progressSlider);
         HBox.setHgrow(progressSlider, Priority.ALWAYS);
-        return new VBox(5, timeBox, fileInfoLabel);
+        VBox progressBox = new VBox(5, timeBox, fileInfoLabel);
+        progressBox.setPadding(new Insets(10));
+        return progressBox;
     }
 
     public ListView<String> getSongListView() { return songListView; }
