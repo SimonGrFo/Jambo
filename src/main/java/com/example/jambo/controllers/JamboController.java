@@ -1,12 +1,13 @@
 package com.example.jambo.controllers;
 
-import com.example.jambo.di.DependencyContainer;
+import com.example.jambo.dependency.injection.DependencyContainer;
 import com.example.jambo.managers.MusicPlayerManager;
 import com.example.jambo.managers.PlaylistManager;
 import com.example.jambo.managers.MetadataManager;
 import com.example.jambo.ui.JamboUI;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import javafx.application.Platform;
 import javafx.scene.media.Media;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
@@ -14,11 +15,9 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class JamboController {
@@ -124,18 +123,23 @@ public class JamboController {
 
             List<File> files = getAllMp3Files(selectedDirectory).stream()
                     .filter(file -> !existingPaths.contains(file.getAbsolutePath()))
+                    .sorted(Comparator.comparing(File::getAbsolutePath))
                     .collect(Collectors.toList());
-
-            files.forEach(file -> addFileToPlaylist(file, existingPaths));
-            saveSongsToJson();
+            Platform.runLater(() -> {
+                for (File file : files) {
+                    addFileToPlaylist(file);
+                }
+                playlistManager.onPlaylistChanged(playlistManager.getCurrentPlaylistName(),
+                        playlistManager.getSongFiles());
+                saveSongsToJson();
+            });
         }
     }
 
-    private void addFileToPlaylist(File file, Set<String> existingPaths) {
+    private void addFileToPlaylist(File file) {
         try {
             String formattedInfo = metadataManager.formatSongMetadata(file);
             playlistManager.addSong(file, formattedInfo);
-            existingPaths.add(file.getAbsolutePath());
         } catch (Exception e) {
             playlistManager.addSong(file, file.getName());
         }
@@ -159,30 +163,26 @@ public class JamboController {
 
     private void loadSavedSongs() {
         Gson gson = new Gson();
-        Set<String> loadedPaths = new HashSet<>();
 
         try (FileReader reader = new FileReader("saved_songs.json")) {
             Type listType = new TypeToken<ArrayList<String>>(){}.getType();
             List<String> songPaths = gson.fromJson(reader, listType);
 
-            for (String path : songPaths) {
-                if (!loadedPaths.contains(path)) {
+            if (songPaths != null) {
+                songPaths.sort(String::compareTo);
+
+                for (String path : songPaths) {
                     File songFile = new File(path);
                     if (songFile.exists()) {
-                        try {
-                            String formattedInfo = metadataManager.formatSongMetadata(songFile);
-                            playlistManager.addSong(songFile, formattedInfo);
-                            loadedPaths.add(path);
-                        } catch (Exception e) {
-                            // nothing yet
-                        }
+                        addFileToPlaylist(songFile);
                     }
                 }
             }
         } catch (Exception e) {
-            // nothing yet
+            System.err.println("Error loading saved songs: " + e.getMessage());
         }
     }
+
 
     public void saveSongsToJson() {
         Gson gson = new Gson();

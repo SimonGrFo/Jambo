@@ -2,14 +2,20 @@ package com.example.jambo.managers;
 
 import com.example.jambo.Interfaces.PlaylistInterface;
 import com.example.jambo.services.MetadataService;
+import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.control.ListView;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
 public class PlaylistManager implements PlaylistInterface.PlaylistChangeListener {
     private final PlaylistInterface playlistService;
     private final ListView<String> songListView;
+    private boolean isUpdating = false;
+
 
     public PlaylistManager(PlaylistInterface playlistService, ListView<String> songListView) {
         this.playlistService = playlistService;
@@ -20,7 +26,7 @@ public class PlaylistManager implements PlaylistInterface.PlaylistChangeListener
     @Override
     public void onPlaylistChanged(String playlistName, List<File> songs) {
         if (playlistName.equals(playlistService.getCurrentPlaylistName())) {
-            updateSongListView(songs);
+            updateSongListView(new ArrayList<>(songs));
         }
     }
 
@@ -30,16 +36,29 @@ public class PlaylistManager implements PlaylistInterface.PlaylistChangeListener
     }
 
     private void updateSongListView(List<File> songs) {
-        songListView.getItems().clear();
-        MetadataService metadataService = new MetadataService();
-        for (File song : songs) {
-            try {
-                String formattedInfo = metadataService.formatSongMetadata(song);
-                songListView.getItems().add(formattedInfo);
-            } catch (Exception e) {
-                songListView.getItems().add(song.getName());
-            }
+        if (isUpdating) return;
 
+        try {
+            isUpdating = true;
+            Platform.runLater(() -> {
+                songListView.getItems().clear();
+                ObservableList<String> items = FXCollections.observableArrayList();
+
+                MetadataService metadataService = new MetadataService();
+                for (File song : songs) {
+                    try {
+                        String formattedInfo = metadataService.formatSongMetadata(song);
+                        items.add(formattedInfo);
+                    } catch (Exception e) {
+                        items.add(song.getName());
+                        System.err.println("Error formatting metadata for " + song.getName() + ": " + e.getMessage());
+                    }
+                }
+                songListView.setItems(items);
+            });
+
+        } finally {
+            isUpdating = false;
         }
     }
 
@@ -64,12 +83,24 @@ public class PlaylistManager implements PlaylistInterface.PlaylistChangeListener
     }
 
     public void addSong(File songFile, String formattedInfo) {
-        boolean isDuplicate = playlistService.getCurrentPlaylistSongs().stream()
-                .anyMatch(existingFile -> existingFile.getAbsolutePath().equals(songFile.getAbsolutePath()));
+        if (isUpdating) return;
 
-        if (!isDuplicate) {
-            playlistService.addSong(songFile);
-            songListView.getItems().add(formattedInfo);
+        try {
+            isUpdating = true;
+
+            boolean isDuplicate = playlistService.getCurrentPlaylistSongs().stream()
+                    .anyMatch(existingFile -> existingFile.getAbsolutePath().equals(songFile.getAbsolutePath()));
+
+            if (!isDuplicate) {
+                playlistService.addSong(songFile);
+                Platform.runLater(() -> {
+                    if (!songListView.getItems().contains(formattedInfo)) {
+                        songListView.getItems().add(formattedInfo);
+                    }
+                });
+            }
+        } finally {
+            isUpdating = false;
         }
     }
 

@@ -2,7 +2,7 @@ package com.example.jambo.ui.dialogs;
 
 import com.example.jambo.Interfaces.DialogInterface;
 import com.example.jambo.controllers.JamboController;
-import com.example.jambo.di.DependencyContainer;
+import com.example.jambo.dependency.injection.DependencyContainer;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;

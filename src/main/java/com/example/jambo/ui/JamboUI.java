@@ -1,7 +1,7 @@
 package com.example.jambo.ui;
 
 import com.example.jambo.controllers.JamboController;
-import com.example.jambo.di.DependencyContainer;
+import com.example.jambo.dependency.injection.DependencyContainer;
 import com.example.jambo.services.IconService;
 import com.example.jambo.ui.dialogs.PlaylistDialog;
 import com.example.jambo.ui.dialogs.SettingsDialog;
@@ -13,7 +13,7 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Tooltip;
 
-import static com.example.jambo.di.DependencyContainer.dialogService;
+import static com.example.jambo.dependency.injection.DependencyContainer.dialogService;
 
 public class JamboUI {
     private final ListView<String> songListView;

@@ -11,6 +11,8 @@ public class PlaylistService implements PlaylistInterface {
     private boolean shuffleEnabled = false;
     private final Random random = new Random();
     private final Set<PlaylistChangeListener> listeners = new HashSet<>();
+    private final Set<String> loadedPaths = new HashSet<>();
+
 
     public PlaylistService() {
         this.playlists = new HashMap<>();
@@ -77,12 +79,9 @@ public class PlaylistService implements PlaylistInterface {
             List<File> playlist = playlists.get(currentPlaylistName);
             if (playlist != null) {
                 String newPath = songFile.getAbsolutePath();
-                boolean isDuplicate = playlist.stream()
-                        .anyMatch(existingFile ->
-                                existingFile.getAbsolutePath().equals(newPath));
-
-                if (!isDuplicate) {
+                if (!loadedPaths.contains(newPath)) {
                     playlist.add(songFile);
+                    loadedPaths.add(newPath);
                     notifyPlaylistChanged(currentPlaylistName);
                 }
             }
@@ -93,6 +92,12 @@ public class PlaylistService implements PlaylistInterface {
 
     @Override
     public void removeSong(int index) {
+        List<File> playlist = playlists.get(currentPlaylistName);
+        if (playlist != null && index >= 0 && index < playlist.size()) {
+            File removedFile = playlist.remove(index);
+            loadedPaths.remove(removedFile.getAbsolutePath());
+            notifyPlaylistChanged(currentPlaylistName);
+        }
     }
 
     public void clearPlaylist(String playlistName) {

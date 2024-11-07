@@ -1,5 +1,4 @@
 package com.example.jambo.Interfaces;
-
 import java.io.File;
 
 public interface DialogInterface {

@@ -1,4 +1,4 @@
-package com.example.jambo.di;
+package com.example.jambo.dependency.injection;
 
 import com.example.jambo.Interfaces.DialogInterface;
 import com.example.jambo.Interfaces.MetadataInterface;
