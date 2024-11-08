@@ -124,7 +124,7 @@ public class JamboController {
                     .map(File::getAbsolutePath)
                     .collect(Collectors.toSet());
 
-            List<File> files = getAudioFiles(selectedDirectory).stream()
+            List<File> files = getAllMp3Files(selectedDirectory).stream()
                     .filter(file -> !existingPaths.contains(file.getAbsolutePath()))
                     .sorted(Comparator.comparing(File::getAbsolutePath))
                     .collect(Collectors.toList());
@@ -149,23 +149,21 @@ public class JamboController {
         }
     }
 
-    private List<File> getAudioFiles(File directory) {
-        List<File> audioFiles = new ArrayList<>();
+    private List<File> getAllMp3Files(File directory) {
+        List<File> mp3Files = new ArrayList<>();
 
         File[] filesAndDirs = directory.listFiles();
         if (filesAndDirs != null) {
             for (File file : filesAndDirs) {
                 if (file.isDirectory()) {
-                    audioFiles.addAll(getAudioFiles(file));
-                } else {
-                    String name = file.getName().toLowerCase();
-                    if (name.endsWith(".mp3") || name.endsWith(".flac")) {
-                        audioFiles.add(file);
-                    }
+                    mp3Files.addAll(getAllMp3Files(file));
+                } else if (file.getName().toLowerCase().endsWith(".mp3")) {
+                    mp3Files.add(file);
+
                 }
             }
         }
-        return audioFiles;
+        return mp3Files;
     }
 
     private void loadSavedSongs() {
