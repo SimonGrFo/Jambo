@@ -35,10 +35,15 @@ public class JamboUI {
         this.volumeSlider = new Slider(0, 1, 0.5);
         this.playlistComboBox = new ComboBox<>();
         this.albumArtPlaceholder = new Pane();
+
         albumArtPlaceholder.setStyle("-fx-background-color: #D3D3D3; -fx-border-color: #808080;");
         albumArtPlaceholder.setPrefSize(100, 100);
         albumArtPlaceholder.setMaxSize(100, 100);
         albumArtPlaceholder.setMinSize(100, 100);
+
+        currentSongLabel.setStyle("-fx-font-size: 14px; -fx-font-weight: bold;");
+        currentSongLabel.setMaxWidth(Double.MAX_VALUE);
+        currentSongLabel.setAlignment(Pos.CENTER);
 
         DependencyContainer.initialize(this.volumeSlider);
 
@@ -113,9 +118,12 @@ public class JamboUI {
         mainLayout.setTop(createHeaderBox(controller));
         mainLayout.setCenter(songListView);
 
-        HBox bottomBox = new HBox(10);
-        bottomBox.setPadding(new Insets(10));
+        VBox bottomContainer = new VBox(10);
+        bottomContainer.setPadding(new Insets(10));
 
+        bottomContainer.getChildren().add(currentSongLabel);
+
+        HBox bottomBox = new HBox(10);
         bottomBox.getChildren().add(albumArtPlaceholder);
 
         VBox controlsAndProgress = new VBox(10);
@@ -126,8 +134,9 @@ public class JamboUI {
         HBox.setHgrow(controlsAndProgress, Priority.ALWAYS);
 
         bottomBox.getChildren().add(controlsAndProgress);
+        bottomContainer.getChildren().add(bottomBox);
 
-        mainLayout.setBottom(bottomBox);
+        mainLayout.setBottom(bottomContainer);
 
         return new Scene(mainLayout, 800, 400);
     }
@@ -169,6 +178,7 @@ public class JamboUI {
 
         return headerBox;
     }
+
 
     private void setupControlButtons(JamboController controller, Button playButton, Button pauseButton, Button stopButton,
                                      Button previousButton, Button nextButton, Button shuffleButton, Button loopButton) {
