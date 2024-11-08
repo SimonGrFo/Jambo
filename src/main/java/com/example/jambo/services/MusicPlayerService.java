@@ -1,11 +1,7 @@
 package com.example.jambo.services;
 
 import com.example.jambo.Interfaces.MusicPlayerInterface;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.scene.control.Slider;
-import javafx.scene.media.AudioEqualizer;
-import javafx.scene.media.EqualizerBand;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
@@ -18,20 +14,11 @@ public class MusicPlayerService implements MusicPlayerInterface {
     private boolean isLooping = false;
     private boolean isMuted = false;
     private final Slider volumeSlider;
-    private final Preferences preferences;
     private Runnable onEndOfMedia;
-    private double crossfadeDuration = 0;
-    private MediaPlayer nextPlayer;
 
     public MusicPlayerService(Slider volumeSlider) {
         this.volumeSlider = volumeSlider;
-        this.preferences = Preferences.userNodeForPackage(MusicPlayerService.class);
         setupVolumeControl();
-        loadSettings();
-    }
-
-    private void loadSettings() {
-        crossfadeDuration = preferences.getDouble("crossfade", 0);
     }
 
     public void setOnEndOfMedia(Runnable callback) {
@@ -49,18 +36,11 @@ public class MusicPlayerService implements MusicPlayerInterface {
     @Override
     public void playMedia(Media media) {
         double currentVolume = volumeSlider.getValue();
-
         if (mediaPlayer != null) {
-            if (crossfadeDuration > 0) {
-                crossfade(media);
-            } else {
-                mediaPlayer.stop();
-                mediaPlayer.dispose();
-                setupNewPlayer(media, currentVolume);
-            }
-        } else {
-            setupNewPlayer(media, currentVolume);
+            mediaPlayer.stop();
+            mediaPlayer.dispose();
         }
+        setupNewPlayer(media, currentVolume);
     }
 
     private void setupNewPlayer(Media media, double currentVolume) {
@@ -81,46 +61,7 @@ public class MusicPlayerService implements MusicPlayerInterface {
                 onEndOfMedia.run();
             }
         });
-
-        player.setBalance(preferences.getDouble("balance", 0.0));
-        player.setRate(preferences.getDouble("playbackSpeed", 1.0));
-
-        if (preferences.getBoolean("equalizer", false)) {
-            setupEqualizer(player);
-        }
     }
-
-    private void crossfade(Media nextMedia) {
-        nextPlayer = new MediaPlayer(nextMedia);
-        setupMediaPlayer(nextPlayer, volumeSlider.getValue());
-
-        Timeline fadeOut = new Timeline(
-                new KeyFrame(Duration.ZERO,
-                        new javafx.animation.KeyValue(mediaPlayer.volumeProperty(), mediaPlayer.getVolume())),
-                new KeyFrame(Duration.seconds(crossfadeDuration),
-                        new javafx.animation.KeyValue(mediaPlayer.volumeProperty(), 0))
-        );
-
-        Timeline fadeIn = new Timeline(
-                new KeyFrame(Duration.ZERO,
-                        new javafx.animation.KeyValue(nextPlayer.volumeProperty(), 0)),
-                new KeyFrame(Duration.seconds(crossfadeDuration),
-                        new javafx.animation.KeyValue(nextPlayer.volumeProperty(), volumeSlider.getValue()))
-        );
-
-        fadeOut.setOnFinished(e -> {
-            mediaPlayer.dispose();
-            mediaPlayer = nextPlayer;
-            nextPlayer = null;
-        });
-
-        nextPlayer.play();
-        fadeOut.play();
-        fadeIn.play();
-    }
-
-
-
 
     @Override
     public void pauseMedia() {
@@ -162,19 +103,6 @@ public class MusicPlayerService implements MusicPlayerInterface {
     public void seekTo(double time) {
         if (mediaPlayer != null) {
             mediaPlayer.seek(Duration.seconds(time));
-        }
-    }
-
-    private void setupEqualizer(MediaPlayer player) {
-        AudioEqualizer equalizer = player.getAudioEqualizer();
-        EqualizerBand[] bands = new EqualizerBand[10];
-
-        double[] centerFrequencies = {32, 64, 125, 250, 500, 1000, 2000, 4000, 8000, 16000};
-        for (int i = 0; i < bands.length; i++) {
-            bands[i] = new EqualizerBand();
-            bands[i].setCenterFrequency(centerFrequencies[i]);
-            bands[i].setGain(preferences.getDouble("eq_band_" + i, 0.0));
-            equalizer.getBands().add(bands[i]);
         }
     }
 
