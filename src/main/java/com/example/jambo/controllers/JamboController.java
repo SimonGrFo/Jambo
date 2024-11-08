@@ -5,17 +5,11 @@ import com.example.jambo.managers.MusicPlayerManager;
 import com.example.jambo.managers.PlaylistManager;
 import com.example.jambo.managers.MetadataManager;
 import com.example.jambo.ui.JamboUI;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import javafx.application.Platform;
 import javafx.scene.media.Media;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
-
 import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.lang.reflect.Type;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -25,6 +19,7 @@ public class JamboController {
     private final MetadataManager metadataManager;
     private final JamboUI ui;
     private boolean isDragging = false;
+    private Stage primaryStage;
 
     public JamboController(JamboUI ui) {
         this.ui = ui;
@@ -52,6 +47,7 @@ public class JamboController {
             throw new RuntimeException("Failed to initialize JamboController", e);
         }
     }
+
     private void setupEventHandlers() {
         ui.getSongListView().setOnMouseClicked(event -> {
             if (event.getClickCount() == 2) {
@@ -71,16 +67,31 @@ public class JamboController {
             }
         });
     }
+
     public void initializeStage(Stage primaryStage) {
+        this.primaryStage = primaryStage;
+        configurePrimaryStage();
         loadSavedSongs();
-        primaryStage.setTitle("Jambo - 0.2");
+        ui.initializeContextMenu(this);
+    }
+
+    private void configurePrimaryStage() {
+        primaryStage.setTitle("Jambo - 0.3 - Default");
         primaryStage.setScene(ui.createScene(this));
         primaryStage.setMinWidth(1000);
         primaryStage.setMinHeight(800);
-        ui.initializeContextMenu(this);
-        primaryStage.show();
         primaryStage.setOnCloseRequest(event -> saveSongsToJson());
+        primaryStage.show();
     }
+
+    public void updateTitleWithPlaylistName(String playlistName) {
+        String baseTitle = "Jambo - 0.3";
+        String fullTitle = baseTitle + " - " + playlistName;
+        if (primaryStage != null) {
+            primaryStage.setTitle(fullTitle);
+        }
+    }
+
     public void playSelectedSong() {
         try {
             int selectedIndex = ui.getSongListView().getSelectionModel().getSelectedIndex();
@@ -114,7 +125,7 @@ public class JamboController {
             List<File> files = getAllMp3Files(selectedDirectory).stream()
                     .filter(file -> !existingPaths.contains(file.getAbsolutePath()))
                     .sorted(Comparator.comparing(File::getAbsolutePath))
-                    .collect(Collectors.toList());
+                    .toList();
 
             Platform.runLater(() -> {
                 for (File file : files) {
@@ -128,25 +139,27 @@ public class JamboController {
     }
 
     private void addFileToPlaylist(File file) {
+        String formattedInfo;
         try {
-            String formattedInfo = metadataManager.formatSongMetadata(file);
-            playlistManager.addSong(file, formattedInfo);
+            formattedInfo = metadataManager.formatSongMetadata(file);
         } catch (Exception e) {
-            playlistManager.addSong(file, file.getName());
+            formattedInfo = file.getName();
         }
+        playlistManager.addSong(file, formattedInfo);
     }
 
     private List<File> getAllMp3Files(File directory) {
         List<File> mp3Files = new ArrayList<>();
+        Queue<File> directories = new LinkedList<>();
+        directories.add(directory);
 
-        File[] filesAndDirs = directory.listFiles();
-        if (filesAndDirs != null) {
-            for (File file : filesAndDirs) {
+        while (!directories.isEmpty()) {
+            File dir = directories.poll();
+            for (File file : Objects.requireNonNull(dir.listFiles())) {
                 if (file.isDirectory()) {
-                    mp3Files.addAll(getAllMp3Files(file));
+                    directories.add(file);
                 } else if (file.getName().toLowerCase().endsWith(".mp3")) {
                     mp3Files.add(file);
-
                 }
             }
         }
@@ -154,39 +167,11 @@ public class JamboController {
     }
 
     private void loadSavedSongs() {
-        Gson gson = new Gson();
-
-        try (FileReader reader = new FileReader("saved_songs.json")) {
-            Type listType = new TypeToken<ArrayList<String>>(){}.getType();
-            List<String> songPaths = gson.fromJson(reader, listType);
-
-            if (songPaths != null) {
-                songPaths.sort(String::compareTo);
-
-                for (String path : songPaths) {
-                    File songFile = new File(path);
-                    if (songFile.exists()) {
-                        addFileToPlaylist(songFile);
-                    }
-                }
-            }
-        } catch (Exception e) {
-            System.err.println("Error loading saved songs: " + e.getMessage());
-        }
+        playlistManager.loadSongsFromJson("saved_songs.json");
     }
 
-
-    public void saveSongsToJson() {
-        Gson gson = new Gson();
-        try (FileWriter writer = new FileWriter("saved_songs.json")) {
-            List<String> songPaths = new ArrayList<>();
-            for (File file : playlistManager.getSongFiles()) {
-                songPaths.add(file.getAbsolutePath());
-            }
-            gson.toJson(songPaths, writer);
-        } catch (Exception e) {
-            // nothing yet
-        }
+    private void saveSongsToJson() {
+        playlistManager.saveSongsToJson("saved_songs.json");
     }
 
     public void clearSongs() {

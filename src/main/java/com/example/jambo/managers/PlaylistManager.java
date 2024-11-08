@@ -2,14 +2,20 @@ package com.example.jambo.managers;
 
 import com.example.jambo.Interfaces.PlaylistInterface;
 import com.example.jambo.services.MetadataService;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ListView;
 import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class PlaylistManager implements PlaylistInterface.PlaylistChangeListener {
     private final PlaylistInterface playlistService;
@@ -134,5 +140,35 @@ public class PlaylistManager implements PlaylistInterface.PlaylistChangeListener
 
     public List<File> getSongFiles() {
         return playlistService.getCurrentPlaylistSongs();
+    }
+
+    public void loadSongsFromJson(String filename) {
+        Gson gson = new Gson();
+        try (FileReader reader = new FileReader(filename)) {
+            Type listType = new TypeToken<ArrayList<String>>(){}.getType();
+            List<String> songPaths = gson.fromJson(reader, listType);
+
+            if (songPaths != null) {
+                songPaths.sort(String::compareTo);
+                for (String path : songPaths) {
+                    File songFile = new File(path);
+                    if (songFile.exists()) addSong(songFile, songFile.getName());
+                }
+            }
+        } catch (Exception e) {
+            System.err.println("Error loading saved songs: " + e.getMessage());
+        }
+    }
+
+    public void saveSongsToJson(String filename) {
+        Gson gson = new Gson();
+        try (FileWriter writer = new FileWriter(filename)) {
+            List<String> songPaths = getSongFiles().stream()
+                    .map(File::getAbsolutePath)
+                    .collect(Collectors.toList());
+            gson.toJson(songPaths, writer);
+        } catch (Exception e) {
+            System.err.println("Error saving songs: " + e.getMessage());
+        }
     }
 }

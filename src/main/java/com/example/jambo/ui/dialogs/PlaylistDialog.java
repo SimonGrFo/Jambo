@@ -43,7 +43,7 @@ public class PlaylistDialog extends Dialog<Void> {
         this.controller = controller;
         DialogInterface dialogService = DependencyContainer.getDialogService();
 
-        setTitle("Playlist Manager");
+        setTitle("Playlists");
 
         playlistTable = new TableView<>();
         playlists = FXCollections.observableArrayList();
@@ -91,7 +91,9 @@ public class PlaylistDialog extends Dialog<Void> {
             if (event.getClickCount() == 2) {
                 PlaylistEntry selectedEntry = playlistTable.getSelectionModel().getSelectedItem();
                 if (selectedEntry != null) {
-                    controller.getPlaylistManager().switchToPlaylist(selectedEntry.getName());
+                    String playlistName = selectedEntry.getName();
+                    controller.getPlaylistManager().switchToPlaylist(playlistName);
+                    controller.updateTitleWithPlaylistName(playlistName);
                     this.close();
                 }
             }
@@ -141,27 +143,11 @@ public class PlaylistDialog extends Dialog<Void> {
 
         dialog.showAndWait().ifPresent(this::attemptAddNewPlaylist);
     }
-
     private void attemptAddNewPlaylist(String name) {
-        if (!name.trim().isEmpty() && isValidPlaylistName(name)) {
+        if (!name.trim().isEmpty()) {
             controller.getPlaylistManager().createPlaylist(name);
             refreshPlaylists();
-        } else {
-            showInvalidNameAlert();
         }
-    }
-
-    private boolean isValidPlaylistName(String name) {
-        return !controller.getPlaylistManager().getPlaylistNames().contains(name) &&
-                !name.matches(".*[\\\\/:*?\"<>|].*");
-    }
-
-    private void showInvalidNameAlert() {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Invalid Playlist Name");
-        alert.setHeaderText(null);
-        alert.setContentText("Playlist name is invalid or already exists. Please choose a different name.");
-        alert.showAndWait();
     }
 
     private void refreshPlaylists() {
