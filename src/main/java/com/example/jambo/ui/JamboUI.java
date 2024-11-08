@@ -43,7 +43,7 @@ public class JamboUI {
 
         currentSongLabel.setStyle("-fx-font-size: 14px; -fx-font-weight: bold;");
         currentSongLabel.setMaxWidth(Double.MAX_VALUE);
-        currentSongLabel.setAlignment(Pos.CENTER);
+        currentSongLabel.setAlignment(Pos.CENTER_LEFT);
 
         DependencyContainer.initialize(this.volumeSlider);
 
