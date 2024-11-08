@@ -6,8 +6,6 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
 
-import java.util.prefs.Preferences;
-
 public class MusicPlayerService implements MusicPlayerInterface {
     private MediaPlayer mediaPlayer;
     private boolean isPaused = false;
@@ -33,16 +31,6 @@ public class MusicPlayerService implements MusicPlayerInterface {
         });
     }
 
-    @Override
-    public void playMedia(Media media) {
-        double currentVolume = volumeSlider.getValue();
-        if (mediaPlayer != null) {
-            mediaPlayer.stop();
-            mediaPlayer.dispose();
-        }
-        setupNewPlayer(media, currentVolume);
-    }
-
     private void setupNewPlayer(Media media, double currentVolume) {
         mediaPlayer = new MediaPlayer(media);
         setupMediaPlayer(mediaPlayer, currentVolume);
@@ -61,6 +49,16 @@ public class MusicPlayerService implements MusicPlayerInterface {
                 onEndOfMedia.run();
             }
         });
+    }
+
+    @Override
+    public void playMedia(Media media) {
+        double currentVolume = volumeSlider.getValue();
+        if (mediaPlayer != null) {
+            mediaPlayer.stop();
+            mediaPlayer.dispose();
+        }
+        setupNewPlayer(media, currentVolume);
     }
 
     @Override

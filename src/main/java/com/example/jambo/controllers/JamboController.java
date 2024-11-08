@@ -15,7 +15,6 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
-import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -29,10 +28,8 @@ public class JamboController {
 
     public JamboController(JamboUI ui) {
         this.ui = ui;
-
         try {
             DependencyContainer.initialize(ui.getVolumeSlider());
-
             this.musicPlayerManager = new MusicPlayerManager(
                     DependencyContainer.getMusicPlayerService(),
                     ui.getCurrentSongLabel(),
@@ -40,25 +37,21 @@ public class JamboController {
                     ui.getProgressSlider(),
                     ui.getVolumeSlider()
             );
-
             this.playlistManager = new PlaylistManager(
                     DependencyContainer.getPlaylistService(),
                     ui.getSongListView()
             );
-
             this.metadataManager = new MetadataManager(
                     DependencyContainer.getMetadataService(),
                     ui.getFileInfoLabel(),
                     ui.getCurrentSongLabel(),
                     ui.getAlbumArtPlaceholder()
             );
-
             setupEventHandlers();
         } catch (Exception e) {
             throw new RuntimeException("Failed to initialize JamboController", e);
         }
     }
-
     private void setupEventHandlers() {
         ui.getSongListView().setOnMouseClicked(event -> {
             if (event.getClickCount() == 2) {
@@ -78,22 +71,16 @@ public class JamboController {
             }
         });
     }
-
     public void initializeStage(Stage primaryStage) {
         loadSavedSongs();
-
         primaryStage.setTitle("Jambo - 0.2");
         primaryStage.setScene(ui.createScene(this));
         primaryStage.setMinWidth(1000);
         primaryStage.setMinHeight(800);
-
         ui.initializeContextMenu(this);
-
         primaryStage.show();
-
         primaryStage.setOnCloseRequest(event -> saveSongsToJson());
     }
-
     public void playSelectedSong() {
         try {
             int selectedIndex = ui.getSongListView().getSelectionModel().getSelectedIndex();

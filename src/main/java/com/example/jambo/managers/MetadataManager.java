@@ -47,6 +47,7 @@ public class MetadataManager {
             clearAlbumArt();
         }
     }
+
     private void updateAlbumArt(File songFile) {
         try {
             Image albumArt = metadataService.getAlbumArt(songFile);
@@ -66,5 +67,4 @@ public class MetadataManager {
         albumArtView.setImage(null);
         albumArtPane.setStyle("-fx-background-color: #D3D3D3; -fx-border-color: #808080;");
     }
-
 }

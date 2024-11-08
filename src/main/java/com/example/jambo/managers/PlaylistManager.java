@@ -16,7 +16,6 @@ public class PlaylistManager implements PlaylistInterface.PlaylistChangeListener
     private final ListView<String> songListView;
     private boolean isUpdating = false;
 
-
     public PlaylistManager(PlaylistInterface playlistService, ListView<String> songListView) {
         this.playlistService = playlistService;
         this.songListView = songListView;
@@ -117,7 +116,6 @@ public class PlaylistManager implements PlaylistInterface.PlaylistChangeListener
     public void toggleShuffle() {
         playlistService.toggleShuffle();
     }
-
     public int getNextSongIndex() {
         return playlistService.getNextSongIndex(
                 songListView.getSelectionModel().getSelectedIndex()

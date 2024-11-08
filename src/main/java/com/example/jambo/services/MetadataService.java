@@ -21,6 +21,12 @@ public class MetadataService implements MetadataInterface {
         return (value == null || value.isEmpty()) ? defaultValue : value;
     }
 
+    private String formatTime(int seconds) {
+        int minutes = seconds / 60;
+        int remainingSeconds = seconds % 60;
+        return String.format("%d:%02d", minutes, remainingSeconds);
+    }
+
     @Override
     public String formatSongMetadata(File file) throws Exception {
         AudioFile audioFile = readAudioFile(file);
@@ -66,11 +72,5 @@ public class MetadataService implements MetadataInterface {
             }
         }
         return null;
-    }
-
-    private String formatTime(int seconds) {
-        int minutes = seconds / 60;
-        int remainingSeconds = seconds % 60;
-        return String.format("%d:%02d", minutes, remainingSeconds);
     }
 }

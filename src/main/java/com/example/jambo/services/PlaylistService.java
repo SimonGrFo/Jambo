@@ -19,11 +19,6 @@ public class PlaylistService implements PlaylistInterface {
         this.playlists.put(currentPlaylistName, new ArrayList<>());
     }
 
-    @Override
-    public void addPlaylistChangeListener(PlaylistChangeListener listener) {
-        listeners.add(listener);
-    }
-
     private void notifyPlaylistChanged(String playlistName) {
         for (PlaylistChangeListener listener : listeners) {
             listener.onPlaylistChanged(playlistName, playlists.get(playlistName));
@@ -31,6 +26,11 @@ public class PlaylistService implements PlaylistInterface {
                 listener.onCurrentPlaylistChanged(currentPlaylistName);
             }
         }
+    }
+
+    @Override
+    public void addPlaylistChangeListener(PlaylistChangeListener listener) {
+        listeners.add(listener);
     }
 
     @Override
@@ -57,18 +57,6 @@ public class PlaylistService implements PlaylistInterface {
         if (playlists.containsKey(name)) {
             currentPlaylistName = name;
             notifyPlaylistChanged(name);
-        }
-    }
-
-    public void addSongToPlaylist(String playlistName, File songFile) {
-        try {
-            List<File> playlist = playlists.get(playlistName);
-            if (playlist != null && !playlist.contains(songFile)) {
-                playlist.add(songFile);
-                notifyPlaylistChanged(playlistName);
-            }
-        } catch (Exception ignored) {
-
         }
     }
 
