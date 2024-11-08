@@ -24,6 +24,7 @@ public class JamboUI {
     private final Slider volumeSlider;
     private final ComboBox<String> playlistComboBox;
     private final IconService iconService;
+    private final Pane albumArtPlaceholder;
 
     public JamboUI() {
         this.songListView = new ListView<>();
@@ -33,6 +34,11 @@ public class JamboUI {
         this.progressSlider = new Slider(0, 1, 0);
         this.volumeSlider = new Slider(0, 1, 0.5);
         this.playlistComboBox = new ComboBox<>();
+        this.albumArtPlaceholder = new Pane();
+        albumArtPlaceholder.setStyle("-fx-background-color: #D3D3D3; -fx-border-color: #808080;");
+        albumArtPlaceholder.setPrefSize(100, 100);
+        albumArtPlaceholder.setMaxSize(100, 100);
+        albumArtPlaceholder.setMinSize(100, 100);
 
         DependencyContainer.initialize(this.volumeSlider);
 
@@ -107,8 +113,20 @@ public class JamboUI {
         mainLayout.setTop(createHeaderBox(controller));
         mainLayout.setCenter(songListView);
 
-        VBox bottomBox = new VBox(10, createControlBox(controller), createProgressBox());
+        HBox bottomBox = new HBox(10);
         bottomBox.setPadding(new Insets(10));
+
+        bottomBox.getChildren().add(albumArtPlaceholder);
+
+        VBox controlsAndProgress = new VBox(10);
+        controlsAndProgress.getChildren().addAll(
+                createControlBox(controller),
+                createProgressBox()
+        );
+        HBox.setHgrow(controlsAndProgress, Priority.ALWAYS);
+
+        bottomBox.getChildren().add(controlsAndProgress);
+
         mainLayout.setBottom(bottomBox);
 
         return new Scene(mainLayout, 800, 400);
@@ -167,8 +185,11 @@ public class JamboUI {
         HBox timeBox = new HBox(10, timerLabel, progressSlider);
         HBox.setHgrow(progressSlider, Priority.ALWAYS);
         VBox progressBox = new VBox(5, timeBox, fileInfoLabel);
-        progressBox.setPadding(new Insets(10));
         return progressBox;
+    }
+
+    public Pane getAlbumArtPlaceholder() {
+        return albumArtPlaceholder;
     }
 
     public ListView<String> getSongListView() { return songListView; }
