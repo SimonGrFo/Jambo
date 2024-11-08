@@ -1,11 +1,14 @@
 package com.example.jambo.services;
 
 import com.example.jambo.Interfaces.MetadataInterface;
+import javafx.scene.image.Image;
 import org.jaudiotagger.audio.AudioFile;
 import org.jaudiotagger.audio.AudioFileIO;
 import org.jaudiotagger.audio.AudioHeader;
 import org.jaudiotagger.tag.Tag;
+import org.jaudiotagger.tag.images.Artwork;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
 
 public class MetadataService implements MetadataInterface {
@@ -48,6 +51,21 @@ public class MetadataService implements MetadataInterface {
                 getSafeTagValue(tag, org.jaudiotagger.tag.FieldKey.ALBUM, "Unknown Album"),
                 getSafeTagValue(tag, org.jaudiotagger.tag.FieldKey.TITLE, songFile.getName())
         );
+    }
+
+    @Override
+    public Image getAlbumArt(File file) throws Exception {
+        AudioFile audioFile = readAudioFile(file);
+        Tag tag = audioFile.getTag();
+
+        if (tag != null) {
+            Artwork artwork = tag.getFirstArtwork();
+            if (artwork != null) {
+                byte[] imageData = artwork.getBinaryData();
+                return new Image(new ByteArrayInputStream(imageData));
+            }
+        }
+        return null;
     }
 
     private String formatTime(int seconds) {

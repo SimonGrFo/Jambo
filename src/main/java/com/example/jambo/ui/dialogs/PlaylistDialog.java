@@ -44,7 +44,6 @@ public class PlaylistDialog extends Dialog<Void> {
         DialogInterface dialogService = DependencyContainer.getDialogService();
 
         setTitle("Playlist Manager");
-        setHeaderText("Manage Your Playlists");
 
         playlistTable = new TableView<>();
         playlists = FXCollections.observableArrayList();
@@ -58,7 +57,6 @@ public class PlaylistDialog extends Dialog<Void> {
     }
 
     private void setupTableColumns() {
-        // Playlist name column
         TableColumn<PlaylistEntry, String> nameColumn = new TableColumn<>("Playlist Name");
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         nameColumn.setPrefWidth(200);
@@ -100,9 +98,6 @@ public class PlaylistDialog extends Dialog<Void> {
         });
     }
 
-    /**
-     * Creates a cell factory for generating delete buttons in the action column of each playlist entry.
-     */
     private Callback<TableColumn<PlaylistEntry, Void>, TableCell<PlaylistEntry, Void>> createDeleteButtonCellFactory() {
         return column -> new TableCell<>() {
             private final Button deleteButton = new Button("Delete");

@@ -184,8 +184,7 @@ public class JamboUI {
     private VBox createProgressBox() {
         HBox timeBox = new HBox(10, timerLabel, progressSlider);
         HBox.setHgrow(progressSlider, Priority.ALWAYS);
-        VBox progressBox = new VBox(5, timeBox, fileInfoLabel);
-        return progressBox;
+        return new VBox(5, timeBox, fileInfoLabel);
     }
 
     public Pane getAlbumArtPlaceholder() {

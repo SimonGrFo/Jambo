@@ -13,7 +13,6 @@ public class PlaylistService implements PlaylistInterface {
     private final Set<PlaylistChangeListener> listeners = new HashSet<>();
     private final Set<String> loadedPaths = new HashSet<>();
 
-
     public PlaylistService() {
         this.playlists = new HashMap<>();
         this.currentPlaylistName = "Default";
