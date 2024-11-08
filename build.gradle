@@ -30,6 +30,10 @@ dependencies {
 	testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.10.0'
 	testImplementation 'org.mockito:mockito-core:5.5.0'
 	testImplementation 'org.mockito:mockito-junit-jupiter:5.5.0'
+
+	implementation 'org.jflac:jflac-codec:1.5.2'
+	implementation 'com.googlecode.soundlibs:jlayer:1.0.1.4'
+	implementation 'org.xiph:vorbis-java:1.0.0-beta'
 }
 
 javafx {

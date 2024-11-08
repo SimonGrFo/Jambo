@@ -115,6 +115,8 @@ public class JamboController {
 
     public void loadSongs() {
         DirectoryChooser directoryChooser = new DirectoryChooser();
+        directoryChooser.setTitle("Select Music Directory");
+
         File selectedDirectory = directoryChooser.showDialog(null);
 
         if (selectedDirectory != null) {
@@ -122,10 +124,11 @@ public class JamboController {
                     .map(File::getAbsolutePath)
                     .collect(Collectors.toSet());
 
-            List<File> files = getAllMp3Files(selectedDirectory).stream()
+            List<File> files = getAudioFiles(selectedDirectory).stream()
                     .filter(file -> !existingPaths.contains(file.getAbsolutePath()))
                     .sorted(Comparator.comparing(File::getAbsolutePath))
                     .collect(Collectors.toList());
+
             Platform.runLater(() -> {
                 for (File file : files) {
                     addFileToPlaylist(file);
@@ -146,20 +149,23 @@ public class JamboController {
         }
     }
 
-    private List<File> getAllMp3Files(File directory) {
-        List<File> mp3Files = new ArrayList<>();
+    private List<File> getAudioFiles(File directory) {
+        List<File> audioFiles = new ArrayList<>();
 
         File[] filesAndDirs = directory.listFiles();
         if (filesAndDirs != null) {
             for (File file : filesAndDirs) {
                 if (file.isDirectory()) {
-                    mp3Files.addAll(getAllMp3Files(file));
-                } else if (file.getName().toLowerCase().endsWith(".mp3")) {
-                    mp3Files.add(file);
+                    audioFiles.addAll(getAudioFiles(file));
+                } else {
+                    String name = file.getName().toLowerCase();
+                    if (name.endsWith(".mp3") || name.endsWith(".flac")) {
+                        audioFiles.add(file);
+                    }
                 }
             }
         }
-        return mp3Files;
+        return audioFiles;
     }
 
     private void loadSavedSongs() {
