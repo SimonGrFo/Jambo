@@ -4,22 +4,23 @@ import com.example.jambo.Interfaces.PlaylistInterface;
 
 import java.io.File;
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class PlaylistService implements PlaylistInterface {
-    private final Map<String, List<File>> playlists;
-    private final Map<String, Set<String>> loadedPathsPerPlaylist;
-    private String currentPlaylistName;
-    private boolean shuffleEnabled = false;
-    private final Random random = new Random();
-    private final Set<PlaylistChangeListener> listeners = new HashSet<>();
+    private final Map<String, List<File>> playlists = new ConcurrentHashMap<>();
+    private final Map<String, Set<String>> loadedPathsPerPlaylist = new ConcurrentHashMap<>();
+    private final Set<PlaylistChangeListener> listeners =
+            ConcurrentHashMap.newKeySet();
+    private volatile String currentPlaylistName;
+    private volatile boolean shuffleEnabled = false;
+    private Random random;
 
     public PlaylistService() {
-        this.playlists = new HashMap<>();
-        this.loadedPathsPerPlaylist = new HashMap<>();
         this.currentPlaylistName = "Default";
-        this.playlists.put(currentPlaylistName, new ArrayList<>());
-        this.loadedPathsPerPlaylist.put(currentPlaylistName, new HashSet<>());
+        this.playlists.put(currentPlaylistName, Collections.synchronizedList(new ArrayList<>()));
+        this.loadedPathsPerPlaylist.put(currentPlaylistName, ConcurrentHashMap.newKeySet());
     }
+
 
     private void notifyPlaylistChanged(String playlistName) {
         for (PlaylistChangeListener listener : listeners) {
@@ -58,7 +59,6 @@ public class PlaylistService implements PlaylistInterface {
     public void switchToPlaylist(String name) {
         if (playlists.containsKey(name)) {
             currentPlaylistName = name;
-            // Ensure we have a set to track loaded paths for the newly switched playlist
             loadedPathsPerPlaylist.putIfAbsent(name, new HashSet<>());
             notifyPlaylistChanged(name);
         }
@@ -71,9 +71,9 @@ public class PlaylistService implements PlaylistInterface {
             if (playlist != null) {
                 String newPath = songFile.getAbsolutePath();
                 Set<String> loadedPathsForCurrentPlaylist = loadedPathsPerPlaylist.get(currentPlaylistName);
-                if (loadedPathsForCurrentPlaylist != null && !loadedPathsForCurrentPlaylist.contains(newPath)) {
+                if (loadedPathsForCurrentPlaylist != null &&
+                        loadedPathsForCurrentPlaylist.add(newPath)) {
                     playlist.add(songFile);
-                    loadedPathsForCurrentPlaylist.add(newPath);
                     notifyPlaylistChanged(currentPlaylistName);
                 }
             }

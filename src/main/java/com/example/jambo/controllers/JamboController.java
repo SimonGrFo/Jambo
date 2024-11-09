@@ -10,8 +10,12 @@ import javafx.scene.media.Media;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.util.*;
+import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
+import java.nio.file.*;
 
 public class JamboController {
     private final MusicPlayerManager musicPlayerManager;
@@ -20,6 +24,8 @@ public class JamboController {
     private final JamboUI ui;
     private boolean isDragging = false;
     private Stage primaryStage;
+
+
 
     public JamboController(JamboUI ui) {
         this.ui = ui;
@@ -118,22 +124,32 @@ public class JamboController {
         File selectedDirectory = directoryChooser.showDialog(null);
 
         if (selectedDirectory != null) {
-            Set<String> existingPaths = playlistManager.getSongFiles().stream()
-                    .map(File::getAbsolutePath)
-                    .collect(Collectors.toSet());
+            CompletableFuture.supplyAsync(() -> {
+                try {
+                    Set<String> existingPaths = playlistManager.getSongFiles().stream()
+                            .map(File::getAbsolutePath)
+                            .collect(Collectors.toSet());
 
-            List<File> files = getAllMp3Files(selectedDirectory).stream()
-                    .filter(file -> !existingPaths.contains(file.getAbsolutePath()))
-                    .sorted(Comparator.comparing(File::getAbsolutePath))
-                    .toList();
-
-            Platform.runLater(() -> {
-                for (File file : files) {
-                    addFileToPlaylist(file);
+                    return Files.walk(selectedDirectory.toPath())
+                            .parallel()
+                            .filter(path -> path.toString().toLowerCase().endsWith(".mp3"))
+                            .map(Path::toFile)
+                            .filter(file -> !existingPaths.contains(file.getAbsolutePath()))
+                            .sorted(Comparator.comparing(File::getAbsolutePath))
+                            .collect(Collectors.toList());
+                } catch (IOException e) {
+                    System.err.println("Error scanning directory: " + e.getMessage());
+                    return Collections.emptyList();
                 }
-                playlistManager.onPlaylistChanged(playlistManager.getCurrentPlaylistName(),
-                        playlistManager.getSongFiles());
-                saveSongsToJson();
+            }).thenAccept(files -> {
+                Platform.runLater(() -> {
+                    for (Object file : files) {
+                        addFileToPlaylist((File) file);
+                    }
+                    playlistManager.onPlaylistChanged(playlistManager.getCurrentPlaylistName(),
+                            playlistManager.getSongFiles());
+                    saveSongsToJson();
+                });
             });
         }
     }
@@ -146,24 +162,6 @@ public class JamboController {
             formattedInfo = file.getName();
         }
         playlistManager.addSong(file, formattedInfo);
-    }
-
-    private List<File> getAllMp3Files(File directory) {
-        List<File> mp3Files = new ArrayList<>();
-        Queue<File> directories = new LinkedList<>();
-        directories.add(directory);
-
-        while (!directories.isEmpty()) {
-            File dir = directories.poll();
-            for (File file : Objects.requireNonNull(dir.listFiles())) {
-                if (file.isDirectory()) {
-                    directories.add(file);
-                } else if (file.getName().toLowerCase().endsWith(".mp3")) {
-                    mp3Files.add(file);
-                }
-            }
-        }
-        return mp3Files;
     }
 
     private void loadSavedSongs() {

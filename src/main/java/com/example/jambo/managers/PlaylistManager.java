@@ -8,11 +8,14 @@ import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ListView;
+
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -20,13 +23,16 @@ import java.util.stream.Collectors;
 public class PlaylistManager implements PlaylistInterface.PlaylistChangeListener {
     private final PlaylistInterface playlistService;
     private final ListView<String> songListView;
+    private final MetadataService metadataService;
     private boolean isUpdating = false;
 
     public PlaylistManager(PlaylistInterface playlistService, ListView<String> songListView) {
         this.playlistService = playlistService;
         this.songListView = songListView;
+        this.metadataService = new MetadataService();
         this.playlistService.addPlaylistChangeListener(this);
     }
+
 
     @Override
     public void onPlaylistChanged(String playlistName, List<File> songs) {
@@ -45,27 +51,25 @@ public class PlaylistManager implements PlaylistInterface.PlaylistChangeListener
 
         try {
             isUpdating = true;
+            List<String> formattedSongs = songs.parallelStream()
+                    .map(song -> {
+                        try {
+                            return metadataService.formatSongMetadata(song);
+                        } catch (Exception e) {
+                            System.err.println("Error formatting metadata for " + song.getName() + ": " + e.getMessage());
+                            return song.getName();
+                        }
+                    })
+                    .collect(Collectors.toList());
             Platform.runLater(() -> {
                 songListView.getItems().clear();
-                ObservableList<String> items = FXCollections.observableArrayList();
-
-                MetadataService metadataService = new MetadataService();
-                for (File song : songs) {
-                    try {
-                        String formattedInfo = metadataService.formatSongMetadata(song);
-                        items.add(formattedInfo);
-                    } catch (Exception e) {
-                        items.add(song.getName());
-                        System.err.println("Error formatting metadata for " + song.getName() + ": " + e.getMessage());
-                    }
-                }
-                songListView.setItems(items);
+                songListView.setItems(FXCollections.observableArrayList(formattedSongs));
             });
-
         } finally {
             isUpdating = false;
         }
     }
+
 
     public void createPlaylist(String name) {
         playlistService.createPlaylist(name);
@@ -143,17 +147,19 @@ public class PlaylistManager implements PlaylistInterface.PlaylistChangeListener
     }
 
     public void loadSongsFromJson(String filename) {
-        Gson gson = new Gson();
-        try (FileReader reader = new FileReader(filename)) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
             Type listType = new TypeToken<ArrayList<String>>(){}.getType();
-            List<String> songPaths = gson.fromJson(reader, listType);
+            List<String> songPaths = new Gson().fromJson(reader, listType);
 
             if (songPaths != null) {
-                songPaths.sort(String::compareTo);
-                for (String path : songPaths) {
-                    File songFile = new File(path);
-                    if (songFile.exists()) addSong(songFile, songFile.getName());
-                }
+                List<File> validFiles = songPaths.parallelStream()
+                        .map(File::new)
+                        .filter(File::exists)
+                        .sorted(Comparator.comparing(File::getAbsolutePath))
+                        .collect(Collectors.toList());
+                Platform.runLater(() -> {
+                    validFiles.forEach(file -> addSong(file, file.getName()));
+                });
             }
         } catch (Exception e) {
             System.err.println("Error loading saved songs: " + e.getMessage());
