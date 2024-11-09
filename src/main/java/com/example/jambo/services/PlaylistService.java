@@ -7,16 +7,18 @@ import java.util.*;
 
 public class PlaylistService implements PlaylistInterface {
     private final Map<String, List<File>> playlists;
+    private final Map<String, Set<String>> loadedPathsPerPlaylist;
     private String currentPlaylistName;
     private boolean shuffleEnabled = false;
     private final Random random = new Random();
     private final Set<PlaylistChangeListener> listeners = new HashSet<>();
-    private final Set<String> loadedPaths = new HashSet<>();
 
     public PlaylistService() {
         this.playlists = new HashMap<>();
+        this.loadedPathsPerPlaylist = new HashMap<>();
         this.currentPlaylistName = "Default";
         this.playlists.put(currentPlaylistName, new ArrayList<>());
+        this.loadedPathsPerPlaylist.put(currentPlaylistName, new HashSet<>());
     }
 
     private void notifyPlaylistChanged(String playlistName) {
@@ -56,6 +58,8 @@ public class PlaylistService implements PlaylistInterface {
     public void switchToPlaylist(String name) {
         if (playlists.containsKey(name)) {
             currentPlaylistName = name;
+            // Ensure we have a set to track loaded paths for the newly switched playlist
+            loadedPathsPerPlaylist.putIfAbsent(name, new HashSet<>());
             notifyPlaylistChanged(name);
         }
     }
@@ -66,9 +70,10 @@ public class PlaylistService implements PlaylistInterface {
             List<File> playlist = playlists.get(currentPlaylistName);
             if (playlist != null) {
                 String newPath = songFile.getAbsolutePath();
-                if (!loadedPaths.contains(newPath)) {
+                Set<String> loadedPathsForCurrentPlaylist = loadedPathsPerPlaylist.get(currentPlaylistName);
+                if (loadedPathsForCurrentPlaylist != null && !loadedPathsForCurrentPlaylist.contains(newPath)) {
                     playlist.add(songFile);
-                    loadedPaths.add(newPath);
+                    loadedPathsForCurrentPlaylist.add(newPath);
                     notifyPlaylistChanged(currentPlaylistName);
                 }
             }
@@ -77,15 +82,20 @@ public class PlaylistService implements PlaylistInterface {
         }
     }
 
+
     @Override
     public void removeSong(int index) {
         List<File> playlist = playlists.get(currentPlaylistName);
         if (playlist != null && index >= 0 && index < playlist.size()) {
             File removedFile = playlist.remove(index);
-            loadedPaths.remove(removedFile.getAbsolutePath());
+            Set<String> loadedPathsForCurrentPlaylist = loadedPathsPerPlaylist.get(currentPlaylistName);
+            if (loadedPathsForCurrentPlaylist != null) {
+                loadedPathsForCurrentPlaylist.remove(removedFile.getAbsolutePath());
+            }
             notifyPlaylistChanged(currentPlaylistName);
         }
     }
+
 
     public void clearPlaylist(String playlistName) {
         List<File> playlist = playlists.get(playlistName);

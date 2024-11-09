@@ -1,8 +1,6 @@
 package com.example.jambo.ui.dialogs;
 
-import com.example.jambo.Interfaces.DialogInterface;
 import com.example.jambo.controllers.JamboController;
-import com.example.jambo.dependency.injection.DependencyContainer;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
@@ -10,12 +8,17 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.control.cell.PropertyValueFactory;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import javafx.util.Callback;
 import javafx.beans.binding.Bindings;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Collections;
+
 public class PlaylistDialog extends Dialog<Void> {
+
+    private static final String DEFAULT_PLAYLIST_NAME = "Default";
+    private static final String DATE_FORMAT = "yyyy-MM-dd HH:mm";
 
     private final TableView<PlaylistEntry> playlistTable;
     private final ObservableList<PlaylistEntry> playlists;
@@ -23,36 +26,32 @@ public class PlaylistDialog extends Dialog<Void> {
 
     public static class PlaylistEntry {
         private final String name;
-        private final LocalDateTime lastModified;
+        private final LocalDateTime creationTime;
 
         public PlaylistEntry(String name) {
             this.name = name;
-            this.lastModified = LocalDateTime.now();
+            this.creationTime = LocalDateTime.now();
         }
 
         public String getName() { return name; }
 
-        public LocalDateTime getLastModified() { return lastModified; }
-
         public String getFormattedDate() {
-            return lastModified.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+            return creationTime.format(DateTimeFormatter.ofPattern(DATE_FORMAT));
         }
     }
 
     public PlaylistDialog(JamboController controller) {
         this.controller = controller;
-        DialogInterface dialogService = DependencyContainer.getDialogService();
+        this.playlistTable = new TableView<>();
+        this.playlists = FXCollections.observableArrayList();
 
         setTitle("Playlists");
-
-        playlistTable = new TableView<>();
-        playlists = FXCollections.observableArrayList();
+        initModality(Modality.APPLICATION_MODAL);
 
         setupTableColumns();
         setupDialogContent();
         setupDoubleClickHandler();
 
-        initModality(Modality.APPLICATION_MODAL);
         refreshPlaylists();
     }
 
@@ -61,7 +60,7 @@ public class PlaylistDialog extends Dialog<Void> {
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         nameColumn.setPrefWidth(200);
 
-        TableColumn<PlaylistEntry, String> dateColumn = new TableColumn<>("Last Modified");
+        TableColumn<PlaylistEntry, String> dateColumn = new TableColumn<>("Creation Date");
         dateColumn.setCellValueFactory(cellData ->
                 Bindings.createStringBinding(() -> cellData.getValue().getFormattedDate()));
         dateColumn.setPrefWidth(150);
@@ -70,18 +69,16 @@ public class PlaylistDialog extends Dialog<Void> {
         actionColumn.setPrefWidth(100);
         actionColumn.setCellFactory(createDeleteButtonCellFactory());
 
-        playlistTable.getColumns().addAll(nameColumn, dateColumn, actionColumn);
+        Collections.addAll(playlistTable.getColumns(), nameColumn, dateColumn, actionColumn);
         playlistTable.setItems(playlists);
     }
 
     private void setupDialogContent() {
         Button newPlaylistButton = new Button("New Playlist");
-        newPlaylistButton.setOnAction(event -> createNewPlaylist());
+        newPlaylistButton.setOnAction(event -> showNewPlaylistDialog());
 
-        VBox contentLayout = new VBox(10);
+        VBox contentLayout = new VBox(10, newPlaylistButton, playlistTable);
         contentLayout.setPadding(new Insets(10));
-        contentLayout.getChildren().addAll(newPlaylistButton, playlistTable);
-
         getDialogPane().setContent(contentLayout);
         getDialogPane().getButtonTypes().add(ButtonType.CLOSE);
     }
@@ -91,13 +88,16 @@ public class PlaylistDialog extends Dialog<Void> {
             if (event.getClickCount() == 2) {
                 PlaylistEntry selectedEntry = playlistTable.getSelectionModel().getSelectedItem();
                 if (selectedEntry != null) {
-                    String playlistName = selectedEntry.getName();
-                    controller.getPlaylistManager().switchToPlaylist(playlistName);
-                    controller.updateTitleWithPlaylistName(playlistName);
-                    this.close();
+                    switchToPlaylist(selectedEntry.getName());
                 }
             }
         });
+    }
+
+    private void switchToPlaylist(String playlistName) {
+        controller.getPlaylistManager().switchToPlaylist(playlistName);
+        controller.updateTitleWithPlaylistName(playlistName);
+        this.close();
     }
 
     private Callback<TableColumn<PlaylistEntry, Void>, TableCell<PlaylistEntry, Void>> createDeleteButtonCellFactory() {
@@ -105,26 +105,28 @@ public class PlaylistDialog extends Dialog<Void> {
             private final Button deleteButton = new Button("Delete");
 
             {
-                deleteButton.setOnAction(event -> {
-                    PlaylistEntry playlist = getTableView().getItems().get(getIndex());
-                    if (!"Default".equals(playlist.getName()) && showDeleteConfirmationDialog(playlist.getName())) {
-                        controller.getPlaylistManager().deletePlaylist(playlist.getName());
-                        refreshPlaylists();
-                    }
-                });
+                deleteButton.setOnAction(event -> handleDelete(getIndex()));
             }
 
             @Override
             protected void updateItem(Void item, boolean empty) {
                 super.updateItem(item, empty);
-                if (empty) {
-                    setGraphic(null);
-                } else {
-                    PlaylistEntry playlist = getTableView().getItems().get(getIndex());
-                    setGraphic("Default".equals(playlist.getName()) ? null : deleteButton);
-                }
+                setGraphic(empty || isDefaultPlaylist() ? null : deleteButton);
+            }
+
+            private boolean isDefaultPlaylist() {
+                PlaylistEntry playlist = getTableView().getItems().get(getIndex());
+                return DEFAULT_PLAYLIST_NAME.equals(playlist.getName());
             }
         };
+    }
+
+    private void handleDelete(int index) {
+        PlaylistEntry playlist = playlists.get(index);
+        if (showDeleteConfirmationDialog(playlist.getName())) {
+            controller.getPlaylistManager().deletePlaylist(playlist.getName());
+            refreshPlaylists();
+        }
     }
 
     private boolean showDeleteConfirmationDialog(String playlistName) {
@@ -135,7 +137,7 @@ public class PlaylistDialog extends Dialog<Void> {
         return alert.showAndWait().orElse(ButtonType.CANCEL) == ButtonType.OK;
     }
 
-    private void createNewPlaylist() {
+    private void showNewPlaylistDialog() {
         TextInputDialog dialog = new TextInputDialog();
         dialog.setTitle("New Playlist");
         dialog.setHeaderText("Create a new playlist");
@@ -143,11 +145,16 @@ public class PlaylistDialog extends Dialog<Void> {
 
         dialog.showAndWait().ifPresent(this::attemptAddNewPlaylist);
     }
+
     private void attemptAddNewPlaylist(String name) {
-        if (!name.trim().isEmpty()) {
+        if (!name.trim().isEmpty() && isUniquePlaylistName(name)) {
             controller.getPlaylistManager().createPlaylist(name);
             refreshPlaylists();
         }
+    }
+
+    private boolean isUniquePlaylistName(String name) {
+        return playlists.stream().noneMatch(entry -> entry.getName().equalsIgnoreCase(name));
     }
 
     private void refreshPlaylists() {

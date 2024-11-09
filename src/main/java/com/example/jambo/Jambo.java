@@ -26,6 +26,9 @@ public class Jambo extends Application {
 }
 
 //TODO - change the way songs are displayed into more of a table format
+
+//TODO - when restarting songs get reformeted=! uh oh!
+
 //TODO - implement .flac file support?? maybe? would probably need to rework a lot
 //TODO - fix no duplicate songs between playlists
 //TODO - finish settings menu
