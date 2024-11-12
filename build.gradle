@@ -12,11 +12,13 @@ java {
 		languageVersion = JavaLanguageVersion.of(17)
 	}
 }
+
 repositories {
 	mavenCentral()
 	maven { url 'https://jitpack.io' }
-
+	maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
 }
+
 
 dependencies {
 	implementation 'org.openjfx:javafx-base:19'
@@ -33,9 +35,7 @@ dependencies {
 	testImplementation 'org.mockito:mockito-junit-jupiter:5.5.0'
 	testImplementation 'org.testfx:testfx-junit5:4.0.16-alpha'
 	testImplementation 'org.testfx:testfx-core:4.0.16-alpha'
-	testImplementation 'org.testfx:openjfx-monocle:4.0.16-alpha'
-	testImplementation 'com.github.TestFX:openjfx-monocle:8u76-b04'
-	testImplementation 'de.codecentric.centerdevice:javafx-monocle:8u76-b04'
+	testImplementation 'org.testfx:openjfx-monocle:8u76-b04'
 }
 
 javafx {
