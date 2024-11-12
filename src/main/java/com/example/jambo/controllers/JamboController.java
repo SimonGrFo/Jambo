@@ -25,8 +25,6 @@ public class JamboController {
     private boolean isDragging = false;
     private Stage primaryStage;
 
-
-
     public JamboController(JamboUI ui) {
         this.ui = ui;
         try {

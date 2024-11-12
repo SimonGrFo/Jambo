@@ -30,6 +30,8 @@ dependencies {
 	testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.10.0'
 	testImplementation 'org.mockito:mockito-core:5.5.0'
 	testImplementation 'org.mockito:mockito-junit-jupiter:5.5.0'
+	testImplementation 'org.testfx:testfx-junit5:4.0.16-alpha'
+	testImplementation 'org.testfx:testfx-core:4.0.16-alpha'
 }
 
 javafx {

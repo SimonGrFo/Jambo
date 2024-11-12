@@ -14,8 +14,16 @@ public class MusicPlayerService implements MusicPlayerInterface {
     private final Slider volumeSlider;
     private Runnable onEndOfMedia;
 
+    // Primary constructor for production
     public MusicPlayerService(Slider volumeSlider) {
         this.volumeSlider = volumeSlider;
+        setupVolumeControl();
+    }
+
+    // Secondary constructor for testing (injects MediaPlayer)
+    public MusicPlayerService(Slider volumeSlider, MediaPlayer mediaPlayer) {
+        this.volumeSlider = volumeSlider;
+        this.mediaPlayer = mediaPlayer;
         setupVolumeControl();
     }
 
@@ -31,8 +39,11 @@ public class MusicPlayerService implements MusicPlayerInterface {
         });
     }
 
+
     private void setupNewPlayer(Media media, double currentVolume) {
-        mediaPlayer = new MediaPlayer(media);
+        if (mediaPlayer == null) {  // Only create a new player if none is injected
+            mediaPlayer = new MediaPlayer(media);
+        }
         setupMediaPlayer(mediaPlayer, currentVolume);
         mediaPlayer.play();
     }
