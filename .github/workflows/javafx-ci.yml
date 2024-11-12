@@ -1,4 +1,5 @@
 name: JavaFX CI/CD
+
 on:
   push:
     branches: [ "main" ]
@@ -13,11 +14,15 @@ jobs:
       - name: Check out the code
         uses: actions/checkout@v3
 
+      - name: Validate Gradle wrapper
+        uses: gradle/wrapper-validation-action@v1
+
       - name: Set up JDK 17
         uses: actions/setup-java@v3
         with:
           java-version: '17'
           distribution: 'temurin'
+          cache: gradle
 
       - name: Install JavaFX dependencies
         run: |
@@ -38,9 +43,17 @@ jobs:
             ${{ runner.os }}-gradle-
 
       - name: Build with Gradle
+        env:
+          DISPLAY: :99
+          _JAVA_OPTIONS: -Djava.awt.headless=true -Dtestfx.robot=glass -Dtestfx.headless=true -Dprism.order=sw
+          GRADLE_OPTS: "-Dorg.gradle.daemon=false"
         run: xvfb-run --auto-servernum ./gradlew build -x test
 
       - name: Run Tests
+        env:
+          DISPLAY: :99
+          _JAVA_OPTIONS: -Djava.awt.headless=true -Dtestfx.robot=glass -Dtestfx.headless=true -Dprism.order=sw
+          GRADLE_OPTS: "-Dorg.gradle.daemon=false"
         run: |
           xvfb-run --auto-servernum --server-args="-screen 0 1280x1024x24" ./gradlew test
 
@@ -52,3 +65,17 @@ jobs:
           path: |
             build/test-results
             build/reports/tests
+
+      - name: Publish Test Report
+        uses: mikepenz/action-junit-report@v3
+        if: always()
+        with:
+          report_paths: '**/build/test-results/test/TEST-*.xml'
+
+      - name: Build Status Check
+        if: always()
+        run: |
+          if [ "${{ job.status }}" == "failure" ]; then
+            echo "Build failed! Check the logs for more details."
+            exit 1
+          fi
