@@ -20,7 +20,6 @@ public class MusicPlayerServiceTest extends ApplicationTest {
 
     @BeforeAll
     public static void initJavaFX() throws Exception {
-        Thread.sleep(2000);  // Adjust delay as needed
         ApplicationTest.launch(Jambo.class);
     }
 
