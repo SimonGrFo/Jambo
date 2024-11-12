@@ -1,11 +1,13 @@
 package com.example.jambo.services;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
 import com.example.jambo.Jambo;
 import javafx.scene.control.Slider;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.util.Duration;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -18,8 +20,7 @@ public class MusicPlayerServiceTest extends ApplicationTest {
 
     @BeforeAll
     public static void initJavaFX() throws Exception {
-        // Start JavaFX application thread to initialize JavaFX runtime
-        ApplicationTest.launch(Jambo.class);  // Dummy app initialization
+        ApplicationTest.launch(Jambo.class);
     }
 
     @BeforeEach
@@ -30,9 +31,8 @@ public class MusicPlayerServiceTest extends ApplicationTest {
         doNothing().when(mockMediaPlayer).stop();
         doNothing().when(mockMediaPlayer).setVolume(anyDouble());
 
-        // Set up service and clear initial setVolume calls
         musicPlayerService = new MusicPlayerService(volumeSlider, mockMediaPlayer);
-        clearInvocations(mockMediaPlayer);  // Clear any setup interactions
+        clearInvocations(mockMediaPlayer);
     }
 
     @Test
@@ -44,30 +44,66 @@ public class MusicPlayerServiceTest extends ApplicationTest {
 
     @Test
     public void testVolumeControl() {
-        // Set up the slider to simulate user interaction
-        volumeSlider.setValue(0.5);  // Set slider to 50%
+        volumeSlider.setValue(0.5);
 
-        // Play a media item to initialize the mediaPlayer with current volume
         Media mockMedia = mock(Media.class);
         musicPlayerService.playMedia(mockMedia);
 
-        // Verify if setVolume was called with 0.5
         verify(mockMediaPlayer, atLeastOnce()).setVolume(0.5);    }
 
 
     @Test
     public void testMuteToggle() {
-        // Set up initial volume
-        volumeSlider.setValue(0.5);  // Set slider to 50%
-        doNothing().when(mockMediaPlayer).setVolume(anyDouble());
+        clearInvocations(mockMediaPlayer);
 
-        // Mute the player
         musicPlayerService.toggleMute();
-        verify(mockMediaPlayer).setVolume(0);  // Confirm volume set to 0 for mute
+        verify(mockMediaPlayer).setVolume(0);
 
-        // Unmute the player
+        clearInvocations(mockMediaPlayer);
+
         musicPlayerService.toggleMute();
-        verify(mockMediaPlayer).setVolume(0.5);  // Confirm volume set back to slider's value for unmute
+        verify(mockMediaPlayer).setVolume(volumeSlider.getValue());
+    }
+    @Test
+    public void testPauseAndResumeMedia() {
+        musicPlayerService.pauseMedia();
+        verify(mockMediaPlayer).pause();
+
+        musicPlayerService.pauseMedia();
+        verify(mockMediaPlayer).play();
     }
 
+    @Test
+    public void testStopMedia() {
+        // Test stopping functionality
+        musicPlayerService.stopMedia();
+        verify(mockMediaPlayer).stop();
+    }
+
+    @Test
+    public void testToggleLoop() {
+        musicPlayerService.toggleLoop();
+        verify(mockMediaPlayer).setCycleCount(MediaPlayer.INDEFINITE);
+
+        musicPlayerService.toggleLoop();
+        verify(mockMediaPlayer).setCycleCount(1);
+    }
+
+    @Test
+    public void testSeekToPosition() {
+        double seekTime = 30.0;
+        Duration duration = Duration.seconds(seekTime);
+
+        musicPlayerService.seekTo(seekTime);
+        verify(mockMediaPlayer).seek(duration);
+    }
+
+    @Test
+    public void testGetTotalDuration() {
+        Duration duration = Duration.seconds(180);
+        when(mockMediaPlayer.getTotalDuration()).thenReturn(duration);
+
+        Duration result = musicPlayerService.getTotalDuration();
+        assertEquals(duration, result);
+    }
 }

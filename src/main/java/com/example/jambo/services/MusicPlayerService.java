@@ -102,10 +102,12 @@ public class MusicPlayerService implements MusicPlayerInterface {
 
     @Override
     public void toggleMute() {
-        isMuted = !isMuted;
-        if (mediaPlayer != null) {
-            mediaPlayer.setVolume(isMuted ? 0 : volumeSlider.getValue());
+        if (isMuted) {
+            mediaPlayer.setVolume(volumeSlider.getValue());
+        } else {
+            mediaPlayer.setVolume(0);
         }
+        isMuted = !isMuted;
     }
 
     @Override
