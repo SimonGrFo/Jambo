@@ -44,17 +44,17 @@ jobs:
       - name: Build with Gradle
         env:
           DISPLAY: :99
-          _JAVA_OPTIONS: -Djava.awt.headless=true -Dtestfx.robot=glass -Dtestfx.headless=true -Dprism.order=sw
+          _JAVA_OPTIONS: "-Djava.awt.headless=true -Dtestfx.robot=glass -Dtestfx.headless=true -Dprism.order=sw"
           GRADLE_OPTS: "-Dorg.gradle.daemon=false"
-        run: xvfb-run --auto-servernum ./gradlew build
+        run: xvfb-run --auto-servernum ./gradlew build --info --stacktrace
 
       - name: Run Tests
         env:
           DISPLAY: :99
           _JAVA_OPTIONS: "-Djava.awt.headless=true -Dtestfx.robot=glass -Dtestfx.headless=true -Dprism.order=sw -Djavafx.embed.singleThread=true"
           GRADLE_OPTS: "-Dorg.gradle.daemon=false"
-          CLASSPATH: $PWD/build/classes/java/main:$PWD/build/resources/main:$PWD/build/classes/java/test
-        run: xvfb-run --auto-servernum ./gradlew test
+          CLASSPATH: ${{ runner.workspace }}/Jambo/build/classes/java/main:${{ runner.workspace }}/Jambo/build/resources/main:${{ runner.workspace }}/Jambo/build/classes/java/test:${{ runner.workspace }}/Jambo/libs/*
+        run: xvfb-run --auto-servernum ./gradlew test --info --stacktrace
 
       - name: Upload Test Results
         if: always()
