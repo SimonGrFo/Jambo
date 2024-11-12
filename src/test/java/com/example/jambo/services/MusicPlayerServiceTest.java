@@ -49,8 +49,8 @@ public class MusicPlayerServiceTest extends ApplicationTest {
         Media mockMedia = mock(Media.class);
         musicPlayerService.playMedia(mockMedia);
 
-        verify(mockMediaPlayer, atLeastOnce()).setVolume(0.5);    }
-
+        verify(mockMediaPlayer, atLeastOnce()).setVolume(0.5);
+    }
 
     @Test
     public void testMuteToggle() {
@@ -64,6 +64,7 @@ public class MusicPlayerServiceTest extends ApplicationTest {
         musicPlayerService.toggleMute();
         verify(mockMediaPlayer).setVolume(volumeSlider.getValue());
     }
+
     @Test
     public void testPauseAndResumeMedia() {
         musicPlayerService.pauseMedia();
@@ -75,7 +76,6 @@ public class MusicPlayerServiceTest extends ApplicationTest {
 
     @Test
     public void testStopMedia() {
-        // Test stopping functionality
         musicPlayerService.stopMedia();
         verify(mockMediaPlayer).stop();
     }
