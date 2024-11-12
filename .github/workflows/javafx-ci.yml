@@ -47,7 +47,7 @@ jobs:
           DISPLAY: :99
           _JAVA_OPTIONS: -Djava.awt.headless=true -Dtestfx.robot=glass -Dtestfx.headless=true -Dprism.order=sw
           GRADLE_OPTS: "-Dorg.gradle.daemon=false"
-        run: xvfb-run --auto-servernum ./gradlew build -x test
+        run: ./gradlew build
 
       - name: Run Tests
         env:
