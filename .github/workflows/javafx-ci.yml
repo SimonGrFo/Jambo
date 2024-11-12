@@ -51,9 +51,8 @@ jobs:
       - name: Run Tests
         env:
           DISPLAY: :99
-          _JAVA_OPTIONS: "-Djava.awt.headless=true -Dtestfx.robot=glass -Dtestfx.headless=true -Dprism.order=sw -Djavafx.embed.singleThread=true"
+          _JAVA_OPTIONS: "-Djava.awt.headless=true -Dtestfx.robot=glass -Dtestfx.headless=true -Dprism.order=sw -Dmonocle.platform=Headless"
           GRADLE_OPTS: "-Dorg.gradle.daemon=false"
-          CLASSPATH: ${{ runner.workspace }}/Jambo/build/classes/java/main:${{ runner.workspace }}/Jambo/build/resources/main:${{ runner.workspace }}/Jambo/build/classes/java/test:${{ runner.workspace }}/Jambo/libs/*
         run: xvfb-run --auto-servernum ./gradlew test --info --stacktrace
 
       - name: Upload Test Results
