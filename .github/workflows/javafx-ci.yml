@@ -53,8 +53,8 @@ jobs:
           DISPLAY: :99
           _JAVA_OPTIONS: -Djava.awt.headless=true -Dtestfx.robot=glass -Dtestfx.headless=true -Dprism.order=sw
           GRADLE_OPTS: "-Dorg.gradle.daemon=false"
-        run: |
-          xvfb-run --auto-servernum --server-args="-screen 0 1280x1024x24" ./gradlew test
+          CLASSPATH: $PWD/build/classes/java/main:$PWD/build/resources/main:$PWD/build/classes/java/test
+        run: ./gradlew test
 
       - name: Upload Test Results
         if: always()
