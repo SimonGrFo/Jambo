@@ -35,6 +35,7 @@ dependencies {
 	testImplementation 'org.testfx:testfx-core:4.0.16-alpha'
 	testImplementation 'org.testfx:openjfx-monocle:4.0.16-alpha'
 	testImplementation 'com.github.TestFX:openjfx-monocle:8u76-b04'
+	testImplementation 'de.codecentric.centerdevice:javafx-monocle:8u76-b04'
 }
 
 javafx {
