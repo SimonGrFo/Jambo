@@ -14,6 +14,8 @@ java {
 }
 repositories {
 	mavenCentral()
+	maven { url 'https://jitpack.io' }
+
 }
 
 dependencies {
@@ -32,6 +34,7 @@ dependencies {
 	testImplementation 'org.testfx:testfx-junit5:4.0.16-alpha'
 	testImplementation 'org.testfx:testfx-core:4.0.16-alpha'
 	testImplementation 'org.testfx:openjfx-monocle:4.0.16-alpha'
+	testImplementation 'com.github.TestFX:openjfx-monocle:8u76-b04'
 }
 
 javafx {
