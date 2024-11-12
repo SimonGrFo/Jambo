@@ -19,7 +19,7 @@ public class MusicPlayerServiceTest extends ApplicationTest {
     private Slider volumeSlider;
 
     @BeforeAll
-    public static void initJavaFX() throws Exception { //test
+    public static void initJavaFX() throws Exception {
         ApplicationTest.launch(Jambo.class);
     }
 
