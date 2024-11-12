@@ -44,7 +44,7 @@ jobs:
       - name: Build with Gradle
         env:
           DISPLAY: :99
-          _JAVA_OPTIONS: "-Djava.awt.headless=true -Dtestfx.robot=glass -Dtestfx.headless=true -Dprism.order=sw"
+          _JAVA_OPTIONS: "-Djava.awt.headless=true -Dtestfx.robot=glass -Dtestfx.headless=true -Dprism.order=sw -Dmonocle.platform=Headless"
           GRADLE_OPTS: "-Dorg.gradle.daemon=false"
         run: xvfb-run --auto-servernum ./gradlew build --info --stacktrace
 
@@ -71,9 +71,7 @@ jobs:
           report_paths: '**/build/test-results/test/TEST-*.xml'
 
       - name: Build Status Check
-        if: always()
+        if: failure()
         run: |
-          if [ "${{ job.status }}" == "failure" ]; then
-            echo "Build failed! Check the logs for more details."
-            exit 1
-          fi
+          echo "Build failed! Check the logs for more details."
+          exit 1
