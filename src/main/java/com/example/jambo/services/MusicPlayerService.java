@@ -52,9 +52,7 @@ public class MusicPlayerService implements MusicPlayerInterface {
         mediaPlayer = new MediaPlayer(media);
         setupMediaPlayer(mediaPlayer, currentVolume);
 
-        mediaPlayer.setOnReady(() -> {
-            mediaPlayer.play();
-        });
+        mediaPlayer.setOnReady(() -> mediaPlayer.play());
     }
 
     private void setupMediaPlayer(MediaPlayer player, double volume) {
@@ -66,9 +64,7 @@ public class MusicPlayerService implements MusicPlayerInterface {
         player.setCycleCount(isLooping ? MediaPlayer.INDEFINITE : 1);
         setupEndOfMediaHandler(player);
 
-        player.statusProperty().addListener((observable, oldValue, newValue) -> {
-            System.out.println("MediaPlayer status changed from " + oldValue + " to " + newValue);
-        });
+        player.statusProperty().addListener((observable, oldValue, newValue) -> System.out.println("MediaPlayer status changed from " + oldValue + " to " + newValue));
     }
 
     private void setupEndOfMediaHandler(MediaPlayer player) {
@@ -83,8 +79,10 @@ public class MusicPlayerService implements MusicPlayerInterface {
 
     @Override
     public void playMedia(Media media) {
-        double currentVolume = volumeSlider.getValue();
-        setupNewPlayer(media, currentVolume);
+        if (mediaPlayer == null || !mediaPlayer.getMedia().equals(media)) {
+            setupNewPlayer(media, volumeSlider.getValue());
+        }
+        mediaPlayer.play();
     }
 
     @Override

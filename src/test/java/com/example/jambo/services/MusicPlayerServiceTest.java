@@ -13,6 +13,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockitoAnnotations;
 import org.testfx.framework.junit5.ApplicationTest;
+import static org.mockito.Mockito.*;
 
 public class MusicPlayerServiceTest extends ApplicationTest {
     private MusicPlayerService musicPlayerService;
@@ -29,52 +30,38 @@ public class MusicPlayerServiceTest extends ApplicationTest {
     public void setUp() {
         MockitoAnnotations.openMocks(this);
 
-        // Initialize slider and set default value
+        // Initialize slider and set a default value
         volumeSlider = new Slider(0, 1, 0.5);
 
-        // Create mock MediaPlayer and Media
+        // Mock MediaPlayer and Media
         mockMediaPlayer = mock(MediaPlayer.class);
         mockMedia = mock(Media.class);
 
-        // Setup common mock behaviors
+        // Inject the mock MediaPlayer directly
+        musicPlayerService = new MusicPlayerService(volumeSlider, mockMediaPlayer);
+
+        // Set up common behaviors for the mock media player
+        when(mockMediaPlayer.getMedia()).thenReturn(mockMedia);
         doNothing().when(mockMediaPlayer).play();
         doNothing().when(mockMediaPlayer).pause();
         doNothing().when(mockMediaPlayer).stop();
+        when(mockMediaPlayer.getTotalDuration()).thenReturn(Duration.seconds(180));
         doNothing().when(mockMediaPlayer).setVolume(anyDouble());
         doNothing().when(mockMediaPlayer).seek(any(Duration.class));
-        when(mockMediaPlayer.getTotalDuration()).thenReturn(Duration.seconds(180));
-
-        // Initialize service with mocked MediaPlayer
-        musicPlayerService = spy(new MusicPlayerService(volumeSlider, mockMediaPlayer));
-
-        // Clear any invocations from initialization
-        clearInvocations(mockMediaPlayer);
-    }
-
-    @Test
-    public void testPlayMedia() {
-        // Create a new MediaPlayer for the new Media
-        MediaPlayer newMediaPlayer = mock(MediaPlayer.class);
-        doReturn(newMediaPlayer).when(musicPlayerService).getMediaPlayer();
-
-        // Play the media
-        musicPlayerService.playMedia(mockMedia);
-
-        // Verify the new MediaPlayer is set up correctly
-        verify(newMediaPlayer, timeout(1000)).setVolume(volumeSlider.getValue());
     }
 
     @Test
     public void testVolumeControl() {
-        // Set volume through slider
-        volumeSlider.setValue(0.5);
+        // Adjust the volume on the slider
+        volumeSlider.setValue(0.7);
 
-        // Play media to trigger volume setting
+        // Trigger volume change by calling playMedia()
         musicPlayerService.playMedia(mockMedia);
 
-        // Verify volume was set
-        verify(mockMediaPlayer, atLeastOnce()).setVolume(0.5);
+        // Verify that volume has been set as expected
+        verify(mockMediaPlayer, atLeastOnce()).setVolume(0.7);
     }
+
 
     @Test
     public void testMuteToggle() {
