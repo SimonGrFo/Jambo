@@ -14,13 +14,11 @@ public class MusicPlayerService implements MusicPlayerInterface {
     private final Slider volumeSlider;
     private Runnable onEndOfMedia;
 
-    // Primary constructor for production
     public MusicPlayerService(Slider volumeSlider) {
         this.volumeSlider = volumeSlider;
         setupVolumeControl();
     }
 
-    // Secondary constructor for testing (injects MediaPlayer)
     public MusicPlayerService(Slider volumeSlider, MediaPlayer mediaPlayer) {
         this.volumeSlider = volumeSlider;
         this.mediaPlayer = mediaPlayer;
@@ -29,6 +27,9 @@ public class MusicPlayerService implements MusicPlayerInterface {
 
     public void setOnEndOfMedia(Runnable callback) {
         this.onEndOfMedia = callback;
+        if (mediaPlayer != null) {
+            setupEndOfMediaHandler(mediaPlayer);
+        }
     }
 
     private void setupVolumeControl() {
@@ -39,24 +40,42 @@ public class MusicPlayerService implements MusicPlayerInterface {
         });
     }
 
-
     private void setupNewPlayer(Media media, double currentVolume) {
-        if (mediaPlayer == null) {  // Only create a new player if none is injected
-            mediaPlayer = new MediaPlayer(media);
+        if (mediaPlayer != null) {
+            MediaPlayer oldPlayer = mediaPlayer;
+            javafx.application.Platform.runLater(() -> {
+                oldPlayer.stop();
+                oldPlayer.dispose();
+            });
         }
+
+        mediaPlayer = new MediaPlayer(media);
         setupMediaPlayer(mediaPlayer, currentVolume);
-        mediaPlayer.play();
+
+        mediaPlayer.setOnReady(() -> {
+            mediaPlayer.play();
+        });
     }
 
     private void setupMediaPlayer(MediaPlayer player, double volume) {
         player.setOnError(() ->
-                System.err.println("Media player error: " + player.getError().getMessage()));
+                System.err.println("Media player error: " + player.getError().getMessage())
+        );
 
         player.setVolume(isMuted ? 0 : volume);
         player.setCycleCount(isLooping ? MediaPlayer.INDEFINITE : 1);
+        setupEndOfMediaHandler(player);
 
+        player.statusProperty().addListener((observable, oldValue, newValue) -> {
+            System.out.println("MediaPlayer status changed from " + oldValue + " to " + newValue);
+        });
+    }
+
+    private void setupEndOfMediaHandler(MediaPlayer player) {
         player.setOnEndOfMedia(() -> {
             if (!isLooping && onEndOfMedia != null) {
+                player.seek(Duration.ZERO);
+                player.stop();
                 onEndOfMedia.run();
             }
         });
@@ -65,10 +84,6 @@ public class MusicPlayerService implements MusicPlayerInterface {
     @Override
     public void playMedia(Media media) {
         double currentVolume = volumeSlider.getValue();
-        if (mediaPlayer != null) {
-            mediaPlayer.stop();
-            mediaPlayer.dispose();
-        }
         setupNewPlayer(media, currentVolume);
     }
 
@@ -77,11 +92,10 @@ public class MusicPlayerService implements MusicPlayerInterface {
         if (mediaPlayer != null) {
             if (isPaused) {
                 mediaPlayer.play();
-                isPaused = false;
             } else {
                 mediaPlayer.pause();
-                isPaused = true;
             }
+            isPaused = !isPaused;
         }
     }
 
@@ -89,6 +103,7 @@ public class MusicPlayerService implements MusicPlayerInterface {
     public void stopMedia() {
         if (mediaPlayer != null) {
             mediaPlayer.stop();
+            isPaused = false;
         }
     }
 
@@ -102,12 +117,10 @@ public class MusicPlayerService implements MusicPlayerInterface {
 
     @Override
     public void toggleMute() {
-        if (isMuted) {
-            mediaPlayer.setVolume(volumeSlider.getValue());
-        } else {
-            mediaPlayer.setVolume(0);
-        }
         isMuted = !isMuted;
+        if (mediaPlayer != null) {
+            mediaPlayer.setVolume(isMuted ? 0 : volumeSlider.getValue());
+        }
     }
 
     @Override

@@ -157,14 +157,24 @@ public class PlaylistManager implements PlaylistInterface.PlaylistChangeListener
                         .filter(File::exists)
                         .sorted(Comparator.comparing(File::getAbsolutePath))
                         .collect(Collectors.toList());
+
                 Platform.runLater(() -> {
-                    validFiles.forEach(file -> addSong(file, file.getName()));
+                    validFiles.forEach(file -> {
+                        try {
+                            String formattedMetadata = metadataService.formatSongMetadata(file);
+                            addSong(file, formattedMetadata);
+                        } catch (Exception e) {
+                            System.err.println("Error formatting metadata for " + file.getName() + ": " + e.getMessage());
+                            addSong(file, file.getName());
+                        }
+                    });
                 });
             }
         } catch (Exception e) {
             System.err.println("Error loading saved songs: " + e.getMessage());
         }
     }
+
 
     public void saveSongsToJson(String filename) {
         Gson gson = new Gson();
