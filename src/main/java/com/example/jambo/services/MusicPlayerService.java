@@ -3,10 +3,15 @@ package com.example.jambo.services;
 import com.example.jambo.Interfaces.MusicPlayerInterface;
 import javafx.scene.control.Slider;
 import javafx.scene.media.Media;
+import javafx.scene.media.MediaException;
 import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import com.example.jambo.util.LoggerUtil;
 
 public class MusicPlayerService implements MusicPlayerInterface {
+    private static final Logger logger = LoggerFactory.getLogger(MusicPlayerService.class);
     private MediaPlayer mediaPlayer;
     private boolean isPaused = false;
     private boolean isLooping = false;
@@ -40,32 +45,25 @@ public class MusicPlayerService implements MusicPlayerInterface {
         });
     }
 
-    private void setupNewPlayer(Media media, double currentVolume) {
-        if (mediaPlayer != null) {
-            MediaPlayer oldPlayer = mediaPlayer;
-            javafx.application.Platform.runLater(() -> {
-                oldPlayer.stop();
-                oldPlayer.dispose();
-            });
-        }
 
-        mediaPlayer = new MediaPlayer(media);
-        setupMediaPlayer(mediaPlayer, currentVolume);
-
-        mediaPlayer.setOnReady(() -> mediaPlayer.play());
-    }
 
     private void setupMediaPlayer(MediaPlayer player, double volume) {
-        player.setOnError(() ->
-                System.err.println("Media player error: " + player.getError().getMessage())
-        );
+        player.setOnError(() -> {
+            MediaException error = player.getError();
+            logger.error("MediaPlayer error: {}", error.getMessage(), error);
+        });
 
         player.setVolume(isMuted ? 0 : volume);
         player.setCycleCount(isLooping ? MediaPlayer.INDEFINITE : 1);
         setupEndOfMediaHandler(player);
 
-        player.statusProperty().addListener((observable, oldValue, newValue) -> System.out.println("MediaPlayer status changed from " + oldValue + " to " + newValue));
+        player.statusProperty().addListener((observable, oldValue, newValue) ->
+                LoggerUtil.logMediaPlayerState(logger, newValue.toString(),
+                        String.format("Volume: %.2f, Muted: %b, Looping: %b",
+                                volume, isMuted, isLooping))
+        );
     }
+
 
     private void setupEndOfMediaHandler(MediaPlayer player) {
         player.setOnEndOfMedia(() -> {
@@ -79,10 +77,29 @@ public class MusicPlayerService implements MusicPlayerInterface {
 
     @Override
     public void playMedia(Media media) {
-        if (mediaPlayer == null || !mediaPlayer.getMedia().equals(media)) {
-            setupNewPlayer(media, volumeSlider.getValue());
+        try {
+            logger.info("Starting playback of media: {}", media.getSource());
+            if (mediaPlayer != null) {
+                MediaPlayer oldPlayer = mediaPlayer;
+                logger.debug("Disposing of old MediaPlayer instance");
+                javafx.application.Platform.runLater(() -> {
+                    oldPlayer.stop();
+                    oldPlayer.dispose();
+                });
+            }
+
+            mediaPlayer = new MediaPlayer(media);
+            setupMediaPlayer(mediaPlayer, volumeSlider.getValue());
+            logger.debug("New MediaPlayer instance created and configured");
+
+            mediaPlayer.setOnReady(() -> {
+                mediaPlayer.play();
+                logger.info("Media playback started successfully");
+            });
+        } catch (Exception e) {
+            logger.error("Failed to play media: {}", LoggerUtil.formatException(e), e);
+            throw e;
         }
-        mediaPlayer.play();
     }
 
     @Override
