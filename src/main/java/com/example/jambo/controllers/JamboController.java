@@ -16,8 +16,12 @@ import java.util.*;
 import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 import java.nio.file.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class JamboController {
+    private static final Logger logger = LoggerFactory.getLogger(JamboController.class);
+
     private final MusicPlayerManager musicPlayerManager;
     private final PlaylistManager playlistManager;
     private final MetadataManager metadataManager;
@@ -47,7 +51,9 @@ public class JamboController {
                     ui.getAlbumArtPlaceholder()
             );
             setupEventHandlers();
+            logger.info("JamboController initialized successfully.");
         } catch (Exception e) {
+            logger.error("Failed to initialize JamboController", e);
             throw new RuntimeException("Failed to initialize JamboController", e);
         }
     }
@@ -86,6 +92,7 @@ public class JamboController {
         primaryStage.setMinHeight(800);
         primaryStage.setOnCloseRequest(event -> saveSongsToJson());
         primaryStage.show();
+        logger.info("Primary stage configured and displayed.");
     }
 
     public void updateTitleWithPlaylistName(String playlistName) {
@@ -104,14 +111,16 @@ public class JamboController {
                 if (songFile != null && songFile.exists()) {
                     Media media = new Media(songFile.toURI().toString());
                     musicPlayerManager.playMedia(media);
+                    logger.info("Playing selected song: {}", songFile.getName());
 
                     musicPlayerManager.setOnEndOfMedia(this::playNextSong);
-
                     metadataManager.updateFileInfo(songFile);
+                } else {
+                    logger.warn("Selected song file does not exist: {}", songFile);
                 }
             }
         } catch (Exception e) {
-            // nothing yet
+            logger.error("Failed to play selected song", e);
         }
     }
 
@@ -136,7 +145,7 @@ public class JamboController {
                             .sorted(Comparator.comparing(File::getAbsolutePath))
                             .collect(Collectors.toList());
                 } catch (IOException e) {
-                    System.err.println("Error scanning directory: " + e.getMessage());
+                    logger.error("Error scanning directory: {}", selectedDirectory, e);
                     return Collections.emptyList();
                 }
             }).thenAccept(files -> {

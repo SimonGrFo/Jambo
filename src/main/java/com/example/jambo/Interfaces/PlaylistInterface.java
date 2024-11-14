@@ -23,5 +23,7 @@ public interface PlaylistInterface {
     interface PlaylistChangeListener {
         void onPlaylistChanged(String playlistName, List<File> songs);
         void onCurrentPlaylistChanged(String newPlaylistName);
+
+        void addSong(File songFile, String formattedInfo);
     }
 }

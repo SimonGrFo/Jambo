@@ -6,6 +6,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import java.io.File;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import java.io.File;
 
 public class MetadataManager {
     private final MetadataInterface metadataService;
@@ -13,9 +16,11 @@ public class MetadataManager {
     private final Label currentSongLabel;
     private final Pane albumArtPane;
     private final ImageView albumArtView;
+    private static final Logger logger = LoggerFactory.getLogger(MetadataManager.class);
 
     public MetadataManager(MetadataInterface metadataService, Label fileInfoLabel,
                            Label currentSongLabel, Pane albumArtPane) {
+
         this.metadataService = metadataService;
         this.fileInfoLabel = fileInfoLabel;
         this.currentSongLabel = currentSongLabel;
@@ -43,7 +48,7 @@ public class MetadataManager {
             updateAlbumArt(songFile);
         } catch (Exception e) {
             fileInfoLabel.setText("Error retrieving metadata");
-            System.err.println("Error reading metadata: " + e.getMessage());
+            logger.error("Error reading metadata for file {}: {}", songFile.getName(), e.getMessage(), e);
             clearAlbumArt();
         }
     }
@@ -58,7 +63,7 @@ public class MetadataManager {
                 clearAlbumArt();
             }
         } catch (Exception e) {
-            System.err.println("Error loading album art: " + e.getMessage());
+            logger.error("Error loading album art for file {}: {}", songFile.getName(), e.getMessage(), e);
             clearAlbumArt();
         }
     }
