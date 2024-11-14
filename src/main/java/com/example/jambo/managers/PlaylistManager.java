@@ -173,28 +173,25 @@ public class PlaylistManager implements PlaylistInterface.PlaylistChangeListener
                         .map(File::new)
                         .filter(File::exists)
                         .sorted(Comparator.comparing(File::getAbsolutePath))
-                        .collect(Collectors.toList());
+                        .toList();
 
                 logger.info("Valid files found: {}/{}", validFiles.size(), songPaths.size());
 
-                Platform.runLater(() -> {
-                    validFiles.forEach(file -> {
-                        try {
-                            String formattedMetadata = metadataService.formatSongMetadata(file);
-                            addSong(file, formattedMetadata);
-                        } catch (Exception e) {
-                            logger.error("Error formatting metadata for {}: {}",
-                                    file.getName(), LoggerUtil.formatException(e));
-                            addSong(file, file.getName());
-                        }
-                    });
-                });
+                Platform.runLater(() -> validFiles.forEach(file -> {
+                    try {
+                        String formattedMetadata = metadataService.formatSongMetadata(file);
+                        addSong(file, formattedMetadata);
+                    } catch (Exception e) {
+                        logger.error("Error formatting metadata for {}: {}",
+                                file.getName(), LoggerUtil.formatException(e));
+                        addSong(file, file.getName());
+                    }
+                }));
             }
         } catch (Exception e) {
             logger.error("Failed to load saved songs: {}", LoggerUtil.formatException(e), e);
         }
     }
-
 
     public void saveSongsToJson(String filename) {
         Gson gson = new Gson();

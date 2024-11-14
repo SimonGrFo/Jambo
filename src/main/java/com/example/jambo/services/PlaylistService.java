@@ -149,7 +149,7 @@ public class PlaylistService implements PlaylistInterface {
     }
 
     @Override
-    public void toggleShuffle() {
+    public synchronized void toggleShuffle() {
         shuffleEnabled = !shuffleEnabled;
         logger.info("Shuffle mode set to '{}'", shuffleEnabled);
         if (shuffleEnabled && random == null) {
@@ -179,7 +179,6 @@ public class PlaylistService implements PlaylistInterface {
             logger.debug("Previous song index calculated as '{}'", prevIndex);
             return prevIndex;
         }
-        logger.warn("Invalid currentIndex or empty playlist: index '{}', playlist '{}'", currentIndex, currentPlaylistName);
         return -1;
     }
 

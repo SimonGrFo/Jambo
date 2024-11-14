@@ -38,10 +38,6 @@ public class DependencyContainer {
         return playlistService;
     }
 
-    public static DialogInterface getDialogService() {
-        return dialogService;
-    }
-
     public static IconService getIconService() {
         return iconService;
     }

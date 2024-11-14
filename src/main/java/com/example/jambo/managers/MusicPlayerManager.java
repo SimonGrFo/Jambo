@@ -14,7 +14,7 @@ public class MusicPlayerManager {
     private final Slider progressSlider;
 
     public MusicPlayerManager(MusicPlayerInterface musicPlayer, Label currentSongLabel,
-                              Label timerLabel, Slider progressSlider, Slider volumeSlider) {
+                              Label timerLabel, Slider progressSlider) {
         this.musicPlayer = musicPlayer;
         this.currentSongLabel = currentSongLabel;
         this.timerLabel = timerLabel;

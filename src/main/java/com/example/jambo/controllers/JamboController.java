@@ -16,6 +16,8 @@ import java.util.*;
 import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 import java.nio.file.*;
+import java.util.stream.Stream;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -37,8 +39,7 @@ public class JamboController {
                     DependencyContainer.getMusicPlayerService(),
                     ui.getCurrentSongLabel(),
                     ui.getTimerLabel(),
-                    ui.getProgressSlider(),
-                    ui.getVolumeSlider()
+                    ui.getProgressSlider()
             );
             this.playlistManager = new PlaylistManager(
                     DependencyContainer.getPlaylistService(),
@@ -137,27 +138,26 @@ public class JamboController {
                             .map(File::getAbsolutePath)
                             .collect(Collectors.toSet());
 
-                    return Files.walk(selectedDirectory.toPath())
-                            .parallel()
-                            .filter(path -> path.toString().toLowerCase().endsWith(".mp3"))
-                            .map(Path::toFile)
-                            .filter(file -> !existingPaths.contains(file.getAbsolutePath()))
-                            .sorted(Comparator.comparing(File::getAbsolutePath))
-                            .collect(Collectors.toList());
+                    try (Stream<Path> paths = Files.walk(selectedDirectory.toPath()).parallel()) {
+                        return paths
+                                .filter(path -> path.toString().toLowerCase().endsWith(".mp3"))
+                                .map(Path::toFile)
+                                .filter(file -> !existingPaths.contains(file.getAbsolutePath()))
+                                .sorted(Comparator.comparing(File::getAbsolutePath))
+                                .collect(Collectors.toList());
+                    }
                 } catch (IOException e) {
                     logger.error("Error scanning directory: {}", selectedDirectory, e);
                     return Collections.emptyList();
                 }
-            }).thenAccept(files -> {
-                Platform.runLater(() -> {
-                    for (Object file : files) {
-                        addFileToPlaylist((File) file);
-                    }
-                    playlistManager.onPlaylistChanged(playlistManager.getCurrentPlaylistName(),
-                            playlistManager.getSongFiles());
-                    saveSongsToJson();
-                });
-            });
+            }).thenAccept(files -> Platform.runLater(() -> {
+                for (Object file : files) {
+                    addFileToPlaylist((File) file);
+                }
+                playlistManager.onPlaylistChanged(playlistManager.getCurrentPlaylistName(),
+                        playlistManager.getSongFiles());
+                saveSongsToJson();
+            }));
         }
     }
 

@@ -24,12 +24,6 @@ public class MusicPlayerService implements MusicPlayerInterface {
         setupVolumeControl();
     }
 
-    public MusicPlayerService(Slider volumeSlider, MediaPlayer mediaPlayer) {
-        this.volumeSlider = volumeSlider;
-        this.mediaPlayer = mediaPlayer;
-        setupVolumeControl();
-    }
-
     public void setOnEndOfMedia(Runnable callback) {
         this.onEndOfMedia = callback;
         if (mediaPlayer != null) {
@@ -44,8 +38,6 @@ public class MusicPlayerService implements MusicPlayerInterface {
             }
         });
     }
-
-
 
     private void setupMediaPlayer(MediaPlayer player, double volume) {
         player.setOnError(() -> {
@@ -63,7 +55,6 @@ public class MusicPlayerService implements MusicPlayerInterface {
                                 volume, isMuted, isLooping))
         );
     }
-
 
     private void setupEndOfMediaHandler(MediaPlayer player) {
         player.setOnEndOfMedia(() -> {

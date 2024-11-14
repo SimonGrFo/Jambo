@@ -1,4 +1,4 @@
-package com.example.jambo.ui.dialogs;
+package com.example.jambo.dialogs;
 
 import javafx.scene.control.*;
 import javafx.stage.Modality;
