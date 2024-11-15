@@ -1,22 +1,31 @@
 package com.example.jambo;
 
+import com.example.jambo.config.JamboConfig;
 import com.example.jambo.controllers.JamboController;
 import com.example.jambo.ui.JamboUI;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.context.ConfigurableApplicationContext;
 
 import java.util.Objects;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
 public class Jambo extends Application {
+    private ConfigurableApplicationContext springContext;
+
+    @Override
+    public void init() {
+        springContext = new SpringApplicationBuilder(JamboConfig.class).run();
+    }
+
     @Override
     public void start(Stage primaryStage) {
-        LogManager.getLogManager().reset();
-        Logger.getLogger("org.jaudiotagger").setLevel(java.util.logging.Level.OFF);
-        JamboUI ui = new JamboUI();
-        JamboController controller = new JamboController(ui);
+        JamboUI ui = springContext.getBean(JamboUI.class);
+        JamboController controller = springContext.getBean(JamboController.class);
+
         controller.initializeStage(primaryStage);
         Scene scene = ui.createScene(controller);
         scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/styles/style.css")).toExternalForm());
@@ -24,7 +33,8 @@ public class Jambo extends Application {
         primaryStage.show();
     }
 
-    public static void main(String[] args) {
-        launch(args);
+    @Override
+    public void stop() {
+        springContext.close();
     }
 }

@@ -1,6 +1,7 @@
 package com.example.jambo.managers;
 
 import com.example.jambo.Interfaces.MetadataInterface;
+import com.example.jambo.services.MetadataService;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -8,18 +9,23 @@ import javafx.scene.layout.Pane;
 import java.io.File;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 
+@Component
 public class MetadataManager {
-    private final MetadataInterface metadataService;
+    private static final Logger logger = LoggerFactory.getLogger(MetadataManager.class);
+    private final MetadataService metadataService;
     private final Label fileInfoLabel;
     private final Label currentSongLabel;
     private final Pane albumArtPane;
     private final ImageView albumArtView;
-    private static final Logger logger = LoggerFactory.getLogger(MetadataManager.class);
 
-    public MetadataManager(MetadataInterface metadataService, Label fileInfoLabel,
-                           Label currentSongLabel, Pane albumArtPane) {
-
+    public MetadataManager(
+            MetadataService metadataService,
+            Label fileInfoLabel,
+            Label currentSongLabel,
+            Pane albumArtPane) {
         this.metadataService = metadataService;
         this.fileInfoLabel = fileInfoLabel;
         this.currentSongLabel = currentSongLabel;

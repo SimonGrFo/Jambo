@@ -6,31 +6,38 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.media.Media;
 import javafx.util.Duration;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 
+@Component
 public class MusicPlayerManager {
-    private final MusicPlayerInterface musicPlayer;
+    private final MusicPlayerService musicPlayerService;
     private final Label currentSongLabel;
     private final Label timerLabel;
     private final Slider progressSlider;
 
-    public MusicPlayerManager(MusicPlayerInterface musicPlayer, Label currentSongLabel,
-                              Label timerLabel, Slider progressSlider) {
-        this.musicPlayer = musicPlayer;
+    public MusicPlayerManager(
+            MusicPlayerService musicPlayerService,
+            Label currentSongLabel,
+            Label timerLabel,
+            Slider progressSlider) {
+        this.musicPlayerService = musicPlayerService;
         this.currentSongLabel = currentSongLabel;
         this.timerLabel = timerLabel;
         this.progressSlider = progressSlider;
     }
 
     public void playMedia(Media media) {
-        musicPlayer.playMedia(media);
+        musicPlayerService.playMedia(media);
         setupTimeUpdates();
     }
 
     private void setupTimeUpdates() {
-        musicPlayer.getMediaPlayer().currentTimeProperty().addListener((observable, oldValue, newValue) -> {
+        musicPlayerService.getMediaPlayer().currentTimeProperty().addListener((observable, oldValue, newValue) -> {
             if (!progressSlider.isPressed()) {
-                Duration current = musicPlayer.getMediaPlayer().getCurrentTime();
-                Duration total = musicPlayer.getTotalDuration();
+                Duration current = musicPlayerService.getMediaPlayer().getCurrentTime();
+                Duration total = musicPlayerService.getTotalDuration();
 
                 if (total != null) {
                     double progress = current.toSeconds() / total.toSeconds();
@@ -51,36 +58,36 @@ public class MusicPlayerManager {
     }
 
     public void pauseMusic() {
-        musicPlayer.pauseMedia();
+        musicPlayerService.pauseMedia();
     }
 
     public void stopMusic() {
-        musicPlayer.stopMedia();
+        musicPlayerService.stopMedia();
         currentSongLabel.setText("No song playing");
         progressSlider.setValue(0);
         timerLabel.setText("0:00 / 0:00");
     }
 
     public void toggleLoop() {
-        musicPlayer.toggleLoop();
+        musicPlayerService.toggleLoop();
     }
 
     public void toggleMute() {
-        musicPlayer.toggleMute();
+        musicPlayerService.toggleMute();
     }
 
     public void seekTo(double time) {
-        musicPlayer.seekTo(time);
+        musicPlayerService.seekTo(time);
     }
 
     public double getTotalDuration() {
-        return musicPlayer.getMediaPlayer() != null ?
-                musicPlayer.getTotalDuration().toSeconds() : 0;
+        return musicPlayerService.getMediaPlayer() != null ?
+                musicPlayerService.getTotalDuration().toSeconds() : 0;
     }
 
     public void setOnEndOfMedia(Runnable callback) {
-        if (musicPlayer instanceof MusicPlayerService) {
-            ((MusicPlayerService) musicPlayer).setOnEndOfMedia(callback);
+        if (musicPlayerService != null) {
+            ((MusicPlayerService) musicPlayerService).setOnEndOfMedia(callback);
         }
     }
 }

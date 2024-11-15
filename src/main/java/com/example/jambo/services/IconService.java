@@ -2,9 +2,12 @@ package com.example.jambo.services;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import org.springframework.stereotype.Component;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+@Component
 
 public class IconService {
     private final Map<String, Image> icons = new HashMap<>();

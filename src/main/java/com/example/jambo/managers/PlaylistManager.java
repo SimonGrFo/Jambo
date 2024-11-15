@@ -1,12 +1,15 @@
 package com.example.jambo.managers;
 
 import com.example.jambo.Interfaces.PlaylistInterface;
+import com.example.jambo.controllers.JamboController;
 import com.example.jambo.services.MetadataService;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.scene.control.ListView;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -21,13 +24,18 @@ import java.util.stream.Collectors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.example.jambo.util.LoggerUtil;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 
+@Component
 public class PlaylistManager implements PlaylistInterface.PlaylistChangeListener {
-    private static final Logger logger = LoggerFactory.getLogger(PlaylistManager.class);
     private final PlaylistInterface playlistService;
     private final ListView<String> songListView;
     private final MetadataService metadataService;
     private boolean isUpdating = false;
+    private static final Logger logger = LoggerFactory.getLogger(PlaylistManager.class);
 
     public PlaylistManager(PlaylistInterface playlistService, ListView<String> songListView) {
         this.playlistService = playlistService;

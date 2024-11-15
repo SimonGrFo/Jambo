@@ -9,14 +9,16 @@ import javafx.util.Duration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.example.jambo.util.LoggerUtil;
+import org.springframework.stereotype.Component;
 
+@Component
 public class MusicPlayerService implements MusicPlayerInterface {
     private static final Logger logger = LoggerFactory.getLogger(MusicPlayerService.class);
     private MediaPlayer mediaPlayer;
+    private final Slider volumeSlider;
     private boolean isPaused = false;
     private boolean isLooping = false;
     private boolean isMuted = false;
-    private final Slider volumeSlider;
     private Runnable onEndOfMedia;
 
     public MusicPlayerService(Slider volumeSlider) {

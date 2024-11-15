@@ -5,9 +5,11 @@ import com.example.jambo.Interfaces.MetadataInterface;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.geometry.Insets;
+import org.springframework.stereotype.Component;
+
 import java.io.File;
 import java.util.Date;
-
+@Component
 public class DialogService implements DialogInterface {
     private final MetadataInterface metadataService;
 

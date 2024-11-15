@@ -7,9 +7,11 @@ import org.jaudiotagger.audio.AudioFileIO;
 import org.jaudiotagger.audio.AudioHeader;
 import org.jaudiotagger.tag.Tag;
 import org.jaudiotagger.tag.images.Artwork;
+import org.springframework.stereotype.Component;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
+@Component
 
 public class MetadataService implements MetadataInterface {
     private AudioFile readAudioFile(File file) throws Exception {
