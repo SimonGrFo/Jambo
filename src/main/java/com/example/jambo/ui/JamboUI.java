@@ -1,7 +1,7 @@
 package com.example.jambo.ui;
 
 import com.example.jambo.controllers.JamboController;
-import com.example.jambo.dependency.injection.DependencyContainer;
+import com.example.jambo.services.DialogService;
 import com.example.jambo.services.IconService;
 import com.example.jambo.dialogs.PlaylistDialog;
 import com.example.jambo.dialogs.SettingsDialog;
@@ -13,9 +13,9 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Tooltip;
 
-import static com.example.jambo.dependency.injection.DependencyContainer.dialogService;
-
 public class JamboUI {
+    private final IconService iconService;
+    private final DialogService dialogService;
     private final ListView<String> songListView;
     private final Label currentSongLabel;
     private final Label timerLabel;
@@ -23,19 +23,32 @@ public class JamboUI {
     private final Slider progressSlider;
     private final Slider volumeSlider;
     private final ComboBox<String> playlistComboBox;
-    private final IconService iconService;
     private final Pane albumArtPlaceholder;
 
-    public JamboUI() {
-        this.songListView = new ListView<>();
-        this.currentSongLabel = new Label("No song playing");
-        this.timerLabel = new Label("0:00 / 0:00");
-        this.fileInfoLabel = new Label("Format: - Hz, - kbps");
-        this.progressSlider = new Slider(0, 1, 0);
-        this.volumeSlider = new Slider(0, 1, 0.5);
+    public JamboUI(IconService iconService,
+                   DialogService dialogService,
+                   Slider progressSlider,
+                   Slider volumeSlider,
+                   Label currentSongLabel,
+                   Label timerLabel,
+                   Label fileInfoLabel,
+                   Pane albumArtPlaceholder,
+                   ListView<String> songListView) {
+        this.iconService = iconService;
+        this.dialogService = dialogService;
+        this.progressSlider = progressSlider;
+        this.volumeSlider = volumeSlider;
+        this.currentSongLabel = currentSongLabel;
+        this.timerLabel = timerLabel;
+        this.fileInfoLabel = fileInfoLabel;
+        this.albumArtPlaceholder = albumArtPlaceholder;
+        this.songListView = songListView;
         this.playlistComboBox = new ComboBox<>();
-        this.albumArtPlaceholder = new Pane();
 
+        setupUI();
+    }
+
+    private void setupUI() {
         albumArtPlaceholder.setStyle("-fx-background-color: #D3D3D3; -fx-border-color: #808080;");
         albumArtPlaceholder.setPrefSize(100, 100);
         albumArtPlaceholder.setMaxSize(100, 100);
@@ -45,13 +58,8 @@ public class JamboUI {
         currentSongLabel.setMaxWidth(Double.MAX_VALUE);
         currentSongLabel.setAlignment(Pos.CENTER_LEFT);
 
-        DependencyContainer.initialize(this.volumeSlider);
-
-        this.iconService = DependencyContainer.getIconService();
-
         setupPlaylistComboBox();
     }
-
     private HBox createControlBox(JamboController controller) {
         Button playButton = new Button("", iconService.createIconImageView("play"));
         Tooltip.install(playButton, new Tooltip("Play"));

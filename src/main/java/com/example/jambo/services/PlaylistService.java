@@ -3,9 +3,12 @@ package com.example.jambo.services;
 import com.example.jambo.Interfaces.PlaylistInterface;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
+
 import java.io.File;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
+@Component
 
 public class PlaylistService implements PlaylistInterface {
     private static final Logger logger = LoggerFactory.getLogger(PlaylistService.class);

@@ -1,11 +1,12 @@
 package com.example.jambo.controllers;
 
-import com.example.jambo.dependency.injection.DependencyContainer;
 import com.example.jambo.managers.MusicPlayerManager;
 import com.example.jambo.managers.PlaylistManager;
 import com.example.jambo.managers.MetadataManager;
 import com.example.jambo.ui.JamboUI;
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.media.Media;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
@@ -20,7 +21,10 @@ import java.util.stream.Stream;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 
+@Controller
 public class JamboController {
     private static final Logger logger = LoggerFactory.getLogger(JamboController.class);
 
@@ -31,32 +35,17 @@ public class JamboController {
     private boolean isDragging = false;
     private Stage primaryStage;
 
-    public JamboController(JamboUI ui) {
+    @Autowired
+    public JamboController(MusicPlayerManager musicPlayerManager,
+                           PlaylistManager playlistManager,
+                           MetadataManager metadataManager,
+                           JamboUI ui) {
+        this.musicPlayerManager = musicPlayerManager;
+        this.playlistManager = playlistManager;
+        this.metadataManager = metadataManager;
         this.ui = ui;
-        try {
-            DependencyContainer.initialize(ui.getVolumeSlider());
-            this.musicPlayerManager = new MusicPlayerManager(
-                    DependencyContainer.getMusicPlayerService(),
-                    ui.getCurrentSongLabel(),
-                    ui.getTimerLabel(),
-                    ui.getProgressSlider()
-            );
-            this.playlistManager = new PlaylistManager(
-                    DependencyContainer.getPlaylistService(),
-                    ui.getSongListView()
-            );
-            this.metadataManager = new MetadataManager(
-                    DependencyContainer.getMetadataService(),
-                    ui.getFileInfoLabel(),
-                    ui.getCurrentSongLabel(),
-                    ui.getAlbumArtPlaceholder()
-            );
-            setupEventHandlers();
-            logger.info("JamboController initialized successfully.");
-        } catch (Exception e) {
-            logger.error("Failed to initialize JamboController", e);
-            throw new RuntimeException("Failed to initialize JamboController", e);
-        }
+        setupEventHandlers();
+        logger.info("JamboController initialized successfully.");
     }
 
     private void setupEventHandlers() {
@@ -169,11 +158,37 @@ public class JamboController {
             formattedInfo = file.getName();
         }
         playlistManager.addSong(file, formattedInfo);
+
+        // Update the UI with the new song list
+        updateSongListView();
     }
+
+    private void updateSongListView() {
+        List<String> songTitles = playlistManager.getSongFiles().stream()
+                .map(file -> {
+                    try {
+                        return metadataManager.formatSongMetadata(file);
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
+                })
+                .collect(Collectors.toList());
+
+        ObservableList<String> observableSongs = FXCollections.observableArrayList(songTitles);
+        Platform.runLater(() -> {
+            ui.getSongListView().setItems(observableSongs);
+        });
+    }
+
+
 
     private void loadSavedSongs() {
         playlistManager.loadSongsFromJson("saved_songs.json");
+        logger.info("Songs in playlist: {}", playlistManager.getSongFiles());
+        updateSongListView();
     }
+
+
 
     private void saveSongsToJson() {
         playlistManager.saveSongsToJson("saved_songs.json");
