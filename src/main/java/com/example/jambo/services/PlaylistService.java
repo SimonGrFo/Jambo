@@ -21,11 +21,9 @@ public class PlaylistService implements PlaylistInterface {
         this.currentPlaylistName = "Default";
         this.playlists.put(currentPlaylistName, Collections.synchronizedList(new ArrayList<>()));
         this.loadedPathsPerPlaylist.put(currentPlaylistName, ConcurrentHashMap.newKeySet());
-        logger.info("Initialized PlaylistService with default playlist '{}'", currentPlaylistName);
     }
 
     private void notifyPlaylistChanged(String playlistName) {
-        logger.debug("Notifying listeners of playlist change: {}", playlistName);
         for (PlaylistChangeListener listener : listeners) {
             listener.onPlaylistChanged(playlistName, playlists.get(playlistName));
             if (playlistName.equals(currentPlaylistName)) {
@@ -37,7 +35,6 @@ public class PlaylistService implements PlaylistInterface {
     @Override
     public void addPlaylistChangeListener(PlaylistChangeListener listener) {
         listeners.add(listener);
-        logger.debug("Added playlist change listener: {}", listener);
     }
 
     @Override
@@ -57,14 +54,10 @@ public class PlaylistService implements PlaylistInterface {
         if (!name.equals("Default") && playlists.containsKey(name)) {
             playlists.remove(name);
             loadedPathsPerPlaylist.remove(name);
-            logger.info("Deleted playlist: {}", name);
             if (currentPlaylistName.equals(name)) {
                 switchToPlaylist("Default");
-                logger.info("Switched to default playlist after deleting current playlist '{}'", name);
             }
             notifyPlaylistChanged(name);
-        } else {
-            logger.warn("Attempt to delete restricted or non-existent playlist: {}", name);
         }
     }
 
@@ -73,10 +66,7 @@ public class PlaylistService implements PlaylistInterface {
         if (playlists.containsKey(name)) {
             currentPlaylistName = name;
             loadedPathsPerPlaylist.putIfAbsent(name, ConcurrentHashMap.newKeySet());
-            logger.info("Switched to playlist: {}", name);
             notifyPlaylistChanged(name);
-        } else {
-            logger.warn("Attempt to switch to non-existent playlist: {}", name);
         }
     }
 
@@ -89,14 +79,11 @@ public class PlaylistService implements PlaylistInterface {
                 Set<String> loadedPathsForCurrentPlaylist = loadedPathsPerPlaylist.get(currentPlaylistName);
                 if (loadedPathsForCurrentPlaylist != null && loadedPathsForCurrentPlaylist.add(newPath)) {
                     playlist.add(songFile);
-                    logger.info("Added song '{}' to playlist '{}'", songFile.getName(), currentPlaylistName);
                     notifyPlaylistChanged(currentPlaylistName);
-                } else {
-                    logger.warn("Duplicate song '{}' detected in playlist '{}', skipping addition", songFile.getName(), currentPlaylistName);
                 }
             }
         } catch (Exception e) {
-            logger.error("Error adding song '{}': {}", songFile.getName(), e.getMessage(), e);
+            logger.error("Error adding song: {}", e.getMessage());
         }
     }
 
@@ -108,7 +95,6 @@ public class PlaylistService implements PlaylistInterface {
             Set<String> loadedPathsForCurrentPlaylist = loadedPathsPerPlaylist.get(currentPlaylistName);
             if (loadedPathsForCurrentPlaylist != null) {
                 loadedPathsForCurrentPlaylist.remove(removedFile.getAbsolutePath());
-                logger.info("Removed song '{}' from playlist '{}'", removedFile.getName(), currentPlaylistName);
             }
             notifyPlaylistChanged(currentPlaylistName);
         } else {
@@ -161,12 +147,9 @@ public class PlaylistService implements PlaylistInterface {
     public int getNextSongIndex(int currentIndex) {
         List<File> currentPlaylist = playlists.get(currentPlaylistName);
         if (currentIndex >= 0 && !currentPlaylist.isEmpty()) {
-            int nextIndex = shuffleEnabled ? random.nextInt(currentPlaylist.size())
+            return shuffleEnabled ? random.nextInt(currentPlaylist.size())
                     : (currentIndex + 1) % currentPlaylist.size();
-            logger.debug("Next song index calculated as '{}'", nextIndex);
-            return nextIndex;
         }
-        logger.warn("Invalid currentIndex or empty playlist: index '{}', playlist '{}'", currentIndex, currentPlaylistName);
         return -1;
     }
 
@@ -174,10 +157,8 @@ public class PlaylistService implements PlaylistInterface {
     public int getPreviousSongIndex(int currentIndex) {
         List<File> currentPlaylist = playlists.get(currentPlaylistName);
         if (currentIndex >= 0 && !currentPlaylist.isEmpty()) {
-            int prevIndex = shuffleEnabled ? random.nextInt(currentPlaylist.size())
+            return shuffleEnabled ? random.nextInt(currentPlaylist.size())
                     : (currentIndex - 1 + currentPlaylist.size()) % currentPlaylist.size();
-            logger.debug("Previous song index calculated as '{}'", prevIndex);
-            return prevIndex;
         }
         return -1;
     }
@@ -188,7 +169,6 @@ public class PlaylistService implements PlaylistInterface {
         if (index >= 0 && index < currentPlaylist.size()) {
             return currentPlaylist.get(index);
         }
-        logger.warn("Attempted to access invalid song index '{}' in playlist '{}'", index, currentPlaylistName);
         return null;
     }
 

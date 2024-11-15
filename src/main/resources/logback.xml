@@ -42,6 +42,9 @@
     <!-- Loggers -->
     <logger name="com.example.jambo" level="DEBUG"/>
 
+    <!-- Silence jaudiotagger logs -->
+    <logger name="org.jaudiotagger" level="OFF"/>
+
     <root level="INFO">
         <appender-ref ref="Console"/>
         <appender-ref ref="File"/>

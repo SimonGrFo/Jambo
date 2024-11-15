@@ -31,6 +31,9 @@ dependencies {
 	testImplementation 'org.mockito:mockito-junit-jupiter:5.5.0'
 	testImplementation 'org.testfx:testfx-junit5:4.0.16-alpha'
 	testImplementation 'org.testfx:testfx-core:4.0.16-alpha'
+	testImplementation 'org.openjfx:javafx-swing:19'
+	testImplementation 'org.mockito:mockito-inline:5.2.0'  // For static mocking
+
 
 	implementation 'ch.qos.logback:logback-classic:1.4.11'
 	implementation 'org.slf4j:slf4j-api:2.0.9'

@@ -7,10 +7,14 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.util.Objects;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
 
 public class Jambo extends Application {
     @Override
     public void start(Stage primaryStage) {
+        LogManager.getLogManager().reset();
+        Logger.getLogger("org.jaudiotagger").setLevel(java.util.logging.Level.OFF);
         JamboUI ui = new JamboUI();
         JamboController controller = new JamboController(ui);
         controller.initializeStage(primaryStage);

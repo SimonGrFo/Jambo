@@ -42,18 +42,12 @@ public class MusicPlayerService implements MusicPlayerInterface {
     private void setupMediaPlayer(MediaPlayer player, double volume) {
         player.setOnError(() -> {
             MediaException error = player.getError();
-            logger.error("MediaPlayer error: {}", error.getMessage(), error);
+            logger.error("MediaPlayer error: {}", error.getMessage());
         });
 
         player.setVolume(isMuted ? 0 : volume);
         player.setCycleCount(isLooping ? MediaPlayer.INDEFINITE : 1);
         setupEndOfMediaHandler(player);
-
-        player.statusProperty().addListener((observable, oldValue, newValue) ->
-                LoggerUtil.logMediaPlayerState(logger, newValue.toString(),
-                        String.format("Volume: %.2f, Muted: %b, Looping: %b",
-                                volume, isMuted, isLooping))
-        );
     }
 
     private void setupEndOfMediaHandler(MediaPlayer player) {
@@ -69,10 +63,8 @@ public class MusicPlayerService implements MusicPlayerInterface {
     @Override
     public void playMedia(Media media) {
         try {
-            logger.info("Starting playback of media: {}", media.getSource());
             if (mediaPlayer != null) {
                 MediaPlayer oldPlayer = mediaPlayer;
-                logger.debug("Disposing of old MediaPlayer instance");
                 javafx.application.Platform.runLater(() -> {
                     oldPlayer.stop();
                     oldPlayer.dispose();
@@ -81,14 +73,12 @@ public class MusicPlayerService implements MusicPlayerInterface {
 
             mediaPlayer = new MediaPlayer(media);
             setupMediaPlayer(mediaPlayer, volumeSlider.getValue());
-            logger.debug("New MediaPlayer instance created and configured");
 
             mediaPlayer.setOnReady(() -> {
                 mediaPlayer.play();
-                logger.info("Media playback started successfully");
             });
         } catch (Exception e) {
-            logger.error("Failed to play media: {}", LoggerUtil.formatException(e), e);
+            logger.error("Failed to play media: {}", e.getMessage());
             throw e;
         }
     }

@@ -36,7 +36,6 @@ public class PlaylistManager implements PlaylistInterface.PlaylistChangeListener
         this.playlistService.addPlaylistChangeListener(this);
     }
 
-
     @Override
     public void onPlaylistChanged(String playlistName, List<File> songs) {
         if (playlistName.equals(playlistService.getCurrentPlaylistName())) {
@@ -52,13 +51,14 @@ public class PlaylistManager implements PlaylistInterface.PlaylistChangeListener
     private void updateSongListView(List<File> songs) {
         if (isUpdating) return;
 
+        isUpdating = true;
         try {
-            isUpdating = true;
             List<String> formattedSongs = songs.parallelStream()
                     .map(song -> {
                         try {
                             return metadataService.formatSongMetadata(song);
                         } catch (Exception e) {
+                            logger.warn("Failed to format metadata for {}, using filename", song.getName());
                             return song.getName();
                         }
                     })
@@ -71,7 +71,6 @@ public class PlaylistManager implements PlaylistInterface.PlaylistChangeListener
             isUpdating = false;
         }
     }
-
 
     public void createPlaylist(String name) {
         playlistService.createPlaylist(name);
@@ -95,37 +94,35 @@ public class PlaylistManager implements PlaylistInterface.PlaylistChangeListener
 
     @Override
     public void addSong(File songFile, String formattedInfo) {
-        if (isUpdating) {
-            logger.debug("Skipping add song operation - update in progress");
-            return;
-        }
+        if (isUpdating) return;
 
+        isUpdating = true;
         try {
-            isUpdating = true;
-            logger.info("Adding song to playlist: {}", LoggerUtil.formatFileInfo(songFile));
-
-            boolean isDuplicate = playlistService.getCurrentPlaylistSongs().stream()
-                    .anyMatch(existingFile -> existingFile.getAbsolutePath().equals(songFile.getAbsolutePath()));
-
-            if (!isDuplicate) {
+            if (!isDuplicateSong(songFile)) {
                 playlistService.addSong(songFile);
                 Platform.runLater(() -> {
                     if (!songListView.getItems().contains(formattedInfo)) {
                         songListView.getItems().add(formattedInfo);
-                        logger.debug("Song added to UI list: {}", formattedInfo);
                     }
                 });
-                logger.info("Song successfully added to playlist");
-            } else {
-                logger.warn("Duplicate song detected, skipping: {}", songFile.getName());
+                logger.info("Added song: {}", songFile.getName());
             }
         } catch (Exception e) {
-            logger.error("Failed to add song: {}", LoggerUtil.formatException(e), e);
+            logger.error("Failed to add song {}: {}", songFile.getName(), e.getMessage());
             throw e;
         } finally {
             isUpdating = false;
-            logger.debug("Song addition operation completed");
         }
+    }
+
+    private boolean isDuplicateSong(File songFile) {
+        boolean isDuplicate = playlistService.getCurrentPlaylistSongs().stream()
+                .anyMatch(existingFile -> existingFile.getAbsolutePath().equals(songFile.getAbsolutePath()));
+
+        if (isDuplicate) {
+            logger.warn("Skipping duplicate song: {}", songFile.getName());
+        }
+        return isDuplicate;
     }
 
     public void removeSong(int index) {
@@ -141,6 +138,7 @@ public class PlaylistManager implements PlaylistInterface.PlaylistChangeListener
     public void toggleShuffle() {
         playlistService.toggleShuffle();
     }
+
     public int getNextSongIndex() {
         return playlistService.getNextSongIndex(
                 songListView.getSelectionModel().getSelectedIndex()
@@ -162,46 +160,46 @@ public class PlaylistManager implements PlaylistInterface.PlaylistChangeListener
     }
 
     public void loadSongsFromJson(String filename) {
-        logger.info("Loading songs from JSON file: {}", filename);
         try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
             Type listType = new TypeToken<ArrayList<String>>(){}.getType();
             List<String> songPaths = new Gson().fromJson(reader, listType);
 
             if (songPaths != null) {
-                logger.debug("Found {} song paths in JSON file", songPaths.size());
                 List<File> validFiles = songPaths.parallelStream()
                         .map(File::new)
                         .filter(File::exists)
                         .sorted(Comparator.comparing(File::getAbsolutePath))
                         .toList();
 
-                logger.info("Valid files found: {}/{}", validFiles.size(), songPaths.size());
+                logger.info("Loading {} valid songs from {}", validFiles.size(), filename);
 
-                Platform.runLater(() -> validFiles.forEach(file -> {
-                    try {
-                        String formattedMetadata = metadataService.formatSongMetadata(file);
-                        addSong(file, formattedMetadata);
-                    } catch (Exception e) {
-                        logger.error("Error formatting metadata for {}: {}",
-                                file.getName(), LoggerUtil.formatException(e));
-                        addSong(file, file.getName());
-                    }
-                }));
+                Platform.runLater(() -> {
+                    validFiles.forEach(file -> {
+                        try {
+                            String formattedMetadata = metadataService.formatSongMetadata(file);
+                            addSong(file, formattedMetadata);
+                        } catch (Exception e) {
+                            logger.warn("Using filename for {} due to metadata error", file.getName());
+                            addSong(file, file.getName());
+                        }
+                    });
+                    logger.info("{} songs loaded successfully", validFiles.size());
+                });
             }
         } catch (Exception e) {
-            logger.error("Failed to load saved songs: {}", LoggerUtil.formatException(e), e);
+            logger.error("Failed to load songs from {}: {}", filename, e.getMessage());
         }
     }
 
     public void saveSongsToJson(String filename) {
-        Gson gson = new Gson();
         try (FileWriter writer = new FileWriter(filename)) {
             List<String> songPaths = getSongFiles().stream()
                     .map(File::getAbsolutePath)
                     .collect(Collectors.toList());
-            gson.toJson(songPaths, writer);
+            new Gson().toJson(songPaths, writer);
+            logger.info("Saved {} songs to {}", songPaths.size(), filename);
         } catch (Exception e) {
-            logger.error("Error saving songs: {}", LoggerUtil.formatException(e), e);
+            logger.error("Failed to save songs to {}: {}", filename, e.getMessage());
         }
     }
 }
