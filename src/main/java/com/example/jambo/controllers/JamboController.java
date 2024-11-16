@@ -156,7 +156,6 @@ public class JamboController {
         }
         playlistManager.addSong(file, formattedInfo);
 
-        // Update the UI with the new song list
         updateSongListView();
     }
 
@@ -172,9 +171,7 @@ public class JamboController {
                 .collect(Collectors.toList());
 
         ObservableList<String> observableSongs = FXCollections.observableArrayList(songTitles);
-        Platform.runLater(() -> {
-            ui.getSongListView().setItems(observableSongs);
-        });
+        Platform.runLater(() -> ui.getSongListView().setItems(observableSongs));
     }
 
 
@@ -184,8 +181,6 @@ public class JamboController {
         logger.info("Songs in playlist: {}", playlistManager.getSongFiles());
         updateSongListView();
     }
-
-
 
     private void saveSongsToJson() {
         playlistManager.saveSongsToJson("saved_songs.json");

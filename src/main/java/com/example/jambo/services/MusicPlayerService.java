@@ -2,7 +2,6 @@ package com.example.jambo.services;
 
 import com.example.jambo.Interfaces.MusicPlayerInterface;
 import com.example.jambo.controllers.VolumeController;
-import com.example.jambo.managers.PlayerStateManager;
 import com.example.jambo.event.MediaEventHandler;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -14,18 +13,13 @@ public class MusicPlayerService implements MusicPlayerInterface {
     private MediaPlayer mediaPlayer;
     private Media currentMedia;
     private final VolumeController volumeController;
-    private final PlayerStateManager stateManager;
     private final MediaEventHandler eventHandler;
 
     private boolean isPaused = false;
     private boolean isLooping = false;
-    private boolean isMuted = false;
 
-    public MusicPlayerService(VolumeController volumeController,
-                              PlayerStateManager stateManager,
-                              MediaEventHandler eventHandler) {
+    public MusicPlayerService(VolumeController volumeController, MediaEventHandler eventHandler) {
         this.volumeController = volumeController;
-        this.stateManager = stateManager;
         this.eventHandler = eventHandler;
     }
 
@@ -38,9 +32,8 @@ public class MusicPlayerService implements MusicPlayerInterface {
         currentMedia = media;
         mediaPlayer = new MediaPlayer(media);
 
-        // Initialize player state
-        stateManager.applyCurrentState(mediaPlayer);
-        volumeController.bindVolumeControl(mediaPlayer);
+        volumeController.bindToMediaPlayer(mediaPlayer);
+
         eventHandler.initializeEventHandlers(mediaPlayer);
 
         mediaPlayer.play();
@@ -79,10 +72,7 @@ public class MusicPlayerService implements MusicPlayerInterface {
 
     @Override
     public void toggleMute() {
-        isMuted = !isMuted;
-        if (mediaPlayer != null) {
-            volumeController.toggleMute(mediaPlayer);
-        }
+        volumeController.toggleMute();
     }
 
     @Override
