@@ -1,65 +1,45 @@
 package com.example.jambo.managers;
 
-import com.example.jambo.commands.Command;
-import com.example.jambo.commands.CommandInvoker;
-import com.example.jambo.exceptions.CommandExecutionException;
+import com.example.jambo.controllers.VolumeController;
 import com.example.jambo.services.MusicPlayerService;
-import com.example.jambo.ui.UIUpdater;
-import com.example.jambo.event.MediaEventHandler;
+import com.example.jambo.utils.TimeFormatter;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
-import org.springframework.stereotype.Component;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
 @Component
 public class MusicPlayerManager {
     private static final Logger logger = LoggerFactory.getLogger(MusicPlayerManager.class);
     private final MusicPlayerService musicPlayerService;
-    private final PlayerStateManager stateManager;
-    private final MediaEventHandler eventHandler;
-    private final CommandInvoker commandInvoker;
-    private final UIUpdater uiUpdater;
-
+    private final VolumeController volumeController;
     private final Label currentSongLabel;
     private final Label timerLabel;
     private final Slider progressSlider;
 
     private boolean isPlaying = false;
     private boolean isLooping = false;
-    private boolean isMuted = false;
     private double currentPosition = 0;
-    private double volume = 0.5;
-    private int currentSongIndex = -1;
 
     public MusicPlayerManager(
             MusicPlayerService musicPlayerService,
-            PlayerStateManager stateManager,
-            MediaEventHandler eventHandler,
-            CommandInvoker commandInvoker,
-            UIUpdater uiUpdater,
+            VolumeController volumeController,
             Label currentSongLabel,
             Label timerLabel,
             Slider progressSlider) {
         this.musicPlayerService = musicPlayerService;
-        this.stateManager = stateManager;
-        this.eventHandler = eventHandler;
-        this.commandInvoker = commandInvoker;
-        this.uiUpdater = uiUpdater;
+        this.volumeController = volumeController;
         this.currentSongLabel = currentSongLabel;
         this.timerLabel = timerLabel;
         this.progressSlider = progressSlider;
     }
 
-    public void executeCommand(Command command) {
-        try {
-            commandInvoker.execute(command);
-            uiUpdater.updateUI(stateManager.getCurrentState());
-        } catch (CommandExecutionException e) {
-            logger.error("Command execution failed: {}", e.getMessage());
-        }
+    public MediaPlayer getMediaPlayer() {
+        return musicPlayerService.getMediaPlayer();
     }
 
     public void playMedia(Media media) {
@@ -95,15 +75,13 @@ public class MusicPlayerManager {
     }
 
     public void toggleMute() {
-        isMuted = !isMuted;
-        musicPlayerService.toggleMute();
-        logger.info("Toggled mute state. Is muted: {}", isMuted);
+        volumeController.toggleMute();
+        logger.info("Toggled mute state. Is muted: {}", volumeController.isMuted());
     }
 
     public void seekTo(Duration time) {
         musicPlayerService.seekTo(time.toSeconds());
         currentPosition = time.toSeconds();
-        logger.info("Seeked to position: {}", time);
     }
 
     private void setupTimeUpdates() {
@@ -125,31 +103,14 @@ public class MusicPlayerManager {
     }
 
     private void updateTimerLabel(Duration current, Duration total) {
-        String currentTime = formatTime(current.toSeconds());
-        String totalTime = formatTime(total.toSeconds());
+        String currentTime = TimeFormatter.formatTime(current.toSeconds());
+        String totalTime = TimeFormatter.formatTime(total.toSeconds());
         timerLabel.setText(currentTime + " / " + totalTime);
     }
 
-    private String formatTime(double seconds) {
-        int minutes = (int) (seconds / 60);
-        int remainingSeconds = (int) (seconds % 60);
-        return String.format("%d:%02d", minutes, remainingSeconds);
-    }
-
-    public void setVolume(double newVolume) {
-        this.volume = newVolume;
-        if (musicPlayerService.getMediaPlayer() != null) {
-            musicPlayerService.getMediaPlayer().setVolume(newVolume);
-            logger.info("Volume set to: {}", newVolume);
-        }
-    }
-
     public boolean isPlaying() { return isPlaying; }
-    public boolean isLooping() { return isLooping; }
-    public boolean isMuted() { return isMuted; }
     public double getCurrentPosition() { return currentPosition; }
-    public double getVolume() { return volume; }
-    public int getCurrentSongIndex() { return currentSongIndex; }
+
     public Duration getTotalDuration() { return musicPlayerService.getTotalDuration(); }
 
     public void setOnEndOfMedia(Runnable callback) {

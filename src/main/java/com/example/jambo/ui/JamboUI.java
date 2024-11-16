@@ -13,8 +13,6 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Tooltip;
 
-//TODO - separate UI Creation and Behavior
-
 public class JamboUI {
     private final IconService iconService;
     private final DialogService dialogService;
@@ -208,9 +206,5 @@ public class JamboUI {
     }
 
     public ListView<String> getSongListView() { return songListView; }
-    public Label getCurrentSongLabel() { return currentSongLabel; }
-    public Label getTimerLabel() { return timerLabel; }
-    public Label getFileInfoLabel() { return fileInfoLabel; }
     public Slider getProgressSlider() { return progressSlider; }
-    public Slider getVolumeSlider() { return volumeSlider; }
 }

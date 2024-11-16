@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ConfigurableApplicationContext;
+
 import java.util.Objects;
 
 public class Jambo extends Application {
@@ -28,10 +29,5 @@ public class Jambo extends Application {
         scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/styles/style.css")).toExternalForm());
         primaryStage.setScene(scene);
         primaryStage.show();
-    }
-
-    @Override
-    public void stop() {
-        springContext.close();
     }
 }

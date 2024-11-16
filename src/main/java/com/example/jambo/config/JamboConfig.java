@@ -1,9 +1,10 @@
 package com.example.jambo.config;
 
-import com.example.jambo.commands.CommandInvoker;
 import com.example.jambo.controllers.VolumeController;
-import com.example.jambo.ui.UIUpdater;
 import com.example.jambo.event.MediaEventHandler;
+import com.example.jambo.services.*;
+import com.example.jambo.managers.*;
+import com.example.jambo.ui.JamboUI;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Slider;
@@ -13,9 +14,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Primary;
-import com.example.jambo.services.*;
-import com.example.jambo.managers.*;
-import com.example.jambo.ui.JamboUI;
 
 @Configuration
 @ComponentScan(basePackages = "com.example.jambo")
@@ -25,25 +23,29 @@ public class JamboConfig {
     @Primary
     public Slider progressSlider() {
         Slider slider = new Slider(0, 1, 0);
-        slider.setShowTickLabels(true);
+        slider.setShowTickLabels(false);
         return slider;
     }
 
     @Bean(name = "volumeSlider")
     public Slider volumeSlider() {
         Slider slider = new Slider(0, 1, 0.5);
-        slider.setShowTickLabels(true);
+        slider.setShowTickLabels(false);
         return slider;
+    }
+
+    @Bean
+    @Primary
+    public VolumeController volumeController(@Qualifier("volumeSlider") Slider volumeSlider) {
+        return new VolumeController();
     }
 
     @Bean
     public MusicPlayerService musicPlayerService(
             VolumeController volumeController,
-            PlayerStateManager stateManager,
-            MediaEventHandler eventHandler) {
-        return new MusicPlayerService(volumeController, stateManager, eventHandler);
+            MediaEventHandler mediaEventHandler) {
+        return new MusicPlayerService(volumeController, mediaEventHandler);
     }
-
 
     @Bean
     public PlaylistService playlistService() {
@@ -72,12 +74,12 @@ public class JamboConfig {
 
     @Bean(name = "timerLabel")
     public Label timerLabel() {
-        return new Label("Timer");
+        return new Label("0:00 / 0:00");
     }
 
     @Bean(name = "fileInfoLabel")
     public Label fileInfoLabel() {
-        return new Label("File Info");
+        return new Label("filetype, kbps, Hz ");
     }
 
     @Bean
@@ -85,37 +87,23 @@ public class JamboConfig {
         return new Pane();
     }
 
-
-
     @Bean
     public MetadataManager metadataManager(
             MetadataService metadataService,
             @Qualifier("fileInfoLabel") Label fileInfoLabel,
             @Qualifier("currentSongLabel") Label currentSongLabel,
             Pane albumArtPane) {
-        return new MetadataManager(metadataService, fileInfoLabel,
-                currentSongLabel, albumArtPane);
+        return new MetadataManager(metadataService, fileInfoLabel, currentSongLabel, albumArtPane);
     }
 
     @Bean
     public MusicPlayerManager musicPlayerManager(
             MusicPlayerService musicPlayerService,
-            PlayerStateManager stateManager,
-            MediaEventHandler eventHandler,
-            CommandInvoker commandInvoker,
-            UIUpdater uiUpdater,
+            VolumeController volumeController,
             @Qualifier("currentSongLabel") Label currentSongLabel,
             @Qualifier("timerLabel") Label timerLabel,
             @Qualifier("progressSlider") Slider progressSlider) {
-        return new MusicPlayerManager(
-                musicPlayerService,
-                stateManager,
-                eventHandler,
-                commandInvoker,
-                uiUpdater,
-                currentSongLabel,
-                timerLabel,
-                progressSlider);
+        return new MusicPlayerManager(musicPlayerService, volumeController, currentSongLabel, timerLabel, progressSlider);
     }
 
     @Bean
@@ -125,15 +113,6 @@ public class JamboConfig {
         return new PlaylistManager(playlistService, playlistView);
     }
 
-    @Bean
-    public PlayerStateManager playerStateManager() {
-        return new PlayerStateManager();
-    }
-
-    @Bean
-    public CommandInvoker commandInvoker() {
-        return new CommandInvoker();
-    }
     @Bean
     public JamboUI jamboUI(
             IconService iconService,
@@ -146,8 +125,7 @@ public class JamboConfig {
             Pane albumArtPane,
             ListView<String> playlistView) {
         return new JamboUI(iconService, dialogService, progressSlider, volumeSlider,
-                currentSongLabel, timerLabel, fileInfoLabel, albumArtPane,
-                playlistView);
+                currentSongLabel, timerLabel, fileInfoLabel, albumArtPane, playlistView);
     }
 
     @Bean
