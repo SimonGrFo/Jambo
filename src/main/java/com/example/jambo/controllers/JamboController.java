@@ -19,6 +19,7 @@ import java.util.stream.Collectors;
 import java.nio.file.*;
 import java.util.stream.Stream;
 
+import javafx.util.Duration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,17 +50,13 @@ public class JamboController {
     }
 
     private void setupEventHandlers() {
-        ui.getSongListView().setOnMouseClicked(event -> {
-            if (event.getClickCount() == 2) {
-                playSelectedSong();
-            }
-        });
-
         ui.getProgressSlider().setOnMousePressed(e -> isDragging = true);
         ui.getProgressSlider().setOnMouseReleased(e -> {
             if (isDragging) {
                 try {
-                    double newTime = ui.getProgressSlider().getValue() * musicPlayerManager.getTotalDuration();
+                    double value = ui.getProgressSlider().getValue();
+                    Duration totalDuration = musicPlayerManager.getTotalDuration();
+                    Duration newTime = totalDuration.multiply(value);
                     musicPlayerManager.seekTo(newTime);
                 } finally {
                     isDragging = false;
@@ -204,9 +201,8 @@ public class JamboController {
     }
 
     public void pauseMusic() {
-        musicPlayerManager.pauseMusic();
+        musicPlayerManager.pauseMedia();
     }
-
     public void stopMusic() {
         musicPlayerManager.stopMusic();
     }

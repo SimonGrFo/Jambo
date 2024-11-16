@@ -1,5 +1,6 @@
 package com.example.jambo.config;
 
+import com.example.jambo.commands.MusicPlayerCommandInvoker;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Slider;
@@ -79,6 +80,8 @@ public class JamboConfig {
         return new Pane();
     }
 
+
+
     @Bean
     public MetadataManager metadataManager(
             MetadataService metadataService,
@@ -95,8 +98,7 @@ public class JamboConfig {
             @Qualifier("currentSongLabel") Label currentSongLabel,
             @Qualifier("timerLabel") Label timerLabel,
             @Qualifier("progressSlider") Slider progressSlider) {
-        return new MusicPlayerManager(musicPlayerService, currentSongLabel,
-                timerLabel, progressSlider);
+        return new MusicPlayerManager(musicPlayerService, currentSongLabel, timerLabel, progressSlider);
     }
 
     @Bean

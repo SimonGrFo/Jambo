@@ -1,636 +1,102 @@
-2024-11-15 05:59:23 [JavaFX Application Thread] INFO  c.e.j.controllers.JamboController - JamboController initialized successfully.
-2024-11-15 05:59:23 [JavaFX Application Thread] INFO  c.e.j.controllers.JamboController - Primary stage configured and displayed.
-2024-11-15 05:59:23 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Loading 54 valid songs from saved_songs.json
-2024-11-15 05:59:23 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Back at It.mp3
-2024-11-15 05:59:23 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Cashin (Ft. Adamn Killa).mp3
-2024-11-15 05:59:23 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Crystal City (Ft. ASAP Ferg).mp3
-2024-11-15 05:59:23 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Get It Back.mp3
-2024-11-15 05:59:23 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Head 2 Toe (Ft. Bladee).mp3
-2024-11-15 05:59:23 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Hennessy & Sailor Moon (Ft. Bladee).mp3
-2024-11-15 05:59:23 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Hop Out (Ft. Luckaleannn).mp3
-2024-11-15 05:59:23 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Kirby.mp3
-2024-11-15 05:59:23 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 01 - Nekobasu (prod Baba Stiltz).mp3
-2024-11-15 05:59:23 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 02 - Buildings ft Thaiboy Digital  Bladee (prod Tokyo Hands WhiteArmor  Yung Sherman).mp3
-2024-11-15 05:59:23 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 03 - Marble Phone (ft Kreayshawn) (prod WhiteArmor  Yung Sherman).mp3
-2024-11-15 05:59:23 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 04 - Kyoto (prod Yung Gud).mp3
-2024-11-15 05:59:23 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 05 - Crystalized Snow ft Thaiboy Digital (prod WhiteArmor).mp3
-2024-11-15 05:59:23 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 06 - King Of The Darkness (prod Baba Stiltz).mp3
-2024-11-15 05:59:23 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 07 - Motorola (prod Whitearmor).mp3
-2024-11-15 05:59:23 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 08 - Visions of U (prod Whitearmor).mp3
-2024-11-15 05:59:23 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 09 - Orroz (prod Yung Gud).mp3
-2024-11-15 05:59:23 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 10 - Re-Charge ft Baba Stiltz (prod Baba Stiltz).mp3
-2024-11-15 05:59:24 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 01 - OreoMilkShake.mp3
-2024-11-15 05:59:24 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 02 - GreyGoose.mp3
-2024-11-15 05:59:24 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 03 - Damn Gud Shawty.mp3
-2024-11-15 05:59:24 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 04 - Ginseng Strip 2002.mp3
-2024-11-15 05:59:24 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 05 - The 5th Element.mp3
-2024-11-15 05:59:24 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 06 - Plastic G-Shock.mp3
-2024-11-15 05:59:24 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 07 - Gatorade.mp3
-2024-11-15 05:59:24 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 08 - Stevie Nicks.mp3
-2024-11-15 05:59:24 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 09 - Bentley.mp3
-2024-11-15 05:59:24 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 10 - Watchu Wanna feat. Prada Mane.mp3
-2024-11-15 05:59:24 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 11 - 3D Spaceship.mp3
-2024-11-15 05:59:24 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Yung Lean - Unknown Death 2002 - 01 Welcome 2 Unknown Death -Prod. Yung Sherman-.mp3
-2024-11-15 05:59:24 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Yung Lean - Unknown Death 2002 - 02 Nitevision (feat. Bladee) -Prod. Yung Gud-.mp3
-2024-11-15 05:59:24 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Yung Lean - Unknown Death 2002 - 03 Oceans 2001 -Prod. Gregar-.mp3
-2024-11-15 05:59:24 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Yung Lean - Unknown Death 2002 - 04 Gatorade -Prod. Yung Gud-.mp3
-2024-11-15 05:59:24 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Yung Lean - Unknown Death 2002 - 05 Hurt -Prod. Suicideyear-.mp3
-2024-11-15 05:59:24 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Yung Lean - Unknown Death 2002 - 06 Lightsaber - Saviour -Prod. Yung Sherman-.mp3
-2024-11-15 05:59:24 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Yung Lean - Unknown Death 2002 - 07 Princess Daisy -Prod. Yung Gud-.mp3
-2024-11-15 05:59:24 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Yung Lean - Unknown Death 2002 - 08 Lemonade (feat. Baba Stiltz) -Prod. Yung Sherman-.mp3
-2024-11-15 05:59:24 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Yung Lean - Unknown Death 2002 - 09 Emails -Prod. White Armor-.mp3
-2024-11-15 05:59:24 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Yung Lean - Unknown Death 2002 - 10 Deathstar - Getting Benjamins -Prod. White Armor-.mp3
-2024-11-15 05:59:24 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Yung Lean - Unknown Death 2002 - 11 Heal You - Bladerunner (feat. Bladee) -Prod. White Armor-.mp3
-2024-11-15 05:59:24 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Yung Lean - Unknown Death 2002 - 12 Solarflare -Prod. Friendzone-.mp3
-2024-11-15 05:59:24 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 01 Immortal.mp3
-2024-11-15 05:59:24 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 02 Highway Patrol (Ft. Bladee).mp3
-2024-11-15 05:59:24 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 03 Fantasy (Ft. Lil Flash).mp3
-2024-11-15 05:59:24 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 04 Afghanistan.mp3
-2024-11-15 05:59:24 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 05 Hoover.mp3
-2024-11-15 05:59:25 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 06 Fire.mp3
-2024-11-15 05:59:25 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 07 Stay Down.mp3
-2024-11-15 05:59:25 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 08 Eye Contact.mp3
-2024-11-15 05:59:25 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 09 More Stacks.mp3
-2024-11-15 05:59:25 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 10 AF1s (Ft. Ecco2k).mp3
-2024-11-15 05:59:25 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 11 Hocus Pocus (Ft. Bladee).mp3
-2024-11-15 05:59:25 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 12 Shawty U Know What It Do.mp3
-2024-11-15 05:59:25 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 13 Miami Ultras.mp3
-2024-11-15 05:59:25 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - 54 songs loaded successfully
-2024-11-15 06:00:29 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Saved 54 songs to saved_songs.json
-2024-11-15 13:36:48 [JavaFX-Launcher] INFO  o.s.boot.SpringApplication - Starting application using Java 17.0.12 with PID 1576 (started by simgr in C:\Users\simgr\Desktop\Jambo\Jambo)
-2024-11-15 13:36:48 [JavaFX-Launcher] INFO  o.s.boot.SpringApplication - No active profile set, falling back to 1 default profile: "default"
-2024-11-15 13:36:48 [JavaFX-Launcher] WARN  o.s.c.a.AnnotationConfigApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'jamboController' defined in file [C:\Users\simgr\Desktop\Jambo\Jambo\build\classes\java\main\com\example\jambo\controllers\JamboController.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'musicPlayerManager' defined in file [C:\Users\simgr\Desktop\Jambo\Jambo\build\classes\java\main\com\example\jambo\managers\MusicPlayerManager.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'musicPlayerService' defined in com.example.jambo.config.JamboConfig: Unsatisfied dependency expressed through method 'musicPlayerService' parameter 0: No qualifying bean of type 'javafx.scene.control.Slider' available: expected single matching bean but found 2: progressSlider,volumeSlider
-2024-11-15 13:36:48 [JavaFX-Launcher] ERROR o.s.b.d.LoggingFailureAnalysisReporter - 
-
-***************************
-APPLICATION FAILED TO START
-***************************
-
-Description:
-
-Parameter 0 of method musicPlayerService in com.example.jambo.config.JamboConfig required a single bean, but 2 were found:
-	- progressSlider: defined by method 'progressSlider' in com.example.jambo.config.JamboConfig
-	- volumeSlider: defined by method 'volumeSlider' in com.example.jambo.config.JamboConfig
-
-This may be due to missing parameter name information
-
-Action:
-
-Consider marking one of the beans as @Primary, updating the consumer to accept multiple beans, or using @Qualifier to identify the bean that should be consumed
-
-Ensure that your compiler is configured to use the '-parameters' flag.
-You may need to update both your build tool settings as well as your IDE.
-(See https://github.com/spring-projects/spring-framework/wiki/Upgrading-to-Spring-Framework-6.x#parameter-name-retention)
-
-
-2024-11-15 13:36:56 [JavaFX-Launcher] INFO  o.s.boot.SpringApplication - Starting application using Java 17.0.12 with PID 12160 (started by simgr in C:\Users\simgr\Desktop\Jambo\Jambo)
-2024-11-15 13:36:56 [JavaFX-Launcher] INFO  o.s.boot.SpringApplication - No active profile set, falling back to 1 default profile: "default"
-2024-11-15 13:36:56 [JavaFX-Launcher] WARN  o.s.c.a.AnnotationConfigApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'jamboController' defined in file [C:\Users\simgr\Desktop\Jambo\Jambo\build\classes\java\main\com\example\jambo\controllers\JamboController.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'musicPlayerManager' defined in file [C:\Users\simgr\Desktop\Jambo\Jambo\build\classes\java\main\com\example\jambo\managers\MusicPlayerManager.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'musicPlayerService' defined in com.example.jambo.config.JamboConfig: Unsatisfied dependency expressed through method 'musicPlayerService' parameter 0: No qualifying bean of type 'javafx.scene.control.Slider' available: expected single matching bean but found 2: progressSlider,volumeSlider
-2024-11-15 13:36:56 [JavaFX-Launcher] ERROR o.s.b.d.LoggingFailureAnalysisReporter - 
-
-***************************
-APPLICATION FAILED TO START
-***************************
-
-Description:
-
-Parameter 0 of method musicPlayerService in com.example.jambo.config.JamboConfig required a single bean, but 2 were found:
-	- progressSlider: defined by method 'progressSlider' in com.example.jambo.config.JamboConfig
-	- volumeSlider: defined by method 'volumeSlider' in com.example.jambo.config.JamboConfig
-
-This may be due to missing parameter name information
-
-Action:
-
-Consider marking one of the beans as @Primary, updating the consumer to accept multiple beans, or using @Qualifier to identify the bean that should be consumed
-
-Ensure that your compiler is configured to use the '-parameters' flag.
-You may need to update both your build tool settings as well as your IDE.
-(See https://github.com/spring-projects/spring-framework/wiki/Upgrading-to-Spring-Framework-6.x#parameter-name-retention)
-
-
-2024-11-15 13:38:40 [JavaFX-Launcher] INFO  o.s.boot.SpringApplication - Starting application using Java 17.0.12 with PID 9380 (started by simgr in C:\Users\simgr\Desktop\Jambo\Jambo)
-2024-11-15 13:38:40 [JavaFX-Launcher] INFO  o.s.boot.SpringApplication - No active profile set, falling back to 1 default profile: "default"
-2024-11-15 13:38:40 [JavaFX-Launcher] WARN  o.s.c.a.AnnotationConfigApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'jamboController' defined in file [C:\Users\simgr\Desktop\Jambo\Jambo\build\classes\java\main\com\example\jambo\controllers\JamboController.class]: Unsatisfied dependency expressed through constructor parameter 1: No qualifying bean of type 'com.example.jambo.managers.PlaylistManager' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
-2024-11-15 13:38:40 [JavaFX-Launcher] ERROR o.s.b.d.LoggingFailureAnalysisReporter - 
-
-***************************
-APPLICATION FAILED TO START
-***************************
-
-Description:
-
-Parameter 1 of constructor in com.example.jambo.controllers.JamboController required a bean of type 'com.example.jambo.managers.PlaylistManager' that could not be found.
-
-
-Action:
-
-Consider defining a bean of type 'com.example.jambo.managers.PlaylistManager' in your configuration.
-
-2024-11-15 13:38:47 [JavaFX-Launcher] INFO  o.s.boot.SpringApplication - Starting application using Java 17.0.12 with PID 7796 (started by simgr in C:\Users\simgr\Desktop\Jambo\Jambo)
-2024-11-15 13:38:47 [JavaFX-Launcher] INFO  o.s.boot.SpringApplication - No active profile set, falling back to 1 default profile: "default"
-2024-11-15 13:38:48 [JavaFX-Launcher] WARN  o.s.c.a.AnnotationConfigApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'jamboController' defined in file [C:\Users\simgr\Desktop\Jambo\Jambo\build\classes\java\main\com\example\jambo\controllers\JamboController.class]: Unsatisfied dependency expressed through constructor parameter 1: No qualifying bean of type 'com.example.jambo.managers.PlaylistManager' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
-2024-11-15 13:38:48 [JavaFX-Launcher] ERROR o.s.b.d.LoggingFailureAnalysisReporter - 
-
-***************************
-APPLICATION FAILED TO START
-***************************
-
-Description:
-
-Parameter 1 of constructor in com.example.jambo.controllers.JamboController required a bean of type 'com.example.jambo.managers.PlaylistManager' that could not be found.
-
-
-Action:
-
-Consider defining a bean of type 'com.example.jambo.managers.PlaylistManager' in your configuration.
-
-2024-11-15 13:41:52 [JavaFX-Launcher] INFO  o.s.boot.SpringApplication - Starting application using Java 17.0.12 with PID 10284 (started by simgr in C:\Users\simgr\Desktop\Jambo\Jambo)
-2024-11-15 13:41:52 [JavaFX-Launcher] INFO  o.s.boot.SpringApplication - No active profile set, falling back to 1 default profile: "default"
-2024-11-15 13:41:52 [JavaFX-Launcher] WARN  o.s.c.a.AnnotationConfigApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'jamboController' defined in file [C:\Users\simgr\Desktop\Jambo\Jambo\build\classes\java\main\com\example\jambo\controllers\JamboController.class]: Unsatisfied dependency expressed through constructor parameter 1: Error creating bean with name 'playlistManager' defined in file [C:\Users\simgr\Desktop\Jambo\Jambo\build\classes\java\main\com\example\jambo\managers\PlaylistManager.class]: Unsatisfied dependency expressed through constructor parameter 1: No qualifying bean of type 'javafx.scene.control.ListView<java.lang.String>' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
-2024-11-15 13:41:52 [JavaFX-Launcher] ERROR o.s.b.d.LoggingFailureAnalysisReporter - 
-
-***************************
-APPLICATION FAILED TO START
-***************************
-
-Description:
-
-Parameter 1 of constructor in com.example.jambo.managers.PlaylistManager required a bean of type 'javafx.scene.control.ListView' that could not be found.
-
-
-Action:
-
-Consider defining a bean of type 'javafx.scene.control.ListView' in your configuration.
-
-2024-11-15 13:44:30 [JavaFX-Launcher] INFO  o.s.boot.SpringApplication - Starting application using Java 17.0.12 with PID 23516 (started by simgr in C:\Users\simgr\Desktop\Jambo\Jambo)
-2024-11-15 13:44:30 [JavaFX-Launcher] INFO  o.s.boot.SpringApplication - No active profile set, falling back to 1 default profile: "default"
-2024-11-15 13:44:30 [JavaFX-Launcher] WARN  o.s.c.a.AnnotationConfigApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'jamboController' defined in file [C:\Users\simgr\Desktop\Jambo\Jambo\build\classes\java\main\com\example\jambo\controllers\JamboController.class]: Unsatisfied dependency expressed through constructor parameter 1: Error creating bean with name 'playlistManager' defined in file [C:\Users\simgr\Desktop\Jambo\Jambo\build\classes\java\main\com\example\jambo\managers\PlaylistManager.class]: Unsatisfied dependency expressed through constructor parameter 1: No qualifying bean of type 'javafx.scene.control.ListView<java.lang.String>' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
-2024-11-15 13:44:30 [JavaFX-Launcher] ERROR o.s.b.d.LoggingFailureAnalysisReporter - 
-
-***************************
-APPLICATION FAILED TO START
-***************************
-
-Description:
-
-Parameter 1 of constructor in com.example.jambo.managers.PlaylistManager required a bean of type 'javafx.scene.control.ListView' that could not be found.
-
-
-Action:
-
-Consider defining a bean of type 'javafx.scene.control.ListView' in your configuration.
-
-2024-11-15 13:45:05 [JavaFX-Launcher] INFO  o.s.boot.SpringApplication - Starting application using Java 17.0.12 with PID 21052 (started by simgr in C:\Users\simgr\Desktop\Jambo\Jambo)
-2024-11-15 13:45:05 [JavaFX-Launcher] INFO  o.s.boot.SpringApplication - No active profile set, falling back to 1 default profile: "default"
-2024-11-15 13:45:05 [JavaFX-Launcher] WARN  o.s.c.a.AnnotationConfigApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'jamboController' defined in file [C:\Users\simgr\Desktop\Jambo\Jambo\build\classes\java\main\com\example\jambo\controllers\JamboController.class]: Unsatisfied dependency expressed through constructor parameter 2: No qualifying bean of type 'com.example.jambo.managers.MetadataManager' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
-2024-11-15 13:45:05 [JavaFX-Launcher] ERROR o.s.b.d.LoggingFailureAnalysisReporter - 
-
-***************************
-APPLICATION FAILED TO START
-***************************
-
-Description:
-
-Parameter 2 of constructor in com.example.jambo.controllers.JamboController required a bean of type 'com.example.jambo.managers.MetadataManager' that could not be found.
-
-
-Action:
-
-Consider defining a bean of type 'com.example.jambo.managers.MetadataManager' in your configuration.
-
-2024-11-15 13:45:23 [JavaFX-Launcher] INFO  o.s.boot.SpringApplication - Starting application using Java 17.0.12 with PID 23128 (started by simgr in C:\Users\simgr\Desktop\Jambo\Jambo)
-2024-11-15 13:45:23 [JavaFX-Launcher] INFO  o.s.boot.SpringApplication - No active profile set, falling back to 1 default profile: "default"
-2024-11-15 13:45:24 [JavaFX-Launcher] WARN  o.s.c.a.AnnotationConfigApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'jamboController' defined in file [C:\Users\simgr\Desktop\Jambo\Jambo\build\classes\java\main\com\example\jambo\controllers\JamboController.class]: Unsatisfied dependency expressed through constructor parameter 2: No qualifying bean of type 'com.example.jambo.managers.MetadataManager' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
-2024-11-15 13:45:24 [JavaFX-Launcher] ERROR o.s.b.d.LoggingFailureAnalysisReporter - 
-
-***************************
-APPLICATION FAILED TO START
-***************************
-
-Description:
-
-Parameter 2 of constructor in com.example.jambo.controllers.JamboController required a bean of type 'com.example.jambo.managers.MetadataManager' that could not be found.
-
-
-Action:
-
-Consider defining a bean of type 'com.example.jambo.managers.MetadataManager' in your configuration.
-
-2024-11-15 13:46:12 [JavaFX-Launcher] INFO  o.s.boot.SpringApplication - Starting application using Java 17.0.12 with PID 20472 (started by simgr in C:\Users\simgr\Desktop\Jambo\Jambo)
-2024-11-15 13:46:12 [JavaFX-Launcher] INFO  o.s.boot.SpringApplication - No active profile set, falling back to 1 default profile: "default"
-2024-11-15 13:46:13 [JavaFX-Launcher] WARN  o.s.c.a.AnnotationConfigApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'jamboController' defined in file [C:\Users\simgr\Desktop\Jambo\Jambo\build\classes\java\main\com\example\jambo\controllers\JamboController.class]: Unsatisfied dependency expressed through constructor parameter 2: Error creating bean with name 'metadataManager' defined in file [C:\Users\simgr\Desktop\Jambo\Jambo\build\classes\java\main\com\example\jambo\managers\MetadataManager.class]: Unsatisfied dependency expressed through constructor parameter 1: No qualifying bean of type 'javafx.scene.control.Label' available: expected single matching bean but found 2: currentSongLabel,timerLabel
-2024-11-15 13:46:13 [JavaFX-Launcher] ERROR o.s.b.d.LoggingFailureAnalysisReporter - 
-
-***************************
-APPLICATION FAILED TO START
-***************************
-
-Description:
-
-Parameter 1 of constructor in com.example.jambo.managers.MetadataManager required a single bean, but 2 were found:
-	- currentSongLabel: defined by method 'currentSongLabel' in com.example.jambo.config.JamboConfig
-	- timerLabel: defined by method 'timerLabel' in com.example.jambo.config.JamboConfig
-
-This may be due to missing parameter name information
-
-Action:
-
-Consider marking one of the beans as @Primary, updating the consumer to accept multiple beans, or using @Qualifier to identify the bean that should be consumed
-
-Ensure that your compiler is configured to use the '-parameters' flag.
-You may need to update both your build tool settings as well as your IDE.
-(See https://github.com/spring-projects/spring-framework/wiki/Upgrading-to-Spring-Framework-6.x#parameter-name-retention)
-
-
-2024-11-15 13:46:48 [JavaFX-Launcher] INFO  o.s.boot.SpringApplication - Starting application using Java 17.0.12 with PID 3056 (started by simgr in C:\Users\simgr\Desktop\Jambo\Jambo)
-2024-11-15 13:46:48 [JavaFX-Launcher] INFO  o.s.boot.SpringApplication - No active profile set, falling back to 1 default profile: "default"
-2024-11-15 13:46:48 [JavaFX-Launcher] WARN  o.s.c.a.AnnotationConfigApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'jamboController' defined in file [C:\Users\simgr\Desktop\Jambo\Jambo\build\classes\java\main\com\example\jambo\controllers\JamboController.class]: Unsatisfied dependency expressed through constructor parameter 2: Error creating bean with name 'metadataManager' defined in file [C:\Users\simgr\Desktop\Jambo\Jambo\build\classes\java\main\com\example\jambo\managers\MetadataManager.class]: Unsatisfied dependency expressed through constructor parameter 1: No qualifying bean of type 'javafx.scene.control.Label' available: expected single matching bean but found 2: currentSongLabel,timerLabel
-2024-11-15 13:46:48 [JavaFX-Launcher] ERROR o.s.b.d.LoggingFailureAnalysisReporter - 
-
-***************************
-APPLICATION FAILED TO START
-***************************
-
-Description:
-
-Parameter 1 of constructor in com.example.jambo.managers.MetadataManager required a single bean, but 2 were found:
-	- currentSongLabel: defined by method 'currentSongLabel' in com.example.jambo.config.JamboConfig
-	- timerLabel: defined by method 'timerLabel' in com.example.jambo.config.JamboConfig
-
-This may be due to missing parameter name information
-
-Action:
-
-Consider marking one of the beans as @Primary, updating the consumer to accept multiple beans, or using @Qualifier to identify the bean that should be consumed
-
-Ensure that your compiler is configured to use the '-parameters' flag.
-You may need to update both your build tool settings as well as your IDE.
-(See https://github.com/spring-projects/spring-framework/wiki/Upgrading-to-Spring-Framework-6.x#parameter-name-retention)
-
-
-2024-11-15 13:50:23 [JavaFX-Launcher] INFO  o.s.boot.SpringApplication - Starting application using Java 17.0.12 with PID 18024 (started by simgr in C:\Users\simgr\Desktop\Jambo\Jambo)
-2024-11-15 13:50:23 [JavaFX-Launcher] INFO  o.s.boot.SpringApplication - No active profile set, falling back to 1 default profile: "default"
-2024-11-15 13:50:23 [JavaFX-Launcher] WARN  o.s.c.a.AnnotationConfigApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'jamboController' defined in file [C:\Users\simgr\Desktop\Jambo\Jambo\build\classes\java\main\com\example\jambo\controllers\JamboController.class]: Unsatisfied dependency expressed through constructor parameter 2: Error creating bean with name 'metadataManager' defined in file [C:\Users\simgr\Desktop\Jambo\Jambo\build\classes\java\main\com\example\jambo\managers\MetadataManager.class]: Unsatisfied dependency expressed through constructor parameter 3: No qualifying bean of type 'javafx.scene.layout.Pane' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
-2024-11-15 13:50:23 [JavaFX-Launcher] ERROR o.s.b.d.LoggingFailureAnalysisReporter - 
-
-***************************
-APPLICATION FAILED TO START
-***************************
-
-Description:
-
-Parameter 3 of constructor in com.example.jambo.managers.MetadataManager required a bean of type 'javafx.scene.layout.Pane' that could not be found.
-
-
-Action:
-
-Consider defining a bean of type 'javafx.scene.layout.Pane' in your configuration.
-
-2024-11-15 13:50:53 [JavaFX-Launcher] INFO  o.s.boot.SpringApplication - Starting application using Java 17.0.12 with PID 20260 (started by simgr in C:\Users\simgr\Desktop\Jambo\Jambo)
-2024-11-15 13:50:53 [JavaFX-Launcher] INFO  o.s.boot.SpringApplication - No active profile set, falling back to 1 default profile: "default"
-2024-11-15 13:50:53 [JavaFX-Launcher] INFO  c.e.j.controllers.JamboController - JamboController initialized successfully.
-2024-11-15 13:50:53 [JavaFX-Launcher] INFO  o.s.boot.SpringApplication - Started application in 0.734 seconds (process running for 1.434)
-2024-11-15 13:50:54 [JavaFX Application Thread] INFO  c.e.j.controllers.JamboController - Primary stage configured and displayed.
-2024-11-15 13:50:54 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Loading 54 valid songs from saved_songs.json
-2024-11-15 13:50:54 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Back at It.mp3
-2024-11-15 13:50:54 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Cashin (Ft. Adamn Killa).mp3
-2024-11-15 13:50:54 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Crystal City (Ft. ASAP Ferg).mp3
-2024-11-15 13:50:54 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Get It Back.mp3
-2024-11-15 13:50:54 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Head 2 Toe (Ft. Bladee).mp3
-2024-11-15 13:50:54 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Hennessy & Sailor Moon (Ft. Bladee).mp3
-2024-11-15 13:50:54 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Hop Out (Ft. Luckaleannn).mp3
-2024-11-15 13:50:54 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Kirby.mp3
-2024-11-15 13:50:54 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 01 - Nekobasu (prod Baba Stiltz).mp3
-2024-11-15 13:50:54 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 02 - Buildings ft Thaiboy Digital  Bladee (prod Tokyo Hands WhiteArmor  Yung Sherman).mp3
-2024-11-15 13:50:54 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 03 - Marble Phone (ft Kreayshawn) (prod WhiteArmor  Yung Sherman).mp3
-2024-11-15 13:50:54 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 04 - Kyoto (prod Yung Gud).mp3
-2024-11-15 13:50:54 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 05 - Crystalized Snow ft Thaiboy Digital (prod WhiteArmor).mp3
-2024-11-15 13:50:54 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 06 - King Of The Darkness (prod Baba Stiltz).mp3
-2024-11-15 13:50:54 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 07 - Motorola (prod Whitearmor).mp3
-2024-11-15 13:50:54 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 08 - Visions of U (prod Whitearmor).mp3
-2024-11-15 13:50:54 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 09 - Orroz (prod Yung Gud).mp3
-2024-11-15 13:50:54 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 10 - Re-Charge ft Baba Stiltz (prod Baba Stiltz).mp3
-2024-11-15 13:50:54 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 01 - OreoMilkShake.mp3
-2024-11-15 13:50:54 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 02 - GreyGoose.mp3
-2024-11-15 13:50:54 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 03 - Damn Gud Shawty.mp3
-2024-11-15 13:50:54 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 04 - Ginseng Strip 2002.mp3
-2024-11-15 13:50:54 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 05 - The 5th Element.mp3
-2024-11-15 13:50:54 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 06 - Plastic G-Shock.mp3
-2024-11-15 13:50:55 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 07 - Gatorade.mp3
-2024-11-15 13:50:55 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 08 - Stevie Nicks.mp3
-2024-11-15 13:50:55 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 09 - Bentley.mp3
-2024-11-15 13:50:55 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 10 - Watchu Wanna feat. Prada Mane.mp3
-2024-11-15 13:50:55 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 11 - 3D Spaceship.mp3
-2024-11-15 13:50:55 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Yung Lean - Unknown Death 2002 - 01 Welcome 2 Unknown Death -Prod. Yung Sherman-.mp3
-2024-11-15 13:50:55 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Yung Lean - Unknown Death 2002 - 02 Nitevision (feat. Bladee) -Prod. Yung Gud-.mp3
-2024-11-15 13:50:55 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Yung Lean - Unknown Death 2002 - 03 Oceans 2001 -Prod. Gregar-.mp3
-2024-11-15 13:50:55 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Yung Lean - Unknown Death 2002 - 04 Gatorade -Prod. Yung Gud-.mp3
-2024-11-15 13:50:55 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Yung Lean - Unknown Death 2002 - 05 Hurt -Prod. Suicideyear-.mp3
-2024-11-15 13:50:55 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Yung Lean - Unknown Death 2002 - 06 Lightsaber - Saviour -Prod. Yung Sherman-.mp3
-2024-11-15 13:50:55 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Yung Lean - Unknown Death 2002 - 07 Princess Daisy -Prod. Yung Gud-.mp3
-2024-11-15 13:50:55 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Yung Lean - Unknown Death 2002 - 08 Lemonade (feat. Baba Stiltz) -Prod. Yung Sherman-.mp3
-2024-11-15 13:50:55 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Yung Lean - Unknown Death 2002 - 09 Emails -Prod. White Armor-.mp3
-2024-11-15 13:50:55 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Yung Lean - Unknown Death 2002 - 10 Deathstar - Getting Benjamins -Prod. White Armor-.mp3
-2024-11-15 13:50:55 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Yung Lean - Unknown Death 2002 - 11 Heal You - Bladerunner (feat. Bladee) -Prod. White Armor-.mp3
-2024-11-15 13:50:55 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Yung Lean - Unknown Death 2002 - 12 Solarflare -Prod. Friendzone-.mp3
-2024-11-15 13:50:55 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 01 Immortal.mp3
-2024-11-15 13:50:55 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 02 Highway Patrol (Ft. Bladee).mp3
-2024-11-15 13:50:55 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 03 Fantasy (Ft. Lil Flash).mp3
-2024-11-15 13:50:55 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 04 Afghanistan.mp3
-2024-11-15 13:50:55 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 05 Hoover.mp3
-2024-11-15 13:50:55 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 06 Fire.mp3
-2024-11-15 13:50:55 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 07 Stay Down.mp3
-2024-11-15 13:50:55 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 08 Eye Contact.mp3
-2024-11-15 13:50:55 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 09 More Stacks.mp3
-2024-11-15 13:50:56 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 10 AF1s (Ft. Ecco2k).mp3
-2024-11-15 13:50:56 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 11 Hocus Pocus (Ft. Bladee).mp3
-2024-11-15 13:50:56 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 12 Shawty U Know What It Do.mp3
-2024-11-15 13:50:56 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 13 Miami Ultras.mp3
-2024-11-15 13:50:56 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - 54 songs loaded successfully
-2024-11-15 13:51:02 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Saved 54 songs to saved_songs.json
-2024-11-15 13:51:09 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 01 Endpiece.mp3
-2024-11-15 13:51:09 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 02 Please Mr Pilot.mp3
-2024-11-15 13:51:09 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 03 2_24.mp3
-2024-11-15 13:51:09 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 04 The Hard Part.mp3
-2024-11-15 13:51:09 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 05 Sound Man_Low Fidelity.mp3
-2024-11-15 13:51:10 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 06 Napoleon (March Into Russia).mp3
-2024-11-15 13:51:10 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 07 Drunk On A Work Night.mp3
-2024-11-15 13:51:10 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 08 Love Me Too Much.mp3
-2024-11-15 13:51:10 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 09 Dream_ Encounter On Smoke Mountain.mp3
-2024-11-15 13:51:10 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 10 Sinner.mp3
-2024-11-15 13:51:10 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 11 When Will My Man Come_.mp3
-2024-11-15 13:51:10 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 12 Hi Life.mp3
-2024-11-15 13:51:10 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 13 AC.mp3
-2024-11-15 13:51:10 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 14 If Not, Then Oh Well.mp3
-2024-11-15 13:51:10 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 15 Memories (Leonard Cohen Cover).mp3
-2024-11-15 13:51:10 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 16 KS.mp3
-2024-11-15 13:51:11 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 17 Unfinished_ Pain Star (If heaven is full of people...).mp3
-2024-11-15 13:51:11 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Saved 71 songs to saved_songs.json
-2024-11-15 13:51:24 [JavaFX Application Thread] INFO  c.e.jambo.services.PlaylistService - Created new playlist: sigma
-2024-11-15 13:51:27 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 01 Endpiece.mp3
-2024-11-15 13:51:27 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 02 Please Mr Pilot.mp3
-2024-11-15 13:51:27 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 03 2_24.mp3
-2024-11-15 13:51:27 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 04 The Hard Part.mp3
-2024-11-15 13:51:27 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 05 Sound Man_Low Fidelity.mp3
-2024-11-15 13:51:27 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 06 Napoleon (March Into Russia).mp3
-2024-11-15 13:51:27 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 07 Drunk On A Work Night.mp3
-2024-11-15 13:51:27 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 08 Love Me Too Much.mp3
-2024-11-15 13:51:27 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 09 Dream_ Encounter On Smoke Mountain.mp3
-2024-11-15 13:51:27 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 10 Sinner.mp3
-2024-11-15 13:51:27 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 11 When Will My Man Come_.mp3
-2024-11-15 13:51:28 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 12 Hi Life.mp3
-2024-11-15 13:51:28 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 13 AC.mp3
-2024-11-15 13:51:28 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 14 If Not, Then Oh Well.mp3
-2024-11-15 13:51:28 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 15 Memories (Leonard Cohen Cover).mp3
-2024-11-15 13:51:28 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 16 KS.mp3
-2024-11-15 13:51:28 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 17 Unfinished_ Pain Star (If heaven is full of people...).mp3
-2024-11-15 13:51:28 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Saved 17 songs to saved_songs.json
-2024-11-15 13:51:31 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Saved 17 songs to saved_songs.json
-2024-11-15 13:55:07 [JavaFX-Launcher] INFO  o.s.boot.SpringApplication - Starting application using Java 17.0.12 with PID 10180 (started by simgr in C:\Users\simgr\Desktop\Jambo\Jambo)
-2024-11-15 13:55:07 [JavaFX-Launcher] INFO  o.s.boot.SpringApplication - No active profile set, falling back to 1 default profile: "default"
-2024-11-15 13:55:07 [JavaFX-Launcher] INFO  c.e.j.controllers.JamboController - JamboController initialized successfully.
-2024-11-15 13:55:07 [JavaFX-Launcher] INFO  o.s.boot.SpringApplication - Started application in 0.762 seconds (process running for 1.506)
-2024-11-15 13:55:07 [JavaFX Application Thread] INFO  c.e.j.controllers.JamboController - Primary stage configured and displayed.
-2024-11-15 13:55:07 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Loading 17 valid songs from saved_songs.json
-2024-11-15 13:55:07 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 01 Endpiece.mp3
-2024-11-15 13:55:07 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 02 Please Mr Pilot.mp3
-2024-11-15 13:55:07 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 03 2_24.mp3
-2024-11-15 13:55:07 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 04 The Hard Part.mp3
-2024-11-15 13:55:07 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 05 Sound Man_Low Fidelity.mp3
-2024-11-15 13:55:07 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 06 Napoleon (March Into Russia).mp3
-2024-11-15 13:55:07 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 07 Drunk On A Work Night.mp3
-2024-11-15 13:55:07 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 08 Love Me Too Much.mp3
-2024-11-15 13:55:07 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 09 Dream_ Encounter On Smoke Mountain.mp3
-2024-11-15 13:55:07 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 10 Sinner.mp3
-2024-11-15 13:55:07 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 11 When Will My Man Come_.mp3
-2024-11-15 13:55:08 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 12 Hi Life.mp3
-2024-11-15 13:55:08 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 13 AC.mp3
-2024-11-15 13:55:08 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 14 If Not, Then Oh Well.mp3
-2024-11-15 13:55:08 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 15 Memories (Leonard Cohen Cover).mp3
-2024-11-15 13:55:08 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 16 KS.mp3
-2024-11-15 13:55:08 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 17 Unfinished_ Pain Star (If heaven is full of people...).mp3
-2024-11-15 13:55:08 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - 17 songs loaded successfully
-2024-11-15 13:55:11 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Saved 17 songs to saved_songs.json
-2024-11-15 13:56:58 [JavaFX-Launcher] INFO  o.s.boot.SpringApplication - Starting application using Java 17.0.12 with PID 11620 (started by simgr in C:\Users\simgr\Desktop\Jambo\Jambo)
-2024-11-15 13:56:58 [JavaFX-Launcher] INFO  o.s.boot.SpringApplication - No active profile set, falling back to 1 default profile: "default"
-2024-11-15 13:56:58 [JavaFX-Launcher] INFO  c.e.j.controllers.JamboController - JamboController initialized successfully.
-2024-11-15 13:56:58 [JavaFX-Launcher] INFO  o.s.boot.SpringApplication - Started application in 0.761 seconds (process running for 1.496)
-2024-11-15 13:56:58 [JavaFX Application Thread] INFO  c.e.j.controllers.JamboController - Primary stage configured and displayed.
-2024-11-15 13:56:58 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Loading 17 valid songs from saved_songs.json
-2024-11-15 13:56:58 [JavaFX Application Thread] INFO  c.e.j.controllers.JamboController - Songs in playlist: []
-2024-11-15 13:56:59 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 01 Endpiece.mp3
-2024-11-15 13:56:59 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 02 Please Mr Pilot.mp3
-2024-11-15 13:56:59 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 03 2_24.mp3
-2024-11-15 13:56:59 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 04 The Hard Part.mp3
-2024-11-15 13:56:59 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 05 Sound Man_Low Fidelity.mp3
-2024-11-15 13:56:59 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 06 Napoleon (March Into Russia).mp3
-2024-11-15 13:56:59 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 07 Drunk On A Work Night.mp3
-2024-11-15 13:56:59 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 08 Love Me Too Much.mp3
-2024-11-15 13:56:59 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 09 Dream_ Encounter On Smoke Mountain.mp3
-2024-11-15 13:56:59 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 10 Sinner.mp3
-2024-11-15 13:56:59 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 11 When Will My Man Come_.mp3
-2024-11-15 13:56:59 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 12 Hi Life.mp3
-2024-11-15 13:56:59 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 13 AC.mp3
-2024-11-15 13:56:59 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 14 If Not, Then Oh Well.mp3
-2024-11-15 13:56:59 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 15 Memories (Leonard Cohen Cover).mp3
-2024-11-15 13:56:59 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 16 KS.mp3
-2024-11-15 13:56:59 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 17 Unfinished_ Pain Star (If heaven is full of people...).mp3
-2024-11-15 13:56:59 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - 17 songs loaded successfully
-2024-11-15 13:57:01 [JavaFX Application Thread] INFO  c.e.jambo.services.PlaylistService - Cleared playlist 'Default'
-2024-11-15 13:57:05 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 01 Endpiece.mp3
-2024-11-15 13:57:05 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 02 Please Mr Pilot.mp3
-2024-11-15 13:57:05 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 03 2_24.mp3
-2024-11-15 13:57:05 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 04 The Hard Part.mp3
-2024-11-15 13:57:05 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 05 Sound Man_Low Fidelity.mp3
-2024-11-15 13:57:05 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 06 Napoleon (March Into Russia).mp3
-2024-11-15 13:57:05 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 07 Drunk On A Work Night.mp3
-2024-11-15 13:57:05 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 08 Love Me Too Much.mp3
-2024-11-15 13:57:05 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 09 Dream_ Encounter On Smoke Mountain.mp3
-2024-11-15 13:57:05 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 10 Sinner.mp3
-2024-11-15 13:57:05 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 11 When Will My Man Come_.mp3
-2024-11-15 13:57:05 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 12 Hi Life.mp3
-2024-11-15 13:57:05 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 13 AC.mp3
-2024-11-15 13:57:05 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 14 If Not, Then Oh Well.mp3
-2024-11-15 13:57:05 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 15 Memories (Leonard Cohen Cover).mp3
-2024-11-15 13:57:05 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 16 KS.mp3
-2024-11-15 13:57:05 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 17 Unfinished_ Pain Star (If heaven is full of people...).mp3
-2024-11-15 13:57:05 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Saved 17 songs to saved_songs.json
-2024-11-15 13:57:10 [JavaFX Application Thread] INFO  c.e.j.controllers.JamboController - Playing selected song: 15 Memories (Leonard Cohen Cover).mp3
-2024-11-15 13:57:13 [JavaFX Application Thread] INFO  c.e.j.controllers.JamboController - Playing selected song: 08 Love Me Too Much.mp3
-2024-11-15 13:57:13 [JavaFX Application Thread] INFO  c.e.j.controllers.JamboController - Playing selected song: 08 Love Me Too Much.mp3
-2024-11-15 13:57:14 [JavaFX Application Thread] INFO  c.e.j.controllers.JamboController - Playing selected song: 16 KS.mp3
-2024-11-15 13:57:15 [JavaFX Application Thread] INFO  c.e.j.controllers.JamboController - Playing selected song: 04 The Hard Part.mp3
-2024-11-15 13:57:18 [JavaFX Application Thread] INFO  c.e.j.controllers.JamboController - Playing selected song: 17 Unfinished_ Pain Star (If heaven is full of people...).mp3
-2024-11-15 13:57:21 [JavaFX Application Thread] INFO  c.e.j.controllers.JamboController - Playing selected song: 16 KS.mp3
-2024-11-15 13:57:23 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Saved 17 songs to saved_songs.json
-2024-11-15 13:59:41 [JavaFX-Launcher] INFO  o.s.boot.SpringApplication - Starting application using Java 17.0.12 with PID 13836 (started by simgr in C:\Users\simgr\Desktop\Jambo\Jambo)
-2024-11-15 13:59:41 [JavaFX-Launcher] INFO  o.s.boot.SpringApplication - No active profile set, falling back to 1 default profile: "default"
-2024-11-15 13:59:41 [JavaFX-Launcher] INFO  c.e.j.controllers.JamboController - JamboController initialized successfully.
-2024-11-15 13:59:41 [JavaFX-Launcher] INFO  o.s.boot.SpringApplication - Started application in 0.904 seconds (process running for 1.736)
-2024-11-15 13:59:42 [JavaFX Application Thread] INFO  c.e.j.controllers.JamboController - Primary stage configured and displayed.
-2024-11-15 13:59:42 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Loading 17 valid songs from saved_songs.json
-2024-11-15 13:59:42 [JavaFX Application Thread] INFO  c.e.j.controllers.JamboController - Songs in playlist: []
-2024-11-15 13:59:42 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 01 Endpiece.mp3
-2024-11-15 13:59:42 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 02 Please Mr Pilot.mp3
-2024-11-15 13:59:42 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 03 2_24.mp3
-2024-11-15 13:59:42 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 04 The Hard Part.mp3
-2024-11-15 13:59:42 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 05 Sound Man_Low Fidelity.mp3
-2024-11-15 13:59:42 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 06 Napoleon (March Into Russia).mp3
-2024-11-15 13:59:42 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 07 Drunk On A Work Night.mp3
-2024-11-15 13:59:42 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 08 Love Me Too Much.mp3
-2024-11-15 13:59:42 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 09 Dream_ Encounter On Smoke Mountain.mp3
-2024-11-15 13:59:42 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 10 Sinner.mp3
-2024-11-15 13:59:42 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 11 When Will My Man Come_.mp3
-2024-11-15 13:59:42 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 12 Hi Life.mp3
-2024-11-15 13:59:42 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 13 AC.mp3
-2024-11-15 13:59:42 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 14 If Not, Then Oh Well.mp3
-2024-11-15 13:59:42 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 15 Memories (Leonard Cohen Cover).mp3
-2024-11-15 13:59:42 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 16 KS.mp3
-2024-11-15 13:59:42 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 17 Unfinished_ Pain Star (If heaven is full of people...).mp3
-2024-11-15 13:59:42 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - 17 songs loaded successfully
-2024-11-15 13:59:45 [JavaFX Application Thread] INFO  c.e.jambo.services.PlaylistService - Cleared playlist 'Default'
-2024-11-15 13:59:47 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 01 Endpiece.mp3
-2024-11-15 13:59:47 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 02 Please Mr Pilot.mp3
-2024-11-15 13:59:47 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 03 2_24.mp3
-2024-11-15 13:59:47 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 04 The Hard Part.mp3
-2024-11-15 13:59:47 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 05 Sound Man_Low Fidelity.mp3
-2024-11-15 13:59:47 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 06 Napoleon (March Into Russia).mp3
-2024-11-15 13:59:47 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 07 Drunk On A Work Night.mp3
-2024-11-15 13:59:47 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 08 Love Me Too Much.mp3
-2024-11-15 13:59:47 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 09 Dream_ Encounter On Smoke Mountain.mp3
-2024-11-15 13:59:48 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 10 Sinner.mp3
-2024-11-15 13:59:48 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 11 When Will My Man Come_.mp3
-2024-11-15 13:59:48 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 12 Hi Life.mp3
-2024-11-15 13:59:48 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 13 AC.mp3
-2024-11-15 13:59:48 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 14 If Not, Then Oh Well.mp3
-2024-11-15 13:59:48 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 15 Memories (Leonard Cohen Cover).mp3
-2024-11-15 13:59:48 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 16 KS.mp3
-2024-11-15 13:59:48 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 17 Unfinished_ Pain Star (If heaven is full of people...).mp3
-2024-11-15 13:59:48 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Saved 17 songs to saved_songs.json
-2024-11-15 13:59:49 [JavaFX Application Thread] INFO  c.e.j.controllers.JamboController - Playing selected song: 09 Dream_ Encounter On Smoke Mountain.mp3
-2024-11-15 13:59:51 [JavaFX Application Thread] INFO  c.e.j.controllers.JamboController - Playing selected song: 13 AC.mp3
-2024-11-15 14:00:02 [JavaFX Application Thread] INFO  c.e.j.controllers.JamboController - Playing selected song: 01 Endpiece.mp3
-2024-11-15 14:00:16 [JavaFX Application Thread] INFO  c.e.j.controllers.JamboController - Playing selected song: 17 Unfinished_ Pain Star (If heaven is full of people...).mp3
-2024-11-15 14:00:28 [JavaFX Application Thread] INFO  c.e.j.controllers.JamboController - Playing selected song: 06 Napoleon (March Into Russia).mp3
-2024-11-15 14:00:32 [JavaFX Application Thread] INFO  c.e.j.controllers.JamboController - Playing selected song: 07 Drunk On A Work Night.mp3
-2024-11-15 14:00:37 [JavaFX Application Thread] INFO  c.e.j.controllers.JamboController - Playing selected song: 07 Drunk On A Work Night.mp3
-2024-11-15 14:00:42 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Saved 17 songs to saved_songs.json
-2024-11-15 23:03:41 [JavaFX-Launcher] INFO  o.s.boot.SpringApplication - Starting application using Java 17.0.12 with PID 8728 (started by simgr in C:\Users\simgr\Desktop\Jambo\Jambo)
-2024-11-15 23:03:41 [JavaFX-Launcher] INFO  o.s.boot.SpringApplication - No active profile set, falling back to 1 default profile: "default"
-2024-11-15 23:03:41 [JavaFX-Launcher] WARN  o.s.c.a.AnnotationConfigApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'jamboController' defined in file [C:\Users\simgr\Desktop\Jambo\Jambo\build\classes\java\main\com\example\jambo\controllers\JamboController.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'musicPlayerManager' defined in com.example.jambo.config.JamboConfig: Unsatisfied dependency expressed through method 'musicPlayerManager' parameter 1: No qualifying bean of type 'javafx.scene.control.Label' available: expected single matching bean but found 3: currentSongLabel,timerLabel,fileInfoLabel
-2024-11-15 23:03:41 [JavaFX-Launcher] ERROR o.s.b.d.LoggingFailureAnalysisReporter - 
-
-***************************
-APPLICATION FAILED TO START
-***************************
-
-Description:
-
-Parameter 1 of method musicPlayerManager in com.example.jambo.config.JamboConfig required a single bean, but 3 were found:
-	- currentSongLabel: defined by method 'currentSongLabel' in com.example.jambo.config.JamboConfig
-	- timerLabel: defined by method 'timerLabel' in com.example.jambo.config.JamboConfig
-	- fileInfoLabel: defined by method 'fileInfoLabel' in com.example.jambo.config.JamboConfig
-
-This may be due to missing parameter name information
-
-Action:
-
-Consider marking one of the beans as @Primary, updating the consumer to accept multiple beans, or using @Qualifier to identify the bean that should be consumed
-
-Ensure that your compiler is configured to use the '-parameters' flag.
-You may need to update both your build tool settings as well as your IDE.
-(See https://github.com/spring-projects/spring-framework/wiki/Upgrading-to-Spring-Framework-6.x#parameter-name-retention)
-
-
-2024-11-15 23:03:50 [JavaFX-Launcher] INFO  o.s.boot.SpringApplication - Starting application using Java 17.0.12 with PID 12148 (started by simgr in C:\Users\simgr\Desktop\Jambo\Jambo)
-2024-11-15 23:03:50 [JavaFX-Launcher] INFO  o.s.boot.SpringApplication - No active profile set, falling back to 1 default profile: "default"
-2024-11-15 23:03:50 [JavaFX-Launcher] WARN  o.s.c.a.AnnotationConfigApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'jamboController' defined in file [C:\Users\simgr\Desktop\Jambo\Jambo\build\classes\java\main\com\example\jambo\controllers\JamboController.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'musicPlayerManager' defined in com.example.jambo.config.JamboConfig: Unsatisfied dependency expressed through method 'musicPlayerManager' parameter 1: No qualifying bean of type 'javafx.scene.control.Label' available: expected single matching bean but found 3: currentSongLabel,timerLabel,fileInfoLabel
-2024-11-15 23:03:50 [JavaFX-Launcher] ERROR o.s.b.d.LoggingFailureAnalysisReporter - 
-
-***************************
-APPLICATION FAILED TO START
-***************************
-
-Description:
-
-Parameter 1 of method musicPlayerManager in com.example.jambo.config.JamboConfig required a single bean, but 3 were found:
-	- currentSongLabel: defined by method 'currentSongLabel' in com.example.jambo.config.JamboConfig
-	- timerLabel: defined by method 'timerLabel' in com.example.jambo.config.JamboConfig
-	- fileInfoLabel: defined by method 'fileInfoLabel' in com.example.jambo.config.JamboConfig
-
-This may be due to missing parameter name information
-
-Action:
-
-Consider marking one of the beans as @Primary, updating the consumer to accept multiple beans, or using @Qualifier to identify the bean that should be consumed
-
-Ensure that your compiler is configured to use the '-parameters' flag.
-You may need to update both your build tool settings as well as your IDE.
-(See https://github.com/spring-projects/spring-framework/wiki/Upgrading-to-Spring-Framework-6.x#parameter-name-retention)
-
-
-2024-11-15 23:04:42 [JavaFX-Launcher] INFO  o.s.boot.SpringApplication - Starting application using Java 17.0.12 with PID 11304 (started by simgr in C:\Users\simgr\Desktop\Jambo\Jambo)
-2024-11-15 23:04:42 [JavaFX-Launcher] INFO  o.s.boot.SpringApplication - No active profile set, falling back to 1 default profile: "default"
-2024-11-15 23:04:43 [JavaFX-Launcher] INFO  c.e.j.controllers.JamboController - JamboController initialized successfully.
-2024-11-15 23:04:43 [JavaFX-Launcher] INFO  o.s.boot.SpringApplication - Started application in 0.738 seconds (process running for 1.455)
-2024-11-15 23:04:43 [JavaFX Application Thread] INFO  c.e.j.controllers.JamboController - Primary stage configured and displayed.
-2024-11-15 23:04:43 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Loading 17 valid songs from saved_songs.json
-2024-11-15 23:04:43 [JavaFX Application Thread] INFO  c.e.j.controllers.JamboController - Songs in playlist: []
-2024-11-15 23:04:43 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 01 Endpiece.mp3
-2024-11-15 23:04:43 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 02 Please Mr Pilot.mp3
-2024-11-15 23:04:43 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 03 2_24.mp3
-2024-11-15 23:04:44 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 04 The Hard Part.mp3
-2024-11-15 23:04:44 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 05 Sound Man_Low Fidelity.mp3
-2024-11-15 23:04:44 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 06 Napoleon (March Into Russia).mp3
-2024-11-15 23:04:44 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 07 Drunk On A Work Night.mp3
-2024-11-15 23:04:44 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 08 Love Me Too Much.mp3
-2024-11-15 23:04:44 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 09 Dream_ Encounter On Smoke Mountain.mp3
-2024-11-15 23:04:44 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 10 Sinner.mp3
-2024-11-15 23:04:44 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 11 When Will My Man Come_.mp3
-2024-11-15 23:04:44 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 12 Hi Life.mp3
-2024-11-15 23:04:44 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 13 AC.mp3
-2024-11-15 23:04:45 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 14 If Not, Then Oh Well.mp3
-2024-11-15 23:04:45 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 15 Memories (Leonard Cohen Cover).mp3
-2024-11-15 23:04:45 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 16 KS.mp3
-2024-11-15 23:04:45 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 17 Unfinished_ Pain Star (If heaven is full of people...).mp3
-2024-11-15 23:04:45 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - 17 songs loaded successfully
-2024-11-15 23:04:46 [JavaFX Application Thread] INFO  c.e.j.controllers.JamboController - Playing selected song: 12 Hi Life.mp3
-2024-11-15 23:04:49 [JavaFX Application Thread] INFO  c.e.j.controllers.JamboController - Playing selected song: 06 Napoleon (March Into Russia).mp3
-2024-11-15 23:04:53 [JavaFX Application Thread] INFO  c.e.j.controllers.JamboController - Playing selected song: 14 If Not, Then Oh Well.mp3
-2024-11-15 23:04:54 [JavaFX Application Thread] INFO  c.e.j.controllers.JamboController - Playing selected song: 17 Unfinished_ Pain Star (If heaven is full of people...).mp3
-2024-11-15 23:04:59 [JavaFX Application Thread] INFO  c.e.j.controllers.JamboController - Playing selected song: 01 Endpiece.mp3
-2024-11-15 23:05:00 [JavaFX Application Thread] INFO  c.e.j.controllers.JamboController - Playing selected song: 02 Please Mr Pilot.mp3
-2024-11-15 23:05:02 [JavaFX Application Thread] INFO  c.e.j.controllers.JamboController - Playing selected song: 03 2_24.mp3
-2024-11-15 23:05:09 [JavaFX Application Thread] INFO  c.e.jambo.services.PlaylistService - Shuffle mode set to 'true'
-2024-11-15 23:05:10 [JavaFX Application Thread] INFO  c.e.j.controllers.JamboController - Playing selected song: 07 Drunk On A Work Night.mp3
-2024-11-15 23:05:12 [JavaFX Application Thread] INFO  c.e.jambo.services.PlaylistService - Shuffle mode set to 'false'
-2024-11-15 23:05:21 [JavaFX Application Thread] INFO  c.e.j.controllers.JamboController - Playing selected song: 02 Please Mr Pilot.mp3
-2024-11-15 23:05:25 [JavaFX Application Thread] INFO  c.e.jambo.services.PlaylistService - Created new playlist: rizz
-2024-11-15 23:05:29 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 01 Endpiece.mp3
-2024-11-15 23:05:29 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 02 Please Mr Pilot.mp3
-2024-11-15 23:05:29 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 03 2_24.mp3
-2024-11-15 23:05:29 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 04 The Hard Part.mp3
-2024-11-15 23:05:29 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 05 Sound Man_Low Fidelity.mp3
-2024-11-15 23:05:29 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 06 Napoleon (March Into Russia).mp3
-2024-11-15 23:05:29 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 07 Drunk On A Work Night.mp3
-2024-11-15 23:05:29 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 08 Love Me Too Much.mp3
-2024-11-15 23:05:29 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 09 Dream_ Encounter On Smoke Mountain.mp3
-2024-11-15 23:05:29 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 10 Sinner.mp3
-2024-11-15 23:05:29 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 11 When Will My Man Come_.mp3
-2024-11-15 23:05:29 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 12 Hi Life.mp3
-2024-11-15 23:05:29 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 13 AC.mp3
-2024-11-15 23:05:29 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 14 If Not, Then Oh Well.mp3
-2024-11-15 23:05:29 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 15 Memories (Leonard Cohen Cover).mp3
-2024-11-15 23:05:29 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 16 KS.mp3
-2024-11-15 23:05:29 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 17 Unfinished_ Pain Star (If heaven is full of people...).mp3
-2024-11-15 23:05:29 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Saved 17 songs to saved_songs.json
-2024-11-15 23:05:30 [JavaFX Application Thread] INFO  c.e.j.controllers.JamboController - Playing selected song: 04 The Hard Part.mp3
-2024-11-15 23:05:31 [JavaFX Application Thread] INFO  c.e.j.controllers.JamboController - Playing selected song: 14 If Not, Then Oh Well.mp3
-2024-11-15 23:05:33 [JavaFX Application Thread] INFO  c.e.j.controllers.JamboController - Playing selected song: 09 Dream_ Encounter On Smoke Mountain.mp3
-2024-11-15 23:05:34 [JavaFX Application Thread] INFO  c.e.j.controllers.JamboController - Playing selected song: 05 Sound Man_Low Fidelity.mp3
-2024-11-15 23:05:36 [JavaFX Application Thread] INFO  c.e.j.controllers.JamboController - Playing selected song: 13 AC.mp3
-2024-11-15 23:05:37 [JavaFX Application Thread] INFO  c.e.j.controllers.JamboController - Playing selected song: 17 Unfinished_ Pain Star (If heaven is full of people...).mp3
-2024-11-15 23:05:38 [JavaFX Application Thread] INFO  c.e.j.controllers.JamboController - Playing selected song: 01 Endpiece.mp3
-2024-11-15 23:05:40 [JavaFX Application Thread] INFO  c.e.jambo.services.PlaylistService - Cleared playlist 'rizz'
-2024-11-15 23:05:42 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Saved 0 songs to saved_songs.json
+2024-11-16 08:10:06 [JavaFX-Launcher] INFO  o.s.boot.SpringApplication - Starting application using Java 17.0.12 with PID 13256 (started by simgr in C:\Users\simgr\Desktop\Jambo\Jambo)
+2024-11-16 08:10:06 [JavaFX-Launcher] INFO  o.s.boot.SpringApplication - No active profile set, falling back to 1 default profile: "default"
+2024-11-16 08:10:06 [JavaFX-Launcher] INFO  c.e.j.controllers.JamboController - JamboController initialized successfully.
+2024-11-16 08:10:06 [JavaFX-Launcher] INFO  o.s.boot.SpringApplication - Started application in 0.72 seconds (process running for 1.482)
+2024-11-16 08:10:07 [JavaFX Application Thread] INFO  c.e.j.controllers.JamboController - Primary stage configured and displayed.
+2024-11-16 08:10:07 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Loading 0 valid songs from saved_songs.json
+2024-11-16 08:10:07 [JavaFX Application Thread] INFO  c.e.j.controllers.JamboController - Songs in playlist: []
+2024-11-16 08:10:07 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - 0 songs loaded successfully
+2024-11-16 08:10:14 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Back at It.mp3
+2024-11-16 08:10:14 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Cashin (Ft. Adamn Killa).mp3
+2024-11-16 08:10:14 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Crystal City (Ft. ASAP Ferg).mp3
+2024-11-16 08:10:14 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Get It Back.mp3
+2024-11-16 08:10:14 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Head 2 Toe (Ft. Bladee).mp3
+2024-11-16 08:10:14 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Hennessy & Sailor Moon (Ft. Bladee).mp3
+2024-11-16 08:10:14 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Hop Out (Ft. Luckaleannn).mp3
+2024-11-16 08:10:14 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Kirby.mp3
+2024-11-16 08:10:14 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 01 - Nekobasu (prod Baba Stiltz).mp3
+2024-11-16 08:10:14 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 02 - Buildings ft Thaiboy Digital  Bladee (prod Tokyo Hands WhiteArmor  Yung Sherman).mp3
+2024-11-16 08:10:14 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 03 - Marble Phone (ft Kreayshawn) (prod WhiteArmor  Yung Sherman).mp3
+2024-11-16 08:10:14 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 04 - Kyoto (prod Yung Gud).mp3
+2024-11-16 08:10:14 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 05 - Crystalized Snow ft Thaiboy Digital (prod WhiteArmor).mp3
+2024-11-16 08:10:14 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 06 - King Of The Darkness (prod Baba Stiltz).mp3
+2024-11-16 08:10:14 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 07 - Motorola (prod Whitearmor).mp3
+2024-11-16 08:10:14 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 08 - Visions of U (prod Whitearmor).mp3
+2024-11-16 08:10:14 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 09 - Orroz (prod Yung Gud).mp3
+2024-11-16 08:10:15 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 10 - Re-Charge ft Baba Stiltz (prod Baba Stiltz).mp3
+2024-11-16 08:10:15 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 01 - OreoMilkShake.mp3
+2024-11-16 08:10:15 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 02 - GreyGoose.mp3
+2024-11-16 08:10:15 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 03 - Damn Gud Shawty.mp3
+2024-11-16 08:10:15 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 04 - Ginseng Strip 2002.mp3
+2024-11-16 08:10:15 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 05 - The 5th Element.mp3
+2024-11-16 08:10:15 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 06 - Plastic G-Shock.mp3
+2024-11-16 08:10:15 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 07 - Gatorade.mp3
+2024-11-16 08:10:15 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 08 - Stevie Nicks.mp3
+2024-11-16 08:10:15 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 09 - Bentley.mp3
+2024-11-16 08:10:15 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 10 - Watchu Wanna feat. Prada Mane.mp3
+2024-11-16 08:10:15 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 11 - 3D Spaceship.mp3
+2024-11-16 08:10:15 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Yung Lean - Unknown Death 2002 - 01 Welcome 2 Unknown Death -Prod. Yung Sherman-.mp3
+2024-11-16 08:10:15 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Yung Lean - Unknown Death 2002 - 02 Nitevision (feat. Bladee) -Prod. Yung Gud-.mp3
+2024-11-16 08:10:15 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Yung Lean - Unknown Death 2002 - 03 Oceans 2001 -Prod. Gregar-.mp3
+2024-11-16 08:10:15 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Yung Lean - Unknown Death 2002 - 04 Gatorade -Prod. Yung Gud-.mp3
+2024-11-16 08:10:15 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Yung Lean - Unknown Death 2002 - 05 Hurt -Prod. Suicideyear-.mp3
+2024-11-16 08:10:15 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Yung Lean - Unknown Death 2002 - 06 Lightsaber - Saviour -Prod. Yung Sherman-.mp3
+2024-11-16 08:10:16 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Yung Lean - Unknown Death 2002 - 07 Princess Daisy -Prod. Yung Gud-.mp3
+2024-11-16 08:10:16 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Yung Lean - Unknown Death 2002 - 08 Lemonade (feat. Baba Stiltz) -Prod. Yung Sherman-.mp3
+2024-11-16 08:10:16 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Yung Lean - Unknown Death 2002 - 09 Emails -Prod. White Armor-.mp3
+2024-11-16 08:10:16 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Yung Lean - Unknown Death 2002 - 10 Deathstar - Getting Benjamins -Prod. White Armor-.mp3
+2024-11-16 08:10:16 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Yung Lean - Unknown Death 2002 - 11 Heal You - Bladerunner (feat. Bladee) -Prod. White Armor-.mp3
+2024-11-16 08:10:16 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Yung Lean - Unknown Death 2002 - 12 Solarflare -Prod. Friendzone-.mp3
+2024-11-16 08:10:16 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 01 Immortal.mp3
+2024-11-16 08:10:16 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 02 Highway Patrol (Ft. Bladee).mp3
+2024-11-16 08:10:16 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 03 Fantasy (Ft. Lil Flash).mp3
+2024-11-16 08:10:16 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 04 Afghanistan.mp3
+2024-11-16 08:10:16 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 05 Hoover.mp3
+2024-11-16 08:10:16 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 06 Fire.mp3
+2024-11-16 08:10:16 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 07 Stay Down.mp3
+2024-11-16 08:10:16 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 08 Eye Contact.mp3
+2024-11-16 08:10:16 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 09 More Stacks.mp3
+2024-11-16 08:10:17 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 10 AF1s (Ft. Ecco2k).mp3
+2024-11-16 08:10:17 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 11 Hocus Pocus (Ft. Bladee).mp3
+2024-11-16 08:10:17 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 12 Shawty U Know What It Do.mp3
+2024-11-16 08:10:17 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 13 Miami Ultras.mp3
+2024-11-16 08:10:17 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Saved 54 songs to saved_songs.json
+2024-11-16 08:10:21 [JavaFX Application Thread] INFO  c.e.j.managers.MusicPlayerManager - Started playing media
+2024-11-16 08:10:21 [JavaFX Application Thread] INFO  c.e.j.controllers.JamboController - Playing selected song: Get It Back.mp3
+2024-11-16 08:10:25 [JavaFX Application Thread] INFO  c.e.j.managers.MusicPlayerManager - Started playing media
+2024-11-16 08:10:25 [JavaFX Application Thread] INFO  c.e.j.controllers.JamboController - Playing selected song: 03 - Marble Phone (ft Kreayshawn) (prod WhiteArmor  Yung Sherman).mp3
+2024-11-16 08:10:27 [JavaFX Application Thread] INFO  c.e.j.managers.MusicPlayerManager - Started playing media
+2024-11-16 08:10:27 [JavaFX Application Thread] INFO  c.e.j.controllers.JamboController - Playing selected song: 08 Eye Contact.mp3
+2024-11-16 08:10:29 [JavaFX Application Thread] INFO  c.e.j.managers.MusicPlayerManager - Started playing media
+2024-11-16 08:10:29 [JavaFX Application Thread] INFO  c.e.j.controllers.JamboController - Playing selected song: 09 More Stacks.mp3
+2024-11-16 08:10:29 [JavaFX Application Thread] INFO  c.e.j.managers.MusicPlayerManager - Started playing media
+2024-11-16 08:10:29 [JavaFX Application Thread] INFO  c.e.j.controllers.JamboController - Playing selected song: 08 Eye Contact.mp3
+2024-11-16 08:10:31 [JavaFX Application Thread] INFO  c.e.j.managers.MusicPlayerManager - Toggled pause state. Is playing: false
+2024-11-16 08:10:32 [JavaFX Application Thread] INFO  c.e.j.managers.MusicPlayerManager - Toggled pause state. Is playing: true
+2024-11-16 08:10:33 [JavaFX Application Thread] INFO  c.e.j.managers.MusicPlayerManager - Seeked to position: 107906.330749354 ms
+2024-11-16 08:10:35 [JavaFX Application Thread] INFO  c.e.j.managers.MusicPlayerManager - Seeked to position: 37481.97852581136 ms
+2024-11-16 08:10:37 [JavaFX Application Thread] INFO  c.e.j.managers.MusicPlayerManager - Started playing media
+2024-11-16 08:10:37 [JavaFX Application Thread] INFO  c.e.j.controllers.JamboController - Playing selected song: 03 Fantasy (Ft. Lil Flash).mp3
+2024-11-16 08:10:38 [JavaFX Application Thread] INFO  c.e.j.managers.MusicPlayerManager - Started playing media
+2024-11-16 08:10:38 [JavaFX Application Thread] INFO  c.e.j.controllers.JamboController - Playing selected song: 12 Shawty U Know What It Do.mp3
+2024-11-16 08:10:40 [JavaFX Application Thread] INFO  c.e.j.managers.MusicPlayerManager - Started playing media
+2024-11-16 08:10:40 [JavaFX Application Thread] INFO  c.e.j.controllers.JamboController - Playing selected song: Yung Lean - Unknown Death 2002 - 04 Gatorade -Prod. Yung Gud-.mp3
+2024-11-16 08:10:44 [JavaFX Application Thread] INFO  c.e.j.managers.MusicPlayerManager - Started playing media
+2024-11-16 08:10:44 [JavaFX Application Thread] INFO  c.e.j.controllers.JamboController - Playing selected song: 02 - Buildings ft Thaiboy Digital  Bladee (prod Tokyo Hands WhiteArmor  Yung Sherman).mp3
+2024-11-16 08:10:46 [JavaFX Application Thread] INFO  c.e.j.managers.MusicPlayerManager - Started playing media
+2024-11-16 08:10:46 [JavaFX Application Thread] INFO  c.e.j.controllers.JamboController - Playing selected song: 01 - OreoMilkShake.mp3
+2024-11-16 08:10:51 [JavaFX Application Thread] INFO  c.e.j.managers.MusicPlayerManager - Started playing media
+2024-11-16 08:10:51 [JavaFX Application Thread] INFO  c.e.j.controllers.JamboController - Playing selected song: Hop Out (Ft. Luckaleannn).mp3
+2024-11-16 08:10:53 [JavaFX Application Thread] INFO  c.e.j.managers.MusicPlayerManager - Started playing media
+2024-11-16 08:10:53 [JavaFX Application Thread] INFO  c.e.j.controllers.JamboController - Playing selected song: Crystal City (Ft. ASAP Ferg).mp3
+2024-11-16 08:10:56 [JavaFX Application Thread] INFO  c.e.j.managers.MusicPlayerManager - Started playing media
+2024-11-16 08:10:56 [JavaFX Application Thread] INFO  c.e.j.controllers.JamboController - Playing selected song: Back at It.mp3
+2024-11-16 08:10:57 [JavaFX Application Thread] INFO  c.e.j.managers.MusicPlayerManager - Started playing media
+2024-11-16 08:10:57 [JavaFX Application Thread] INFO  c.e.j.controllers.JamboController - Playing selected song: 01 - Nekobasu (prod Baba Stiltz).mp3
+2024-11-16 08:11:01 [JavaFX Application Thread] INFO  c.e.j.managers.MusicPlayerManager - Toggled mute state. Is muted: true
+2024-11-16 08:11:01 [JavaFX Application Thread] INFO  c.e.j.managers.MusicPlayerManager - Toggled mute state. Is muted: false
+2024-11-16 08:11:05 [JavaFX Application Thread] INFO  c.e.j.managers.MusicPlayerManager - Seeked to position: 91973.96717012403 ms
+2024-11-16 08:11:07 [JavaFX Application Thread] INFO  c.e.j.managers.MusicPlayerManager - Seeked to position: 21318.57150355298 ms
+2024-11-16 08:11:10 [JavaFX Application Thread] INFO  c.e.j.managers.MusicPlayerManager - Seeked to position: 121714.40467538759 ms
+2024-11-16 08:11:11 [JavaFX Application Thread] INFO  c.e.j.managers.MusicPlayerManager - Seeked to position: 10885.028060400517 ms
+2024-11-16 08:11:13 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Saved 54 songs to saved_songs.json
