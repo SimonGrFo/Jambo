@@ -1,7 +1,6 @@
 package com.example.jambo.managers;
 
 import com.example.jambo.Interfaces.PlaylistInterface;
-import com.example.jambo.controllers.JamboController;
 import com.example.jambo.services.MetadataService;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -21,12 +20,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import com.example.jambo.util.LoggerUtil;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
+
 import org.springframework.stereotype.Component;
 
 @Component

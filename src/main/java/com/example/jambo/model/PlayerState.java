@@ -1,16 +1,42 @@
-package com.example.jambo.models;
+package com.example.jambo.model;
 
 public class PlayerState {
+    private String currentSongTitle;
+    private double currentPosition;
+    private double totalDuration;
+    private double volume;
     private boolean isPlaying;
     private boolean isLooping;
     private boolean isMuted;
-    private double currentPosition;
-    private double volume;
     private int currentSongIndex;
 
     public PlayerState(double initialVolume) {
         this.volume = initialVolume;
         this.currentSongIndex = -1;
+    }
+
+    public String getCurrentSongTitle() {
+        return currentSongTitle;
+    }
+
+    public void setCurrentSongTitle(String currentSongTitle) {
+        this.currentSongTitle = currentSongTitle;
+    }
+
+    public double getCurrentPosition() {
+        return currentPosition;
+    }
+
+    public void setCurrentPosition(double currentPosition) {
+        this.currentPosition = currentPosition;
+    }
+
+    public double getTotalDuration() {
+        return totalDuration;
+    }
+
+    public void setTotalDuration(double totalDuration) {
+        this.totalDuration = totalDuration;
     }
 
     public boolean isPlaying() {
@@ -41,16 +67,6 @@ public class PlayerState {
         isMuted = !isMuted;
     }
 
-    public double getCurrentPosition() {
-        return currentPosition;
-    }
-
-    public void setCurrentPosition(double currentPosition) {
-        if (currentPosition >= 0) {
-            this.currentPosition = currentPosition;
-        }
-    }
-
     public double getVolume() {
         return volume;
     }
@@ -66,8 +82,6 @@ public class PlayerState {
     }
 
     public void setCurrentSongIndex(int currentSongIndex) {
-        if (currentSongIndex >= -1) {
-            this.currentSongIndex = currentSongIndex;
-        }
+        this.currentSongIndex = currentSongIndex;
     }
 }

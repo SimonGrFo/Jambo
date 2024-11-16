@@ -1,8 +1,11 @@
 package com.example.jambo.managers;
 
 import com.example.jambo.commands.Command;
-import com.example.jambo.commands.LoopCommand;
+import com.example.jambo.commands.CommandInvoker;
+import com.example.jambo.exceptions.CommandExecutionException;
 import com.example.jambo.services.MusicPlayerService;
+import com.example.jambo.ui.UIUpdater;
+import com.example.jambo.event.MediaEventHandler;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.media.Media;
@@ -14,8 +17,12 @@ import org.slf4j.LoggerFactory;
 @Component
 public class MusicPlayerManager {
     private static final Logger logger = LoggerFactory.getLogger(MusicPlayerManager.class);
-
     private final MusicPlayerService musicPlayerService;
+    private final PlayerStateManager stateManager;
+    private final MediaEventHandler eventHandler;
+    private final CommandInvoker commandInvoker;
+    private final UIUpdater uiUpdater;
+
     private final Label currentSongLabel;
     private final Label timerLabel;
     private final Slider progressSlider;
@@ -29,17 +36,30 @@ public class MusicPlayerManager {
 
     public MusicPlayerManager(
             MusicPlayerService musicPlayerService,
+            PlayerStateManager stateManager,
+            MediaEventHandler eventHandler,
+            CommandInvoker commandInvoker,
+            UIUpdater uiUpdater,
             Label currentSongLabel,
             Label timerLabel,
             Slider progressSlider) {
         this.musicPlayerService = musicPlayerService;
+        this.stateManager = stateManager;
+        this.eventHandler = eventHandler;
+        this.commandInvoker = commandInvoker;
+        this.uiUpdater = uiUpdater;
         this.currentSongLabel = currentSongLabel;
         this.timerLabel = timerLabel;
         this.progressSlider = progressSlider;
     }
 
     public void executeCommand(Command command) {
-        command.execute();
+        try {
+            commandInvoker.execute(command);
+            uiUpdater.updateUI(stateManager.getCurrentState());
+        } catch (CommandExecutionException e) {
+            logger.error("Command execution failed: {}", e.getMessage());
+        }
     }
 
     public void playMedia(Media media) {

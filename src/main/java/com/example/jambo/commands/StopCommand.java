@@ -29,4 +29,5 @@ public class StopCommand implements Command {
             musicPlayerManager.seekTo(Duration.seconds(previousPosition));
         }
     }
+
 }

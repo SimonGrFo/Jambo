@@ -22,4 +22,5 @@ public class PauseCommand implements Command {
             musicPlayerManager.pauseMedia();
         }
     }
+
 }

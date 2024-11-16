@@ -1,6 +1,9 @@
 package com.example.jambo.config;
 
-import com.example.jambo.commands.MusicPlayerCommandInvoker;
+import com.example.jambo.commands.CommandInvoker;
+import com.example.jambo.controllers.VolumeController;
+import com.example.jambo.ui.UIUpdater;
+import com.example.jambo.event.MediaEventHandler;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Slider;
@@ -35,10 +38,12 @@ public class JamboConfig {
 
     @Bean
     public MusicPlayerService musicPlayerService(
-            @Qualifier("progressSlider") Slider progressSlider,
-            @Qualifier("volumeSlider") Slider volumeSlider) {
-        return new MusicPlayerService(volumeSlider);
+            VolumeController volumeController,
+            PlayerStateManager stateManager,
+            MediaEventHandler eventHandler) {
+        return new MusicPlayerService(volumeController, stateManager, eventHandler);
     }
+
 
     @Bean
     public PlaylistService playlistService() {
@@ -95,10 +100,22 @@ public class JamboConfig {
     @Bean
     public MusicPlayerManager musicPlayerManager(
             MusicPlayerService musicPlayerService,
+            PlayerStateManager stateManager,
+            MediaEventHandler eventHandler,
+            CommandInvoker commandInvoker,
+            UIUpdater uiUpdater,
             @Qualifier("currentSongLabel") Label currentSongLabel,
             @Qualifier("timerLabel") Label timerLabel,
             @Qualifier("progressSlider") Slider progressSlider) {
-        return new MusicPlayerManager(musicPlayerService, currentSongLabel, timerLabel, progressSlider);
+        return new MusicPlayerManager(
+                musicPlayerService,
+                stateManager,
+                eventHandler,
+                commandInvoker,
+                uiUpdater,
+                currentSongLabel,
+                timerLabel,
+                progressSlider);
     }
 
     @Bean
@@ -108,6 +125,15 @@ public class JamboConfig {
         return new PlaylistManager(playlistService, playlistView);
     }
 
+    @Bean
+    public PlayerStateManager playerStateManager() {
+        return new PlayerStateManager();
+    }
+
+    @Bean
+    public CommandInvoker commandInvoker() {
+        return new CommandInvoker();
+    }
     @Bean
     public JamboUI jamboUI(
             IconService iconService,

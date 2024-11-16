@@ -1,88 +1,50 @@
 package com.example.jambo.services;
 
 import com.example.jambo.Interfaces.MusicPlayerInterface;
-import javafx.scene.control.Slider;
+import com.example.jambo.controllers.VolumeController;
+import com.example.jambo.managers.PlayerStateManager;
+import com.example.jambo.event.MediaEventHandler;
 import javafx.scene.media.Media;
-import javafx.scene.media.MediaException;
 import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import com.example.jambo.util.LoggerUtil;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-@Component
+@Service
 public class MusicPlayerService implements MusicPlayerInterface {
-    private static final Logger logger = LoggerFactory.getLogger(MusicPlayerService.class);
     private MediaPlayer mediaPlayer;
-    private final Slider volumeSlider;
+    private Media currentMedia;
+    private final VolumeController volumeController;
+    private final PlayerStateManager stateManager;
+    private final MediaEventHandler eventHandler;
+
     private boolean isPaused = false;
     private boolean isLooping = false;
     private boolean isMuted = false;
-    private Runnable onEndOfMedia;
 
-    public MusicPlayerService(Slider volumeSlider) {
-        this.volumeSlider = volumeSlider;
-        setupVolumeControl();
-    }
-
-    public void setOnEndOfMedia(Runnable callback) {
-        this.onEndOfMedia = callback;
-        if (mediaPlayer != null) {
-            setupEndOfMediaHandler(mediaPlayer);
-        }
-    }
-
-    private void setupVolumeControl() {
-        volumeSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
-            if (mediaPlayer != null && !isMuted) {
-                mediaPlayer.setVolume(newValue.doubleValue());
-            }
-        });
-    }
-
-    private void setupMediaPlayer(MediaPlayer player, double volume) {
-        player.setOnError(() -> {
-            MediaException error = player.getError();
-            logger.error("MediaPlayer error: {}", error.getMessage());
-        });
-
-        player.setVolume(isMuted ? 0 : volume);
-        player.setCycleCount(isLooping ? MediaPlayer.INDEFINITE : 1);
-        setupEndOfMediaHandler(player);
-    }
-
-    private void setupEndOfMediaHandler(MediaPlayer player) {
-        player.setOnEndOfMedia(() -> {
-            if (!isLooping && onEndOfMedia != null) {
-                player.seek(Duration.ZERO);
-                player.stop();
-                onEndOfMedia.run();
-            }
-        });
+    public MusicPlayerService(VolumeController volumeController,
+                              PlayerStateManager stateManager,
+                              MediaEventHandler eventHandler) {
+        this.volumeController = volumeController;
+        this.stateManager = stateManager;
+        this.eventHandler = eventHandler;
     }
 
     @Override
     public void playMedia(Media media) {
-        try {
-            if (mediaPlayer != null) {
-                MediaPlayer oldPlayer = mediaPlayer;
-                javafx.application.Platform.runLater(() -> {
-                    oldPlayer.stop();
-                    oldPlayer.dispose();
-                });
-            }
-
-            mediaPlayer = new MediaPlayer(media);
-            setupMediaPlayer(mediaPlayer, volumeSlider.getValue());
-
-            mediaPlayer.setOnReady(() -> {
-                mediaPlayer.play();
-            });
-        } catch (Exception e) {
-            logger.error("Failed to play media: {}", e.getMessage());
-            throw e;
+        if (mediaPlayer != null) {
+            mediaPlayer.dispose();
         }
+
+        currentMedia = media;
+        mediaPlayer = new MediaPlayer(media);
+
+        // Initialize player state
+        stateManager.applyCurrentState(mediaPlayer);
+        volumeController.bindVolumeControl(mediaPlayer);
+        eventHandler.initializeEventHandlers(mediaPlayer);
+
+        mediaPlayer.play();
+        isPaused = false;
     }
 
     @Override
@@ -101,6 +63,8 @@ public class MusicPlayerService implements MusicPlayerInterface {
     public void stopMedia() {
         if (mediaPlayer != null) {
             mediaPlayer.stop();
+            mediaPlayer.dispose();
+            mediaPlayer = null;
             isPaused = false;
         }
     }
@@ -117,7 +81,7 @@ public class MusicPlayerService implements MusicPlayerInterface {
     public void toggleMute() {
         isMuted = !isMuted;
         if (mediaPlayer != null) {
-            mediaPlayer.setVolume(isMuted ? 0 : volumeSlider.getValue());
+            volumeController.toggleMute(mediaPlayer);
         }
     }
 
@@ -136,5 +100,15 @@ public class MusicPlayerService implements MusicPlayerInterface {
     @Override
     public Duration getTotalDuration() {
         return mediaPlayer != null ? mediaPlayer.getTotalDuration() : Duration.ZERO;
+    }
+
+    public void setOnEndOfMedia(Runnable callback) {
+        if (mediaPlayer != null) {
+            eventHandler.setOnEndOfMedia(callback);
+        }
+    }
+
+    public Media getCurrentMedia() {
+        return currentMedia;
     }
 }

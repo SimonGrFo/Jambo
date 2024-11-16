@@ -22,4 +22,5 @@ public class VolumeCommand implements Command {
     public void undo() {
         musicPlayerManager.setVolume(previousVolume);
     }
+
 }
