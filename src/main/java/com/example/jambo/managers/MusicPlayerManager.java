@@ -1,21 +1,31 @@
 package com.example.jambo.managers;
 
-import com.example.jambo.Interfaces.MusicPlayerInterface;
+import com.example.jambo.commands.Command;
+import com.example.jambo.commands.LoopCommand;
 import com.example.jambo.services.MusicPlayerService;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.media.Media;
 import javafx.util.Duration;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Component
 public class MusicPlayerManager {
+    private static final Logger logger = LoggerFactory.getLogger(MusicPlayerManager.class);
+
     private final MusicPlayerService musicPlayerService;
     private final Label currentSongLabel;
     private final Label timerLabel;
     private final Slider progressSlider;
+
+    private boolean isPlaying = false;
+    private boolean isLooping = false;
+    private boolean isMuted = false;
+    private double currentPosition = 0;
+    private double volume = 0.5;
+    private int currentSongIndex = -1;
 
     public MusicPlayerManager(
             MusicPlayerService musicPlayerService,
@@ -28,27 +38,76 @@ public class MusicPlayerManager {
         this.progressSlider = progressSlider;
     }
 
+    public void executeCommand(Command command) {
+        command.execute();
+    }
+
     public void playMedia(Media media) {
-        musicPlayerService.playMedia(media);
-        setupTimeUpdates();
+        try {
+            musicPlayerService.playMedia(media);
+            isPlaying = true;
+            setupTimeUpdates();
+            logger.info("Started playing media");
+        } catch (Exception e) {
+            logger.error("Failed to play media: {}", e.getMessage());
+            throw e;
+        }
+    }
+
+    public void pauseMedia() {
+        musicPlayerService.pauseMedia();
+        isPlaying = !isPlaying;
+        logger.info("Toggled pause state. Is playing: {}", isPlaying);
+    }
+
+    public void stopMusic() {
+        musicPlayerService.stopMedia();
+        isPlaying = false;
+        currentSongLabel.setText("No song playing");
+        progressSlider.setValue(0);
+        timerLabel.setText("0:00 / 0:00");
+        logger.info("Stopped music playback");
+    }
+
+    public void toggleLoop() {
+        isLooping = !isLooping;
+        logger.info("Toggled loop state. Is looping: {}", isLooping);
+    }
+
+    public void toggleMute() {
+        isMuted = !isMuted;
+        musicPlayerService.toggleMute();
+        logger.info("Toggled mute state. Is muted: {}", isMuted);
+    }
+
+    public void seekTo(Duration time) {
+        musicPlayerService.seekTo(time.toSeconds());
+        currentPosition = time.toSeconds();
+        logger.info("Seeked to position: {}", time);
     }
 
     private void setupTimeUpdates() {
-        musicPlayerService.getMediaPlayer().currentTimeProperty().addListener((observable, oldValue, newValue) -> {
-            if (!progressSlider.isPressed()) {
-                Duration current = musicPlayerService.getMediaPlayer().getCurrentTime();
-                Duration total = musicPlayerService.getTotalDuration();
+        if (musicPlayerService.getMediaPlayer() != null) {
+            musicPlayerService.getMediaPlayer().currentTimeProperty().addListener((observable, oldValue, newValue) -> {
+                if (!progressSlider.isPressed()) {
+                    Duration current = musicPlayerService.getMediaPlayer().getCurrentTime();
+                    Duration total = getTotalDuration();
+                    currentPosition = current.toSeconds();
 
-                if (total != null) {
-                    double progress = current.toSeconds() / total.toSeconds();
-                    progressSlider.setValue(progress);
-
-                    String currentTime = formatTime(current.toSeconds());
-                    String totalTime = formatTime(total.toSeconds());
-                    timerLabel.setText(currentTime + " / " + totalTime);
+                    if (total != null) {
+                        double progress = current.toSeconds() / total.toSeconds();
+                        progressSlider.setValue(progress);
+                        updateTimerLabel(current, total);
+                    }
                 }
-            }
-        });
+            });
+        }
+    }
+
+    private void updateTimerLabel(Duration current, Duration total) {
+        String currentTime = formatTime(current.toSeconds());
+        String totalTime = formatTime(total.toSeconds());
+        timerLabel.setText(currentTime + " / " + totalTime);
     }
 
     private String formatTime(double seconds) {
@@ -57,37 +116,25 @@ public class MusicPlayerManager {
         return String.format("%d:%02d", minutes, remainingSeconds);
     }
 
-    public void pauseMusic() {
-        musicPlayerService.pauseMedia();
+    public void setVolume(double newVolume) {
+        this.volume = newVolume;
+        if (musicPlayerService.getMediaPlayer() != null) {
+            musicPlayerService.getMediaPlayer().setVolume(newVolume);
+            logger.info("Volume set to: {}", newVolume);
+        }
     }
 
-    public void stopMusic() {
-        musicPlayerService.stopMedia();
-        currentSongLabel.setText("No song playing");
-        progressSlider.setValue(0);
-        timerLabel.setText("0:00 / 0:00");
-    }
-
-    public void toggleLoop() {
-        musicPlayerService.toggleLoop();
-    }
-
-    public void toggleMute() {
-        musicPlayerService.toggleMute();
-    }
-
-    public void seekTo(double time) {
-        musicPlayerService.seekTo(time);
-    }
-
-    public double getTotalDuration() {
-        return musicPlayerService.getMediaPlayer() != null ?
-                musicPlayerService.getTotalDuration().toSeconds() : 0;
-    }
+    public boolean isPlaying() { return isPlaying; }
+    public boolean isLooping() { return isLooping; }
+    public boolean isMuted() { return isMuted; }
+    public double getCurrentPosition() { return currentPosition; }
+    public double getVolume() { return volume; }
+    public int getCurrentSongIndex() { return currentSongIndex; }
+    public Duration getTotalDuration() { return musicPlayerService.getTotalDuration(); }
 
     public void setOnEndOfMedia(Runnable callback) {
         if (musicPlayerService != null) {
-            ((MusicPlayerService) musicPlayerService).setOnEndOfMedia(callback);
+            musicPlayerService.setOnEndOfMedia(callback);
         }
     }
 }
