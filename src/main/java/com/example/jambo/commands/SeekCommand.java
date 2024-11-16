@@ -22,4 +22,6 @@ public class SeekCommand implements Command {
     public void undo() {
         musicPlayerManager.seekTo(new javafx.util.Duration(previousPosition * 1000)); // Convert seconds to milliseconds
     }
+
+
 }

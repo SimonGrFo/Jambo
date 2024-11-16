@@ -8,10 +8,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ConfigurableApplicationContext;
-
 import java.util.Objects;
-import java.util.logging.LogManager;
-import java.util.logging.Logger;
 
 public class Jambo extends Application {
     private ConfigurableApplicationContext springContext;
