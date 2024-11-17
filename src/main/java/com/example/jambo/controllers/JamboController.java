@@ -156,7 +156,6 @@ public class JamboController {
         }
         playlistManager.addSong(file, formattedInfo);
 
-        // Update the UI with the new song list
         updateSongListView();
     }
 

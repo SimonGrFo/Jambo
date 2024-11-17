@@ -1,6 +1,5 @@
 package com.example.jambo.config;
 
-import com.example.jambo.commands.CommandInvoker;
 import com.example.jambo.controllers.VolumeController;
 import com.example.jambo.ui.UIUpdater;
 import com.example.jambo.event.MediaEventHandler;
@@ -67,17 +66,17 @@ public class JamboConfig {
 
     @Bean(name = "currentSongLabel")
     public Label currentSongLabel() {
-        return new Label("Current Song");
+        return new Label("No song playing");
     }
 
     @Bean(name = "timerLabel")
     public Label timerLabel() {
-        return new Label("Timer");
+        return new Label("0:00 / 0:00");
     }
 
     @Bean(name = "fileInfoLabel")
     public Label fileInfoLabel() {
-        return new Label("File Info");
+        return new Label("Filetype, kbps, Hz");
     }
 
     @Bean
@@ -102,7 +101,6 @@ public class JamboConfig {
             MusicPlayerService musicPlayerService,
             PlayerStateManager stateManager,
             MediaEventHandler eventHandler,
-            CommandInvoker commandInvoker,
             UIUpdater uiUpdater,
             @Qualifier("currentSongLabel") Label currentSongLabel,
             @Qualifier("timerLabel") Label timerLabel,
@@ -111,12 +109,12 @@ public class JamboConfig {
                 musicPlayerService,
                 stateManager,
                 eventHandler,
-                commandInvoker,
                 uiUpdater,
                 currentSongLabel,
                 timerLabel,
                 progressSlider);
     }
+
 
     @Bean
     public PlaylistManager playlistManager(
@@ -130,10 +128,6 @@ public class JamboConfig {
         return new PlayerStateManager();
     }
 
-    @Bean
-    public CommandInvoker commandInvoker() {
-        return new CommandInvoker();
-    }
     @Bean
     public JamboUI jamboUI(
             IconService iconService,

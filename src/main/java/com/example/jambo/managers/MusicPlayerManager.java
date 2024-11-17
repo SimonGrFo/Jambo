@@ -1,8 +1,5 @@
 package com.example.jambo.managers;
 
-import com.example.jambo.commands.Command;
-import com.example.jambo.commands.CommandInvoker;
-import com.example.jambo.exceptions.CommandExecutionException;
 import com.example.jambo.services.MusicPlayerService;
 import com.example.jambo.ui.UIUpdater;
 import com.example.jambo.event.MediaEventHandler;
@@ -18,10 +15,6 @@ import org.slf4j.LoggerFactory;
 public class MusicPlayerManager {
     private static final Logger logger = LoggerFactory.getLogger(MusicPlayerManager.class);
     private final MusicPlayerService musicPlayerService;
-    private final PlayerStateManager stateManager;
-    private final MediaEventHandler eventHandler;
-    private final CommandInvoker commandInvoker;
-    private final UIUpdater uiUpdater;
 
     private final Label currentSongLabel;
     private final Label timerLabel;
@@ -32,34 +25,19 @@ public class MusicPlayerManager {
     private boolean isMuted = false;
     private double currentPosition = 0;
     private double volume = 0.5;
-    private int currentSongIndex = -1;
 
     public MusicPlayerManager(
             MusicPlayerService musicPlayerService,
             PlayerStateManager stateManager,
             MediaEventHandler eventHandler,
-            CommandInvoker commandInvoker,
             UIUpdater uiUpdater,
             Label currentSongLabel,
             Label timerLabel,
             Slider progressSlider) {
         this.musicPlayerService = musicPlayerService;
-        this.stateManager = stateManager;
-        this.eventHandler = eventHandler;
-        this.commandInvoker = commandInvoker;
-        this.uiUpdater = uiUpdater;
         this.currentSongLabel = currentSongLabel;
         this.timerLabel = timerLabel;
         this.progressSlider = progressSlider;
-    }
-
-    public void executeCommand(Command command) {
-        try {
-            commandInvoker.execute(command);
-            uiUpdater.updateUI(stateManager.getCurrentState());
-        } catch (CommandExecutionException e) {
-            logger.error("Command execution failed: {}", e.getMessage());
-        }
     }
 
     public void playMedia(Media media) {
@@ -149,7 +127,8 @@ public class MusicPlayerManager {
     public boolean isMuted() { return isMuted; }
     public double getCurrentPosition() { return currentPosition; }
     public double getVolume() { return volume; }
-    public int getCurrentSongIndex() { return currentSongIndex; }
+    public int getCurrentSongIndex() {
+        return -1; }
     public Duration getTotalDuration() { return musicPlayerService.getTotalDuration(); }
 
     public void setOnEndOfMedia(Runnable callback) {

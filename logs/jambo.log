@@ -1,0 +1,442 @@
+2024-11-17 12:33:13 [JavaFX-Launcher] INFO  o.s.boot.SpringApplication - Starting application using Java 17.0.12 with PID 22560 (started by simgr in C:\Users\simgr\Desktop\Jambo\Jambo)
+2024-11-17 12:33:13 [JavaFX-Launcher] INFO  o.s.boot.SpringApplication - No active profile set, falling back to 1 default profile: "default"
+2024-11-17 12:33:14 [JavaFX-Launcher] INFO  c.e.j.controllers.JamboController - JamboController initialized successfully.
+2024-11-17 12:33:14 [JavaFX-Launcher] INFO  o.s.boot.SpringApplication - Started application in 0.711 seconds (process running for 1.475)
+2024-11-17 12:33:14 [JavaFX Application Thread] INFO  c.e.j.controllers.JamboController - Primary stage configured and displayed.
+2024-11-17 12:33:14 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Loading 54 valid songs from saved_songs.json
+2024-11-17 12:33:14 [JavaFX Application Thread] INFO  c.e.j.controllers.JamboController - Songs in playlist: []
+2024-11-17 12:33:14 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Back at It.mp3
+2024-11-17 12:33:14 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Cashin (Ft. Adamn Killa).mp3
+2024-11-17 12:33:14 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Crystal City (Ft. ASAP Ferg).mp3
+2024-11-17 12:33:14 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Get It Back.mp3
+2024-11-17 12:33:14 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Head 2 Toe (Ft. Bladee).mp3
+2024-11-17 12:33:14 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Hennessy & Sailor Moon (Ft. Bladee).mp3
+2024-11-17 12:33:14 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Hop Out (Ft. Luckaleannn).mp3
+2024-11-17 12:33:14 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Kirby.mp3
+2024-11-17 12:33:14 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 01 - Nekobasu (prod Baba Stiltz).mp3
+2024-11-17 12:33:14 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 02 - Buildings ft Thaiboy Digital  Bladee (prod Tokyo Hands WhiteArmor  Yung Sherman).mp3
+2024-11-17 12:33:14 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 03 - Marble Phone (ft Kreayshawn) (prod WhiteArmor  Yung Sherman).mp3
+2024-11-17 12:33:14 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 04 - Kyoto (prod Yung Gud).mp3
+2024-11-17 12:33:14 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 05 - Crystalized Snow ft Thaiboy Digital (prod WhiteArmor).mp3
+2024-11-17 12:33:14 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 06 - King Of The Darkness (prod Baba Stiltz).mp3
+2024-11-17 12:33:14 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 07 - Motorola (prod Whitearmor).mp3
+2024-11-17 12:33:14 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 08 - Visions of U (prod Whitearmor).mp3
+2024-11-17 12:33:14 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 09 - Orroz (prod Yung Gud).mp3
+2024-11-17 12:33:14 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 10 - Re-Charge ft Baba Stiltz (prod Baba Stiltz).mp3
+2024-11-17 12:33:14 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 01 - OreoMilkShake.mp3
+2024-11-17 12:33:14 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 02 - GreyGoose.mp3
+2024-11-17 12:33:14 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 03 - Damn Gud Shawty.mp3
+2024-11-17 12:33:14 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 04 - Ginseng Strip 2002.mp3
+2024-11-17 12:33:14 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 05 - The 5th Element.mp3
+2024-11-17 12:33:14 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 06 - Plastic G-Shock.mp3
+2024-11-17 12:33:14 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 07 - Gatorade.mp3
+2024-11-17 12:33:14 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 08 - Stevie Nicks.mp3
+2024-11-17 12:33:14 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 09 - Bentley.mp3
+2024-11-17 12:33:14 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 10 - Watchu Wanna feat. Prada Mane.mp3
+2024-11-17 12:33:14 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 11 - 3D Spaceship.mp3
+2024-11-17 12:33:14 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Yung Lean - Unknown Death 2002 - 01 Welcome 2 Unknown Death -Prod. Yung Sherman-.mp3
+2024-11-17 12:33:14 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Yung Lean - Unknown Death 2002 - 02 Nitevision (feat. Bladee) -Prod. Yung Gud-.mp3
+2024-11-17 12:33:14 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Yung Lean - Unknown Death 2002 - 03 Oceans 2001 -Prod. Gregar-.mp3
+2024-11-17 12:33:14 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Yung Lean - Unknown Death 2002 - 04 Gatorade -Prod. Yung Gud-.mp3
+2024-11-17 12:33:14 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Yung Lean - Unknown Death 2002 - 05 Hurt -Prod. Suicideyear-.mp3
+2024-11-17 12:33:14 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Yung Lean - Unknown Death 2002 - 06 Lightsaber - Saviour -Prod. Yung Sherman-.mp3
+2024-11-17 12:33:14 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Yung Lean - Unknown Death 2002 - 07 Princess Daisy -Prod. Yung Gud-.mp3
+2024-11-17 12:33:14 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Yung Lean - Unknown Death 2002 - 08 Lemonade (feat. Baba Stiltz) -Prod. Yung Sherman-.mp3
+2024-11-17 12:33:14 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Yung Lean - Unknown Death 2002 - 09 Emails -Prod. White Armor-.mp3
+2024-11-17 12:33:14 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Yung Lean - Unknown Death 2002 - 10 Deathstar - Getting Benjamins -Prod. White Armor-.mp3
+2024-11-17 12:33:14 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Yung Lean - Unknown Death 2002 - 11 Heal You - Bladerunner (feat. Bladee) -Prod. White Armor-.mp3
+2024-11-17 12:33:14 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Yung Lean - Unknown Death 2002 - 12 Solarflare -Prod. Friendzone-.mp3
+2024-11-17 12:33:14 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 01 Immortal.mp3
+2024-11-17 12:33:14 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 02 Highway Patrol (Ft. Bladee).mp3
+2024-11-17 12:33:14 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 03 Fantasy (Ft. Lil Flash).mp3
+2024-11-17 12:33:14 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 04 Afghanistan.mp3
+2024-11-17 12:33:14 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 05 Hoover.mp3
+2024-11-17 12:33:14 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 06 Fire.mp3
+2024-11-17 12:33:14 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 07 Stay Down.mp3
+2024-11-17 12:33:14 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 08 Eye Contact.mp3
+2024-11-17 12:33:14 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 09 More Stacks.mp3
+2024-11-17 12:33:14 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 10 AF1s (Ft. Ecco2k).mp3
+2024-11-17 12:33:14 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 11 Hocus Pocus (Ft. Bladee).mp3
+2024-11-17 12:33:14 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 12 Shawty U Know What It Do.mp3
+2024-11-17 12:33:14 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 13 Miami Ultras.mp3
+2024-11-17 12:33:14 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - 54 songs loaded successfully
+2024-11-17 12:33:17 [JavaFX Application Thread] INFO  c.e.j.managers.MusicPlayerManager - Started playing media
+2024-11-17 12:33:17 [JavaFX Application Thread] INFO  c.e.j.controllers.JamboController - Playing selected song: 06 - King Of The Darkness (prod Baba Stiltz).mp3
+2024-11-17 12:33:18 [JavaFX Application Thread] INFO  c.e.j.managers.MusicPlayerManager - Started playing media
+2024-11-17 12:33:18 [JavaFX Application Thread] INFO  c.e.j.controllers.JamboController - Playing selected song: Hop Out (Ft. Luckaleannn).mp3
+2024-11-17 12:33:20 [JavaFX Application Thread] INFO  c.e.j.managers.MusicPlayerManager - Started playing media
+2024-11-17 12:33:20 [JavaFX Application Thread] INFO  c.e.j.controllers.JamboController - Playing selected song: 04 - Ginseng Strip 2002.mp3
+2024-11-17 12:33:21 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Saved 54 songs to saved_songs.json
+2024-11-17 12:36:55 [JavaFX-Launcher] INFO  o.s.boot.SpringApplication - Starting application using Java 17.0.12 with PID 7264 (started by simgr in C:\Users\simgr\Desktop\Jambo\Jambo)
+2024-11-17 12:36:55 [JavaFX-Launcher] INFO  o.s.boot.SpringApplication - No active profile set, falling back to 1 default profile: "default"
+2024-11-17 12:36:56 [JavaFX-Launcher] INFO  c.e.j.controllers.JamboController - JamboController initialized successfully.
+2024-11-17 12:36:56 [JavaFX-Launcher] INFO  o.s.boot.SpringApplication - Started application in 0.801 seconds (process running for 1.529)
+2024-11-17 12:36:56 [JavaFX Application Thread] INFO  c.e.j.controllers.JamboController - Primary stage configured and displayed.
+2024-11-17 12:36:56 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Loading 54 valid songs from saved_songs.json
+2024-11-17 12:36:56 [JavaFX Application Thread] INFO  c.e.j.controllers.JamboController - Songs in playlist: []
+2024-11-17 12:36:56 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Back at It.mp3
+2024-11-17 12:36:56 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Cashin (Ft. Adamn Killa).mp3
+2024-11-17 12:36:56 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Crystal City (Ft. ASAP Ferg).mp3
+2024-11-17 12:36:56 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Get It Back.mp3
+2024-11-17 12:36:56 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Head 2 Toe (Ft. Bladee).mp3
+2024-11-17 12:36:56 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Hennessy & Sailor Moon (Ft. Bladee).mp3
+2024-11-17 12:36:56 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Hop Out (Ft. Luckaleannn).mp3
+2024-11-17 12:36:56 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Kirby.mp3
+2024-11-17 12:36:56 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 01 - Nekobasu (prod Baba Stiltz).mp3
+2024-11-17 12:36:56 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 02 - Buildings ft Thaiboy Digital  Bladee (prod Tokyo Hands WhiteArmor  Yung Sherman).mp3
+2024-11-17 12:36:56 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 03 - Marble Phone (ft Kreayshawn) (prod WhiteArmor  Yung Sherman).mp3
+2024-11-17 12:36:56 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 04 - Kyoto (prod Yung Gud).mp3
+2024-11-17 12:36:56 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 05 - Crystalized Snow ft Thaiboy Digital (prod WhiteArmor).mp3
+2024-11-17 12:36:56 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 06 - King Of The Darkness (prod Baba Stiltz).mp3
+2024-11-17 12:36:56 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 07 - Motorola (prod Whitearmor).mp3
+2024-11-17 12:36:56 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 08 - Visions of U (prod Whitearmor).mp3
+2024-11-17 12:36:56 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 09 - Orroz (prod Yung Gud).mp3
+2024-11-17 12:36:56 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 10 - Re-Charge ft Baba Stiltz (prod Baba Stiltz).mp3
+2024-11-17 12:36:56 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 01 - OreoMilkShake.mp3
+2024-11-17 12:36:56 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 02 - GreyGoose.mp3
+2024-11-17 12:36:56 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 03 - Damn Gud Shawty.mp3
+2024-11-17 12:36:56 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 04 - Ginseng Strip 2002.mp3
+2024-11-17 12:36:56 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 05 - The 5th Element.mp3
+2024-11-17 12:36:56 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 06 - Plastic G-Shock.mp3
+2024-11-17 12:36:56 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 07 - Gatorade.mp3
+2024-11-17 12:36:56 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 08 - Stevie Nicks.mp3
+2024-11-17 12:36:56 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 09 - Bentley.mp3
+2024-11-17 12:36:56 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 10 - Watchu Wanna feat. Prada Mane.mp3
+2024-11-17 12:36:56 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 11 - 3D Spaceship.mp3
+2024-11-17 12:36:56 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Yung Lean - Unknown Death 2002 - 01 Welcome 2 Unknown Death -Prod. Yung Sherman-.mp3
+2024-11-17 12:36:56 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Yung Lean - Unknown Death 2002 - 02 Nitevision (feat. Bladee) -Prod. Yung Gud-.mp3
+2024-11-17 12:36:56 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Yung Lean - Unknown Death 2002 - 03 Oceans 2001 -Prod. Gregar-.mp3
+2024-11-17 12:36:56 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Yung Lean - Unknown Death 2002 - 04 Gatorade -Prod. Yung Gud-.mp3
+2024-11-17 12:36:56 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Yung Lean - Unknown Death 2002 - 05 Hurt -Prod. Suicideyear-.mp3
+2024-11-17 12:36:56 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Yung Lean - Unknown Death 2002 - 06 Lightsaber - Saviour -Prod. Yung Sherman-.mp3
+2024-11-17 12:36:56 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Yung Lean - Unknown Death 2002 - 07 Princess Daisy -Prod. Yung Gud-.mp3
+2024-11-17 12:36:56 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Yung Lean - Unknown Death 2002 - 08 Lemonade (feat. Baba Stiltz) -Prod. Yung Sherman-.mp3
+2024-11-17 12:36:56 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Yung Lean - Unknown Death 2002 - 09 Emails -Prod. White Armor-.mp3
+2024-11-17 12:36:56 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Yung Lean - Unknown Death 2002 - 10 Deathstar - Getting Benjamins -Prod. White Armor-.mp3
+2024-11-17 12:36:56 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Yung Lean - Unknown Death 2002 - 11 Heal You - Bladerunner (feat. Bladee) -Prod. White Armor-.mp3
+2024-11-17 12:36:56 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Yung Lean - Unknown Death 2002 - 12 Solarflare -Prod. Friendzone-.mp3
+2024-11-17 12:36:56 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 01 Immortal.mp3
+2024-11-17 12:36:56 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 02 Highway Patrol (Ft. Bladee).mp3
+2024-11-17 12:36:56 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 03 Fantasy (Ft. Lil Flash).mp3
+2024-11-17 12:36:56 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 04 Afghanistan.mp3
+2024-11-17 12:36:56 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 05 Hoover.mp3
+2024-11-17 12:36:56 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 06 Fire.mp3
+2024-11-17 12:36:56 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 07 Stay Down.mp3
+2024-11-17 12:36:56 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 08 Eye Contact.mp3
+2024-11-17 12:36:56 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 09 More Stacks.mp3
+2024-11-17 12:36:56 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 10 AF1s (Ft. Ecco2k).mp3
+2024-11-17 12:36:56 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 11 Hocus Pocus (Ft. Bladee).mp3
+2024-11-17 12:36:56 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 12 Shawty U Know What It Do.mp3
+2024-11-17 12:36:56 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 13 Miami Ultras.mp3
+2024-11-17 12:36:56 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - 54 songs loaded successfully
+2024-11-17 12:36:58 [JavaFX Application Thread] INFO  c.e.j.managers.MusicPlayerManager - Started playing media
+2024-11-17 12:36:58 [JavaFX Application Thread] INFO  c.e.j.controllers.JamboController - Playing selected song: 09 - Orroz (prod Yung Gud).mp3
+2024-11-17 12:37:00 [JavaFX Application Thread] INFO  c.e.j.managers.MusicPlayerManager - Started playing media
+2024-11-17 12:37:00 [JavaFX Application Thread] INFO  c.e.j.controllers.JamboController - Playing selected song: Hennessy & Sailor Moon (Ft. Bladee).mp3
+2024-11-17 12:37:01 [JavaFX Application Thread] INFO  c.e.j.managers.MusicPlayerManager - Stopped music playback
+2024-11-17 12:37:02 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Saved 54 songs to saved_songs.json
+2024-11-17 12:37:06 [JavaFX-Launcher] INFO  o.s.boot.SpringApplication - Starting application using Java 17.0.12 with PID 19904 (started by simgr in C:\Users\simgr\Desktop\Jambo\Jambo)
+2024-11-17 12:37:06 [JavaFX-Launcher] INFO  o.s.boot.SpringApplication - No active profile set, falling back to 1 default profile: "default"
+2024-11-17 12:37:07 [JavaFX-Launcher] INFO  c.e.j.controllers.JamboController - JamboController initialized successfully.
+2024-11-17 12:37:07 [JavaFX-Launcher] INFO  o.s.boot.SpringApplication - Started application in 0.741 seconds (process running for 1.474)
+2024-11-17 12:37:07 [JavaFX Application Thread] INFO  c.e.j.controllers.JamboController - Primary stage configured and displayed.
+2024-11-17 12:37:07 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Loading 54 valid songs from saved_songs.json
+2024-11-17 12:37:07 [JavaFX Application Thread] INFO  c.e.j.controllers.JamboController - Songs in playlist: []
+2024-11-17 12:37:07 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Back at It.mp3
+2024-11-17 12:37:07 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Cashin (Ft. Adamn Killa).mp3
+2024-11-17 12:37:07 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Crystal City (Ft. ASAP Ferg).mp3
+2024-11-17 12:37:07 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Get It Back.mp3
+2024-11-17 12:37:07 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Head 2 Toe (Ft. Bladee).mp3
+2024-11-17 12:37:07 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Hennessy & Sailor Moon (Ft. Bladee).mp3
+2024-11-17 12:37:07 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Hop Out (Ft. Luckaleannn).mp3
+2024-11-17 12:37:07 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Kirby.mp3
+2024-11-17 12:37:07 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 01 - Nekobasu (prod Baba Stiltz).mp3
+2024-11-17 12:37:07 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 02 - Buildings ft Thaiboy Digital  Bladee (prod Tokyo Hands WhiteArmor  Yung Sherman).mp3
+2024-11-17 12:37:07 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 03 - Marble Phone (ft Kreayshawn) (prod WhiteArmor  Yung Sherman).mp3
+2024-11-17 12:37:07 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 04 - Kyoto (prod Yung Gud).mp3
+2024-11-17 12:37:07 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 05 - Crystalized Snow ft Thaiboy Digital (prod WhiteArmor).mp3
+2024-11-17 12:37:07 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 06 - King Of The Darkness (prod Baba Stiltz).mp3
+2024-11-17 12:37:07 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 07 - Motorola (prod Whitearmor).mp3
+2024-11-17 12:37:07 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 08 - Visions of U (prod Whitearmor).mp3
+2024-11-17 12:37:07 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 09 - Orroz (prod Yung Gud).mp3
+2024-11-17 12:37:07 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 10 - Re-Charge ft Baba Stiltz (prod Baba Stiltz).mp3
+2024-11-17 12:37:07 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 01 - OreoMilkShake.mp3
+2024-11-17 12:37:07 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 02 - GreyGoose.mp3
+2024-11-17 12:37:07 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 03 - Damn Gud Shawty.mp3
+2024-11-17 12:37:07 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 04 - Ginseng Strip 2002.mp3
+2024-11-17 12:37:07 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 05 - The 5th Element.mp3
+2024-11-17 12:37:07 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 06 - Plastic G-Shock.mp3
+2024-11-17 12:37:07 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 07 - Gatorade.mp3
+2024-11-17 12:37:07 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 08 - Stevie Nicks.mp3
+2024-11-17 12:37:07 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 09 - Bentley.mp3
+2024-11-17 12:37:07 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 10 - Watchu Wanna feat. Prada Mane.mp3
+2024-11-17 12:37:07 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 11 - 3D Spaceship.mp3
+2024-11-17 12:37:07 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Yung Lean - Unknown Death 2002 - 01 Welcome 2 Unknown Death -Prod. Yung Sherman-.mp3
+2024-11-17 12:37:07 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Yung Lean - Unknown Death 2002 - 02 Nitevision (feat. Bladee) -Prod. Yung Gud-.mp3
+2024-11-17 12:37:07 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Yung Lean - Unknown Death 2002 - 03 Oceans 2001 -Prod. Gregar-.mp3
+2024-11-17 12:37:07 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Yung Lean - Unknown Death 2002 - 04 Gatorade -Prod. Yung Gud-.mp3
+2024-11-17 12:37:07 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Yung Lean - Unknown Death 2002 - 05 Hurt -Prod. Suicideyear-.mp3
+2024-11-17 12:37:07 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Yung Lean - Unknown Death 2002 - 06 Lightsaber - Saviour -Prod. Yung Sherman-.mp3
+2024-11-17 12:37:07 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Yung Lean - Unknown Death 2002 - 07 Princess Daisy -Prod. Yung Gud-.mp3
+2024-11-17 12:37:07 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Yung Lean - Unknown Death 2002 - 08 Lemonade (feat. Baba Stiltz) -Prod. Yung Sherman-.mp3
+2024-11-17 12:37:07 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Yung Lean - Unknown Death 2002 - 09 Emails -Prod. White Armor-.mp3
+2024-11-17 12:37:07 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Yung Lean - Unknown Death 2002 - 10 Deathstar - Getting Benjamins -Prod. White Armor-.mp3
+2024-11-17 12:37:07 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Yung Lean - Unknown Death 2002 - 11 Heal You - Bladerunner (feat. Bladee) -Prod. White Armor-.mp3
+2024-11-17 12:37:07 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Yung Lean - Unknown Death 2002 - 12 Solarflare -Prod. Friendzone-.mp3
+2024-11-17 12:37:07 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 01 Immortal.mp3
+2024-11-17 12:37:07 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 02 Highway Patrol (Ft. Bladee).mp3
+2024-11-17 12:37:07 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 03 Fantasy (Ft. Lil Flash).mp3
+2024-11-17 12:37:07 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 04 Afghanistan.mp3
+2024-11-17 12:37:07 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 05 Hoover.mp3
+2024-11-17 12:37:07 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 06 Fire.mp3
+2024-11-17 12:37:07 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 07 Stay Down.mp3
+2024-11-17 12:37:07 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 08 Eye Contact.mp3
+2024-11-17 12:37:07 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 09 More Stacks.mp3
+2024-11-17 12:37:07 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 10 AF1s (Ft. Ecco2k).mp3
+2024-11-17 12:37:07 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 11 Hocus Pocus (Ft. Bladee).mp3
+2024-11-17 12:37:07 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 12 Shawty U Know What It Do.mp3
+2024-11-17 12:37:07 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 13 Miami Ultras.mp3
+2024-11-17 12:37:07 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - 54 songs loaded successfully
+2024-11-17 12:37:50 [JavaFX-Launcher] INFO  o.s.boot.SpringApplication - Starting application using Java 17.0.12 with PID 13536 (started by simgr in C:\Users\simgr\Desktop\Jambo\Jambo)
+2024-11-17 12:37:50 [JavaFX-Launcher] INFO  o.s.boot.SpringApplication - No active profile set, falling back to 1 default profile: "default"
+2024-11-17 12:37:51 [JavaFX-Launcher] INFO  c.e.j.controllers.JamboController - JamboController initialized successfully.
+2024-11-17 12:37:51 [JavaFX-Launcher] INFO  o.s.boot.SpringApplication - Started application in 0.724 seconds (process running for 1.462)
+2024-11-17 12:37:51 [JavaFX Application Thread] INFO  c.e.j.controllers.JamboController - Primary stage configured and displayed.
+2024-11-17 12:37:51 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Loading 54 valid songs from saved_songs.json
+2024-11-17 12:37:51 [JavaFX Application Thread] INFO  c.e.j.controllers.JamboController - Songs in playlist: []
+2024-11-17 12:37:51 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Back at It.mp3
+2024-11-17 12:37:51 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Cashin (Ft. Adamn Killa).mp3
+2024-11-17 12:37:51 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Crystal City (Ft. ASAP Ferg).mp3
+2024-11-17 12:37:51 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Get It Back.mp3
+2024-11-17 12:37:51 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Head 2 Toe (Ft. Bladee).mp3
+2024-11-17 12:37:51 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Hennessy & Sailor Moon (Ft. Bladee).mp3
+2024-11-17 12:37:51 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Hop Out (Ft. Luckaleannn).mp3
+2024-11-17 12:37:51 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Kirby.mp3
+2024-11-17 12:37:51 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 01 - Nekobasu (prod Baba Stiltz).mp3
+2024-11-17 12:37:51 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 02 - Buildings ft Thaiboy Digital  Bladee (prod Tokyo Hands WhiteArmor  Yung Sherman).mp3
+2024-11-17 12:37:51 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 03 - Marble Phone (ft Kreayshawn) (prod WhiteArmor  Yung Sherman).mp3
+2024-11-17 12:37:51 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 04 - Kyoto (prod Yung Gud).mp3
+2024-11-17 12:37:51 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 05 - Crystalized Snow ft Thaiboy Digital (prod WhiteArmor).mp3
+2024-11-17 12:37:51 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 06 - King Of The Darkness (prod Baba Stiltz).mp3
+2024-11-17 12:37:51 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 07 - Motorola (prod Whitearmor).mp3
+2024-11-17 12:37:51 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 08 - Visions of U (prod Whitearmor).mp3
+2024-11-17 12:37:51 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 09 - Orroz (prod Yung Gud).mp3
+2024-11-17 12:37:51 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 10 - Re-Charge ft Baba Stiltz (prod Baba Stiltz).mp3
+2024-11-17 12:37:51 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 01 - OreoMilkShake.mp3
+2024-11-17 12:37:51 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 02 - GreyGoose.mp3
+2024-11-17 12:37:51 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 03 - Damn Gud Shawty.mp3
+2024-11-17 12:37:51 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 04 - Ginseng Strip 2002.mp3
+2024-11-17 12:37:51 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 05 - The 5th Element.mp3
+2024-11-17 12:37:51 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 06 - Plastic G-Shock.mp3
+2024-11-17 12:37:51 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 07 - Gatorade.mp3
+2024-11-17 12:37:51 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 08 - Stevie Nicks.mp3
+2024-11-17 12:37:51 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 09 - Bentley.mp3
+2024-11-17 12:37:51 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 10 - Watchu Wanna feat. Prada Mane.mp3
+2024-11-17 12:37:51 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 11 - 3D Spaceship.mp3
+2024-11-17 12:37:51 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Yung Lean - Unknown Death 2002 - 01 Welcome 2 Unknown Death -Prod. Yung Sherman-.mp3
+2024-11-17 12:37:51 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Yung Lean - Unknown Death 2002 - 02 Nitevision (feat. Bladee) -Prod. Yung Gud-.mp3
+2024-11-17 12:37:51 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Yung Lean - Unknown Death 2002 - 03 Oceans 2001 -Prod. Gregar-.mp3
+2024-11-17 12:37:51 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Yung Lean - Unknown Death 2002 - 04 Gatorade -Prod. Yung Gud-.mp3
+2024-11-17 12:37:51 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Yung Lean - Unknown Death 2002 - 05 Hurt -Prod. Suicideyear-.mp3
+2024-11-17 12:37:51 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Yung Lean - Unknown Death 2002 - 06 Lightsaber - Saviour -Prod. Yung Sherman-.mp3
+2024-11-17 12:37:51 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Yung Lean - Unknown Death 2002 - 07 Princess Daisy -Prod. Yung Gud-.mp3
+2024-11-17 12:37:51 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Yung Lean - Unknown Death 2002 - 08 Lemonade (feat. Baba Stiltz) -Prod. Yung Sherman-.mp3
+2024-11-17 12:37:51 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Yung Lean - Unknown Death 2002 - 09 Emails -Prod. White Armor-.mp3
+2024-11-17 12:37:51 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Yung Lean - Unknown Death 2002 - 10 Deathstar - Getting Benjamins -Prod. White Armor-.mp3
+2024-11-17 12:37:51 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Yung Lean - Unknown Death 2002 - 11 Heal You - Bladerunner (feat. Bladee) -Prod. White Armor-.mp3
+2024-11-17 12:37:51 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Yung Lean - Unknown Death 2002 - 12 Solarflare -Prod. Friendzone-.mp3
+2024-11-17 12:37:51 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 01 Immortal.mp3
+2024-11-17 12:37:51 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 02 Highway Patrol (Ft. Bladee).mp3
+2024-11-17 12:37:51 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 03 Fantasy (Ft. Lil Flash).mp3
+2024-11-17 12:37:51 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 04 Afghanistan.mp3
+2024-11-17 12:37:51 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 05 Hoover.mp3
+2024-11-17 12:37:51 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 06 Fire.mp3
+2024-11-17 12:37:51 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 07 Stay Down.mp3
+2024-11-17 12:37:51 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 08 Eye Contact.mp3
+2024-11-17 12:37:51 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 09 More Stacks.mp3
+2024-11-17 12:37:51 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 10 AF1s (Ft. Ecco2k).mp3
+2024-11-17 12:37:51 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 11 Hocus Pocus (Ft. Bladee).mp3
+2024-11-17 12:37:51 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 12 Shawty U Know What It Do.mp3
+2024-11-17 12:37:51 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 13 Miami Ultras.mp3
+2024-11-17 12:37:51 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - 54 songs loaded successfully
+2024-11-17 12:37:53 [JavaFX Application Thread] INFO  c.e.j.managers.MusicPlayerManager - Started playing media
+2024-11-17 12:37:53 [JavaFX Application Thread] INFO  c.e.j.controllers.JamboController - Playing selected song: 08 - Visions of U (prod Whitearmor).mp3
+2024-11-17 12:37:55 [JavaFX Application Thread] INFO  c.e.j.managers.MusicPlayerManager - Started playing media
+2024-11-17 12:37:55 [JavaFX Application Thread] INFO  c.e.j.controllers.JamboController - Playing selected song: 01 - Nekobasu (prod Baba Stiltz).mp3
+2024-11-17 12:37:56 [JavaFX Application Thread] INFO  c.e.j.managers.MusicPlayerManager - Started playing media
+2024-11-17 12:37:56 [JavaFX Application Thread] INFO  c.e.j.controllers.JamboController - Playing selected song: 04 - Ginseng Strip 2002.mp3
+2024-11-17 12:37:58 [JavaFX Application Thread] INFO  c.e.j.managers.MusicPlayerManager - Started playing media
+2024-11-17 12:37:58 [JavaFX Application Thread] INFO  c.e.j.controllers.JamboController - Playing selected song: Get It Back.mp3
+2024-11-17 12:38:32 [JavaFX-Launcher] INFO  o.s.boot.SpringApplication - Starting application using Java 17.0.12 with PID 20284 (started by simgr in C:\Users\simgr\Desktop\Jambo\Jambo)
+2024-11-17 12:38:32 [JavaFX-Launcher] INFO  o.s.boot.SpringApplication - No active profile set, falling back to 1 default profile: "default"
+2024-11-17 12:38:32 [JavaFX-Launcher] INFO  c.e.j.controllers.JamboController - JamboController initialized successfully.
+2024-11-17 12:38:32 [JavaFX-Launcher] INFO  o.s.boot.SpringApplication - Started application in 0.75 seconds (process running for 1.529)
+2024-11-17 12:38:33 [JavaFX Application Thread] INFO  c.e.j.controllers.JamboController - Primary stage configured and displayed.
+2024-11-17 12:38:33 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Loading 54 valid songs from saved_songs.json
+2024-11-17 12:38:33 [JavaFX Application Thread] INFO  c.e.j.controllers.JamboController - Songs in playlist: []
+2024-11-17 12:38:33 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Back at It.mp3
+2024-11-17 12:38:33 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Cashin (Ft. Adamn Killa).mp3
+2024-11-17 12:38:33 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Crystal City (Ft. ASAP Ferg).mp3
+2024-11-17 12:38:33 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Get It Back.mp3
+2024-11-17 12:38:33 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Head 2 Toe (Ft. Bladee).mp3
+2024-11-17 12:38:33 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Hennessy & Sailor Moon (Ft. Bladee).mp3
+2024-11-17 12:38:33 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Hop Out (Ft. Luckaleannn).mp3
+2024-11-17 12:38:33 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Kirby.mp3
+2024-11-17 12:38:33 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 01 - Nekobasu (prod Baba Stiltz).mp3
+2024-11-17 12:38:33 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 02 - Buildings ft Thaiboy Digital  Bladee (prod Tokyo Hands WhiteArmor  Yung Sherman).mp3
+2024-11-17 12:38:33 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 03 - Marble Phone (ft Kreayshawn) (prod WhiteArmor  Yung Sherman).mp3
+2024-11-17 12:38:33 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 04 - Kyoto (prod Yung Gud).mp3
+2024-11-17 12:38:33 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 05 - Crystalized Snow ft Thaiboy Digital (prod WhiteArmor).mp3
+2024-11-17 12:38:33 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 06 - King Of The Darkness (prod Baba Stiltz).mp3
+2024-11-17 12:38:33 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 07 - Motorola (prod Whitearmor).mp3
+2024-11-17 12:38:33 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 08 - Visions of U (prod Whitearmor).mp3
+2024-11-17 12:38:33 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 09 - Orroz (prod Yung Gud).mp3
+2024-11-17 12:38:33 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 10 - Re-Charge ft Baba Stiltz (prod Baba Stiltz).mp3
+2024-11-17 12:38:33 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 01 - OreoMilkShake.mp3
+2024-11-17 12:38:33 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 02 - GreyGoose.mp3
+2024-11-17 12:38:33 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 03 - Damn Gud Shawty.mp3
+2024-11-17 12:38:33 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 04 - Ginseng Strip 2002.mp3
+2024-11-17 12:38:33 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 05 - The 5th Element.mp3
+2024-11-17 12:38:33 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 06 - Plastic G-Shock.mp3
+2024-11-17 12:38:33 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 07 - Gatorade.mp3
+2024-11-17 12:38:33 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 08 - Stevie Nicks.mp3
+2024-11-17 12:38:33 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 09 - Bentley.mp3
+2024-11-17 12:38:33 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 10 - Watchu Wanna feat. Prada Mane.mp3
+2024-11-17 12:38:33 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 11 - 3D Spaceship.mp3
+2024-11-17 12:38:33 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Yung Lean - Unknown Death 2002 - 01 Welcome 2 Unknown Death -Prod. Yung Sherman-.mp3
+2024-11-17 12:38:33 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Yung Lean - Unknown Death 2002 - 02 Nitevision (feat. Bladee) -Prod. Yung Gud-.mp3
+2024-11-17 12:38:33 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Yung Lean - Unknown Death 2002 - 03 Oceans 2001 -Prod. Gregar-.mp3
+2024-11-17 12:38:33 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Yung Lean - Unknown Death 2002 - 04 Gatorade -Prod. Yung Gud-.mp3
+2024-11-17 12:38:33 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Yung Lean - Unknown Death 2002 - 05 Hurt -Prod. Suicideyear-.mp3
+2024-11-17 12:38:33 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Yung Lean - Unknown Death 2002 - 06 Lightsaber - Saviour -Prod. Yung Sherman-.mp3
+2024-11-17 12:38:33 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Yung Lean - Unknown Death 2002 - 07 Princess Daisy -Prod. Yung Gud-.mp3
+2024-11-17 12:38:33 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Yung Lean - Unknown Death 2002 - 08 Lemonade (feat. Baba Stiltz) -Prod. Yung Sherman-.mp3
+2024-11-17 12:38:33 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Yung Lean - Unknown Death 2002 - 09 Emails -Prod. White Armor-.mp3
+2024-11-17 12:38:33 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Yung Lean - Unknown Death 2002 - 10 Deathstar - Getting Benjamins -Prod. White Armor-.mp3
+2024-11-17 12:38:33 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Yung Lean - Unknown Death 2002 - 11 Heal You - Bladerunner (feat. Bladee) -Prod. White Armor-.mp3
+2024-11-17 12:38:33 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Yung Lean - Unknown Death 2002 - 12 Solarflare -Prod. Friendzone-.mp3
+2024-11-17 12:38:33 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 01 Immortal.mp3
+2024-11-17 12:38:33 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 02 Highway Patrol (Ft. Bladee).mp3
+2024-11-17 12:38:33 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 03 Fantasy (Ft. Lil Flash).mp3
+2024-11-17 12:38:33 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 04 Afghanistan.mp3
+2024-11-17 12:38:33 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 05 Hoover.mp3
+2024-11-17 12:38:33 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 06 Fire.mp3
+2024-11-17 12:38:33 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 07 Stay Down.mp3
+2024-11-17 12:38:33 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 08 Eye Contact.mp3
+2024-11-17 12:38:33 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 09 More Stacks.mp3
+2024-11-17 12:38:33 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 10 AF1s (Ft. Ecco2k).mp3
+2024-11-17 12:38:33 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 11 Hocus Pocus (Ft. Bladee).mp3
+2024-11-17 12:38:33 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 12 Shawty U Know What It Do.mp3
+2024-11-17 12:38:33 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 13 Miami Ultras.mp3
+2024-11-17 12:38:33 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - 54 songs loaded successfully
+2024-11-17 12:38:37 [JavaFX Application Thread] INFO  c.e.j.managers.MusicPlayerManager - Started playing media
+2024-11-17 12:38:37 [JavaFX Application Thread] INFO  c.e.j.controllers.JamboController - Playing selected song: 06 - King Of The Darkness (prod Baba Stiltz).mp3
+2024-11-17 12:38:38 [JavaFX Application Thread] INFO  c.e.j.managers.MusicPlayerManager - Started playing media
+2024-11-17 12:38:38 [JavaFX Application Thread] INFO  c.e.j.controllers.JamboController - Playing selected song: Hennessy & Sailor Moon (Ft. Bladee).mp3
+2024-11-17 12:38:40 [JavaFX Application Thread] INFO  c.e.j.managers.MusicPlayerManager - Started playing media
+2024-11-17 12:38:40 [JavaFX Application Thread] INFO  c.e.j.controllers.JamboController - Playing selected song: 06 - Plastic G-Shock.mp3
+2024-11-17 12:38:42 [JavaFX Application Thread] INFO  c.e.j.managers.MusicPlayerManager - Started playing media
+2024-11-17 12:38:42 [JavaFX Application Thread] INFO  c.e.j.controllers.JamboController - Playing selected song: Get It Back.mp3
+2024-11-17 12:38:44 [JavaFX Application Thread] INFO  c.e.j.managers.MusicPlayerManager - Started playing media
+2024-11-17 12:38:44 [JavaFX Application Thread] INFO  c.e.j.controllers.JamboController - Playing selected song: 02 - Buildings ft Thaiboy Digital  Bladee (prod Tokyo Hands WhiteArmor  Yung Sherman).mp3
+2024-11-17 12:38:47 [JavaFX Application Thread] INFO  c.e.j.managers.MusicPlayerManager - Started playing media
+2024-11-17 12:38:47 [JavaFX Application Thread] INFO  c.e.j.controllers.JamboController - Playing selected song: 02 - GreyGoose.mp3
+2024-11-17 12:38:49 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Saved 54 songs to saved_songs.json
+2024-11-17 12:39:25 [JavaFX-Launcher] INFO  o.s.boot.SpringApplication - Starting application using Java 17.0.12 with PID 8132 (started by simgr in C:\Users\simgr\Desktop\Jambo\Jambo)
+2024-11-17 12:39:25 [JavaFX-Launcher] INFO  o.s.boot.SpringApplication - No active profile set, falling back to 1 default profile: "default"
+2024-11-17 12:39:25 [JavaFX-Launcher] INFO  c.e.j.controllers.JamboController - JamboController initialized successfully.
+2024-11-17 12:39:25 [JavaFX-Launcher] INFO  o.s.boot.SpringApplication - Started application in 0.741 seconds (process running for 1.468)
+2024-11-17 12:39:26 [JavaFX Application Thread] INFO  c.e.j.controllers.JamboController - Primary stage configured and displayed.
+2024-11-17 12:39:26 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Loading 54 valid songs from saved_songs.json
+2024-11-17 12:39:26 [JavaFX Application Thread] INFO  c.e.j.controllers.JamboController - Songs in playlist: []
+2024-11-17 12:39:26 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Back at It.mp3
+2024-11-17 12:39:26 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Cashin (Ft. Adamn Killa).mp3
+2024-11-17 12:39:26 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Crystal City (Ft. ASAP Ferg).mp3
+2024-11-17 12:39:26 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Get It Back.mp3
+2024-11-17 12:39:26 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Head 2 Toe (Ft. Bladee).mp3
+2024-11-17 12:39:26 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Hennessy & Sailor Moon (Ft. Bladee).mp3
+2024-11-17 12:39:26 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Hop Out (Ft. Luckaleannn).mp3
+2024-11-17 12:39:26 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Kirby.mp3
+2024-11-17 12:39:26 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 01 - Nekobasu (prod Baba Stiltz).mp3
+2024-11-17 12:39:26 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 02 - Buildings ft Thaiboy Digital  Bladee (prod Tokyo Hands WhiteArmor  Yung Sherman).mp3
+2024-11-17 12:39:26 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 03 - Marble Phone (ft Kreayshawn) (prod WhiteArmor  Yung Sherman).mp3
+2024-11-17 12:39:26 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 04 - Kyoto (prod Yung Gud).mp3
+2024-11-17 12:39:26 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 05 - Crystalized Snow ft Thaiboy Digital (prod WhiteArmor).mp3
+2024-11-17 12:39:26 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 06 - King Of The Darkness (prod Baba Stiltz).mp3
+2024-11-17 12:39:26 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 07 - Motorola (prod Whitearmor).mp3
+2024-11-17 12:39:26 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 08 - Visions of U (prod Whitearmor).mp3
+2024-11-17 12:39:26 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 09 - Orroz (prod Yung Gud).mp3
+2024-11-17 12:39:26 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 10 - Re-Charge ft Baba Stiltz (prod Baba Stiltz).mp3
+2024-11-17 12:39:26 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 01 - OreoMilkShake.mp3
+2024-11-17 12:39:26 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 02 - GreyGoose.mp3
+2024-11-17 12:39:26 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 03 - Damn Gud Shawty.mp3
+2024-11-17 12:39:26 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 04 - Ginseng Strip 2002.mp3
+2024-11-17 12:39:26 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 05 - The 5th Element.mp3
+2024-11-17 12:39:26 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 06 - Plastic G-Shock.mp3
+2024-11-17 12:39:26 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 07 - Gatorade.mp3
+2024-11-17 12:39:26 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 08 - Stevie Nicks.mp3
+2024-11-17 12:39:26 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 09 - Bentley.mp3
+2024-11-17 12:39:26 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 10 - Watchu Wanna feat. Prada Mane.mp3
+2024-11-17 12:39:26 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 11 - 3D Spaceship.mp3
+2024-11-17 12:39:26 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Yung Lean - Unknown Death 2002 - 01 Welcome 2 Unknown Death -Prod. Yung Sherman-.mp3
+2024-11-17 12:39:26 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Yung Lean - Unknown Death 2002 - 02 Nitevision (feat. Bladee) -Prod. Yung Gud-.mp3
+2024-11-17 12:39:26 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Yung Lean - Unknown Death 2002 - 03 Oceans 2001 -Prod. Gregar-.mp3
+2024-11-17 12:39:26 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Yung Lean - Unknown Death 2002 - 04 Gatorade -Prod. Yung Gud-.mp3
+2024-11-17 12:39:26 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Yung Lean - Unknown Death 2002 - 05 Hurt -Prod. Suicideyear-.mp3
+2024-11-17 12:39:26 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Yung Lean - Unknown Death 2002 - 06 Lightsaber - Saviour -Prod. Yung Sherman-.mp3
+2024-11-17 12:39:26 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Yung Lean - Unknown Death 2002 - 07 Princess Daisy -Prod. Yung Gud-.mp3
+2024-11-17 12:39:26 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Yung Lean - Unknown Death 2002 - 08 Lemonade (feat. Baba Stiltz) -Prod. Yung Sherman-.mp3
+2024-11-17 12:39:26 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Yung Lean - Unknown Death 2002 - 09 Emails -Prod. White Armor-.mp3
+2024-11-17 12:39:26 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Yung Lean - Unknown Death 2002 - 10 Deathstar - Getting Benjamins -Prod. White Armor-.mp3
+2024-11-17 12:39:26 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Yung Lean - Unknown Death 2002 - 11 Heal You - Bladerunner (feat. Bladee) -Prod. White Armor-.mp3
+2024-11-17 12:39:26 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: Yung Lean - Unknown Death 2002 - 12 Solarflare -Prod. Friendzone-.mp3
+2024-11-17 12:39:26 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 01 Immortal.mp3
+2024-11-17 12:39:26 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 02 Highway Patrol (Ft. Bladee).mp3
+2024-11-17 12:39:26 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 03 Fantasy (Ft. Lil Flash).mp3
+2024-11-17 12:39:26 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 04 Afghanistan.mp3
+2024-11-17 12:39:26 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 05 Hoover.mp3
+2024-11-17 12:39:26 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 06 Fire.mp3
+2024-11-17 12:39:26 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 07 Stay Down.mp3
+2024-11-17 12:39:26 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 08 Eye Contact.mp3
+2024-11-17 12:39:26 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 09 More Stacks.mp3
+2024-11-17 12:39:26 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 10 AF1s (Ft. Ecco2k).mp3
+2024-11-17 12:39:26 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 11 Hocus Pocus (Ft. Bladee).mp3
+2024-11-17 12:39:26 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 12 Shawty U Know What It Do.mp3
+2024-11-17 12:39:26 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 13 Miami Ultras.mp3
+2024-11-17 12:39:26 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - 54 songs loaded successfully
+2024-11-17 12:39:27 [JavaFX Application Thread] INFO  c.e.j.managers.MusicPlayerManager - Started playing media
+2024-11-17 12:39:27 [JavaFX Application Thread] INFO  c.e.j.controllers.JamboController - Playing selected song: 08 - Visions of U (prod Whitearmor).mp3
+2024-11-17 12:39:28 [JavaFX Application Thread] INFO  c.e.j.managers.MusicPlayerManager - Started playing media
+2024-11-17 12:39:28 [JavaFX Application Thread] INFO  c.e.j.controllers.JamboController - Playing selected song: 09 - Orroz (prod Yung Gud).mp3
+2024-11-17 12:39:29 [JavaFX Application Thread] INFO  c.e.j.managers.MusicPlayerManager - Started playing media
+2024-11-17 12:39:29 [JavaFX Application Thread] INFO  c.e.j.controllers.JamboController - Playing selected song: 10 - Re-Charge ft Baba Stiltz (prod Baba Stiltz).mp3
+2024-11-17 12:39:33 [JavaFX Application Thread] INFO  c.e.jambo.services.PlaylistService - Created new playlist: sigma
+2024-11-17 12:39:37 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 01 Endpiece.mp3
+2024-11-17 12:39:37 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 02 Please Mr Pilot.mp3
+2024-11-17 12:39:37 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 03 2_24.mp3
+2024-11-17 12:39:37 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 04 The Hard Part.mp3
+2024-11-17 12:39:37 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 05 Sound Man_Low Fidelity.mp3
+2024-11-17 12:39:37 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 06 Napoleon (March Into Russia).mp3
+2024-11-17 12:39:37 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 07 Drunk On A Work Night.mp3
+2024-11-17 12:39:38 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 08 Love Me Too Much.mp3
+2024-11-17 12:39:38 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 09 Dream_ Encounter On Smoke Mountain.mp3
+2024-11-17 12:39:38 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 10 Sinner.mp3
+2024-11-17 12:39:38 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 11 When Will My Man Come_.mp3
+2024-11-17 12:39:38 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 12 Hi Life.mp3
+2024-11-17 12:39:38 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 13 AC.mp3
+2024-11-17 12:39:38 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 14 If Not, Then Oh Well.mp3
+2024-11-17 12:39:38 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 15 Memories (Leonard Cohen Cover).mp3
+2024-11-17 12:39:39 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 16 KS.mp3
+2024-11-17 12:39:39 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 17 Unfinished_ Pain Star (If heaven is full of people...).mp3
+2024-11-17 12:39:39 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Saved 17 songs to saved_songs.json
+2024-11-17 12:39:40 [JavaFX Application Thread] INFO  c.e.j.managers.MusicPlayerManager - Started playing media
+2024-11-17 12:39:40 [JavaFX Application Thread] INFO  c.e.j.controllers.JamboController - Playing selected song: 07 Drunk On A Work Night.mp3
+2024-11-17 12:39:41 [JavaFX Application Thread] INFO  c.e.j.managers.MusicPlayerManager - Started playing media
+2024-11-17 12:39:41 [JavaFX Application Thread] INFO  c.e.j.controllers.JamboController - Playing selected song: 14 If Not, Then Oh Well.mp3
+2024-11-17 12:39:43 [JavaFX Application Thread] INFO  c.e.j.managers.MusicPlayerManager - Started playing media
+2024-11-17 12:39:43 [JavaFX Application Thread] INFO  c.e.j.controllers.JamboController - Playing selected song: 04 The Hard Part.mp3
+2024-11-17 12:39:46 [JavaFX Application Thread] INFO  c.e.j.managers.MusicPlayerManager - Started playing media
+2024-11-17 12:39:46 [JavaFX Application Thread] INFO  c.e.j.controllers.JamboController - Playing selected song: 06 - King Of The Darkness (prod Baba Stiltz).mp3
+2024-11-17 12:39:47 [JavaFX Application Thread] INFO  c.e.j.managers.MusicPlayerManager - Started playing media
+2024-11-17 12:39:47 [JavaFX Application Thread] INFO  c.e.j.controllers.JamboController - Playing selected song: Hop Out (Ft. Luckaleannn).mp3
+2024-11-17 12:40:12 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Saved 54 songs to saved_songs.json
