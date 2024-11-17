@@ -7,7 +7,7 @@ import java.util.List;
 
 @Component
 public class VolumeController {
-    private double volume = 0.5;
+    private double volume = 0.5;  //TODO - fix, not working right now
     private boolean isMuted = false;
     private final List<VolumeChangeListener> listeners = new ArrayList<>();
     private MediaPlayer boundMediaPlayer;

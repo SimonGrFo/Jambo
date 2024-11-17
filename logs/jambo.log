@@ -1,0 +1,33 @@
+2024-11-17 18:18:21 [JavaFX-Launcher] INFO  o.s.boot.SpringApplication - Starting application using Java 17.0.12 with PID 17532 (started by simgr in C:\Users\simgr\Desktop\Jambo\Jambo)
+2024-11-17 18:18:21 [JavaFX-Launcher] INFO  o.s.boot.SpringApplication - No active profile set, falling back to 1 default profile: "default"
+2024-11-17 18:18:21 [JavaFX-Launcher] INFO  c.e.j.controllers.JamboController - JamboController initialized successfully.
+2024-11-17 18:18:21 [JavaFX-Launcher] INFO  o.s.boot.SpringApplication - Started application in 0.769 seconds (process running for 1.722)
+2024-11-17 18:18:22 [JavaFX Application Thread] INFO  c.e.j.controllers.JamboController - Primary stage configured and displayed.
+2024-11-17 18:18:22 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Loading 0 valid songs from saved_songs.json
+2024-11-17 18:18:22 [JavaFX Application Thread] INFO  c.e.j.controllers.JamboController - Songs in playlist: []
+2024-11-17 18:18:22 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - 0 songs loaded successfully
+2024-11-17 18:18:27 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 01 Endpiece.mp3
+2024-11-17 18:18:27 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 02 Please Mr Pilot.mp3
+2024-11-17 18:18:27 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 03 2_24.mp3
+2024-11-17 18:18:27 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 04 The Hard Part.mp3
+2024-11-17 18:18:27 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 05 Sound Man_Low Fidelity.mp3
+2024-11-17 18:18:27 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 06 Napoleon (March Into Russia).mp3
+2024-11-17 18:18:27 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 07 Drunk On A Work Night.mp3
+2024-11-17 18:18:27 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 08 Love Me Too Much.mp3
+2024-11-17 18:18:27 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 09 Dream_ Encounter On Smoke Mountain.mp3
+2024-11-17 18:18:27 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 10 Sinner.mp3
+2024-11-17 18:18:27 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 11 When Will My Man Come_.mp3
+2024-11-17 18:18:27 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 12 Hi Life.mp3
+2024-11-17 18:18:27 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 13 AC.mp3
+2024-11-17 18:18:27 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 14 If Not, Then Oh Well.mp3
+2024-11-17 18:18:27 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 15 Memories (Leonard Cohen Cover).mp3
+2024-11-17 18:18:27 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 16 KS.mp3
+2024-11-17 18:18:27 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Added song: 17 Unfinished_ Pain Star (If heaven is full of people...).mp3
+2024-11-17 18:18:27 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Saved 17 songs to saved_songs.json
+2024-11-17 18:18:29 [JavaFX Application Thread] INFO  c.e.j.managers.MusicPlayerManager - Started playing media
+2024-11-17 18:18:29 [JavaFX Application Thread] INFO  c.e.j.controllers.JamboController - Playing selected song: 08 Love Me Too Much.mp3
+2024-11-17 18:18:30 [JavaFX Application Thread] INFO  c.e.j.managers.MusicPlayerManager - Started playing media
+2024-11-17 18:18:30 [JavaFX Application Thread] INFO  c.e.j.controllers.JamboController - Playing selected song: 16 KS.mp3
+2024-11-17 18:18:34 [JavaFX Application Thread] INFO  c.e.j.managers.MusicPlayerManager - Started playing media
+2024-11-17 18:18:34 [JavaFX Application Thread] INFO  c.e.j.controllers.JamboController - Playing selected song: 01 Endpiece.mp3
+2024-11-17 18:18:37 [JavaFX Application Thread] INFO  c.e.jambo.managers.PlaylistManager - Saved 17 songs to saved_songs.json
