@@ -22,7 +22,6 @@ public class MusicPlayerManager {
 
     private boolean isPlaying = false;
     private boolean isLooping = false;
-    private double currentPosition = 0;
 
     public MusicPlayerManager(
             MusicPlayerService musicPlayerService,
@@ -76,7 +75,6 @@ public class MusicPlayerManager {
 
     public void seekTo(Duration time) {
         musicPlayerService.seekTo(time.toSeconds());
-        currentPosition = time.toSeconds();
     }
 
     private void setupTimeUpdates() {
@@ -85,7 +83,6 @@ public class MusicPlayerManager {
                 if (!progressSlider.isPressed()) {
                     Duration current = musicPlayerService.getMediaPlayer().getCurrentTime();
                     Duration total = getTotalDuration();
-                    currentPosition = current.toSeconds();
 
                     if (total != null) {
                         double progress = current.toSeconds() / total.toSeconds();
@@ -96,6 +93,7 @@ public class MusicPlayerManager {
             });
         }
     }
+
 
     private void updateTimerLabel(Duration current, Duration total) {
         String currentTime = TimeFormatter.formatTime(current.toSeconds());
