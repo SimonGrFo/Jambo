@@ -38,10 +38,6 @@ public class MusicPlayerManager {
         this.progressSlider = progressSlider;
     }
 
-    public MediaPlayer getMediaPlayer() {
-        return musicPlayerService.getMediaPlayer();
-    }
-
     public void playMedia(Media media) {
         try {
             musicPlayerService.playMedia(media);
@@ -70,8 +66,8 @@ public class MusicPlayerManager {
     }
 
     public void toggleLoop() {
-        isLooping = !isLooping;
-        logger.info("Toggled loop state. Is looping: {}", isLooping);
+        musicPlayerService.toggleLoop();
+        logger.info("Toggled loop state. Is looping: {}", musicPlayerService.isLooping());
     }
 
     public void toggleMute() {
@@ -107,9 +103,6 @@ public class MusicPlayerManager {
         String totalTime = TimeFormatter.formatTime(total.toSeconds());
         timerLabel.setText(currentTime + " / " + totalTime);
     }
-
-    public boolean isPlaying() { return isPlaying; }
-    public double getCurrentPosition() { return currentPosition; }
 
     public Duration getTotalDuration() { return musicPlayerService.getTotalDuration(); }
 

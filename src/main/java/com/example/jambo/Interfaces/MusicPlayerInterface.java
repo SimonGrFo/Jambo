@@ -8,8 +8,10 @@ public interface MusicPlayerInterface {
     void pauseMedia();
     void stopMedia();
     void toggleLoop();
-    void toggleMute();
     void seekTo(double time);
     MediaPlayer getMediaPlayer();
+
+    boolean isLooping();
+
     Duration getTotalDuration();
 }

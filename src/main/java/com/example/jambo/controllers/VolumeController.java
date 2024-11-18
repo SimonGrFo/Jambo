@@ -60,18 +60,6 @@ public class VolumeController {
         });
     }
 
-    public void setVolume(double newVolume) {
-        volume = Math.max(0.0, Math.min(1.0, newVolume));
-        if (volumeSlider != null) {
-            volumeSlider.setValue(volume);
-        }
-        notifyListeners();
-    }
-
-    public double getVolume() {
-        return volume;
-    }
-
     private void notifyListeners() {
         for (VolumeChangeListener listener : listeners) {
             listener.onVolumeChanged(volume, isMuted);

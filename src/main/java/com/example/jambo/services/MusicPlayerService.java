@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class MusicPlayerService implements MusicPlayerInterface {
     private MediaPlayer mediaPlayer;
-    private Media currentMedia;
     private final VolumeController volumeController;
     private final MediaEventHandler eventHandler;
 
@@ -29,16 +28,17 @@ public class MusicPlayerService implements MusicPlayerInterface {
             mediaPlayer.dispose();
         }
 
-        currentMedia = media;
         mediaPlayer = new MediaPlayer(media);
 
         volumeController.bindToMediaPlayer(mediaPlayer);
-
         eventHandler.initializeEventHandlers(mediaPlayer);
+
+        mediaPlayer.setCycleCount(isLooping ? MediaPlayer.INDEFINITE : 1);
 
         mediaPlayer.play();
         isPaused = false;
     }
+
 
     @Override
     public void pauseMedia() {
@@ -71,11 +71,6 @@ public class MusicPlayerService implements MusicPlayerInterface {
     }
 
     @Override
-    public void toggleMute() {
-        volumeController.toggleMute();
-    }
-
-    @Override
     public void seekTo(double time) {
         if (mediaPlayer != null) {
             mediaPlayer.seek(Duration.seconds(time));
@@ -88,17 +83,27 @@ public class MusicPlayerService implements MusicPlayerInterface {
     }
 
     @Override
+    public boolean isLooping() {
+        return isLooping;
+    }
+
+
+    @Override
     public Duration getTotalDuration() {
         return mediaPlayer != null ? mediaPlayer.getTotalDuration() : Duration.ZERO;
     }
 
     public void setOnEndOfMedia(Runnable callback) {
         if (mediaPlayer != null) {
-            eventHandler.setOnEndOfMedia(callback);
+            mediaPlayer.setOnEndOfMedia(() -> {
+                if (isLooping) {
+                    mediaPlayer.seek(Duration.ZERO);
+                    mediaPlayer.play();
+                } else {
+                    callback.run();
+                }
+            });
         }
     }
 
-    public Media getCurrentMedia() {
-        return currentMedia;
-    }
 }
