@@ -24,19 +24,17 @@ dependencies {
 	implementation 'javazoom:jlayer:1.0.1'
 	implementation 'com.google.code.gson:gson:2.11.0'
 	implementation 'net.jthink:jaudiotagger:3.0.1'
-
-	testImplementation 'org.junit.jupiter:junit-jupiter-api:5.10.0'
 	testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.10.0'
-	testImplementation 'org.mockito:mockito-core:5.5.0'
-	testImplementation 'org.mockito:mockito-junit-jupiter:5.5.0'
 	testImplementation 'org.testfx:testfx-junit5:4.0.16-alpha'
 	testImplementation 'org.testfx:testfx-core:4.0.16-alpha'
 	testImplementation 'org.openjfx:javafx-swing:19'
 	testImplementation 'org.mockito:mockito-inline:5.2.0'
-
+	testImplementation 'org.junit.jupiter:junit-jupiter:5.8.1'
+	testImplementation 'org.mockito:mockito-core:3.12.4'
+	testImplementation 'org.mockito:mockito-junit-jupiter:3.12.4'
+	testImplementation 'org.mockito:mockito-inline:3.12.4'
 	implementation 'org.springframework:spring-context:6.1.14'
 	implementation 'org.springframework.boot:spring-boot-starter:3.2.2'
-
 	implementation 'ch.qos.logback:logback-classic:1.4.12'
 	implementation 'org.slf4j:slf4j-api:2.0.9'
 }

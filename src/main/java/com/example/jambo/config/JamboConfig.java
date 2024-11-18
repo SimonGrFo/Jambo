@@ -9,6 +9,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Slider;
 import javafx.scene.layout.Pane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -44,8 +46,22 @@ public class JamboConfig {
     public MusicPlayerService musicPlayerService(
             VolumeController volumeController,
             MediaEventHandler mediaEventHandler) {
-        return new MusicPlayerService(volumeController, mediaEventHandler);
+        return new MusicPlayerService(volumeController, mediaEventHandler) {
+            @Override
+            protected MediaPlayer createMediaPlayer(Media media) {
+                if (media == null) {
+                    throw new IllegalArgumentException("Media cannot be null");
+                }
+                MediaPlayer player = new MediaPlayer(media);
+                player.setOnError(() -> {
+                    String errorMessage = player.getError().getMessage();
+                    System.err.println("Media player error: " + errorMessage);
+                });
+                return player;
+            }
+        };
     }
+
 
     @Bean
     public PlaylistService playlistService() {

@@ -9,7 +9,7 @@ import javafx.util.Duration;
 import org.springframework.stereotype.Service;
 
 @Service
-public class MusicPlayerService implements MusicPlayerInterface {
+public abstract class MusicPlayerService implements MusicPlayerInterface {
     private MediaPlayer mediaPlayer;
     private final VolumeController volumeController;
     private final MediaEventHandler eventHandler;
@@ -28,7 +28,7 @@ public class MusicPlayerService implements MusicPlayerInterface {
             mediaPlayer.dispose();
         }
 
-        mediaPlayer = new MediaPlayer(media);
+        mediaPlayer = createMediaPlayer(media);
 
         volumeController.bindToMediaPlayer(mediaPlayer);
         eventHandler.initializeEventHandlers(mediaPlayer);
@@ -106,4 +106,5 @@ public class MusicPlayerService implements MusicPlayerInterface {
         }
     }
 
+    protected abstract MediaPlayer createMediaPlayer(Media media);
 }
