@@ -21,7 +21,7 @@ public class MusicPlayerManager {
     private final Slider progressSlider;
 
     private boolean isPlaying = false;
-    private boolean isLooping = false;
+    // Removed unused isLooping field since the state is managed by MusicPlayerService
 
     public MusicPlayerManager(
             MusicPlayerService musicPlayerService,
@@ -94,14 +94,15 @@ public class MusicPlayerManager {
         }
     }
 
-
     private void updateTimerLabel(Duration current, Duration total) {
         String currentTime = TimeFormatter.formatTime(current.toSeconds());
         String totalTime = TimeFormatter.formatTime(total.toSeconds());
         timerLabel.setText(currentTime + " / " + totalTime);
     }
 
-    public Duration getTotalDuration() { return musicPlayerService.getTotalDuration(); }
+    public Duration getTotalDuration() {
+        return musicPlayerService.getTotalDuration();
+    }
 
     public void setOnEndOfMedia(Runnable callback) {
         if (musicPlayerService != null) {
