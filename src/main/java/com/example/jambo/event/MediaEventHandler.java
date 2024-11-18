@@ -10,7 +10,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class MediaEventHandler {
     private static final Logger logger = LoggerFactory.getLogger(MediaEventHandler.class);
-    private Runnable onEndOfMedia;
 
     public void initializeEventHandlers(MediaPlayer player) {
         setupErrorHandler(player);
@@ -32,15 +31,8 @@ public class MediaEventHandler {
 
     private void setupEndOfMediaHandler(MediaPlayer player) {
         player.setOnEndOfMedia(() -> {
-            if (onEndOfMedia != null) {
-                player.seek(Duration.ZERO);
-                player.stop();
-                onEndOfMedia.run();
-            }
+            player.seek(Duration.ZERO);
+            player.stop();
         });
-    }
-
-    public void setOnEndOfMedia(Runnable callback) {
-        this.onEndOfMedia = callback;
     }
 }

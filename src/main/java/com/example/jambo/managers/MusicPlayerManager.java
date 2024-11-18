@@ -6,7 +6,6 @@ import com.example.jambo.utils.TimeFormatter;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
