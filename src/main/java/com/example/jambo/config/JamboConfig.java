@@ -37,7 +37,7 @@ public class JamboConfig {
     @Bean
     @Primary
     public VolumeController volumeController(@Qualifier("volumeSlider") Slider volumeSlider) {
-        return new VolumeController();
+        return new VolumeController(volumeSlider);
     }
 
     @Bean
