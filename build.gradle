@@ -2,6 +2,7 @@ plugins {
 	id 'org.openjfx.javafxplugin' version '0.0.13'
 	id 'java'
 	id 'application'
+	id 'jacoco'
 }
 
 group = 'com.example'
@@ -47,6 +48,14 @@ javafx {
 test {
 	useJUnitPlatform()
 }
+
+jacocoTestReport {
+	reports {
+		xml.required = true
+		html.required = true
+	}
+}
+
 
 application {
 	mainClass = 'com.example.jambo.Jambo'
