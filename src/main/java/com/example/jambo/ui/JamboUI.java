@@ -4,7 +4,6 @@ import com.example.jambo.controllers.JamboController;
 import com.example.jambo.services.DialogService;
 import com.example.jambo.services.IconService;
 import com.example.jambo.dialogs.PlaylistDialog;
-import com.example.jambo.dialogs.SettingsDialog;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
@@ -172,7 +171,6 @@ public class JamboUI {
         loadButton.setOnAction(e -> controller.loadSongs());
         clearButton.setOnAction(e -> controller.clearSongs());
         playlistButton.setOnAction(e -> new PlaylistDialog(controller).show());
-        settingsButton.setOnAction(e -> new SettingsDialog().show());
 
         HBox headerBox = new HBox(10);
         headerBox.setPadding(new Insets(10));
